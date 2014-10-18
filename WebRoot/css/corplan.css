@@ -1,0 +1,211 @@
+@charset "utf-8";
+/* CSS Document */
+@import "bkmgmt.css";
+
+@import "page.css";
+
+@import "jquery/jquery.ui.all.css";
+
+@import "jquery/demos.css";
+
+#col-c,#major-c,#semester-c,#course-c {
+	/*精确查询的选择列表框的样式*/
+	/* text-align:center; */
+	font-size: 16px;
+	width: 180px;
+	height: 25px;
+	color: #68A8CC;
+	font-weight: bolder
+}
+
+#col-c {
+	/*查询条件模块学院的样式*/
+	font-size: 18px;
+}
+
+#fuzzy-c {
+	/*模糊查询文本框的样式*/
+	font-size: 18px;
+	width: 150px;
+	border: solid 1px #68A8CC;
+}
+
+#selectState {
+	/*选择状态样式*/
+	top: 15px;
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 15px;
+	font-size: 18px;
+	color: blue;
+	display: block;
+	background-color: #FFF
+}
+
+#toolkit {
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+	padding-left: 0px;
+	top: 30px;
+	width: 100%;
+	height: 50px;
+	background-color: #FFF;
+	color: #68A8CC;
+	font: Microsoft YaHei;
+	font-weight: bolder
+}
+
+#addNewCourse,#editCourse {
+	/*添加教学计划按钮样式*/
+	color: blue;
+	font-family: Webdings;
+	font-size: 10pt;
+	font-weight: normal;
+	height: 30px;
+	width: 80px
+}
+
+#dropAllCorplan,#initCorplan {
+	/*添加教学计划按钮样式*/
+	color: blue;
+	font-family: Webdings;
+	font-size: 10pt;
+	font-weight: normal;
+	height: 30px;
+	width: 120px
+}
+
+#addToCorplan,#deleteCorplan,#addAllToCorplan {
+	/*添加新的教学计划和删除教学计划按钮的样式*/
+	color: #FFF;
+	font-family: Webdings;
+	font-size: 10pt;
+	font-weight: normal;
+	height: 30px;
+	width: 95px;
+	background-color: #68A8CC;
+	font-weight: bolder
+}
+
+#corplanmain {
+	/*课程和教学计划主工作区样式*/
+	position: relative;
+	width: 100%;
+	height: 80%;
+	left: 0%;
+	top: 50px;
+	margin: 0px;
+	padding: 0px;
+	padding-left: 0px;
+	font-size: 16px;
+	display: block;
+	background-color: #FFF;
+}
+
+#course,#corplan {
+	/*课程和教学计划列表框的样式*/
+	font-size: 18px;
+	color: #68A8CC;
+	width: 240px;
+	height: 300px;
+	top: 60px;
+	margin: 0px;
+	padding: 0px;
+	font-weight: bolder
+}
+
+#course {
+	left: 10%;
+}
+
+#corplan {
+	left: 50%;
+}
+
+#altertable {
+	/*修改模块*/
+	margin-left: 10px;
+	margin-top: 20px;
+	font-size: 16px;
+	width: 250px;
+}
+
+#col-a,#major-a,#corname-a,#semester-a {
+	/*修改模块表单元素的样式*/
+	font-size: 16px;
+	height: 25px;
+	width: 180px;
+}
+
+.add {
+	/*主工作区右侧添加课程模块的样式  */
+	position: absolute;
+	height: 98%;
+	width: 25%;
+	left: 74.5%;
+	top: 1%;
+	margin: 0px;
+	padding: 0px;
+	bottom: 1%;
+	right: 0.5%;
+	font-size: 18px;
+	background-color: #FFF;
+	border: 2px solid #AACCEE;
+	display: none;
+}
+
+#col-add,#major-add,#corname-add,#semester-add {
+	/*修改模块表单元素的样式*/
+	font-size: 16px;
+	height: 25px;
+	width: 180px;
+}
+
+#mask {
+	/*等待时显示的图片*/
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-color: #000;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding-top: 350px;
+	filter: alpha(opacity = 30);
+	opacity: 0.3;
+	display: none;
+	z-index: 100;
+}
+
+#loading {
+	/*loading图片的样式*/
+	position: relative;
+	/* padding-top:400px; */
+	z-index: 101;
+	display: block;
+}
+
+#info {
+	/*等待过程中显示的字符*/
+	position: relative;
+	font-size: 22px;
+	color: #ff0;
+	text-align: center;
+	z-index: 101;
+	display: block;
+}
+
+.result {
+	/*查询结果模块的样式  */
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	height: 68%;
+	width: 100%;
+	top: 20%;
+	border-top: solid 2px #AACCEE;
+	background-color: #FFF;
+}

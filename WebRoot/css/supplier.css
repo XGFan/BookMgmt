@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* CSS Document */
+@import "bkmgmt.css";
+
+@import "page.css";
+
+@import "jquery/jquery.ui.all.css";
+
+@import "jquery/demos.css";
+
+.condition {
+	color: #68A8CC;
+	font: Microsoft YaHei;
+	font-size: 18px;
+	font-weight: bolder
+}
+
+.result { /*查询结果模块的样式  */
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	height: 60%;
+	width: 100%;
+	top: 20%;
+	border-top: solid 2px #AACCEE;
+	background-color: #FFF;
+	color: #68A8CC;
+	font: Microsoft YaHei;
+	font-size: 18px;
+	font-weight: bolder
+}
+
+#col-c,#major-c { /*精确查询的选择列表框的样式*/
+	/* text-align:center; */
+	width: 180px;
+}
+
+#col-c {
+	font-size: 20px;
+	color: #0000ff;
+}
+
+#fuzzy-c { /*模糊查询文本框的样式*/
+	font-size: 18px;
+	width: 180px;
+	border: solid 1px #00f;
+}
+
+#col-c,#major-c,#semester-c,#course-c { /*精确查询的选择列表框的样式*/
+	/* text-align:center; */
+	font-size: 16px;
+	width: 180px;
+	height: 25px;
+}
+
+#col-c {
+	font-size: 18px;
+	color: #0000ff;
+}
+
+#fuzzy-c { /*模糊查询文本框的样式*/
+	font-size: 18px;
+	width: 180px;
+	border: solid 1px #00f;
+}
+
+#supplier,#supplier-d,#publisher{
+	/*查询条件模块学院的样式*/
+	font-size: 18px;
+	width: 180px;
+	height: 25px;
+	color: #68A8CC;
+	font-weight: bolder
+}
+
+#altertable { /*修改模块样式*/
+	margin-left: 10px;
+	margin-top: 20px;
+	font-size: 16px;
+	width: 250px;
+}
+
+#col-a,#major-a,#corname-a,#semester-a { /*修改模块的表单插件的样式*/
+	font-size: 16px;
+	height: 25px;
+	width: 180px;
+}
+
+#col-add,#major-add,#corname-add,#semester-add { /*修改模块的表单插件的样式*/
+	font-size: 16px;
+	height: 25px;
+	width: 180px;
+}
+
+#add { /*添加按钮*/
+	width: 100px;
+	height: 30px;
+}
+
+.addpub { /*主工作区右侧添加课程模块的样式  */
+	position: absolute;
+	height: 98%;
+	width: 25%;
+	left: 74.5%;
+	top: 1%;
+	margin: 0px;
+	padding: 0px;
+	bottom: 1%;
+	right: 0.5%;
+	font-size: 18px;
+	background-color: #FFF;
+	border: 2px solid #AACCEE;
+	display: none;
+}
+
+#addbtnsup {
+	width: 100px;
+}
+
+#addbtnpub {
+	width: 100px;
+}
+
+#delbtnsup {
+	width: 70px;
+}
