@@ -4,16 +4,23 @@ import com.bean.book.Book;
 
 /**
  * Bkpurchase entity. @author MyEclipse Persistence Tools
+ * 教科书购买表
  */
 
+/**
+ *
+ */
 public class Bkpurchase implements java.io.Serializable {
 
-	// Fields
-
+    /** ID  */
 	private Integer id;
+    /** 购买的教科书对象 */
 	private Book book;
+    /** 购买数量 */
 	private Integer bknum;
+    /** 校区 */
 	private String campus;
+    /** 供应商 */
 	private String supplier;
 
 	// Constructors
@@ -31,7 +38,6 @@ public class Bkpurchase implements java.io.Serializable {
 	}
 
 	// Property accessors
-
 	public Integer getId() {
 		return this.id;
 	}

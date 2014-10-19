@@ -35,14 +35,18 @@ public class BkpurchaseDAO extends HibernateDaoSupport implements
 		log.debug("saving Bkpurchase instance");
 		try {
 			// System.out.println("Hibernate dao");
+            // 找出所有需要购买的教科书清单
 			List li = this.findAll();
+            // 如果不为空，则全部清空
 			if (!li.isEmpty()) {
 				getHibernateTemplate().deleteAll(li);
 			}
+            //依次保存
 			for (Bkpurchase bkpur : list) {
 				// System.out.println("id  "+bkpur.getId()+"  ");
 				getHibernateTemplate().save(bkpur);
 			}
+            //写入日志
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
@@ -75,6 +79,7 @@ public class BkpurchaseDAO extends HibernateDaoSupport implements
 	public Bkpurchase findById(java.lang.Integer id) {
 		log.debug("getting Bkpurchase instance with id: " + id);
 		try {
+            //根据ID来实例化对象
 			Bkpurchase instance = (Bkpurchase) getHibernateTemplate().get(
 					"com.bean.bkpurchase.Bkpurchase", id);
 			return instance;
@@ -101,6 +106,7 @@ public class BkpurchaseDAO extends HibernateDaoSupport implements
 		log.debug("finding Bkpurchase instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
+            //生成模糊查找语句
 			String queryString = "from Bkpurchase as model where model."
 					+ propertyName + "= ?";
 			return getHibernateTemplate().find(queryString, value);
@@ -109,6 +115,17 @@ public class BkpurchaseDAO extends HibernateDaoSupport implements
 			throw re;
 		}
 	}
+
+    public List findAll() {
+        log.debug("finding all Bkpurchase instances");
+        try {
+            String queryString = "from Bkpurchase";
+            return getHibernateTemplate().find(queryString);
+        } catch (RuntimeException re) {
+            log.error("find all failed", re);
+            throw re;
+        }
+    }
 
 	public List findByBknum(Object bknum) {
 		return findByProperty(BKNUM, bknum);
@@ -120,17 +137,6 @@ public class BkpurchaseDAO extends HibernateDaoSupport implements
 
 	public List findBySupplier(Object supplier) {
 		return findByProperty(SUPPLIER, supplier);
-	}
-
-	public List findAll() {
-		log.debug("finding all Bkpurchase instances");
-		try {
-			String queryString = "from Bkpurchase";
-			return getHibernateTemplate().find(queryString);
-		} catch (RuntimeException re) {
-			log.error("find all failed", re);
-			throw re;
-		}
 	}
 
 	public Bkpurchase merge(Bkpurchase detachedInstance) {
