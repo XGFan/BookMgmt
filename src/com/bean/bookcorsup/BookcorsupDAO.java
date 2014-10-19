@@ -32,7 +32,7 @@ public class BookcorsupDAO extends HibernateDaoSupport implements
 	}
 
 	public List findbklist(String str) {
-		log.debug("finding all Bookcorsup instances");
+//		log.debug("finding all Bookcorsup instances");
 		try {
 			String queryString = "select distinct idbk from Bookcorsup where semester in("
 					+ str + ")";
@@ -88,7 +88,7 @@ public class BookcorsupDAO extends HibernateDaoSupport implements
 		}
 	}
 
-	public Bookcorsup findById(com.bean.bookcorsup.BookcorsupId id) {
+	public Bookcorsup findById(BookcorsupId id) {
 		log.debug("getting Bookcorsup instance with id: " + id);
 		try {
 			Bookcorsup instance = (Bookcorsup) getHibernateTemplate().get(

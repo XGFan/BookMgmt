@@ -6,13 +6,17 @@ package com.bean.bookcorsup;
 
 public class BookcorsupId implements java.io.Serializable {
 
-	// Fields
-
+    /*id*/
 	private Integer id;
+    /*课程ID*/
 	private String idcor;
+    /*书本id*/
 	private String idbk;
+    /*书本名*/
 	private String bkname;
+    /*某班级某学期*/
 	private String semester;
+    /*供应商*/
 	private String supplier;
 
 	// Constructors

@@ -5,17 +5,19 @@ package com.bean.bookcorsup;
  */
 
 public class Bookcorsup implements java.io.Serializable {
-
-	// Fields
-
+    /*todo*/
 	private Integer id;
+    /*课程id*/
 	private String idcor;
+    /*书本id*/
 	private String idbk;
+    /*书本名*/
 	private String bkname;
+    /*某班级的某一学期*/
 	private String semester;
+    /*供应商名称*/
 	private String supplier;
 
-	// Constructors
 	/** minimal constructor */
 	public Bookcorsup(Integer id, String idcor, String idbk, String supplier) {
 		this.id = id;
