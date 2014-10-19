@@ -127,17 +127,17 @@ public class BkpurchaseDAO extends HibernateDaoSupport implements
         }
     }
 
-	public List findByBknum(Object bknum) {
-		return findByProperty(BKNUM, bknum);
-	}
-
-	public List findByCampus(Object campus) {
-		return findByProperty(CAMPUS, campus);
-	}
-
-	public List findBySupplier(Object supplier) {
-		return findByProperty(SUPPLIER, supplier);
-	}
+//	public List findByBknum(Object bknum) {
+//		return findByProperty(BKNUM, bknum);
+//	}
+//
+//	public List findByCampus(Object campus) {
+//		return findByProperty(CAMPUS, campus);
+//	}
+//
+//	public List findBySupplier(Object supplier) {
+//		return findByProperty(SUPPLIER, supplier);
+//	}
 
 	public Bkpurchase merge(Bkpurchase detachedInstance) {
 		log.debug("merging Bkpurchase instance");
