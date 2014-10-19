@@ -121,40 +121,16 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
 		getHibernateTemplate().saveOrUpdate(book);
 	}
 
-	public List findByBkname(Object bkname) {
-		return findByProperty(BKNAME, bkname);
-	}
-
-	public List FuzzyFindByBkname(String bkname) {
-		String queryString = null;
-		try {
-			queryString = "from Book b where b.bkname like '%" + bkname + "%'";
-			return getHibernateTemplate().find(queryString);
-		} catch (RuntimeException re) {
-			log.error("FuzzyFindByBkname failed", re);
-			throw re;
-		}
-	}
-
-	public List findByAuthor(Object author) {
-		return findByProperty(AUTHOR, author);
-	}
-
-	public List findByEdition(Object edition) {
-		return findByProperty(EDITION, edition);
-	}
-
-	public List findByIsbn(Object isbn) {
-		return findByProperty(ISBN, isbn);
-	}
-
-	public List findByPrice(Object price) {
-		return findByProperty(PRICE, price);
-	}
-
-	public List findByMemo(Object memo) {
-		return findByProperty(MEMO, memo);
-	}
+    public List FuzzyFindByBkname(String bkname) {
+        String queryString = null;
+        try {
+            queryString = "from Book b where b.bkname like '%" + bkname + "%'";
+            return getHibernateTemplate().find(queryString);
+        } catch (RuntimeException re) {
+            log.error("FuzzyFindByBkname failed", re);
+            throw re;
+        }
+    }
 
 	public List findAll() {
 		log.debug("finding all Book instances");
@@ -238,4 +214,6 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
 			throw re;
 		}
 	}
+
+
 }

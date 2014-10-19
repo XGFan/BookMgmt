@@ -11,16 +11,28 @@ import com.bean.supplier.Supplier;
 
 public class Book implements java.io.Serializable {
 
-	// Fields
+	/** 书本ID */
 	private String idbk;
+    /** 供应商 */
 	private Supplier supplier;
-	private String idsp; 
+    /** 供应商ID */
+	private String idsp;
+    /** 书本名称 */
 	private String bkname;
+    /** 作者 */
 	private String author;
+    /** 版本 */
 	private Integer edition;
+    /** ISBN号码 */
 	private String isbn;
+    /** 价格 */
 	private Double price;
+    /** 备注 */
 	private String memo;
+
+
+
+
 	private Set bkpurchases = new HashSet(0);
 	private Set coursebks = new HashSet(0);
 	
