@@ -61,7 +61,7 @@ public class BookServiceImp implements BookService {
 	}
 
 	public List<Book> searchByISBN(String isbn) {
-		List list = bookDAO.findByIsbn(isbn);
+        List list = bookDAO.findByProperty("isbn",isbn);
 		return ConvertUtils.ToBookListFromBook(list);
 	}
 

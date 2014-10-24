@@ -12,7 +12,9 @@ public class Corbook implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+    /*书本对象*/
 	private Book book;
+    /*教学计划对象*/
 	private Corplan corplan;
 
 	/** default constructor */

@@ -5,54 +5,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>湖北中医药大学教材管理系统</title>
-<link rel="stylesheet" type="text/css"
-	href="css/jquery/jquery.ui.all.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery/jquery.ui.all.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery/demos.css" />
 <link rel="stylesheet" type="text/css" href="css/bkmgmt.css" />
 <link rel="stylesheet" type="text/css" href="css/class.css" />
 <link rel="stylesheet" type="text/css" href="css/page.css" />
 
-
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery-1.8.3.min.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.core.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.widget.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.mouse.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.draggable.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.button.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.resizable.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.position.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.tabs.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.ui.dialog.js"></script>
-<script language="javascript" type="text/javascript"
-	src="js/jquery/jquery.jqpagination.min.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery-1.8.3.min.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.core.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.widget.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.mouse.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.draggable.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.button.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.resizable.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.position.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.tabs.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.ui.dialog.js"></script>
+<script language="javascript" type="text/javascript"src="js/jquery/jquery.jqpagination.min.js"></script>
 
 <!-- 自己写的一些js代码 -->
-<script language="javascript" type="text/javascript"
-	src="js/navigator.js" charset="utf-8"></script>
-<script language="javascript" type="text/javascript" src="js/dialog.js"
-	charset="utf-8"></script>
-<script language="javascript" type="text/javascript"
-	src="js/ClsEdTable.js"></script>
-<script language="javascript" type="text/javascript" src="js/clspage.js"
-	charset="utf-8">
-	
-</script>
+<script language="javascript" type="text/javascript"src="js/navigator.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript"src="js/dialog.js"charset="utf-8"></script>
+<script language="javascript" type="text/javascript"src="js/ClsEdTable.js"></script>
+<script language="javascript" type="text/javascript"src="js/clspage.js"charset="utf-8"></script>
 
 </head>
 
 <body class="body">
 	<div class="total">
-
 		<!--顶部信息 -->
 		<%-- <jsp:include page="top.jsp" /> --%>
 		<div class="top">

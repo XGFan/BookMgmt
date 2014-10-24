@@ -3,23 +3,33 @@ package com.bean.corbook;
 /**
  * Corbookview entity. @author MyEclipse Persistence Tools
  */
-
+/*专业课程书本安排表*/
 public class Corbookview implements java.io.Serializable {
 
-	// Fields
-
 	private int id;
+    /*学院名称*/
 	private String col;
+    /*专业名称*/
 	private String major;
+    /*课程id*/
 	private String idcor;
+    /*课程名称*/
 	private String corname;
+    /*保存班级处在某一学期*/
 	private String semester;
+    /*TODO*/
 	private String idcorsem;
+    /*书本id*/
 	private String idbk;
+    /*书本名称*/
 	private String bkname;
+    /*作者*/
 	private String author;
+    /*书本版本*/
 	private int edition;
+    /*ISBN号*/
 	private String isbn;
+    /*出版社*/
 	private String publisher;
 
 	public Corbookview() {

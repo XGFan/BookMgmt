@@ -29,6 +29,10 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+    /**
+     * 保存课程书本视图
+     * @param transientInstance
+     */
 	public void save(Corbookview transientInstance) {
 		log.debug("saving Corbookview instance");
 		try {
@@ -40,6 +44,10 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 删除课程书本视图
+     * @param persistentInstance
+     */
 	public void delete(Corbookview persistentInstance) {
 		log.debug("deleting Corbookview instance");
 		try {
@@ -51,6 +59,11 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据id查找
+     * @param id
+     * @return
+     */
 	public Corbookview findById(com.bean.corbook.CorbookviewId id) {
 		log.debug("getting Corbookview instance with id: " + id);
 		try {
@@ -63,6 +76,11 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据example查找
+     * @param instance example
+     * @return List
+     */
 	public List findByExample(Corbookview instance) {
 		log.debug("finding Corbookview instance by example");
 		try {
@@ -76,6 +94,12 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据属性名和属性值查找
+     * @param propertyName 属性名
+     * @param value 属性值
+     * @return LIST
+     */
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding Corbookview instance with property: " + propertyName
 				+ ", value: " + value);
@@ -89,6 +113,10 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 返回所有信息
+     * @return
+     */
 	public List findAll() {
 		log.debug("finding all Corbookview instances");
 		try {
@@ -100,6 +128,11 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据课程名称查找书本课程安排
+     * @param corname 课程名称
+     * @return LIST
+     */
 	public List findCourseByCorname(String corname) {
 		log.debug("findCourseByCorname");
 		try {
@@ -112,6 +145,11 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 选出使用了某本书的所有安排
+     * @param bkname 书本名称
+     * @return LIST
+     */
 	public List findByBk(String bkname) {
 		log.debug("finding all Corbookview instances");
 		try {

@@ -29,6 +29,10 @@ public class CorbookDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+    /**
+     * 保存
+     * @param transientInstance
+     */
 	public void save(Corbook transientInstance) {
 		log.debug("saving Corbook instance");
 		try {
@@ -40,6 +44,10 @@ public class CorbookDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 删除
+     * @param persistentInstance
+     */
 	public void delete(Corbook persistentInstance) {
 		log.debug("deleting Corbook instance");
 		try {
@@ -51,6 +59,11 @@ public class CorbookDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据id查找
+     * @param id
+     * @return
+     */
 	public Corbook findById(java.lang.Integer id) {
 		log.debug("getting Corbook instance with id: " + id);
 		try {
@@ -63,6 +76,11 @@ public class CorbookDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据example查找
+     * @param instance
+     * @return LIST
+     */
 	public List findByExample(Corbook instance) {
 		log.debug("finding Corbook instance by example");
 		try {
@@ -76,6 +94,12 @@ public class CorbookDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据属性名和属性值来查找
+     * @param propertyName 属性名
+     * @param value 属性值
+     * @return LIST
+     */
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding Corbook instance with property: " + propertyName
 				+ ", value: " + value);
@@ -89,6 +113,10 @@ public class CorbookDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 所有信息
+     * @return LIST
+     */
 	public List findAll() {
 		log.debug("finding all Corbook instances");
 		try {
@@ -139,6 +167,10 @@ public class CorbookDAO extends HibernateDaoSupport {
 		return (CorbookDAO) ctx.getBean("CorbookDAO");
 	}
 
+    /**
+     * 保存或者更新
+     * @param corbook
+     */
 	public void saveOrUpdate(Corbook corbook) {
 
 		log.debug("saving Corbook instance");

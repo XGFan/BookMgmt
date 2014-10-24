@@ -6,8 +6,6 @@ package com.bean.corbook;
 
 public class CorbookviewId implements java.io.Serializable {
 
-	// Fields
-
 	private String idcorsem;
 	private String idbk;
 	private String idcor;

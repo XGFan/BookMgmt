@@ -11,11 +11,12 @@ import com.bean.course.Course;
 
 public class Corplan implements java.io.Serializable {
 
-	// Fields
-
-	private String idcorsem;  //教学计划的主键，由idcor(课程主键)+semester（学期）  
-	private Course course;     //课程
-	private String semester;  //学期
+    /*教学计划的主键，由idcor(课程主键)+semester（学期）*/
+	private String idcorsem;
+    /*课程*/
+	private Course course;
+    /*学期*/
+	private String semester; 
 
 	// Constructors
 

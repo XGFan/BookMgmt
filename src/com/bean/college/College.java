@@ -6,18 +6,17 @@ import java.util.Set;
 /**
  * College entity. @author MyEclipse Persistence Tools
  */
-
+/*学院转农业信息*/
 public class College implements java.io.Serializable {
 
-	// Fields
-
-	/** 
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+    /*专业ID（唯一）*/
 	private String idcm;
+    /*学院名称*/
 	private String col;
+    /*专业名称*/
 	private String major;
+    /*学制，某一专业的学期数*/
 	private Integer semnum;
 	private Set classes = new HashSet(0);
 	private Set courses = new HashSet(0);

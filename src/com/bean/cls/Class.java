@@ -5,18 +5,24 @@ import com.bean.college.College;
 /**
  * Class entity. @author MyEclipse Persistence Tools
  */
-
+/*班级信息*/
 public class Class implements java.io.Serializable {
 
 	// Fields
-
+    /*班级id*/
 	private String idcls;
-	private College college;
-	private String campus;
-	private String grade;
-	private String semester;
-	private Integer clsno;
-	private Integer stunum;
+	/*学院*/
+    private College college;
+	/*校区*/
+    private String campus;
+	/*年级*/
+    private String grade;
+	/*学期*/
+    private String semester;
+	/*班级号*/
+    private Integer clsno;
+	/*学生数量*/
+    private Integer stunum;
 
 	// Constructors
 

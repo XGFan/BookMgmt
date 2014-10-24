@@ -31,6 +31,11 @@ public class CollegeDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+    /**
+     * 保存学院专业实例
+     * @param transientInstance 学院专业信息实例
+     * @return 操作是否成功
+     */
 	public boolean save(College transientInstance) {
 		log.debug("saving College instance");
 		try {
@@ -43,6 +48,11 @@ public class CollegeDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 更新学院专业实例
+     * @param transientInstance 学院专业实例信息
+     * @return 操作是否成功
+     */
 	public boolean update(College transientInstance) {
 		log.debug("update College instance");
 		try {
@@ -55,6 +65,10 @@ public class CollegeDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 删除学院专业实例
+     * @param persistentInstance 学院专业信息实例
+     */
 	public void delete(College persistentInstance) {
 		log.debug("deleting College instance");
 		try {
@@ -66,6 +80,11 @@ public class CollegeDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据学院ID来删除学院专业信息
+     * @param idcm 学院专业ID
+     * @return 操作是否成功
+     */
 	public boolean deleteById(String idcm) {
 		log.debug("deleting College instance");
 		boolean result = false;
@@ -83,6 +102,11 @@ public class CollegeDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据学院专业id来查找学院专业信息
+     * @param id 学院专业id
+     * @return 找到的该专业的信息
+     */
 	public College findById(java.lang.String id) {
 		log.debug("getting College instance with id: " + id);
 		try {
@@ -104,6 +128,11 @@ public class CollegeDAO extends HibernateDaoSupport {
 	 * (RuntimeException re) { log.error("get failed", re); throw re; } }
 	 */
 
+    /**
+     *根据实例example来查找学院专业信息
+     * @param instance 学院专业example
+     * @return LIST
+     */
 	public List findByExample(College instance) {
 		log.debug("finding College instance by example");
 		try {
@@ -117,6 +146,12 @@ public class CollegeDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据属性名和属性名来查找
+     * @param propertyName 属性名
+     * @param value 属性值
+     * @return 查找的结果LIST
+     */
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding College instance with property: " + propertyName
 				+ ", value: " + value);
@@ -142,6 +177,10 @@ public class CollegeDAO extends HibernateDaoSupport {
 		return findByProperty(SEMNUM, semnum);
 	}
 
+    /**
+     * 返回所有的学院专业信息
+     * @return LIST
+     */
 	public List findAll() {
 		log.debug("finding all College instances");
 		try {
@@ -155,8 +194,7 @@ public class CollegeDAO extends HibernateDaoSupport {
 
 	/**
 	 * 获取所有的专业，根据IDCM排序
-	 * 
-	 * @return
+	 * @return 按照idcm排序的list
 	 */
 	public List findAllOrderByIdcm() {
 		log.debug("finding all College instances");
@@ -171,8 +209,7 @@ public class CollegeDAO extends HibernateDaoSupport {
 
 	/**
 	 * 获取某学院的所有专业，根据IDCM排序
-	 * 
-	 * @return
+	 * @return 某学院的所有专业，根据IDCM排序
 	 */
 	public List findByColOrderByIdcm(String col) {
 		log.debug("finding all College instances");

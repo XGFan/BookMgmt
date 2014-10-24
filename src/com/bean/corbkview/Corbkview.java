@@ -3,20 +3,27 @@ package com.bean.corbkview;
 /**
  * Corbkview entity. @author MyEclipse Persistence Tools
  */
-
+/*课程书本视图*/
 public class Corbkview implements java.io.Serializable {
 
-	// Fields
-
 	private Integer id;
+    /*课程id*/
 	private String idcor;
+    /*书本id*/
 	private String idbk;
+    /*学院名称*/
 	private String col;
+    /*专业名称*/
 	private String major;
+    /*所在的某一学期*/
 	private String semester;
+    /*课程名称*/
 	private String corname;
+    /*书本名称*/
 	private String bkname;
+    /*出版社*/
 	private String publisher;
+    /*ISBN号*/
 	private String isbn;
 	
 

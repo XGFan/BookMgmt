@@ -6,29 +6,49 @@ package com.bean.bookpurchase;
 
 public class Bookpurchase implements java.io.Serializable {
 
-	// Fields
 
 	private Integer id;
+    /*学院专业id*/
 	private String idcm;
+    /*学院名称*/
 	private String col;
+    /*专业名称*/
 	private String major;
+    /*学期数量*/
 	private String semnum;
+    /*校区*/
 	private String campus;
+    /*班级编号*/
 	private String idcls;
+    /*年级*/
 	private String grade;
+    /*班号*/
 	private String clsno;
+    /*学生人数*/
 	private String stunum;
+    /*课程id*/
 	private String idcor;
+    /*课程名称*/
 	private String corname;
+    /*todo*/
 	private String idcorsem;
+    /*todo*/
 	private String semester;
+    /*书本id*/
 	private String idbk;
+    /*书本名称*/
 	private String bkname;
+    /*作者*/
 	private String author;
+    /*书本版本*/
 	private String edition;
+    /*书本的isbn编号*/
 	private String isbn;
+    /*供应商id*/
 	private String idsp;
+    /*出版社*/
 	private String publisher;
+    /*供应商*/
 	private String supplier;
 
 	// Constructors

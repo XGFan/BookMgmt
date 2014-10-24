@@ -26,6 +26,10 @@ public class CorbkviewDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+    /**
+     * 保存
+     * @param transientInstance
+     */
 	public void save(Corbkview transientInstance) {
 		log.debug("saving Corbkview instance");
 		try {
@@ -37,6 +41,10 @@ public class CorbkviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 删除
+     * @param persistentInstance
+     */
 	public void delete(Corbkview persistentInstance) {
 		log.debug("deleting Corbkview instance");
 		try {
@@ -48,6 +56,11 @@ public class CorbkviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据id查找
+     * @param id
+     * @return
+     */
 	public Corbkview findById(com.bean.corbkview.CorbkviewId id) {
 		log.debug("getting Corbkview instance with id: " + id);
 		try {
@@ -60,6 +73,11 @@ public class CorbkviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 传入实例查找
+     * @param instance
+     * @return LIST
+     */
 	public List findByExample(Corbkview instance) {
 		log.debug("finding Corbkview instance by example");
 		try {
@@ -73,6 +91,12 @@ public class CorbkviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据属性名和属性值来查找
+     * @param propertyName 属性名
+     * @param value 属性值
+     * @return LIST
+     */
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding Corbkview instance with property: " + propertyName
 				+ ", value: " + value);
@@ -86,6 +110,10 @@ public class CorbkviewDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 返回所有
+     * @return
+     */
 	public List findAll() {
 		log.debug("finding all Corbkview instances");
 		try {

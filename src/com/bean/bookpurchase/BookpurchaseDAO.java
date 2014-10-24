@@ -58,7 +58,7 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
-	// 将筛选后的课程信息保存到临时表中 2014.3.18 zhangchi
+	/*将筛选后的课程信息保存到临时表中 2014.3.18 zhangchi*/
 	public void batchSave(List<Bookpurchaseview> bpvlist) {
 		log.debug("batchSave Bookpurchase instances");
 		try {

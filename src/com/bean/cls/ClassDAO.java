@@ -32,6 +32,10 @@ public class ClassDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+    /**
+     * 保存班级实例
+     * @param transientInstance 班级信息实例
+     */
 	public void save(Class transientInstance) {
 		log.debug("saving Class instance");
 		try {
@@ -43,6 +47,10 @@ public class ClassDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 删除班级实例
+     * @param persistentInstance 班级信息实例
+     */
 	public void delete(Class persistentInstance) {
 		log.debug("deleting Class instance");
 		try {
@@ -54,6 +62,11 @@ public class ClassDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据班级id查找班级
+     * @param id 班级id
+     * @return 班级实例
+     */
 	public Class findById(java.lang.String id) {
 		log.debug("getting Class instance with id: " + id);
 		try {
@@ -66,6 +79,11 @@ public class ClassDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据传入的example进行模糊查找
+     * @param instance 班级实例example
+     * @return 查找到的班级信息LIST
+     */
 	public List findByExample(Class instance) {
 		log.debug("finding Class instance by example");
 		try {
@@ -79,6 +97,12 @@ public class ClassDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据传入的属性名和属性值来进行查找
+     * @param propertyName 属性名
+     * @param value 属性值
+     * @return 查找到的班级信息LIST
+     */
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding Class instance with property: " + propertyName
 				+ ", value: " + value);
@@ -112,6 +136,10 @@ public class ClassDAO extends HibernateDaoSupport {
 		return findByProperty(STUNUM, stunum);
 	}
 
+    /**
+     * 返回所有的班级信息
+     * @return LIST
+     */
 	public List findAll() {
 		log.debug("finding all Class instances");
 		try {
