@@ -16,11 +16,16 @@ public class ColAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 
+    /*专业id*/
 	private String idcm;
+    /*学院名称*/
 	private String col;
+    /*专业名称*/
 	private String major;
+    /*TODO*/
 	private ColServ csv;
-	private Pagination pagination;// 用于进行分页查询
+    /*分页配置信息*/
+	private Pagination pagination;
 
 	public String getIdcm() {
 		return idcm;
@@ -196,7 +201,7 @@ public class ColAction extends ActionSupport {
 	/**
 	 * 获取所有的学院
 	 * 
-	 * @return
+	 * @return null
 	 */
 	public String getAllCol() {
 		List list = csv.getAllCol();
@@ -207,7 +212,7 @@ public class ColAction extends ActionSupport {
 	/**
 	 * 根据学院来获取专业
 	 * 
-	 * @return
+	 * @return null
 	 */
 	public String getMajorByCol() {
 		HttpServletRequest request = ServletActionContext.getRequest();

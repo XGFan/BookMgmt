@@ -56,7 +56,10 @@ public class CourseAction extends ActionSupport {
 		this.collgeService = collgeService;
 	}
 
-	/* get all course infomation */
+    /**
+     *
+     * @return
+     */
 	public String list() {
 		List list = courseService.init();
 		if (pagination == null)

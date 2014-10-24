@@ -28,6 +28,10 @@ public class CorplanDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+    /**
+     * 保存
+     * @param transientInstance
+     */
 	public void save(Corplan transientInstance) {
 		log.debug("saving Corplan  ");
 		try {
@@ -39,6 +43,10 @@ public class CorplanDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 删除
+     * @param persistentInstance
+     */
 	public void delete(Corplan persistentInstance) {
 		log.debug("deleting Corplan instance");
 		try {
@@ -50,6 +58,11 @@ public class CorplanDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据id查找
+     * @param id
+     * @return
+     */
 	public Corplan findById(java.lang.String id) {
 		log.debug("getting Corplan instance with id: " + id);
 		try {
@@ -62,11 +75,11 @@ public class CorplanDAO extends HibernateDaoSupport {
 		}
 	}
 
-/**
- * 	根据idcorsem查找对应课程计划
- * @param idcorsem
- * @return
- */
+    /**
+    * 根据idcorsem查找对应课程计划
+    * @param idcorsem
+    * @return
+    */
 	public List findByIdcorsem(String idcorsem) {
 		log.debug("getting Corplan instance with idcorsem: " + idcorsem);
 		try {
@@ -77,9 +90,12 @@ public class CorplanDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-	
-	
-	
+
+    /**
+     * 根据example查找
+     * @param instance
+     * @return LIST
+     */
 	public List findByExample(Corplan instance) {
 		log.debug("finding Corplan instance by example");
 		try {
@@ -93,6 +109,12 @@ public class CorplanDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据属性值和属性名查找
+     * @param propertyName 属性名
+     * @param value 属性值
+     * @return LIST
+     */
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding Corplan instance with property: " + propertyName
 				+ ", value: " + value);

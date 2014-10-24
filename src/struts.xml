@@ -2,20 +2,22 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<!-- <constant name="" value=""></constant> -->
+    <!--采用了通配符的方式来匹配action路径-->
 	<!-- 与学院有关的包 -->
 	<package name="college" extends="struts-default">
 		<action name="college_*" class="collegeAction" method="{1}">
 			<result name="*">/college.jsp</result>
 		</action>
 
+        <!--课程-->
 		<action name="course_*" class="courseAction" method="{1}">
 			<result name="*">/course.jsp</result>
 		</action>
-
+        <!--教学计划-->
 		<action name="corplan_*" class="corplanAction" method="{1}">
 			<result name="*">/corplan.jsp</result>
 		</action>
-
+        <!--书-->
 		<action name="book_*" class="bookAction" method="{1}">
 			<result name="*">/book/book.jsp</result>
 		</action>

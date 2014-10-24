@@ -130,16 +130,10 @@ public class ColServImp implements ColServ {
 		return ConvertUtils.ToCollegeList(list);
 	}
 
-	/**
-	 * 获取所有的学院
-	 */
 	public List getAllCol() {
 		return collegeDAO.getAllCol();
 	}
 
-	/**
-	 * 根据学院获取所有专业
-	 */
 	public List getMajorByCol(String col) {
 		return collegeDAO.getMajorByCol(col);
 	}
@@ -159,9 +153,6 @@ public class ColServImp implements ColServ {
 		return collegeDAO.findById(id);
 	}
 
-	/**
-	 * 根据学院专业来获取专业记录
-	 */
 	public List<College> getCols(String col, String major) {
 		List<College> list = collegeDAO.getCol(col, major);
 		return list;

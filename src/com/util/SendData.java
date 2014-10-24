@@ -12,7 +12,7 @@ public class SendData {
 	public static void send(Object obj) {
 		try {
 			HttpServletResponse response = ServletActionContext.getResponse();
-			// 设置字符集
+		    /*设置字符集*/
 			response.setCharacterEncoding("utf-8");
 			response.setContentType("application/json;charset=utf-8");
 			response.setHeader("pragma", "no-cache");

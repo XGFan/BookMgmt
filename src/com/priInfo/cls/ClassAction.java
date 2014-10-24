@@ -19,10 +19,15 @@ public class ClassAction extends ActionSupport {
 	private ClassService classService;
 	private ColServ collegeService;
 	private String condition;
+    /*用来分页的对象*/
 	private Pagination pagination;
+    /*学院名称*/
 	private String col;
+    /*专业名称*/
 	private String major;
+    /*年级*/
 	private String grade;
+    /*校区*/
 	private String campus;
 
 	public String getCondition() {
@@ -39,94 +44,6 @@ public class ClassAction extends ActionSupport {
 
 	public void setClassService(ClassService classService) {
 		this.classService = classService;
-	}
-
-	public String list() {
-		List clslist = classService.findAll();
-		if (pagination == null)
-			pagination = new Pagination(9);
-		pagination.setSize(9);
-		pagination.setCurrentPage(1);
-		clslist = classService.findAllByPagination(pagination);
-		clslist.add(pagination);
-		SendData.send(clslist);
-		return null;
-	}
-
-	public String fuzzyQuery() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		if (pagination == null)
-			pagination = new Pagination(9);
-		pagination.setSize(9);
-		pagination.setCurrentPage(1);
-		pagination.setCurrentPage(currentPage);
-		// System.out.println(currentPage);
-		List clslist = classService.fuzzyFind(condition, pagination);
-		clslist.add(pagination);
-		// System.out.println(clslist.size());
-		SendData.send(clslist);
-		return null;
-	}
-
-	public String accurateQuery() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		if (pagination == null)
-			pagination = new Pagination(9);
-		pagination.setSize(9);
-		pagination.setCurrentPage(currentPage);
-		if (col == null || col.equals("请选择")) {
-			col = "";
-		}
-		if (grade == null || grade.equals("请选择")) {
-			grade = "";
-		}
-		if (major == null || major.equals("请选择")) {
-			major = "";
-		}
-		if (campus == null || campus.equals("请选择")) {
-			campus = "";
-		}
-
-		List clslist = classService.accurateQuery(col, major, grade, campus,
-				pagination);
-		clslist.add(pagination);
-		SendData.send(clslist);
-		return null;
-	}
-
-	public List getAllCol() {
-		List list = collegeService.getAllCol();
-		SendData.send(list);
-		return null;
-	}
-
-	public List getAllCampus() {
-		List list = classService.getAllCampus();
-		SendData.send(list);
-		return null;
-	}
-
-	public List getAllGrade() {
-		List list = classService.getAllGrade();
-		for (int i = 0; i < list.size(); i++) {
-			// System.out.println(list.get(i));
-		}
-		SendData.send(list);
-		return null;
-	}
-
-	public String getMajorByCol() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String col = request.getParameter("col");
-		List list = null;
-		if ("----全部----".equals(col) || "请选择".equals(col))
-			list = collegeService.getMajorByCol("");
-		else
-			list = collegeService.getMajorByCol(col);
-		SendData.send(list);
-		return null;
 	}
 
 	public ColServ getCollegeService() {
@@ -177,15 +94,151 @@ public class ClassAction extends ActionSupport {
 		this.campus = campus;
 	}
 
-	public String deleteClasses() {
+
+    //这个好像实际上只返回了第一页数据(甚至不满一页)
+    /*这个好像根本就没用过*/
+    public String list() {
+        /*获取所有的班级信息*/
+//        这个没用,下面就被overwrite了.
+//		List clslist = classService.findAll();
+        /*设置好分页配置信息*/
+        if (pagination == null)
+            pagination = new Pagination(9);
+        pagination.setSize(9);
+        pagination.setCurrentPage(1);
+        /*获取一页信息*/
+        List clslist = classService.findAllByPagination(pagination);
+        /*附上分页配置对象*/
+        clslist.add(pagination);
+        /*应该是以response的方式转为json发送出去*/
+        SendData.send(clslist);
+        return null;
+    }
+
+    /**
+     * 模糊查找，根据分页信息返回
+     * @return null
+     */
+    public String fuzzyQuery() {
+        /*获取当前页码*/
+        HttpServletRequest request = ServletActionContext.getRequest();
+        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        if (pagination == null)
+            pagination = new Pagination(9);
+        pagination.setSize(9);
+        pagination.setCurrentPage(1);
+        /*设置当前页码*/
+        pagination.setCurrentPage(currentPage);
+        // System.out.println(currentPage);
+        List clslist = classService.fuzzyFind(condition, pagination);
+        /*把分页信息放入*/
+        clslist.add(pagination);
+        // System.out.println(clslist.size());
+        /*其实只包含一页信息*/
+        SendData.send(clslist);
+        return null;
+    }
+
+    /**
+     * 精确查找，根据分页信息返回
+     * @return null
+     */
+    public String accurateQuery() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        if (pagination == null)
+            pagination = new Pagination(9);
+        pagination.setSize(9);
+        pagination.setCurrentPage(currentPage);
+        if (col == null || col.equals("请选择")) {
+            col = "";
+        }
+        if (grade == null || grade.equals("请选择")) {
+            grade = "";
+        }
+        if (major == null || major.equals("请选择")) {
+            major = "";
+        }
+        if (campus == null || campus.equals("请选择")) {
+            campus = "";
+        }
+
+        List clslist = classService.accurateQuery(col, major, grade, campus,
+                pagination);
+        clslist.add(pagination);
+        SendData.send(clslist);
+        return null;
+    }
+
+    /**
+     * 返回所有学院
+     * @return 学院LIST
+     */
+    public List getAllCol() {
+        List list = collegeService.getAllCol();
+        SendData.send(list);
+        return null;
+    }
+
+    /**
+     * 返回所有校区
+     * @return 校区LIST
+     */
+    public List getAllCampus() {
+        List list = classService.getAllCampus();
+        SendData.send(list);
+        return null;
+    }
+
+    /**
+     * 返回所有年级
+     * @return 年级LIST
+     */
+    public List getAllGrade() {
+        List list = classService.getAllGrade();
+        for (int i = 0; i < list.size(); i++) {
+            // System.out.println(list.get(i));
+        }
+        SendData.send(list);
+        return null;
+    }
+
+    /**
+     * 根据学院名称获取专业
+     * @return 专业LIST
+     */
+    public String getMajorByCol() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        /*获取学院名称*/
+        String col = request.getParameter("col");
+        List list = null;
+        if ("----全部----".equals(col) || "请选择".equals(col))
+            list = collegeService.getMajorByCol("");
+        else
+            list = collegeService.getMajorByCol(col);
+        SendData.send(list);
+        return null;
+    }
+
+
+    /**
+     * 删除班级list
+     * @return null
+     */
+    public String deleteClasses() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String idclses = request.getParameter("idclses");
-		String[] idclsid = idclses.split(","); // 以'，'划分，存储在数组中
+        /* 以'，'划分，存储在数组中*/
+		String[] idclsid = idclses.split(",");
 		boolean result = classService.deleteClasses(idclsid);
 		SendData.send(result);
 		return null;
 	}
 
+    /**
+     * 添加班级
+     * @return null
+     */
 	public String addClasses() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String addcampus = request.getParameter("addcampus");
@@ -201,11 +254,16 @@ public class ClassAction extends ActionSupport {
 		return null;
 	}
 
+    /**
+     * 修改班级
+     * @return null
+     */
 	public String editClass() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String ccampus = request.getParameter("ccampus");
 		String tempid = request.getParameter("tempid");
 		String stunum = request.getParameter("stunum");
+        /*根据传入的临时id来查找修改对象*/
 		Class cls = classService.findById(tempid);
 		if (ccampus != null && !ccampus.equals(""))
 			cls.setCampus(ccampus);

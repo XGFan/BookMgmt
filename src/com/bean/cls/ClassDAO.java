@@ -201,6 +201,11 @@ public class ClassDAO extends HibernateDaoSupport {
 		return (ClassDAO) ctx.getBean("ClassDAO");
 	}
 
+    /**
+     * 模糊查找
+     * @param condition 条件
+     * @return LIST
+     */
 	public List getClassFuzzy(String condition) {
 		String queryString = "from com.bean.cls.Class c join fetch c.college cc"
 				+ " where cc.col like '%"
@@ -217,6 +222,14 @@ public class ClassDAO extends HibernateDaoSupport {
 		return list;
 	}
 
+    /**
+     * 根据若干信息精确查找班级
+     * @param col 学院
+     * @param major 专业
+     * @param grade 年级
+     * @param campus 校区
+     * @return  班级LIST
+     */
 	public List getClassByGradeCampusColMajor(String col, String major,
 			String grade, String campus) {
 		String queryString = "from com.bean.cls.Class c join fetch c.college cc where"

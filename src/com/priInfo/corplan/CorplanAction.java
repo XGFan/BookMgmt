@@ -12,9 +12,11 @@ import com.util.*;
 
 public class CorplanAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
-	/* fields of the CorplanAction */
+	/*课程安排Service*/
 	private CorplanService corplanService;
+    /*课程信息Service*/
 	private CourseService courseService;
+    /*学院专业信息Service*/
 	private ColServ collgeService;
 
 	/* setters and getters of the fields */
@@ -42,7 +44,10 @@ public class CorplanAction extends ActionSupport {
 		this.collgeService = collgeService;
 	}
 
-	/* 获取所有的课程 */
+    /**
+     * 获取所有的课程
+     * @return
+     */
 	public String list() {
 		List list = courseService.init();
 		list = courseService.findByCol("");
@@ -53,7 +58,7 @@ public class CorplanAction extends ActionSupport {
 	/**
 	 * 通过学院、专业、学期获取课程信息 精确查询
 	 * 
-	 * @return
+	 * @return null
 	 */
 	public String accurateCorplanQuery() {
 		try {
@@ -90,7 +95,7 @@ public class CorplanAction extends ActionSupport {
 	/**
 	 * 通过学院、专业、学期获取课程信息 精确查询
 	 * 
-	 * @return
+	 * @return null
 	 */
 	public String accurateCourseQuery() {
 		try {

@@ -8,7 +8,7 @@ import com.bean.course.Course;
 /**
  * Corplan entity. @author MyEclipse Persistence Tools
  */
-
+/*教学计划*/
 public class Corplan implements java.io.Serializable {
 
     /*教学计划的主键，由idcor(课程主键)+semester（学期）*/
@@ -16,7 +16,7 @@ public class Corplan implements java.io.Serializable {
     /*课程*/
 	private Course course;
     /*学期*/
-	private String semester; 
+	private String semester;
 
 	// Constructors
 
