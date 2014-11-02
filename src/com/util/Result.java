@@ -1,5 +1,8 @@
 package com.util;
 
+/**
+ * 结果？
+ */
 public class Result {
 	private boolean result;
 

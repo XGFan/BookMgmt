@@ -7,6 +7,10 @@ import net.sf.json.JsonConfig;
 
 import org.apache.struts2.ServletActionContext;
 
+/**
+ * 通信类
+ * 把后台的数据已json的方式发往前台
+ */
 public class SendData {
 
 	public static void send(Object obj) {

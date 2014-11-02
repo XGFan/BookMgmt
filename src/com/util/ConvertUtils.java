@@ -11,7 +11,11 @@ import com.bean.course.*;
 import com.bean.supplier.Supplier;
 
 public class ConvertUtils {
-	/* 将数据库处理的结果转换为表示层需要的数据 */
+    /**
+     * 将数据库处理的结果转换为表示层需要的数据
+     * @param list 数据库的结果LIST（由对象组成）
+     * @return 表现层的list（由map组成）
+     */
 	public static List ToCourseList(List list) {
 		Iterator it = list.iterator();
 		List courselist = new ArrayList();
@@ -31,7 +35,6 @@ public class ConvertUtils {
 	}
 
 	/* 将数据库处理的结果转换为表示层学需要的数据 */
-	@SuppressWarnings("unchecked")
 	public static List ToCorplanList(List list) {
 		Iterator it = list.iterator();
 		List corplanlist = new ArrayList();
