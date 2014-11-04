@@ -1,0 +1,109 @@
+获取所有班级
+class_fuzzyQuery.action
+参数
+	condition
+	currentpage 当前页码
+响应
+	[{stunum:学生人数,
+	idcls:班级编号,
+	col:学院,
+	idcm:学院专业编号,
+	clsno:班号,
+	grade:年级,
+	major:专业,
+	campus:校区,
+	semester:?}......,
+	{start:开始条目,
+	currentPage:当前页码,
+	totalRecord:总记录条数,
+	totalPage:总页数,
+	size:每页条目}]
+
+
+获取所有校区
+class_getAllCampus.action
+参数
+响应
+	[value]:昙/黄
+
+获取所有学院
+class_getAllCol.action
+参数
+响应
+	[value]:学院名称
+
+根据学院获取专业
+college_getMajorByCol.action
+参数
+	col 学院
+响应
+	[value]:专业名称
+
+添加班级
+class_addClasses.action
+参数
+	addcampus	校区
+	addclsnnum	添加班级数量
+	addcol		学院
+	addgrade	年份
+	addmajor	专业
+响应
+	[value]:True/False
+
+获取所有年级
+class_getAllGrade.action
+参数
+响应
+	[value]:年级
+
+精确查询班级
+class_accurateQuery.action
+参数
+	campus		校区
+	col			学院
+	currentPage	当前页
+	grade		年级
+	major		专业
+响应
+	[{stunum:学生人数,
+	idcls:班级编号,
+	col:学院,
+	idcm:学院专业编号,
+	clsno:班号,
+	grade:年级,
+	major:专业,
+	campus:校区,
+	semester:?}......,
+	{start:开始条目,
+	currentPage:当前页码,
+	totalRecord:总记录条数,
+	totalPage:总页数,
+	size:每页条目}]
+
+删除班级
+class_deleteClasses.action
+参数
+	idclses		？
+响应
+	[value]:True/False
+
+模糊查找班级
+class_fuzzyQuery.action
+参数
+	condition	关键词
+	currentpage 当前页码
+响应
+	[{stunum:学生人数,
+	idcls:班级编号,
+	col:学院,
+	idcm:学院专业编号,
+	clsno:班号,
+	grade:年级,
+	major:专业,
+	campus:校区,
+	semester:?}......,
+	{start:开始条目,
+	currentPage:当前页码,
+	totalRecord:总记录条数,
+	totalPage:总页数,
+	size:每页条目}]
