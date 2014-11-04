@@ -2,4 +2,5 @@ out/
 WebRoot/WEB-INF/classes/
 WebRoot/WEB-INF/lib/
 .idea/
-.iml
+.settings/
+*.iml
