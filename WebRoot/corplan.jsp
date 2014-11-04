@@ -230,7 +230,7 @@
 	<div id="dialog-delete" class="demo-description"></div>
 	<div id="mask">
 		<span id="info"> 正在加载中，请稍候！ </span> <span id="loading"><img
-			src="css/images/waiting.gif" /> </span>
+			src="css/jquery/images/waiting.gif" /> </span>
 	</div>
 </body>
 </html>

@@ -1,32 +1,32 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>湖北中医药大学教材采购管理系统</title>
-<link rel="stylesheet" type="text/css" href="css/jquery.ui.all.css" />
-<link rel="stylesheet" type="text/css" href="css/demos.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery/jquery.ui.all.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery/demos.css" />
 <link rel="stylesheet" type="text/css" href="css/bkmgmt.css" />
 
 
 <script language="javascript" type="text/javascript"
-	src="js/jquery-1.8.3.min.js"></script>
+	src="js/jquery/jquery-1.8.3.min.js"></script>
 <script language="javascript" type="text/javascript"
-	src="js/jquery.ui.core.js"></script>
+	src="js/jquery/jquery.ui.core.js"></script>
 <script language="javascript" type="text/javascript"
-	src="js/jquery.ui.widget.js"></script>
+	src="js/jquery/jquery.ui.widget.js"></script>
 <script language="javascript" type="text/javascript"
-	src="js/jquery.ui.mouse.js"></script>
+	src="js/jquery/jquery.ui.mouse.js"></script>
 <script language="javascript" type="text/javascript"
-	src="js/jquery.ui.draggable.js"></script>
+	src="js/jquery/jquery.ui.draggable.js"></script>
 <script language="javascript" type="text/javascript"
-	src="js/jquery.ui.button.js"></script>
+	src="js/jquery/jquery.ui.button.js"></script>
 <script language="javascript" type="text/javascript"
-	src="js/jquery.ui.resizable.js"></script>
+	src="js/jquery/jquery.ui.resizable.js"></script>
 <script language="javascript" type="text/javascript"
-	src="js/jquery.ui.position.js"></script>
+	src="js/jquery/jquery.ui.position.js"></script>
 <script language="javascript" type="text/javascript"
-	src="js/jquery.ui.dialog.js"></script>
+	src="js/jquery/jquery.ui.dialog.js"></script>
 
 <!-- 自己写的一些js代码 -->
 <script language="javascript" type="text/javascript"
@@ -35,8 +35,8 @@
 	charset="utf-8">
 	
 </script>
-<script language="javascript" type="text/javascript"
-	src="js/classquery.js" charset="utf-8"></script>
+<%--<script language="javascript" type="text/javascript"--%>
+	<%--src="js/classquery.js" charset="utf-8"></script>--%>
 
 </head>
 

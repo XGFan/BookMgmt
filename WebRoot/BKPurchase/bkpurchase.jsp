@@ -90,7 +90,7 @@
 	<div id="dialog-add" class="demo-description"></div>
 	<div id="mask">
 		<span id="info"> 正在生成采购清单中，请稍候！ </span> <span id="loading">
-		<img src="../css/images/waiting.gif" /> </span>
+		<img src="../css/jquery/images/waiting.gif" /> </span>
 	</div>
 </body>
 </html>
