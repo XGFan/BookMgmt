@@ -22,7 +22,7 @@ public class ColAction extends ActionSupport {
 	private String col;
     /*专业名称*/
 	private String major;
-    /*TODO*/
+    /*课程业务*/
 	private ColServ csv;
     /*分页配置信息*/
 	private Pagination pagination;
@@ -67,11 +67,10 @@ public class ColAction extends ActionSupport {
 		this.pagination = pagination;
 	}
 
-	/**
-	 * 初始化数据，显示所有的院系专业
-	 * 
-	 * @return
-	 */
+    /**
+     * 初始化数据，显示第一页的院系专业
+     * @return null
+     */
 	public String list() {
 		List collist = csv.initCol();
 		if (pagination == null)
@@ -84,8 +83,7 @@ public class ColAction extends ActionSupport {
 	}
 
 	/**
-	 * 精确查询主方法
-	 * 
+	 * 精确查询，显示一页的院系专业
 	 * @return
 	 */
 	public String accurateQuery() {
@@ -119,8 +117,9 @@ public class ColAction extends ActionSupport {
 	}
 
 	/**
-	 * 精确查询的分页数据获取
-	 * */
+	 * 通过院系精确查询获取分页信息，并返回分页信息
+	 *  @return null
+     */
 	public String accPageQuery() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String col = request.getParameter("col");
@@ -148,9 +147,8 @@ public class ColAction extends ActionSupport {
 	}
 
 	/**
-	 * 根据学院或者专业来模糊查询的主方法
-	 * 
-	 * @return
+	 * 根据学院或者专业来模糊查询，显示一页的院系专业
+	 * @return null
 	 */
 	public String fuzzyQuery() {
 		try {
@@ -177,9 +175,8 @@ public class ColAction extends ActionSupport {
 	}
 
 	/**
-	 * 模糊查询的分页数据获取
-	 * 
-	 * @return
+	 * 模糊查询，获取分页信息，并返回分页信息
+	 * @return null
 	 */
 	public String fuzzyPageQuery() {
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -200,7 +197,6 @@ public class ColAction extends ActionSupport {
 
 	/**
 	 * 获取所有的学院
-	 * 
 	 * @return null
 	 */
 	public String getAllCol() {
@@ -211,7 +207,6 @@ public class ColAction extends ActionSupport {
 
 	/**
 	 * 根据学院来获取专业
-	 * 
 	 * @return null
 	 */
 	public String getMajorByCol() {
@@ -229,16 +224,13 @@ public class ColAction extends ActionSupport {
 
 	/**
 	 * 根据学院专业精确获取
-	 * 
-	 * @return
+	 * @return null
 	 */
 	public String getColByColMajor() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String col = request.getParameter("col");
 		String major = request.getParameter("major");
-
 		List list = null;
-
 		if ("--请选择--".equals(col) || "----全部----".equals(col))
 			list = csv.getCol("", major);
 		else
@@ -249,8 +241,7 @@ public class ColAction extends ActionSupport {
 
 	/**
 	 * 根据获取过来的参数来更新专业信息
-	 * 
-	 * @return
+	 * @return null
 	 */
 	public String update() {
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -266,6 +257,10 @@ public class ColAction extends ActionSupport {
 		return null;
 	}
 
+    /**
+     * 添加新的学院专业信息
+     * @return null
+     */
 	public String addMajor() {
 		/* 从客户端获取参数 */
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -279,6 +274,10 @@ public class ColAction extends ActionSupport {
 		return null;
 	}
 
+    /**
+     * 根据传回的idcm进行删除操作
+     * @return
+     */
 	public String deleteCollege() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String idcm = request.getParameter("idcm");
@@ -288,6 +287,11 @@ public class ColAction extends ActionSupport {
 		return null;
 	}
 
+    /**
+     * 貌似是无用信息
+     * @deprecated
+     * @return
+     */
 	public String query() {
 		csv.searchByCol(col);
 		csv.searchByMajor(major);

@@ -33,9 +33,7 @@ public class ColServImp implements ColServ {
 		return false;
 	}
 
-	/**
-	 * query all rows of the college table
-	 */
+
 	public List<Object> initCol() {
 		List list = collegeDAO.findAll();
 		// return list.subList(0, 9);
@@ -111,9 +109,7 @@ public class ColServImp implements ColServ {
 		return ConvertUtils.ToCollegeList(list);
 	}
 
-	/**
-	 * 精确分页查询
-	 */
+
 	public List<Object> searchByCol(String col, Pagination pagination) {
 		List list = collegeDAO.findByCol(col);
 		// 设置总记录的条数
@@ -163,17 +159,13 @@ public class ColServImp implements ColServ {
 		return ConvertUtils.ToCollegeList(list);
 	}
 
-	/**
-	 * 模糊查询
-	 */
+
 	public List fuzzyQuery(String condition) {
 		List list = collegeDAO.fuzzyQuery(condition);
 		return ConvertUtils.ToCollegeList(list);
 	}
 
-	/**
-	 * 模糊分页查询
-	 */
+
 	public List fuzzyQuery(String condition, Pagination pagination) {
 
 		List list = collegeDAO.fuzzyQuery(condition);

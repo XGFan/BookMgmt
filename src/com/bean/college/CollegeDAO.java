@@ -165,6 +165,11 @@ public class CollegeDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据学院查找
+     * @param col 学院
+     * @return 学院专业班级信息
+     */
 	public List findByCol(Object col) {
 		return findByProperty(COL, col);
 	}
