@@ -8,6 +8,7 @@ import java.util.Map;
 import com.bean.cls.ClassDAO;
 import com.bean.cls.Class;
 import com.bean.college.College;
+import com.util.GetPaginationInfo;
 import com.util.Pagination;
 
 public class ClassServiceImpl implements ClassService {
@@ -55,20 +56,26 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 	public List fuzzyFind(String condition, Pagination pagination) {
-		return dealToList(pagination,
-				class2List(classDAO.getClassFuzzy(condition)));
+		return GetPaginationInfo.getSubList(class2List(classDAO.getClassFuzzy(condition)),pagination);
 	}
 
 	public List findAllByPagination(Pagination pagination) {
-		return dealToList(pagination, class2List(classDAO.findAll()));
+		return GetPaginationInfo.getSubList(class2List(classDAO.findAll()),pagination);
 	}
 
+    /**
+     * 分页处理的一个函数
+     * @param pagination 分页信息
+     * @param list 需要处理的信息
+     * @return 处理好的一页信息
+     * @deprecated
+     */
 	public List dealToList(Pagination pagination, List list) {
         /*设置分页的总共记录条数为list的条数*/
 		pagination.setTotalRecord(list.size());
         /*如果分页的单页条数小于list条数*/
 		if (pagination.getSize() < list.size()) {
-            /*起始位置+一页的条数*/
+            /*当前页起始位置+一页的条数，即当前页的最大条目值，略微拗口*/
 			int range = pagination.getStart() + pagination.getSize();
             /*如果range依旧小于list条数*/
 			if (range < list.size()) {
@@ -82,12 +89,9 @@ public class ClassServiceImpl implements ClassService {
 		return list;
 	}
 
-	public List accurateQuery(String col, String major, String grade,
-			String campus, Pagination pagination) {
-		return dealToList(pagination,
-				class2List(classDAO.getClassByGradeCampusColMajor(col, major,
-						grade, campus)));
-	}
+	public List accurateQuery(String col, String major, String grade,String campus, Pagination pagination) {
+        return GetPaginationInfo.getSubList(class2List(classDAO.getClassByGradeCampusColMajor(col, major, grade, campus)),pagination);
+    }
 
 	public List getAllCampus() {
 		return classDAO.getAllCampus();

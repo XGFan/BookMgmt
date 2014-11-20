@@ -94,9 +94,10 @@ public class ClassAction extends ActionSupport {
 		this.campus = campus;
 	}
 
-
-    //这个好像实际上只返回了第一页数据(甚至不满一页)
-    /*这个好像根本就没用过*/
+    /**
+     * 返回一页班级信息
+     * @return null
+     */
     public String list() {
         /*获取所有的班级信息*/
 //        这个没用,下面就被overwrite了.
@@ -105,7 +106,7 @@ public class ClassAction extends ActionSupport {
         if (pagination == null)
             pagination = new Pagination(9);
         pagination.setSize(9);
-        pagination.setCurrentPage(1);
+        pagination.setCurrentPage(1);//设置当前页码
         /*获取一页信息*/
         List clslist = classService.findAllByPagination(pagination);
         /*附上分页配置对象*/
@@ -116,7 +117,7 @@ public class ClassAction extends ActionSupport {
     }
 
     /**
-     * 模糊查找，根据分页信息返回
+     * 模糊查找，根据分页信息返回一页信息
      * @return null
      */
     public String fuzzyQuery() {
@@ -129,12 +130,10 @@ public class ClassAction extends ActionSupport {
         pagination.setCurrentPage(1);
         /*设置当前页码*/
         pagination.setCurrentPage(currentPage);
-        // System.out.println(currentPage);
         List clslist = classService.fuzzyFind(condition, pagination);
         /*把分页信息放入*/
         clslist.add(pagination);
         // System.out.println(clslist.size());
-        /*其实只包含一页信息*/
         SendData.send(clslist);
         return null;
     }

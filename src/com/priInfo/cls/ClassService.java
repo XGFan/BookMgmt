@@ -28,14 +28,14 @@ public interface ClassService {
 	public List fuzzyFind(String condition,Pagination pagination);
 
     /**
-     * 分页操作
+     * 根据分页信息获取所有班级
      * @param pagination
      * @return
      */
 	public List findAllByPagination(Pagination pagination);
 
     /**
-     * 根据学院，专业，年级，校区精确查询班级信息
+     * 根据学院，专业，年级，校区精确查询班级信息,返回一页信息
      * @param col 学院
      * @param major 专业
      * @param grade 年纪
