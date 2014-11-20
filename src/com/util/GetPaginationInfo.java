@@ -3,7 +3,12 @@ package com.util;
 import java.util.List;
 
 public class GetPaginationInfo {
-	/* 公用的业务方法，用于根据分页获取子数据*/
+    /**
+     * 分页处理的一个函数
+     * @param pagination 分页信息
+     * @param list 需要处理的信息
+     * @return 处理好的一页信息
+     */
 	public static List getSubList(List list, Pagination pagination) {
 		pagination.setTotalRecord(list.size());
 		if (pagination.getSize() < list.size()) {

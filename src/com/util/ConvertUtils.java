@@ -154,6 +154,11 @@ public class ConvertUtils {
 		return supplierlist;
 	}
 
+    /**
+     * 把学院，专业，班级号的list转换成map形式的list
+     * @param list
+     * @return
+     */
 	public static List ToCollegeList(List list) {
 		Iterator it = list.iterator();
 		List collegelist = new ArrayList();
