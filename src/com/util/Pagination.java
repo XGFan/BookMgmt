@@ -4,11 +4,11 @@ package com.util;
  * 用来分页的类
  */
 public class Pagination {
-	/*开始（初始）位置*/
+	/*当前页开始（初始）位置*/
 	private int start=1;
 	/*一次取得的数量*/
 	private int size=6;
-	/*要取得的页数*/
+	/*当前页码*/
 	private int currentPage = 1;
 	/*总的记录页数*/
 	private int totalPage = 0;
@@ -16,7 +16,7 @@ public class Pagination {
 	private int totalRecord = 0;
 
     /**
-     * 获取开始（初始）位置
+     * 获取当前页开始（初始）位置
      * @return int 开始（初始）位置
      */
 	public int getStart() {
@@ -41,7 +41,7 @@ public class Pagination {
 	}
 
     /**
-     *
+     * 设置每页的条目数量
      * @param size
      */
 	public void setSize(int size) {
