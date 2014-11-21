@@ -46,7 +46,6 @@ public class CourseBookViewServiceImpl implements CourseBookViewService {
 		return ConvertUtils.ToCorBookList(list);
 	}
 
-	// 通过课程查教材
 	public List<Corbookview> findByCourse(String idcor) {
 		List<Corbookview> list = corBookViewDAO.findByProperty("idcor", idcor);
 		return ConvertUtils.ToCorBookList(list);
@@ -69,19 +68,17 @@ public class CourseBookViewServiceImpl implements CourseBookViewService {
 		return true;
 	}
 
-	// 查询所有的课程
 	public List<Corbookview> findAllCourse() {
 		List<Corbookview> list = corBookViewDAO.findAll();
 		return ConvertUtils.ToCorBookList(list);
 	}
 
-	/* 查询所有的教材 */
+
 	public List<Corbookview> findAllBk() {
 		List<Corbookview> list = corBookViewDAO.findAll();
 		return ConvertUtils.ToCorBookList(list);
 	}
 
-	/* 添加教材，查询课程 */
 	public List<Corbookview> findCourseByCorname(String corname) {
 		List<Corbookview> list = corBookViewDAO.findCourseByCorname(corname);
 		return ConvertUtils.ToCorBookList(list);
