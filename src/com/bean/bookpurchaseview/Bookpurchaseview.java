@@ -6,29 +6,33 @@ package com.bean.bookpurchaseview;
 
 public class Bookpurchaseview implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private BookpurchaseviewId id;
+    private BookpurchaseviewId id;
 
-	// Constructors
+    // Constructors
 
-	/** default constructor */
-	public Bookpurchaseview() {
-	}
+    /**
+     * default constructor
+     */
+    public Bookpurchaseview() {
+    }
 
-	/** full constructor */
-	public Bookpurchaseview(BookpurchaseviewId id) {
-		this.id = id;
-	}
+    /**
+     * full constructor
+     */
+    public Bookpurchaseview(BookpurchaseviewId id) {
+        this.id = id;
+    }
 
-	// Property accessors
+    // Property accessors
 
-	public BookpurchaseviewId getId() {
-		return this.id;
-	}
+    public BookpurchaseviewId getId() {
+        return this.id;
+    }
 
-	public void setId(BookpurchaseviewId id) {
-		this.id = id;
-	}
+    public void setId(BookpurchaseviewId id) {
+        this.id = id;
+    }
 
 }

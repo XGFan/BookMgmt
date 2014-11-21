@@ -2,7 +2,9 @@ package com.priInfo.cls;
 
 import java.util.Iterator;
 import java.util.List;
+
 import com.bean.cls.Class;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -15,87 +17,88 @@ import com.util.SendData;
 
 public class ClassAction extends ActionSupport {
 
-	private static final long serialVersionUID = 1L;
-	private ClassService classService;
-	private ColServ collegeService;
-	private String condition;
+    private static final long serialVersionUID = 1L;
+    private ClassService classService;
+    private ColServ collegeService;
+    private String condition;
     /*用来分页的对象*/
-	private Pagination pagination;
+    private Pagination pagination;
     /*学院名称*/
-	private String col;
+    private String col;
     /*专业名称*/
-	private String major;
+    private String major;
     /*年级*/
-	private String grade;
+    private String grade;
     /*校区*/
-	private String campus;
+    private String campus;
 
-	public String getCondition() {
-		return condition;
-	}
+    public String getCondition() {
+        return condition;
+    }
 
-	public void setCondition(String condition) {
-		this.condition = condition;
-	}
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
 
-	public ClassService getClassService() {
-		return classService;
-	}
+    public ClassService getClassService() {
+        return classService;
+    }
 
-	public void setClassService(ClassService classService) {
-		this.classService = classService;
-	}
+    public void setClassService(ClassService classService) {
+        this.classService = classService;
+    }
 
-	public ColServ getCollegeService() {
-		return collegeService;
-	}
+    public ColServ getCollegeService() {
+        return collegeService;
+    }
 
-	public void setCollegeService(ColServ collegeService) {
-		this.collegeService = collegeService;
-	}
+    public void setCollegeService(ColServ collegeService) {
+        this.collegeService = collegeService;
+    }
 
-	public Pagination getPagination() {
-		return pagination;
-	}
+    public Pagination getPagination() {
+        return pagination;
+    }
 
-	public void setPagination(Pagination pagination) {
-		this.pagination = pagination;
-	}
+    public void setPagination(Pagination pagination) {
+        this.pagination = pagination;
+    }
 
-	public String getCol() {
-		return col;
-	}
+    public String getCol() {
+        return col;
+    }
 
-	public void setCol(String col) {
-		this.col = col;
-	}
+    public void setCol(String col) {
+        this.col = col;
+    }
 
-	public String getMajor() {
-		return major;
-	}
+    public String getMajor() {
+        return major;
+    }
 
-	public void setMajor(String major) {
-		this.major = major;
-	}
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
-	public String getGrade() {
-		return grade;
-	}
+    public String getGrade() {
+        return grade;
+    }
 
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 
-	public String getCampus() {
-		return campus;
-	}
+    public String getCampus() {
+        return campus;
+    }
 
-	public void setCampus(String campus) {
-		this.campus = campus;
-	}
+    public void setCampus(String campus) {
+        this.campus = campus;
+    }
 
     /**
      * 返回一页班级信息
+     *
      * @return null
      */
     public String list() {
@@ -118,6 +121,7 @@ public class ClassAction extends ActionSupport {
 
     /**
      * 模糊查找，根据分页信息返回一页信息
+     *
      * @return null
      */
     public String fuzzyQuery() {
@@ -140,6 +144,7 @@ public class ClassAction extends ActionSupport {
 
     /**
      * 精确查找，根据分页信息返回
+     *
      * @return null
      */
     public String accurateQuery() {
@@ -171,6 +176,7 @@ public class ClassAction extends ActionSupport {
 
     /**
      * 返回所有学院
+     *
      * @return 学院LIST
      */
     public List getAllCol() {
@@ -181,6 +187,7 @@ public class ClassAction extends ActionSupport {
 
     /**
      * 返回所有校区
+     *
      * @return 校区LIST
      */
     public List getAllCampus() {
@@ -191,6 +198,7 @@ public class ClassAction extends ActionSupport {
 
     /**
      * 返回所有年级
+     *
      * @return 年级LIST
      */
     public List getAllGrade() {
@@ -204,6 +212,7 @@ public class ClassAction extends ActionSupport {
 
     /**
      * 根据学院名称获取专业
+     *
      * @return 专业LIST
      */
     public String getMajorByCol() {
@@ -222,56 +231,59 @@ public class ClassAction extends ActionSupport {
 
     /**
      * 删除班级list
+     *
      * @return null
      */
     public String deleteClasses() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String idclses = request.getParameter("idclses");
+        HttpServletRequest request = ServletActionContext.getRequest();
+        String idclses = request.getParameter("idclses");
         /* 以'，'划分，存储在数组中*/
-		String[] idclsid = idclses.split(",");
-		boolean result = classService.deleteClasses(idclsid);
-		SendData.send(result);
-		return null;
-	}
+        String[] idclsid = idclses.split(",");
+        boolean result = classService.deleteClasses(idclsid);
+        SendData.send(result);
+        return null;
+    }
 
     /**
      * 添加班级
+     *
      * @return null
      */
-	public String addClasses() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String addcampus = request.getParameter("addcampus");
-		String addgrade = request.getParameter("addgrade");
-		int addclsnnum = Integer.parseInt(request.getParameter("addclsnnum"));
-		String addcol = request.getParameter("addcol");
-		String addmajor = request.getParameter("addmajor");
-		College addcollege = (College) collegeService.getCols(addcol,
-				addmajor).get(0);
-		boolean result = classService.addClasses(addcampus, addgrade,
-				addclsnnum, addcollege);
-		SendData.send(result);
-		return null;
-	}
+    public String addClasses() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        String addcampus = request.getParameter("addcampus");
+        String addgrade = request.getParameter("addgrade");
+        int addclsnnum = Integer.parseInt(request.getParameter("addclsnnum"));
+        String addcol = request.getParameter("addcol");
+        String addmajor = request.getParameter("addmajor");
+        College addcollege = (College) collegeService.getCols(addcol,
+                addmajor).get(0);
+        boolean result = classService.addClasses(addcampus, addgrade,
+                addclsnnum, addcollege);
+        SendData.send(result);
+        return null;
+    }
 
     /**
      * 修改班级
+     *
      * @return null
      */
-	public String editClass() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-		String ccampus = request.getParameter("ccampus");
-		String tempid = request.getParameter("tempid");
-		String stunum = request.getParameter("stunum");
+    public String editClass() {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        String ccampus = request.getParameter("ccampus");
+        String tempid = request.getParameter("tempid");
+        String stunum = request.getParameter("stunum");
         /*根据传入的临时id来查找修改对象*/
-		Class cls = classService.findById(tempid);
-		if (ccampus != null && !ccampus.equals(""))
-			cls.setCampus(ccampus);
-		if (stunum != null && !stunum.equals("")) {
-			int stunums = Integer.parseInt(request.getParameter("stunum"));
-			cls.setStunum(stunums);
-		}
-		boolean result = classService.editClasses(cls);
-		SendData.send(result);
-		return null;
-	}
+        Class cls = classService.findById(tempid);
+        if (ccampus != null && !ccampus.equals(""))
+            cls.setCampus(ccampus);
+        if (stunum != null && !stunum.equals("")) {
+            int stunums = Integer.parseInt(request.getParameter("stunum"));
+            cls.setStunum(stunums);
+        }
+        boolean result = classService.editClasses(cls);
+        SendData.send(result);
+        return null;
+    }
 }

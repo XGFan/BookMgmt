@@ -9,48 +9,52 @@ import com.bean.corplan.Corplan;
 
 public class Corbook implements java.io.Serializable {
 
-	// Fields
+    // Fields
 
-	private Integer id;
+    private Integer id;
     /*书本对象*/
-	private Book book;
+    private Book book;
     /*教学计划对象*/
-	private Corplan corplan;
+    private Corplan corplan;
 
-	/** default constructor */
-	public Corbook() {
-	}
+    /**
+     * default constructor
+     */
+    public Corbook() {
+    }
 
-	/** full constructor */
-	public Corbook(Book book, Corplan corplan) {
-		this.book = book;
-		this.corplan = corplan;
-	}
+    /**
+     * full constructor
+     */
+    public Corbook(Book book, Corplan corplan) {
+        this.book = book;
+        this.corplan = corplan;
+    }
 
-	// Property accessors
+    // Property accessors
 
-	public Integer getId() {
-		return this.id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Book getBook() {
-		return this.book;
-	}
+    public Book getBook() {
+        return this.book;
+    }
 
-	public void setBook(Book book) {
-		this.book = book;
-	}
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
-	public Corplan getCorplan() {
-		return this.corplan;
-	}
+    public Corplan getCorplan() {
+        return this.corplan;
+    }
 
-	public void setCorplan(Corplan corplan) {
-		this.corplan = corplan;
-	}
+    public void setCorplan(Corplan corplan) {
+        this.corplan = corplan;
+    }
 
 }

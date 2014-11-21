@@ -6,110 +6,112 @@ package com.bean.corbkview;
 /*课程书本视图*/
 public class Corbkview implements java.io.Serializable {
 
-	private Integer id;
+    private Integer id;
     /*课程id*/
-	private String idcor;
+    private String idcor;
     /*书本id*/
-	private String idbk;
+    private String idbk;
     /*学院名称*/
-	private String col;
+    private String col;
     /*专业名称*/
-	private String major;
+    private String major;
     /*所在的某一学期*/
-	private String semester;
+    private String semester;
     /*课程名称*/
-	private String corname;
+    private String corname;
     /*书本名称*/
-	private String bkname;
+    private String bkname;
     /*出版社*/
-	private String publisher;
+    private String publisher;
     /*ISBN号*/
-	private String isbn;
-	
+    private String isbn;
 
-	// Constructors
 
-	public String getIdcor() {
-		return idcor;
-	}
+    // Constructors
 
-	public void setIdcor(String idcor) {
-		this.idcor = idcor;
-	}
+    public String getIdcor() {
+        return idcor;
+    }
 
-	public String getIdbk() {
-		return idbk;
-	}
+    public void setIdcor(String idcor) {
+        this.idcor = idcor;
+    }
 
-	public void setIdbk(String idbk) {
-		this.idbk = idbk;
-	}
+    public String getIdbk() {
+        return idbk;
+    }
 
-	public String getCol() {
-		return col;
-	}
+    public void setIdbk(String idbk) {
+        this.idbk = idbk;
+    }
 
-	public void setCol(String col) {
-		this.col = col;
-	}
+    public String getCol() {
+        return col;
+    }
 
-	public String getMajor() {
-		return major;
-	}
+    public void setCol(String col) {
+        this.col = col;
+    }
 
-	public void setMajor(String major) {
-		this.major = major;
-	}
+    public String getMajor() {
+        return major;
+    }
 
-	public String getSemester() {
-		return semester;
-	}
+    public void setMajor(String major) {
+        this.major = major;
+    }
 
-	public void setSemester(String semester) {
-		this.semester = semester;
-	}
+    public String getSemester() {
+        return semester;
+    }
 
-	public String getCorname() {
-		return corname;
-	}
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
 
-	public void setCorname(String corname) {
-		this.corname = corname;
-	}
+    public String getCorname() {
+        return corname;
+    }
 
-	public String getBkname() {
-		return bkname;
-	}
+    public void setCorname(String corname) {
+        this.corname = corname;
+    }
 
-	public void setBkname(String bkname) {
-		this.bkname = bkname;
-	}
+    public String getBkname() {
+        return bkname;
+    }
 
-	public String getPublisher() {
-		return publisher;
-	}
+    public void setBkname(String bkname) {
+        this.bkname = bkname;
+    }
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
+    public String getPublisher() {
+        return publisher;
+    }
 
-	public String getIsbn() {
-		return isbn;
-	}
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
+    public String getIsbn() {
+        return isbn;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-	/** default constructor */
-	public Corbkview() {
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	/** full constructor */
+    /**
+     * default constructor
+     */
+    public Corbkview() {
+    }
+
+    /** full constructor */
 //	public Corbkview(CorbkviewId id) {
 //		this.id = id;
 //	}

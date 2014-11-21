@@ -9,27 +9,27 @@ import com.printInfo.bkdistribute.Service.BKDistributeService;
 import com.util.Pagination;
 
 public class BKDistributeServiceImp implements BKDistributeService {
-	private BookpurchaseviewDAO bookpurchaseviewDAO;
+    private BookpurchaseviewDAO bookpurchaseviewDAO;
 
-	public BookpurchaseviewDAO getBookpurchaseviewDAO() {
-		return bookpurchaseviewDAO;
-	}
+    public BookpurchaseviewDAO getBookpurchaseviewDAO() {
+        return bookpurchaseviewDAO;
+    }
 
-	public void setBookpurchaseviewDAO(BookpurchaseviewDAO bookpurchaseviewDAO) {
-		this.bookpurchaseviewDAO = bookpurchaseviewDAO;
-	}
+    public void setBookpurchaseviewDAO(BookpurchaseviewDAO bookpurchaseviewDAO) {
+        this.bookpurchaseviewDAO = bookpurchaseviewDAO;
+    }
 
-	public List findAll() {
-		return bookpurchaseviewDAO.findAll();
-	}
+    public List findAll() {
+        return bookpurchaseviewDAO.findAll();
+    }
 
-	public List BKDistInfoQuery(int year, int sem, String idcls) {
-		return bookpurchaseviewDAO.findByYearAndSemAndCol(year, sem, idcls);
+    public List BKDistInfoQuery(int year, int sem, String idcls) {
+        return bookpurchaseviewDAO.findByYearAndSemAndCol(year, sem, idcls);
 
-	}
-	// public List BKDistInfoQuery(int year, int sem, String col) {
-	// return bookpurchaseviewDAO.findByYeayAndSemAndIdcls(year, sem, col);
-	//
-	// }
+    }
+    // public List BKDistInfoQuery(int year, int sem, String col) {
+    // return bookpurchaseviewDAO.findByYeayAndSemAndIdcls(year, sem, col);
+    //
+    // }
 
 }

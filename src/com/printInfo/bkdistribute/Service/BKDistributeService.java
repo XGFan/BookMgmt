@@ -7,7 +7,7 @@ import com.bean.college.College;
 import com.util.Pagination;
 
 public interface BKDistributeService {
-//	public List<Bookpurchaseview> BKDistInfoQuery(int year, int sem, String col);
-	public List<Bookpurchaseview> BKDistInfoQuery(int year, int sem,String idcls);
-	
+    //	public List<Bookpurchaseview> BKDistInfoQuery(int year, int sem, String col);
+    public List<Bookpurchaseview> BKDistInfoQuery(int year, int sem, String idcls);
+
 }

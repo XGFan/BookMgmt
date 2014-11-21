@@ -10,48 +10,52 @@ import com.bean.course.Course;
  */
 public class Coursebk implements java.io.Serializable {
 
-	private Integer id
+    private Integer id
     /*教程*/;
-	private Book book;
+    private Book book;
     /*科目*/
-	private Course course;
+    private Course course;
 
-	// Constructors
+    // Constructors
 
-	/** default constructor */
-	public Coursebk() {
-	}
+    /**
+     * default constructor
+     */
+    public Coursebk() {
+    }
 
-	/** full constructor */
-	public Coursebk(Book book, Course course) {
-		this.book = book;
-		this.course = course;
-	}
+    /**
+     * full constructor
+     */
+    public Coursebk(Book book, Course course) {
+        this.book = book;
+        this.course = course;
+    }
 
-	// Property accessors
+    // Property accessors
 
-	public Integer getId() {
-		return this.id;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Book getBook() {
-		return this.book;
-	}
+    public Book getBook() {
+        return this.book;
+    }
 
-	public void setBook(Book book) {
-		this.book = book;
-	}
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
-	public Course getCourse() {
-		return this.course;
-	}
+    public Course getCourse() {
+        return this.course;
+    }
 
-	public void setCourse(Course course) {
-		this.course = course;
-	}
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
 }

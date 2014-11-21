@@ -6,10 +6,10 @@ package com.bean.corbook;
 
 public class CorbookviewId implements java.io.Serializable {
 
-	private String idcorsem;
-	private String idbk;
-	private String idcor;
-	/*private String corname;
+    private String idcorsem;
+    private String idbk;
+    private String idcor;
+    /*private String corname;
 	private String col;
 	private String major;
 	private String semester;
@@ -17,13 +17,15 @@ public class CorbookviewId implements java.io.Serializable {
 	private String publisher;
 	private String isbn;*/
 
-	// Constructors
+    // Constructors
 
-	/** default constructor */
-	public CorbookviewId() {
-	}
+    /**
+     * default constructor
+     */
+    public CorbookviewId() {
+    }
 
-	/** minimal constructor */
+    /** minimal constructor */
 /*	public CorbookviewId(String idcorsem, String idbk, String idcor,
 			String col, String major, String semester, String publisher) {
 		this.idcorsem = idcorsem;
@@ -35,7 +37,10 @@ public class CorbookviewId implements java.io.Serializable {
 		this.publisher = publisher;
 	}
 */
-	/** full constructor */
+
+    /**
+     * full constructor
+     */
 	/*public CorbookviewId(String idcorsem, String idbk, String idcor,
 			String corname, String col, String major, String semester,
 			String bkname, String publisher, String isbn) {
@@ -50,37 +55,37 @@ public class CorbookviewId implements java.io.Serializable {
 		this.publisher = publisher;
 		this.isbn = isbn;
 	}*/
-	public CorbookviewId(String idcorsem, String idbk, String idcor){
-		
-		this.idcorsem = idcorsem;
-		this.idbk = idbk;
-		this.idcor = idcor;
-	}
-	// Property accessors
+    public CorbookviewId(String idcorsem, String idbk, String idcor) {
 
-	public String getIdcorsem() {
-		return this.idcorsem;
-	}
+        this.idcorsem = idcorsem;
+        this.idbk = idbk;
+        this.idcor = idcor;
+    }
+    // Property accessors
 
-	public void setIdcorsem(String idcorsem) {
-		this.idcorsem = idcorsem;
-	}
+    public String getIdcorsem() {
+        return this.idcorsem;
+    }
 
-	public String getIdbk() {
-		return this.idbk;
-	}
+    public void setIdcorsem(String idcorsem) {
+        this.idcorsem = idcorsem;
+    }
 
-	public void setIdbk(String idbk) {
-		this.idbk = idbk;
-	}
+    public String getIdbk() {
+        return this.idbk;
+    }
 
-	public String getIdcor() {
-		return this.idcor;
-	}
+    public void setIdbk(String idbk) {
+        this.idbk = idbk;
+    }
 
-	public void setIdcor(String idcor) {
-		this.idcor = idcor;
-	}
+    public String getIdcor() {
+        return this.idcor;
+    }
+
+    public void setIdcor(String idcor) {
+        this.idcor = idcor;
+    }
 
 	/*public String getCorname() {
 		return this.corname;
