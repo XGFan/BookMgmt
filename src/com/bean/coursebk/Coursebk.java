@@ -3,16 +3,17 @@ package com.bean.coursebk;
 import com.bean.book.Book;
 import com.bean.course.Course;
 
-/**
- * Coursebk entity. @author MyEclipse Persistence Tools
- */
 
+/**
+ * 将科目course与教材book联系起来
+ * 可以称之为课程
+ */
 public class Coursebk implements java.io.Serializable {
 
-	// Fields
-
-	private Integer id;
+	private Integer id
+    /*教程*/;
 	private Book book;
+    /*科目*/
 	private Course course;
 
 	// Constructors

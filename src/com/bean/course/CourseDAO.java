@@ -31,6 +31,12 @@ public class CourseDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+    /**
+     * 保存课程
+     * @param transientInstance 课程实例
+     * @see com.bean.course.Course
+     * @return boolean
+     */
 	public boolean save(Course transientInstance) {
 		log.debug("saving Course instance");
 		try {
@@ -100,6 +106,10 @@ public class CourseDAO extends HibernateDaoSupport {
 		return findByProperty(SEMESTER, semester);
 	}
 
+    /**
+     * 找到所有的课程信息
+     * @return
+     */
 	public List findAll() {
 		log.debug("finding all Course instances");
 		try {
@@ -128,12 +138,16 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
-	
-	/**
-	 * 閫氳繃idcm銆乧ol銆乵ajor鍜宑orname鏉ユ煡鎵炬墍闇€璇剧▼
-	 */
+    /**
+     * 精确查找
+     * @param idcm
+     * @param col 学院
+     * @param major 专业
+     * @param corname 课程名称
+     * @return obj list
+     */
 	public List getCourseByIdcmColMajorCorname(String idcm,String col,String major,String corname) {
-		log.debug("finding all Courses by idcmcolmajorcorname");
+		log.debug("finding all Courses by idcm col major corname");
 		try {
 			String queryString = "from Course c join c.college cc where cc.idcm = '"
 					+ idcm + "' and c.corname = '"+corname+"' and cc.col = '"+col+"' and cc.major = '"+major+"'";
@@ -233,11 +247,12 @@ public class CourseDAO extends HibernateDaoSupport {
 	// throw re;
 	// }
 	// }
+
 	/**
-	 * 閫氳繃瀛﹂櫌涓撲笟鏉ヨ幏鍙栬绋嬩俊鎭?	 * 
-	 * @param col
-	 * @param major
-	 * @return
+	 *  通过学院和专业查找课程，专业是模糊查找
+	 * @param col 学院
+	 * @param major 专业
+	 * @return obj list
 	 */
 	public List getCourseByColMajor(String col, String major) {
 		log.debug("finding all Courses by colname nad major");
@@ -268,11 +283,13 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
-	/**
-	 * 閫氳繃璇剧▼鍚嶇О鏉ヨ幏鍙栬绋嬩俊鎭?	 * 妯＄硦鏌ヨ
-	 * @param corname
-	 * @return
-	 */
+    /**
+     * 根据学院，专业，课程进行查找，其中课程是模糊查找
+     * @param col 学院名称
+     * @param major 专业
+     * @param corname 课程名称
+     * @return 课程信息 obj list
+     */
 	public List getCourseFuzzyByCorname(String col, String major, String corname) {
 		log.debug("finding all Courses by corname");
 		try {
@@ -288,12 +305,13 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
-	/**
-	 * 閫氳繃瀛﹂櫌銆佷笓涓氥€佸鏈熸潵鑾峰彇璇剧▼淇℃伅
-	 * 
-	 * @param corname
-	 * @return
-	 */
+    /**
+     * 根据学院名称，专业，学期查找
+     * @param col 学院名称
+     * @param major 专业名称
+     * @param sem 课程安排在哪个学期
+     * @return 学院专业在某个学期的课程 obj list
+     */
 	public List getCourseByColMajorSem(String col, String major, String sem) {
 		log.debug("finding all Courses by col,major,sem");
 		try {
@@ -308,9 +326,9 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
 	/**
-	 * 妯＄硦鏌ユ壘锛岄€氳繃瀛﹂櫌鍚嶇О鎴栬€呬笓涓氬悕绉版垨鑰呰绋嬪悕绉?	 * 
-	 * @param condition
-	 * @return
+	 * 模糊查找，从学院，专业，课程名查询
+	 * @param condition 关键字
+	 * @return 课程 obj list
 	 */
 	public List fuzzyQuery(String condition) {
 		log.debug("finding all Courses by col or major or corname");

@@ -26,6 +26,10 @@ public class CoursebkDAO extends HibernateDaoSupport {
 		// do nothing
 	}
 
+    /**
+     * 保存新的课程
+     * @param transientInstance 课程实例
+     */
 	public void save(Coursebk transientInstance) {
 		log.debug("saving Coursebk instance");
 		try {
@@ -81,7 +85,14 @@ public class CoursebkDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-	
+
+    /**
+     * 根据科目id和教科书id来查找课程
+     * @param idcor 科目
+     * @param idbk 教科书
+     * @return obj list
+     * @see com.bean.coursebk.Coursebk
+     */
 	public List findByIdcorAndIdbk(String idcor,String idbk) {
 		log.debug("getting Coursebk instance with idcor: " + idcor);
 		try {

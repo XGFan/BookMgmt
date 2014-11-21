@@ -129,15 +129,14 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 	}
 
     /**
-     * 根据课程名称查找书本课程安排
-     * @param corname 课程名称
+     * 根据科目名称查找课程
+     * @param corname 科目名称
      * @return LIST
      */
 	public List findCourseByCorname(String corname) {
 		log.debug("findCourseByCorname");
 		try {
-			String queryString = "from Corbookview view where view.corname like '%"
-					+ corname + "%'";
+			String queryString = "from Corbookview view where view.corname like '%"+ corname + "%'";
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("findCourseByCorname failed", re);

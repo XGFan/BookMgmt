@@ -29,8 +29,8 @@ public class CorplanDAO extends HibernateDaoSupport {
 	}
 
     /**
-     * 保存
-     * @param transientInstance
+     * 保存课程计划
+     * @param transientInstance 课程计划实例
      */
 	public void save(Corplan transientInstance) {
 		log.debug("saving Corplan  ");
