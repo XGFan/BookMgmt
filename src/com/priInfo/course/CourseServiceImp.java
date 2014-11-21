@@ -74,9 +74,7 @@ public class CourseServiceImp implements CourseService {
 		this.corbookDAO = corbookDAO;
 	}
 
-	/**
-	 * 业务方法，获取所有的课程
-	 */
+
 	public List<Object> init() {
 		List list = courseDAO.findAll();
 		return ConvertUtils.ToCourseList(list);
@@ -87,9 +85,7 @@ public class CourseServiceImp implements CourseService {
 		return GetPaginationInfo.getSubList(list, pagination);
 	}
 
-	/**
-	 * 业务方法，通过学院名称获取课程信息
-	 */
+
 	public List<Object> findByCol(String col) {
 		List list = ConvertUtils.ToCourseList(courseDAO.getCourseByCol(col));
 		return list;
@@ -113,17 +109,13 @@ public class CourseServiceImp implements CourseService {
 		return ConvertUtils.ToCourseList(courseDAO.getCourseByMajor(major));
 	}
 
-	/**
-	 * 业务方法，通过专业名称获取课程信息
-	 */
+
 	public List<Object> findByColMajor(String col, String major) {
-		List list = ConvertUtils.ToCourseList(courseDAO.getCourseByColMajor(
-				col, major));
+		List list = ConvertUtils.ToCourseList(courseDAO.getCourseByColMajor(col, major));
 		return list;
 	}
 
-	public List<Object> findByColMajor(String col, String major,
-			Pagination pagination) {
+public List<Object> findByColMajor(String col, String major,Pagination pagination) {
 		List list = this.findByColMajor(col, major);
 		return GetPaginationInfo.getSubList(list, pagination);
 	}
@@ -137,8 +129,7 @@ public class CourseServiceImp implements CourseService {
 		return list;
 	}
 
-	public List<Object> findFuzzyByCorName(String col, String major,
-			String corname) {
+	public List<Object> findFuzzyByCorName(String col, String major,String corname) {
 		List list = courseDAO.getCourseFuzzyByCorname(col, major, corname);
 		return ConvertUtils.ToCourseList(list);
 	}
@@ -148,24 +139,17 @@ public class CourseServiceImp implements CourseService {
 		return GetPaginationInfo.getSubList(list, pagination);
 	}
 
-	/**
-	 * 业务方法，通过学院、专业、学期获取课程信息
-	 */
+
 	public List<Object> findByColMajorSem(String col, String major, String sem) {
-		List list = ConvertUtils.ToCourseList(courseDAO.getCourseByColMajorSem(
-				col, major, sem));
+		List list = ConvertUtils.ToCourseList(courseDAO.getCourseByColMajorSem(col, major, sem));
 		return list;
 	}
 
-	public List<Object> findByColMajorSem(String col, String major, String sem,
-			Pagination pagination) {
+	public List<Object> findByColMajorSem(String col, String major, String sem,Pagination pagination) {
 		List list = this.findByColMajorSem(col, major, sem);
 		return GetPaginationInfo.getSubList(list, pagination);
 	}
 
-	/**
-	 * 模糊查询
-	 */
 	public List<Object> fuzzyQuery(String condition) {
 		List list = ConvertUtils.ToCourseList(courseDAO.fuzzyQuery(condition));
 		return list;
@@ -176,11 +160,7 @@ public class CourseServiceImp implements CourseService {
 		return GetPaginationInfo.getSubList(list, pagination);
 	}
 
-	/**
-	 * 添加一个新的课程
-	 */
-	public String addNewCourse(String idbkStr, String col, String major,
-			String corname, String semester) {
+	public String addNewCourse(String idbkStr, String col, String major,String corname, String semester) {
 //		System.out.println("*****"+idbkStr+","+col + "," + major + "," + corname + "," + semester);
 		/* 条件判断，若有一个信息为空，则返回false */
 		if ("".equals(col) || col == null || "".equals(major) || major == null) {
@@ -414,9 +394,7 @@ public class CourseServiceImp implements CourseService {
 		return tag;
 	}
 
-	/**
-	 * 更新课程信息
-	 */
+
 	public boolean updateCourse(Course course, String idbkStr) {
 		boolean tag = false;
 		// 若没有选择书本，则返回FALSE
@@ -432,8 +410,7 @@ public class CourseServiceImp implements CourseService {
 				courseDAO.save(course);
 				for (String idbk : idbkArray) {
 					// 判断这本书是否已经选用教材
-					List courseBkList = coursebkDAO.findByIdcorAndIdbk(
-							course.getIdcor(), idbk);
+					List courseBkList = coursebkDAO.findByIdcorAndIdbk(course.getIdcor(), idbk);
 					// 已经选用了教材，则不重复保存，若不存在则保存教材选用记录
 					if (courseBkList.size() == 0) {
 						Book book = bookDAO.findById(idbk);
@@ -485,9 +462,7 @@ public class CourseServiceImp implements CourseService {
 		return tag;
 	}
 
-	/**
-	 * 根据idcor删除课程，并删除关联的coursebk,信息
-	 */
+
 	public boolean deleteCourse(String idcor) {
 		boolean tag = false;
 		Course course = null;

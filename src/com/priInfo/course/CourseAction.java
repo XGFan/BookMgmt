@@ -26,12 +26,10 @@ public class CourseAction extends ActionSupport {
 		return courseBookViewService;
 	}
 
-	public void setCourseBookViewService(
-			CourseBookViewService courseBookViewService) {
+	public void setCourseBookViewService(CourseBookViewService courseBookViewService) {
 		this.courseBookViewService = courseBookViewService;
 	}
 
-	/* getters and setters of the fields */
 	public Pagination getPagination() {
 		return pagination;
 	}
@@ -57,7 +55,7 @@ public class CourseAction extends ActionSupport {
 	}
 
     /**
-     *
+     * 返回第一页的课程信息
      * @return
      */
 	public String list() {
@@ -73,10 +71,8 @@ public class CourseAction extends ActionSupport {
 
 	/**
 	 * 通过学院、专业、学期获取课程信息 精确查询
-	 * 
-	 * @return
+	 * @return null
 	 */
-
 	public String accurateQuery() {
 		try {
 			/* 获取页面端传递的参数 */
@@ -136,7 +132,8 @@ public class CourseAction extends ActionSupport {
 	}
 
 	/**
-	 * 精确查询的分页信息的获取
+	 * 精确查询的获取分页信息
+     * @return null
 	 */
 	public String getAccPagination() {
 		try {
@@ -198,17 +195,14 @@ public class CourseAction extends ActionSupport {
 
 	/**
 	 * 模糊查询
-	 * 
-	 * @return
+	 * @return null
 	 */
 	public String fuzzyQuery() {
 		try {
 			/* 获取页面端传递的参数 */
 			HttpServletRequest request = ServletActionContext.getRequest();
-			int currentPage = Integer.parseInt(request
-					.getParameter("currentPage"));
+			int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			String condition = request.getParameter("condition");
-
 			if (pagination == null)
 				pagination = new Pagination(8);
 			pagination.setCurrentPage(currentPage);
@@ -224,7 +218,7 @@ public class CourseAction extends ActionSupport {
 	}
 
 	/**
-	 * 模糊分页信息的获取
+	 * 获取模糊查询的分页信息
 	 */
 	public String getfuzzyPagination() {
 		try {
@@ -236,7 +230,6 @@ public class CourseAction extends ActionSupport {
 				pagination = new Pagination(6);
 			/* 获取某专业某一学期的课程 */
 			totalRecord = courseService.fuzzyQuery(condition).size();
-
 			pagination.setTotalRecord(totalRecord);
 			// System.out.println("totalPage:" + pagination.getTotalPage());
 			// System.out.println("totalRecord:" + pagination.getTotalRecord());
@@ -247,10 +240,13 @@ public class CourseAction extends ActionSupport {
 		return null;
 	}
 
-	/* fuzzyQuery by Corname with the colname and major known */
+    /**
+     * 根据学院，专业，课程进行查找，其中课程是模糊查找
+     * 返回的不是一页数据，而是全部数据
+     * @return null
+     */
 	public String fuzzyQueryByCorname() {
 		HttpServletRequest request = ServletActionContext.getRequest();
-		/* 从页面获取即将添加的课程的相关参数 */
 		String col = request.getParameter("col");
 		String major = request.getParameter("major");
 		String corname = request.getParameter("corname");
@@ -265,13 +261,12 @@ public class CourseAction extends ActionSupport {
 		}
 		List list = new ArrayList();
 		list = courseService.findFuzzyByCorName(col, major, corname);
-
 		SendData.send(list);
 		return null;
 	}
 
 	/**
-	 * 添加一门新的课程
+	 * 添加新的课程，可能会用到多本书
 	 */
 	public String addNewCourse() {
 		HttpServletRequest request = ServletActionContext.getRequest();
@@ -282,9 +277,7 @@ public class CourseAction extends ActionSupport {
 		String corname = request.getParameter("corname");
 		String semester = request.getParameter("semester");
 		String idcor = null;
-		
-		idcor = courseService.addNewCourse(idbkStr, col, major, corname,
-				semester);
+		idcor = courseService.addNewCourse(idbkStr, col, major, corname,semester);
 		Map map = new HashMap();
 		map.put("idcor", idcor);
 		List result = new ArrayList();
@@ -328,7 +321,10 @@ public class CourseAction extends ActionSupport {
 		return null;
 	}
 
-	/* delete a course from the course table */
+    /**
+     * 删除科目
+     * @return null
+     */
 	public String deleteCourse() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		/* 从页面获取即将添加的课程的相关参数 */
@@ -343,7 +339,10 @@ public class CourseAction extends ActionSupport {
 		return null;
 	}
 
-	// 显示所有的课程
+    /**
+     * 所有课程
+     * @return null
+     */
 	public List<Corbookview> findAll() {
 		List<Corbookview> list = null;
 		list = courseBookViewService.findAllCourse();
@@ -351,7 +350,11 @@ public class CourseAction extends ActionSupport {
 		return null;
 	}
 
-	// 查询所有的教材
+    /**
+     * 所有课程
+     * @return null
+     * @deprecated
+     */
 	public List<Corbookview> findAllBook() {
 		List<Corbookview> list = null;
 		list = courseBookViewService.findAllBk();
@@ -359,7 +362,10 @@ public class CourseAction extends ActionSupport {
 		return null;
 	}
 
-	// 通过课程查找相应的教材
+    /**
+     * 通过科目id查找课程
+     * @return null
+     */
 	public List<CourseBookViewService> findByCourse() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String idcor = request.getParameter("idcor");
@@ -369,6 +375,10 @@ public class CourseAction extends ActionSupport {
 		return null;
 	}
 
+    /**
+     * 根据科目名查找课程
+     * @return
+     */
 	public List<Corbookview> findByCorname() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String corname = request.getParameter("corname");
