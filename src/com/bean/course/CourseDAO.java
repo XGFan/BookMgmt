@@ -10,13 +10,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.bean.book.Book;
 
 /**
- * A data access object (DAO) providing persistence and search support for
- * Course entities. Transaction control of the save(), update() and delete()
- * operations can directly support Spring container-managed transactions or they
- * can be augmented to handle user-managed Spring transactions. Each of these
- * methods provides additional information for how to configure it for the
- * desired type of transaction control.
- * 
+ * 对科目信息进行读写
  * @see com.bean.course.Course
  * @author MyEclipse Persistence Tools
  */
@@ -28,12 +22,11 @@ public class CourseDAO extends HibernateDaoSupport {
 	public static final String SEMESTER = "semester";
 
 	protected void initDao() {
-		// do nothing
 	}
 
     /**
-     * 保存课程
-     * @param transientInstance 课程实例
+     * 保存科目
+     * @param transientInstance 科目实例
      * @see com.bean.course.Course
      * @return boolean
      */
@@ -49,6 +42,10 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 删除科目
+     * @param persistentInstance 科目实例
+     */
 	public void delete(Course persistentInstance) {
 		log.debug("deleting Course instance");
 		try {
@@ -60,6 +57,11 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据科目id查找科目
+     * @param id 科目id
+     * @return 科目 obj list
+     */
 	public Course findById(java.lang.String id) {
 		log.debug("getting Course instance with id: " + id);
 		try {
@@ -72,6 +74,11 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据科目example查找
+     * @param instance 科目example
+     * @return 科目 obj list
+     */
 	public List findByExample(Course instance) {
 		log.debug("finding Course instance by example");
 		try {
@@ -85,6 +92,12 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * 根据属性名和属性值来查找科目
+     * @param propertyName 属性名
+     * @param value 属性值
+     * @return 科目 obj list
+     */
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding Course instance with property: " + propertyName
 				+ ", value: " + value);
@@ -98,17 +111,27 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
+    /**
+     * @deprecated
+     * @param corname
+     * @return
+     */
 	public List findByCorname(Object corname) {
 		return findByProperty(CORNAME, corname);
 	}
 
+    /**
+     * @deprecated
+     * @param semester
+     * @return
+     */
 	public List findBySemester(Object semester) {
 		return findByProperty(SEMESTER, semester);
 	}
 
     /**
-     * 找到所有的课程信息
-     * @return
+     * 找到所有的科目信息
+     * @return 科目 obj list
      */
 	public List findAll() {
 		log.debug("finding all Course instances");
@@ -121,11 +144,11 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
-	/**
-	 *閫氳繃瀛﹂櫌鍚嶇О鏉ヨ幏鍙栬绋嬩俊鎭?	 * 
-	 * @param colname
-	 * @return
-	 */
+    /**
+     * 根据学院名称查找科目
+     * @param col 学院名称
+     * @return 科目信息 obj list
+     */
 	public List getCourseByCol(String col) {
 		log.debug("finding all Courses by colname");
 		try {
@@ -139,12 +162,12 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
     /**
-     * 精确查找
-     * @param idcm
-     * @param col 学院
-     * @param major 专业
-     * @param corname 课程名称
-     * @return obj list
+     * 精确查找（学院专业id，学院名，专业名，科目名）
+     * @param idcm 学院专业id
+     * @param col 学院名
+     * @param major 专业名
+     * @param corname 科目名
+     * @return 科目 obj list
      */
 	public List getCourseByIdcmColMajorCorname(String idcm,String col,String major,String corname) {
 		log.debug("finding all Courses by idcm col major corname");
@@ -157,10 +180,14 @@ public class CourseDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-	
-	/**
-	 * 閫氳繃璇剧▼鐨刬dcm鍜宑orname鍜宻emester鏉ュ璇剧▼缂栬緫鏌ラ噸
-	 */
+
+    /**
+     * 精确查找（学院专业id，科目名称）
+     * @param idcm 学院专业id
+     * @param corname 科目名称
+     * @param semester 所在学期
+     * @return 科目 obj list
+     */
 	public List getCourseByIdcmCornameSem(String idcm,String corname,String semester) {
 		log.debug("finding all Courses by idcmcornamesem");
 		try {
@@ -172,13 +199,12 @@ public class CourseDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-	
-	/**
-	 * 閫氳繃涓撲笟鑾峰彇璇剧▼淇℃伅
-	 * 
-	 * @param major
-	 * @return
-	 */
+
+    /**
+     * 根据专业名称模糊查找科目
+     * @param major 专业名称
+     * @return 科目 obj list
+     */
 	public List getCourseByMajor(String major) {
 		log.debug("finding all Courses by major");
 		try {
@@ -249,10 +275,10 @@ public class CourseDAO extends HibernateDaoSupport {
 	// }
 
 	/**
-	 *  通过学院和专业查找课程，专业是模糊查找
+	 * 通过学院和专业查找科目，专业是模糊查找
 	 * @param col 学院
 	 * @param major 专业
-	 * @return obj list
+	 * @return 科目 obj list
 	 */
 	public List getCourseByColMajor(String col, String major) {
 		log.debug("finding all Courses by colname nad major");
@@ -266,11 +292,11 @@ public class CourseDAO extends HibernateDaoSupport {
 		}
 	}
 
-	/**
-	 * 閫氳繃璇剧▼鍚嶇О鏉ヨ幏鍙栬绋嬩俊鎭?	 * 
-	 * @param corname
-	 * @return
-	 */
+    /**
+     * 根据科目名称查找科目
+     * @param corname 科目名称
+     * @return 科目 obj list
+     */
 	public List getCourseByCorname(String corname) {
 		log.debug("finding all Courses by corname");
 		try {
@@ -284,11 +310,11 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
     /**
-     * 根据学院，专业，课程进行查找，其中课程是模糊查找
+     * 根据学院，专业，科目进行查找，其中科目名称是模糊查找
      * @param col 学院名称
      * @param major 专业
-     * @param corname 课程名称
-     * @return 课程信息 obj list
+     * @param corname 科目名称
+     * @return 科目信息 obj list
      */
 	public List getCourseFuzzyByCorname(String col, String major, String corname) {
 		log.debug("finding all Courses by corname");
@@ -306,7 +332,7 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
     /**
-     * 根据学院名称，专业，学期查找
+     * 根据学院，专业，学期查找
      * @param col 学院名称
      * @param major 专业名称
      * @param sem 课程安排在哪个学期
@@ -326,9 +352,9 @@ public class CourseDAO extends HibernateDaoSupport {
 	}
 
 	/**
-	 * 模糊查找，从学院，专业，课程名查询
+	 * 模糊查找，从学院，专业，科目名查询
 	 * @param condition 关键字
-	 * @return 课程 obj list
+	 * @return 科目 obj list
 	 */
 	public List fuzzyQuery(String condition) {
 		log.debug("finding all Courses by col or major or corname");

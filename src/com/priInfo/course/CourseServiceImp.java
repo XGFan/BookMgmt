@@ -275,8 +275,7 @@ public List<Object> findByColMajor(String col, String major,Pagination paginatio
 		return course.getIdcor();
 	}
 
-	public boolean addNewCourseReturnBoolean(String idbkStr, String col,
-			String major, String corname, String semester) {
+	public boolean addNewCourseReturnBoolean(String idbkStr, String col,String major, String corname, String semester) {
 		System.out.println(col + "," + major + "," + corname + "," + semester);
 		/* 条件判断，若有一个信息为空，则返回false */
 		if ("".equals(col) || col == null || "".equals(major) || major == null) {
@@ -377,17 +376,13 @@ public List<Object> findByColMajor(String col, String major,Pagination paginatio
 		return true;
 	}
 
-	/**
-	 * 更新课程信息
-	 */
 	public boolean updateCourse(Course course) {
 		boolean tag = false;
 		String idcor = course.getIdcor();
 		String idcm = idcor.substring(0, 4); // 取出所编辑课程所对应的idcm进行查重
 		String corname = course.getCorname(); // 得到对应课程名
 		String semester = course.getSemester(); // 得到学期
-		List courseList = courseDAO.getCourseByIdcmCornameSem(idcm, corname,
-				semester);
+		List courseList = courseDAO.getCourseByIdcmCornameSem(idcm, corname,semester);
 		if (courseList.size() == 0) {
 			tag = courseDAO.save(course);
 		}

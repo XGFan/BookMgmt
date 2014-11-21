@@ -45,7 +45,7 @@ public class CorplanAction extends ActionSupport {
 	}
 
     /**
-     * 获取所有的课程
+     * 获取所有的科目
      * @return
      */
 	public String list() {
@@ -57,7 +57,6 @@ public class CorplanAction extends ActionSupport {
 
 	/**
 	 * 通过学院、专业、学期获取课程信息 精确查询
-	 * 
 	 * @return null
 	 */
 	public String accurateCorplanQuery() {
@@ -81,8 +80,7 @@ public class CorplanAction extends ActionSupport {
 			List corplanList = null;
 			/* fetch the corplan data from the service layer */
 			if (hasCol && hasMajor && hasSem) {
-				corplanList = corplanService.findCorplanByColMajorSem(col,
-						major, semester);
+				corplanList = corplanService.findCorplanByColMajorSem(col,major, semester);
 			}
 			/* response the data to the client */
 			SendData.send(corplanList);
@@ -93,8 +91,7 @@ public class CorplanAction extends ActionSupport {
 	}
 
 	/**
-	 * 通过学院、专业、学期获取课程信息 精确查询
-	 * 
+	 * 通过学院、专业、学期获取科目信息 精确查询
 	 * @return null
 	 */
 	public String accurateCourseQuery() {
@@ -152,8 +149,7 @@ public class CorplanAction extends ActionSupport {
 	}
 
 	/**
-	 * 模糊查询
-	 * 
+	 * 模糊查询教学计划
 	 * @return
 	 */
 	public String fuzzyQuery() {
@@ -172,9 +168,10 @@ public class CorplanAction extends ActionSupport {
 		return null;
 	}
 
-	/**
-	 * 添加一门新的课程
-	 */
+    /**
+     * 添加一门新的课程
+     * @return null
+     */
 	public String addNewCourse() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		/* 从页面获取即将添加的课程的相关参数 */
@@ -186,8 +183,7 @@ public class CorplanAction extends ActionSupport {
 		 * invoke the method of courseService ,add a new course and a corplan to
 		 * the database
 		 */
-		boolean tag = courseService.addNewCourseReturnBoolean(null, col, major, corname,
-				semester);
+		boolean tag = courseService.addNewCourseReturnBoolean(null, col, major, corname,semester);
 		Result result = new Result(tag);
 		/* response the result to the client */
 		SendData.send(result);
@@ -211,9 +207,8 @@ public class CorplanAction extends ActionSupport {
 		List list = collgeService.getCols(col, major); // 获取学院信息
 		if (list.size() > 0) {
 			College clg = (College) list.get(0);
-			Course course = new Course(idcor, clg, corname, semester, null,
-					null);
-			tag = courseService.updateCourse(course); // 更新课程信息
+			Course course = new Course(idcor, clg, corname, semester, null,null);
+			tag = courseService.updateCourse(course); // 更新科目信息
 		}
 		Result result = new Result(tag);
 		SendData.send(result);
@@ -221,7 +216,10 @@ public class CorplanAction extends ActionSupport {
 		return null;
 	}
 
-	/* 将某一课程加入到某专业某一学期的教学计划中去 */
+    /**
+     * 将某一课程加入到某专业某一学期的教学计划中去
+     * @return null
+     */
 	public String addNewCorplan() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		/* 从页面获取即将添加的课程的相关参数 */
@@ -261,8 +259,7 @@ public class CorplanAction extends ActionSupport {
 
 	/**
 	 * 删除某专业某学期的教学计划中的一项
-	 * 
-	 * @return
+	 * @return null
 	 */
 	public String deleteCorplan() {
 		/* get the Servlet API */
@@ -294,7 +291,10 @@ public class CorplanAction extends ActionSupport {
 		return null;
 	}
 
-	/* 清空教学计划 */
+    /**
+     * 清空教学计划
+     * @return null
+     */
 	public String dropAllCorplan() {
 		/* drop all the corplan data */
 		corplanService.dropAllCorplan();
@@ -304,7 +304,10 @@ public class CorplanAction extends ActionSupport {
 		return null;
 	}
 
-	/* 初始化教学计划 */
+    /**
+     * 初始化教学计划
+     * @return
+     */
 	public String initCorplan() {
 		/* initialize the corplan based on the course table */
 		corplanService.initCorplan();

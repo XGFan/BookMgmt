@@ -97,9 +97,8 @@ public class CollegeDAO extends HibernateDaoSupport {
 			log.error("delete failed", re);
 			result = false;
 			throw re;
-		} finally {
-			return result;
 		}
+        return result;
 	}
 
     /**
@@ -304,9 +303,12 @@ public class CollegeDAO extends HibernateDaoSupport {
 		}
 	}
 
-	/**
-	 * 根据学院名称和专业名称获取记录
-	 * */
+    /**
+     * 根据学院名称和专业名称查找学院
+     * @param col 学院名称
+     * @param major 专业名称
+     * @return 学院专业 obj list
+     */
 	public List<College> getCol(String col, String major) {
 		log.debug("finding Col by colname and major");
 		try {

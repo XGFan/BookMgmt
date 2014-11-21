@@ -271,9 +271,18 @@ public class CorplanDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-	/*连接教学计划，课程，学院三张表，根据学院，专业，学期，课程名称和课程编号查询教学计划
-	    * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）*/
-	public List getCorplanByColMajorSemCornameIdcor(String col, String major,
+
+    /**
+     * 连接教学计划，课程，学院三张表，根据学院，专业，学期，课程名称和课程编号查询教学计划
+     * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）
+     * @param col 学院名
+     * @param major 专业名
+     * @param semester 学期
+     * @param corname 科目名称
+     * @param idcor 科目id
+     * @return 教学计划 obj list
+     */
+ 	public List getCorplanByColMajorSemCornameIdcor(String col, String major,
 			String semester, String corname, String idcor) {
 		log.debug("get Corplan instance");
 		try {
@@ -300,9 +309,15 @@ public class CorplanDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
-	/*连接教学计划，课程，学院三张表，根据输入条件（学院 or专业or学期）模糊查询教学计划
-	    * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）*/
-	public List getCorplanFuzzy(String condition) {
+
+
+    /**
+     * 连接教学计划，科目，学院三张表
+     * 根据输入条件（学院or专业or学期）模糊查询教学计划
+     * @param condition 关键字
+     * @return obj list
+     */
+ 	public List getCorplanFuzzy(String condition) {
 //		String queryString = "from courplan where col like '%"
 //			+ condition
 //			+ "%' or major like '%"
@@ -338,13 +353,18 @@ public class CorplanDAO extends HibernateDaoSupport {
 		return list;
 	}
 
-	/* 清空教学计划表 */
+    /**
+     * 删除所有教学计划
+     */
 	public void deleteAllCorplan() {
 		List corplanList = this.findAll();
 		getHibernateTemplate().deleteAll(corplanList);
 	}
 
-	/* 初始化，根据Course自动生成所有的Corplan */
+    /**
+     * 初始化，根据Course自动生成所有的Corplan
+     * @param entities
+     */
 	public void initAllCorplan(List entities) {
 		getHibernateTemplate().saveOrUpdateAll(entities);
 	}

@@ -65,23 +65,23 @@ public interface ColServ {
 
     /**
      * 根据学院获取所有专业
-     * @param col 学院名称
+     * @param col 学院名
      * @return 专业 obj LIST
      */
 	public List getMajorByCol(String col);
 
     /**
-     * 根据学院,专业来获取专业记录
-     * @param col 学院
-     * @param major 专业
-     * @return 学院专业信息LIST
+     * 根据学院,专业来获取学院专业记录
+     * @param col 学院名
+     * @param major 专业名
+     * @return 学院专业信息 obj list
      */
 	public List<College> getCols(String col, String major);
 
     /**
      *根据学院名称和专业名称获取记录
-     * @param col 学院名称
-     * @param major 专业名称
+     * @param col 学院名
+     * @param major 专业名
      * @return 学院专业map list
      */
 	public List<College> getCol(String col, String major);

@@ -78,9 +78,7 @@ public class CorplanServiceImp implements CorplanService {
 		return ConvertUtils.ToCorplanList(list);
 	}
 
-	/* 根据学院，专业，学期查询教学计划 */
-	public List findCorplanByColMajorSem(String col, String major,
-			String semester) {
+	public List findCorplanByColMajorSem(String col, String major,String semester) {
 		List list = corplanDAO.getCorplanByColMajorSem(col, major, semester);
 		return ConvertUtils.ToCorplanList(list);
 	}
@@ -98,7 +96,6 @@ public class CorplanServiceImp implements CorplanService {
 		return ConvertUtils.ToCorplanList(list);
 	}
 
-	/* 根据输入的条件（学院or专业or学期）进行模糊查询 */
 	public List fuzzyFind(String condition) {
 		List list = corplanDAO.getCorplanFuzzy(condition);
 		return ConvertUtils.ToCorplanList(list);
@@ -110,8 +107,7 @@ public class CorplanServiceImp implements CorplanService {
 		return false;
 	}
 
-	public boolean updateCorplan(String col, String major, String corname,
-			String semester) {
+	public boolean updateCorplan(String col, String major, String corname,String semester) {
 		/* 条件判断，若有一个信息为空，则返回false */
 		if (col == null || "".equals(col) || major == null || "".equals(major)) {
 			return false;
@@ -139,8 +135,7 @@ public class CorplanServiceImp implements CorplanService {
 		// String sem=semester;
 		Course course = new Course(null, college, corname, semester, null, null);
 		// System.out.println("The Course is builded!");
-		List courseList = courseDAO.getCourseByIdcmColMajorCorname(idcm, col,
-				major, corname);
+		List courseList = courseDAO.getCourseByIdcmColMajorCorname(idcm,col,major,corname);
 		// List courseList = courseDAO.findByExample(course);
 		// System.out.println("课程数量" + courseList.size());
 		/* 2.1不存在该课程，则根据规则来生成 */
@@ -231,7 +226,6 @@ public class CorplanServiceImp implements CorplanService {
 		return false;
 	}
 
-	/* delete a corplan */
 	public boolean deleteCorplan(String col, String major, String semester,
 			String idcor, String corname) {
 		/* query the corplan from the database */
@@ -265,7 +259,6 @@ public class CorplanServiceImp implements CorplanService {
 			return false;
 	}
 
-	/* 初始化教学计划表，重新生成，根据课程信息 */
 	public void initCorplan() {
 		/* initialize course list */
 		List courseList = new ArrayList();
@@ -311,7 +304,6 @@ public class CorplanServiceImp implements CorplanService {
 
 	}
 
-	/* 清空教学计划 */
 	public void dropAllCorplan() {
 		/* delete all the corplan */
 		corplanDAO.deleteAllCorplan();
