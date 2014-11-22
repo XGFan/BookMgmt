@@ -32,21 +32,6 @@ public interface CourseService {
     public List<Object> findByCol(String col, Pagination pagination);
 
     /**
-     * @param major
-     * @return
-     * @deprecated
-     */
-    public List<Object> findByMajor(String major);
-
-    /**
-     * @param major
-     * @param pagination
-     * @return
-     * @deprecated
-     */
-    public List<Object> findByMajor(String major, Pagination pagination);
-
-    /**
      * 通过学院、专业来获取科目
      *
      * @param col   学院
@@ -65,22 +50,6 @@ public interface CourseService {
      */
     public List<Object> findByColMajor(String col, String major,
                                        Pagination pagination);
-
-    /**
-     * 通过课程名称来查找课程
-     *
-     * @return
-     * @deprecated
-     */
-    public List<Object> findByCorName(String corname);
-
-    /**
-     * @param corname
-     * @param pagination
-     * @return
-     * @deprecated
-     */
-    public List<Object> findByCorName(String corname, Pagination pagination);
 
     /**
      * 根据学院，专业，科目名称进行查找，其中科目名称是模糊查找
@@ -140,7 +109,7 @@ public interface CourseService {
      * @param corname  科目名称
      * @param semester 所在学期
      * @return 课程id
-     * @TODO 细节未注释
+     * TODO 细节未注释
      */
     public String addNewCourse(String idbkStr, String col, String major, String corname, String semester);
 
@@ -159,7 +128,7 @@ public interface CourseService {
     /**
      * 更新课程信息
      *
-     * @TODO 这个不像是更新科目
+     * TODO 这个不像是更新科目
      * @deprecated
      */
     public boolean updateCourse(Course course);
@@ -172,11 +141,6 @@ public interface CourseService {
      * @return boolean
      */
     public boolean updateCourse(Course course, String idbkStr);
-
-    /**
-     * 删除课程信息
-     */
-    public boolean deleteCourse(String idcor, String semester);
 
     /**
      * 删除科目

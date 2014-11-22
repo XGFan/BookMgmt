@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
 	<!-- 定义数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -10,8 +10,8 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/bookmgmt?useUnicode=true&amp;characterEncoding=UTF-8">
 		</property>
-		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
 	</bean>
 	<!-- 定义与Hibernate参数 -->
 	<bean id="sessionFactory"
@@ -66,7 +66,7 @@
 	<bean id="courseAction" class="com.priInfo.course.CourseAction">
 		<property name="collgeService" ref="colServ" />
 		<property name="courseService" ref="courseService" />
-		<property name="courseBookViewService" ref="CourseBookViewService"></property>
+		<property name="courseBookViewService" ref="CourseBookViewService"/>
 	</bean>
 	<!-- 定义与课程Course相关的courseService -->
 	<bean id="courseService" class="com.priInfo.course.CourseServiceImp">
@@ -79,14 +79,10 @@
 	</bean>
 	<!-- 定义与课程相应的CourseDAO -->
 	<bean id="CourseDAO" class="com.bean.course.CourseDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	<bean id="CoursebkDAO" class="com.bean.coursebk.CoursebkDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 	<!--Corplan部分 -->
@@ -105,130 +101,89 @@
 	</bean>
 	<!-- 定义与教学计划Corplan相应的CorplanDAO -->
 	<bean id="CorplanDAO" class="com.bean.corplan.CorplanDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
-	<!-- corbook部分 -->
-	<bean id="corbookService" class="com.priInfo.corbook.corbookServiceImpl">
-		<property name="corbkdao" ref="CorbookDAO"></property>
-	</bean>
 	<bean id="CorbookDAO" class="com.bean.corbook.CorbookDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 	<!-- book -->
 	<bean id="bookAction" class="com.printInfo.book.Action.BookAction">
-		<property name="bookService" ref="bookService"></property>
-		<property name="courseService" ref="courseService"></property>
-		<property name="corbkviewService" ref="CourseBookViewService"></property>
-		<property name="supSer" ref="supService"></property>
-		<property name="corbookservice" ref="corbookService"></property>
-		<property name="coursebkDao" ref="CoursebkDAO"></property>
+		<property name="bookService" ref="bookService"/>
+		<property name="courseService" ref="courseService"/>
+		<property name="corbkviewService" ref="CourseBookViewService"/>
+		<property name="supSer" ref="supService"/>
+		<property name="coursebkDao" ref="CoursebkDAO"/>
 	</bean>
 	<bean id="bookService" class="com.printInfo.book.Service.BookServiceImp">
-		<property name="bookDAO" ref="BookDAO"></property>
+		<property name="bookDAO" ref="BookDAO"/>
 	</bean>
 	<bean id="CourseBookViewService" class="com.printInfo.book.Service.CourseBookViewServiceImpl">
-		<property name="corBookViewDAO" ref="CorbookviewDAO"></property>
-		<property name="bookDAO" ref="BookDAO"></property>
-		<property name="courseDAO" ref="CourseDAO"></property>
+		<property name="corBookViewDAO" ref="CorbookviewDAO"/>
+		<property name="bookDAO" ref="BookDAO"/>
+		<property name="courseDAO" ref="CourseDAO"/>
 	</bean>
 	<bean id="BookDAO" class="com.bean.book.BookDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	<bean id="CorbookviewDAO" class="com.bean.corbook.CorbookviewDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 	<!-- supplier 部分 -->
 	<bean id="supAction" class="com.printInfo.supplier.Action.SupAction">
-		<property name="supser">
-			<ref bean="supService" />
-		</property><!-- supSer 是供应商service类 -->
+		<property name="supser" ref="supService"/><!-- supSer 是供应商service类 -->
 	</bean>
 	<bean id="supService" class="com.printInfo.supplier.Service.SupplierServiceImp">
-		<property name="supplierDAO" ref="SupplierDAO"></property>
+		<property name="supplierDAO" ref="SupplierDAO"/>
 	</bean>
 	<bean id="SupplierDAO" class="com.bean.supplier.SupplierDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 	<!-- class部分 -->
 	<bean id="classAction" class="com.priInfo.cls.ClassAction">
-		<property name="classService">
-			<ref bean="ClassService" />
-		</property>
-		<property name="collegeService">
-			<ref bean="colServ" />
-		</property>
+		<property name="classService" ref="ClassService"/>
+		<property name="collegeService" ref="colServ"/>
 	</bean>
 	<bean id="ClassService" class="com.priInfo.cls.ClassServiceImpl">
-		<property name="classDAO">
-			<ref bean="ClassDAO" />
-		</property>
+		<property name="classDAO" ref="ClassDAO"/>
 	</bean>
 	<bean id="ClassDAO" class="com.bean.cls.ClassDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 	<!-- Bkpurchase 部分 -->
 	<bean id="bkpurAction" class="com.printInfo.bkpurchase.Action.BkpurAction">
-		<property name="bkpurser">
-			<ref bean="bkpurService" />
-		</property><!-- bkpurser 是购书service类 -->
-		<property name="supplierService">
-			<ref bean="supService" />
-		</property>
+		<property name="bkpurser" ref="bkpurService"/><!-- bkpurser 是购书service类 -->
+		<property name="supplierService" ref="supService"/>
 	</bean>
 	<bean id="bkpurService" class="com.printInfo.bkpurchase.Service.BKPurchaseServiceImp">
-		<property name="bkpurdao" ref="BkpurchaseDAO"></property>
-		<property name="bcsdao" ref="BookcorsupDAO"></property>
-		<property name="ccdao" ref="CourclassDAO"></property>
-		<property name="bookdao" ref="BookDAO"></property>
-		<property name="bookpurchaseviewDAO" ref="BookpurchaseviewDAO"></property>
-		<property name="bookpurchaseDAO" ref="BookpurchaseDAO"></property>
+		<property name="bkpurdao" ref="BkpurchaseDAO"/>
+		<property name="bcsdao" ref="BookcorsupDAO"/>
+		<property name="ccdao" ref="CourclassDAO"/>
+		<property name="bookdao" ref="BookDAO"/>
+		<property name="bookpurchaseviewDAO" ref="BookpurchaseviewDAO"/>
+		<property name="bookpurchaseDAO" ref="BookpurchaseDAO"/>
 	</bean>
 	<bean id="BookpurchaseviewDAO" class="com.bean.bookpurchaseview.BookpurchaseviewDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	<bean id="BookpurchaseDAO" class="com.bean.bookpurchase.BookpurchaseDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	<bean id="BkpurchaseDAO" class="com.bean.bkpurchase.BkpurchaseDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	<bean id="CourclassDAO" class="com.bean.courclass.CourclassDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	<bean id="BookcorsupDAO" class="com.bean.bookcorsup.BookcorsupDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	<bean id="CorbkviewDAO" class="com.bean.corbkview.CorbkviewDAO">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory" />
-		</property>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 	<!-- <bean id="CourplanDAO" class="com.bean.corplan.CourplanDAO"> <property 
@@ -237,19 +192,13 @@
 	<!-- 发放书本的Action类的配置信息 -->
 	<bean id="bkdistService"
 		class="com.printInfo.bkdistribute.Service.BKDistributeServiceImp">
-		<property name="bookpurchaseviewDAO" ref="BookpurchaseviewDAO"></property>
+		<property name="bookpurchaseviewDAO" ref="BookpurchaseviewDAO"/>
 	</bean>
 
 	<bean id="bkdistAction" class="com.printInfo.bkdistribute.Action.BKdistAction">
-		<property name="bkdistser">
-			<ref bean="bkdistService" />
-		</property>
-		<property name="bkpurser">
-			<ref bean="bkpurService" />
-		</property>
-		<property name="classService">
-			<ref bean="ClassService" />
-		</property>
+		<property name="bkdistser" ref="bkdistService"/>
+		<property name="bkpurser" ref="bkpurService"/>
+		<property name="classService" ref="ClassService"/>
 	</bean>
 
 </beans>

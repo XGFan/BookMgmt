@@ -1,18 +1,10 @@
 package com.bean.supplier;
 
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.LockMode;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
-import org.hibernate.cfg.Configuration;
-import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -30,8 +22,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class SupplierDAO extends HibernateDaoSupport implements SupplierDAOInf {
     private static final Log log = LogFactory.getLog(SupplierDAO.class);
     // property constants
-    public static final String SUPPLIER = "supplier";
-    public static final String PUBLISHER = "publisher";
+    private static final String SUPPLIER = "supplier";
+    private static final String PUBLISHER = "publisher";
 
     protected void initDao() {
         // do nothing
@@ -108,24 +100,10 @@ public class SupplierDAO extends HibernateDaoSupport implements SupplierDAOInf {
     public Supplier findById(java.lang.String id) {
         log.debug("getting Supplier instance with id: " + id);
         try {
-            Supplier instance = (Supplier) getHibernateTemplate().get(
+            return (Supplier) getHibernateTemplate().get(
                     "com.bean.supplier.Supplier", id);
-            return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
-            throw re;
-        }
-    }
-
-    public List findByExample(Supplier instance) {
-        log.debug("finding Supplier instance by example");
-        try {
-            List results = getHibernateTemplate().findByExample(instance);
-            log.debug("find by example successful, result size: "
-                    + results.size());
-            return results;
-        } catch (RuntimeException re) {
-            log.error("find by example failed", re);
             throw re;
         }
     }
@@ -164,8 +142,7 @@ public class SupplierDAO extends HibernateDaoSupport implements SupplierDAOInf {
         log.debug("finding all publisher instances");
         try {
             String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
-            List list = getHibernateTemplate().find(queryString);
-            return list;
+            return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
@@ -176,8 +153,7 @@ public class SupplierDAO extends HibernateDaoSupport implements SupplierDAOInf {
         log.debug("finding all Supplier instances");
         try {
             String queryString = "select distinct s.supplier from Supplier s order by convert_gbk(s.supplier) asc";
-            List list = getHibernateTemplate().find(queryString);
-            return list;
+            return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
@@ -188,8 +164,7 @@ public class SupplierDAO extends HibernateDaoSupport implements SupplierDAOInf {
         log.debug("finding all Supplier instances");
         try {
             String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
-            List list = getHibernateTemplate().find(queryString);
-            return list;
+            return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
@@ -200,50 +175,11 @@ public class SupplierDAO extends HibernateDaoSupport implements SupplierDAOInf {
         log.debug("finding all Supplier instances");
         try {
             String queryString = "from Supplier s order by s.idsp";
-            List list = getHibernateTemplate().find(queryString);
-            return list;
+            return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
         }
     }
 
-    public Supplier merge(Supplier detachedInstance) {
-        log.debug("merging Supplier instance");
-        try {
-            Supplier result = (Supplier) getHibernateTemplate().merge(
-                    detachedInstance);
-            log.debug("merge successful");
-            return result;
-        } catch (RuntimeException re) {
-            log.error("merge failed", re);
-            throw re;
-        }
-    }
-
-    public void attachDirty(Supplier instance) {
-        log.debug("attaching dirty Supplier instance");
-        try {
-            getHibernateTemplate().saveOrUpdate(instance);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public void attachClean(Supplier instance) {
-        log.debug("attaching clean Supplier instance");
-        try {
-            getHibernateTemplate().lock(instance, LockMode.NONE);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public static SupplierDAO getFromApplicationContext(ApplicationContext ctx) {
-        return (SupplierDAO) ctx.getBean("SupplierDAO");
-    }
 }

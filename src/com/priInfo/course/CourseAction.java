@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.bean.college.*;
 import com.bean.corbook.Corbookview;
 import com.bean.course.*;
 import com.opensymphony.xwork2.ActionSupport;
@@ -57,7 +56,7 @@ public class CourseAction extends ActionSupport {
     /**
      * 返回第一页的课程信息
      *
-     * @return
+     * @return null
      */
     public String list() {
         List list = courseService.init();
@@ -211,7 +210,7 @@ public class CourseAction extends ActionSupport {
                 pagination = new Pagination(8);
             pagination.setCurrentPage(currentPage);
 
-            List corlist = null;
+            List corlist;
 			/* 学院为和专业为全部，获取所有课程 */
             corlist = courseService.fuzzyQuery(condition, pagination);
             SendData.send(corlist);
@@ -264,7 +263,7 @@ public class CourseAction extends ActionSupport {
             SendData.send(null);
             return null;
         }
-        List list = new ArrayList();
+        List list;
         list = courseService.findFuzzyByCorName(col, major, corname);
         SendData.send(list);
         return null;
@@ -281,7 +280,7 @@ public class CourseAction extends ActionSupport {
         String major = request.getParameter("major");
         String corname = request.getParameter("corname");
         String semester = request.getParameter("semester");
-        String idcor = null;
+        String idcor;
         idcor = courseService.addNewCourse(idbkStr, col, major, corname, semester);
         Map map = new HashMap();
         map.put("idcor", idcor);
@@ -309,7 +308,7 @@ public class CourseAction extends ActionSupport {
         boolean hasCorname = !(corname == null || "".equals(corname));
         boolean hasSemester = !(semester == null || "".equals(semester));
         // 如果这三个参数任何一个为空，提示更新失败！
-        if (hasIdcor == false || hasCorname == false || hasSemester == false) {
+        if (!hasIdcor || !hasCorname || !hasSemester) {
             tag = false;
         } else {
             // 从数据库中取出course
@@ -351,7 +350,7 @@ public class CourseAction extends ActionSupport {
      * @return null
      */
     public List<Corbookview> findAll() {
-        List<Corbookview> list = null;
+        List<Corbookview> list;
         list = courseBookViewService.findAllCourse();
         SendData.send(list);
         return null;
@@ -364,7 +363,7 @@ public class CourseAction extends ActionSupport {
      * @deprecated
      */
     public List<Corbookview> findAllBook() {
-        List<Corbookview> list = null;
+        List<Corbookview> list;
         list = courseBookViewService.findAllBk();
         SendData.send(list);
         return null;
@@ -378,7 +377,7 @@ public class CourseAction extends ActionSupport {
     public List<CourseBookViewService> findByCourse() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String idcor = request.getParameter("idcor");
-        List<Corbookview> list = null;
+        List<Corbookview> list;
         list = courseBookViewService.findByCourse(idcor);
         SendData.send(list);
         return null;
@@ -387,12 +386,12 @@ public class CourseAction extends ActionSupport {
     /**
      * 根据科目名查找课程
      *
-     * @return
+     * @return null
      */
     public List<Corbookview> findByCorname() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String corname = request.getParameter("corname");
-        List<Corbookview> list = null;
+        List<Corbookview> list;
         list = courseBookViewService.findCourseByCorname(corname);
         SendData.send(list);
         return null;

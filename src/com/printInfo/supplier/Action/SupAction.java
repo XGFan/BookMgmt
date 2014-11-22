@@ -1,24 +1,13 @@
 package com.printInfo.supplier.Action;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONArray;
-
 import org.apache.struts2.ServletActionContext;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.bean.course.CourseDAO;
 import com.bean.supplier.Supplier;
-import com.bean.supplier.SupplierDAO;
 import com.opensymphony.xwork2.ActionContext;
 import com.printInfo.supplier.Service.SupplierService;
 import com.util.ConvertUtils;
@@ -129,7 +118,7 @@ public class SupAction {
                 pagination = new Pagination(8);
             pagination.setSize(8);
             pagination.setCurrentPage(currentPage);
-            List<Supplier> list = null;
+            List<Supplier> list;
 			/* 学院为和专业为全部，获取所有课程 */
             list = GetPaginationInfo.getSubList(suplist, pagination);
             list = ConvertUtils.ToSupplierList(list);// 将list转换成map格式以便于转换为json格式
@@ -149,7 +138,7 @@ public class SupAction {
     /**
      * 添加出版社
      *
-     * @return
+     * @return null
      */
     public String addPub() {
         HttpServletRequest request = ServletActionContext.getRequest();
@@ -164,7 +153,7 @@ public class SupAction {
     /**
      * 添加供应商
      *
-     * @return
+     * @return null
      */
     public String addSup() {
         HttpServletRequest request = ServletActionContext.getRequest();

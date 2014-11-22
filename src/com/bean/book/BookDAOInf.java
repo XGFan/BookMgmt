@@ -2,16 +2,11 @@ package com.bean.book;
 
 import java.util.List;
 
-import com.bean.corbook.CorbookviewId;
-import com.bean.supplier.Supplier;
-import com.printInfo.book.Service.CourseBookViewService;
-import com.util.Pagination;
-
 public interface BookDAOInf {
     /**
      * 保存实例
      *
-     * @param transientInstance
+     * @param transientInstance 教材实例
      */
     public void save(Book transientInstance);
 
@@ -30,14 +25,6 @@ public interface BookDAOInf {
      * @return 书本对象
      */
     public Book findById(java.lang.String id);
-
-    /**
-     * 传入example，返回查找结果list
-     *
-     * @param instance example
-     * @return 结果 list
-     */
-    public List findByExample(Book instance);
 
     /**
      * 传入属性名和属性值精确查找，返回查找结果LIST
@@ -76,13 +63,5 @@ public interface BookDAOInf {
      * @param book book实例
      */
     public void updateBook(Book book);
-
-    /**
-     * TODO
-     *
-     * @param idbk
-     * @return
-     */
-    public List<CorbookviewId> searchByBook(String idbk);
 
 }

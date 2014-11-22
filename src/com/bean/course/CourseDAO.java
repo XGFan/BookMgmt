@@ -4,11 +4,7 @@ import java.util.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.*;
-import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-import com.bean.book.Book;
 
 /**
  * 对科目信息进行读写
@@ -20,8 +16,8 @@ import com.bean.book.Book;
 public class CourseDAO extends HibernateDaoSupport {
     private static final Log log = LogFactory.getLog(CourseDAO.class);
     // property constants
-    public static final String CORNAME = "corname";
-    public static final String SEMESTER = "semester";
+    private static final String CORNAME = "corname";
+    private static final String SEMESTER = "semester";
 
     protected void initDao() {
     }
@@ -70,70 +66,12 @@ public class CourseDAO extends HibernateDaoSupport {
     public Course findById(java.lang.String id) {
         log.debug("getting Course instance with id: " + id);
         try {
-            Course instance = (Course) getHibernateTemplate().get(
+            return (Course) getHibernateTemplate().get(
                     "com.bean.course.Course", id);
-            return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
             throw re;
         }
-    }
-
-    /**
-     * 根据科目example查找
-     *
-     * @param instance 科目example
-     * @return 科目 obj list
-     */
-    public List findByExample(Course instance) {
-        log.debug("finding Course instance by example");
-        try {
-            List results = getHibernateTemplate().findByExample(instance);
-            log.debug("find by example successful, result size: "
-                    + results.size());
-            return results;
-        } catch (RuntimeException re) {
-            log.error("find by example failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * 根据属性名和属性值来查找科目
-     *
-     * @param propertyName 属性名
-     * @param value        属性值
-     * @return 科目 obj list
-     */
-    public List findByProperty(String propertyName, Object value) {
-        log.debug("finding Course instance with property: " + propertyName
-                + ", value: " + value);
-        try {
-            String queryString = "from Course as model where model."
-                    + propertyName + "= ?";
-            return getHibernateTemplate().find(queryString, value);
-        } catch (RuntimeException re) {
-            log.error("find by property name failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * @param corname
-     * @return
-     * @deprecated
-     */
-    public List findByCorname(Object corname) {
-        return findByProperty(CORNAME, corname);
-    }
-
-    /**
-     * @param semester
-     * @return
-     * @deprecated
-     */
-    public List findBySemester(Object semester) {
-        return findByProperty(SEMESTER, semester);
     }
 
     /**
@@ -211,25 +149,7 @@ public class CourseDAO extends HibernateDaoSupport {
         }
     }
 
-    /**
-     * 根据专业名称模糊查找科目
-     *
-     * @param major 专业名称
-     * @return 科目 obj list
-     */
-    public List getCourseByMajor(String major) {
-        log.debug("finding all Courses by major");
-        try {
-            String queryString = "from Course c join c.college cc where cc.major like'%"
-                    + major + "%'";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-	/*
+    /*
      * public List getCourseByMajor(String major){
 	 * log.debug("finding all Courses by major"); try { SessionFactory
 	 * ssf=getHibernateTemplate().getSessionFactory(); String queryString =
@@ -306,24 +226,6 @@ public class CourseDAO extends HibernateDaoSupport {
     }
 
     /**
-     * 根据科目名称查找科目
-     *
-     * @param corname 科目名称
-     * @return 科目 obj list
-     */
-    public List getCourseByCorname(String corname) {
-        log.debug("finding all Courses by corname");
-        try {
-            String queryString = "from Course c join c.college cc where c.corname ='"
-                    + corname + "'";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-    /**
      * 根据学院，专业，科目进行查找，其中科目名称是模糊查找
      *
      * @param col     学院名称
@@ -387,46 +289,4 @@ public class CourseDAO extends HibernateDaoSupport {
         }
     }
 
-    public Course merge(Course detachedInstance) {
-        log.debug("merging Course instance");
-        try {
-            Course result = (Course) getHibernateTemplate().merge(
-                    detachedInstance);
-            log.debug("merge successful");
-            return result;
-        } catch (RuntimeException re) {
-            log.error("merge failed", re);
-            throw re;
-        }
-    }
-
-    public void attachDirty(Course instance) {
-        log.debug("attaching dirty Course instance");
-        try {
-            getHibernateTemplate().saveOrUpdate(instance);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public void attachClean(Course instance) {
-        log.debug("attaching clean Course instance");
-        try {
-            getHibernateTemplate().lock(instance, LockMode.NONE);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public static CourseDAO getFromApplicationContext(ApplicationContext ctx) {
-        return (CourseDAO) ctx.getBean("CourseDAO");
-    }
-
-    public void updateCourse(Course cor) {
-        getHibernateTemplate().saveOrUpdate(cor);
-    }
 }

@@ -86,7 +86,7 @@ public class ColAction extends ActionSupport {
     /**
      * 精确查询，显示一页的院系专业
      *
-     * @return
+     * @return null
      */
     public String accurateQuery() {
         try {
@@ -96,9 +96,6 @@ public class ColAction extends ActionSupport {
                 pagination = new Pagination(6);
             pagination.setSize(6);
 			/* 设置总页面数目,总记录数量 */
-            // int totalRecord = csv.searchByCol(col).size();
-            // pagination.setTotalRecord(totalRecord);
-
 			/* 从页面获取参数，包括学院，第几页 */
             HttpServletRequest request = ServletActionContext.getRequest();
             String col = request.getParameter("col");
@@ -136,14 +133,6 @@ public class ColAction extends ActionSupport {
         else
             totalRecord = csv.searchByCol(col).size();
         pagination.setTotalRecord(totalRecord);
-
-        // if(pagination.getCurrentPage()<=0)
-        // pagination.setCurrentPage(1);
-        // if(pagination.getTotalPage()!=0&&pagination.getCurrentPage()>pagination.getTotalPage())
-        // pagination.setCurrentPage(pagination.getTotalPage());
-
-        // System.out.println("totalPage:" + pagination.getTotalPage());
-        // System.out.println("totalRecord:" + pagination.getTotalRecord());
         SendData.send(pagination);
 
         return null;
@@ -206,7 +195,7 @@ public class ColAction extends ActionSupport {
      * @return null
      */
     public String getAllCol() {
-        List list = csv.getAllCol();
+        List list = csv.getAllColName();
         SendData.send(list);
         return null;
     }
@@ -221,9 +210,9 @@ public class ColAction extends ActionSupport {
         String col = request.getParameter("col");
         List list = null;
         if ("----全部----".equals(col) || "--请选择--".equals(col)) {
-            list = csv.getMajorByCol("");
+            list = csv.getMajorNameByCol("");
         } else {
-            list = csv.getMajorByCol(col);
+            list = csv.getMajorNameByCol(col);
         }
         SendData.send(list);
         return null;
@@ -287,7 +276,7 @@ public class ColAction extends ActionSupport {
     /**
      * 根据传回的idcm进行删除操作
      *
-     * @return
+     * @return null
      */
     public String deleteCollege() {
         HttpServletRequest request = ServletActionContext.getRequest();
@@ -297,17 +286,4 @@ public class ColAction extends ActionSupport {
         SendData.send(result);
         return null;
     }
-
-    /**
-     * 貌似是无用信息
-     *
-     * @return
-     * @deprecated
-     */
-    public String query() {
-        csv.searchByCol(col);
-        csv.searchByMajor(major);
-        return "query";
-    }
-
 }

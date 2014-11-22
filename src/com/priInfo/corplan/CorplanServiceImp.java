@@ -48,63 +48,14 @@ public class CorplanServiceImp implements CorplanService {
         this.corplanDAO = corplanDAO;
     }
 
-    /* 删除教学计划 */
-    public boolean deleteById(String idcor) {
-        corplanDAO.deleteById(idcor);
-        return false;
-    }
-
-    /* 查询所有的corplan记录 */
-    public List<Object> findAll() {
-        List list = corplanDAO.getCorplanWithJoin();
-        return ConvertUtils.ToCorplanList(list); // 把list转换为map类型
-    }
-
-    public boolean saveCorplan(Corplan corplan) {
-        courseDAO.save(corplan.getCourse());
-        corplanDAO.save(corplan);
-        return false;
-    }
-
-    /* 根据学院查询教学计划 */
-    public List findCorplanByCol(String col) {
-        List list = corplanDAO.getCorplanByCol(col);
-        return ConvertUtils.ToCorplanList(list);
-    }
-
-    /* 根据学院，专业查询教学计划 */
-    public List findCorplanByColMajor(String col, String major) {
-        List list = corplanDAO.getCorplanByColMajor(col, major);
-        return ConvertUtils.ToCorplanList(list);
-    }
-
     public List findCorplanByColMajorSem(String col, String major, String semester) {
         List list = corplanDAO.getCorplanByColMajorSem(col, major, semester);
-        return ConvertUtils.ToCorplanList(list);
-    }
-
-    /* 根据学院或专业查询教学计划 */
-    public List findCorplanByColOrMajor(String condition) {
-        List list = corplanDAO.getCorplanByColOrMajor(condition);
-        return ConvertUtils.ToCorplanList(list);
-    }
-
-    /* 根据学院，专业，课程名称查询教学计划 */
-    public List fuzzyQuery(String col, String major, String corname) {
-        List list = corplanDAO.getCorplanFuzzyByColMajorCorname(col, major,
-                corname);
         return ConvertUtils.ToCorplanList(list);
     }
 
     public List fuzzyFind(String condition) {
         List list = corplanDAO.getCorplanFuzzy(condition);
         return ConvertUtils.ToCorplanList(list);
-    }
-
-    public boolean updateCorplan(Corplan corplan) {
-        courseDAO.save(corplan.getCourse());
-        corplanDAO.save(corplan);
-        return false;
     }
 
     public boolean updateCorplan(String col, String major, String corname, String semester) {
@@ -117,7 +68,7 @@ public class CorplanServiceImp implements CorplanService {
             return false;
         }
 		/* 1.查找学院 */
-        List collegeList = new ArrayList();
+        List collegeList;
         collegeList = collegeDAO.getCol(col, major);
         College college = null;
         String idcm = null;
@@ -181,7 +132,7 @@ public class CorplanServiceImp implements CorplanService {
 
             Corplan corplan = new Corplan();
             String idcor = course.getIdcor();
-            String idcorsem = null;
+            String idcorsem;
 
             corplan.setCourse(course);
             corplan.setSemester(semester);
@@ -218,20 +169,10 @@ public class CorplanServiceImp implements CorplanService {
         return true;
     }
 
-    public boolean saveCorplans(Corplan[] corplans) {
-        for (int i = 0; i < corplans.length; i++) {
-            courseDAO.save(corplans[i].getCourse());
-            corplanDAO.save(corplans[i]);
-        }
-        return false;
-    }
-
-    public boolean deleteCorplan(String col, String major, String semester,
-                                 String idcor, String corname) {
+    public boolean deleteCorplan(String col, String major, String semester,String idcor, String corname) {
 		/* query the corplan from the database */
-        Corbook corbook = null;
-        Corplan corplan = null;
-        List corplanList = new ArrayList();
+        Corplan corplan;
+        List corplanList;
         // System.out.println(col + "," + major + "," + semester + "," + idcor+
         // "," + corname);
         corplanList = corplanDAO.getCorplanByColMajorSemCornameIdcor(col,
@@ -261,17 +202,16 @@ public class CorplanServiceImp implements CorplanService {
 
     public void initCorplan() {
 		/* initialize course list */
-        List courseList = new ArrayList();
+        List courseList;
 		/* get all course info from the course talbe */
         courseList = courseDAO.findAll();
 		/* initialize the corplan list */
         List corplanList = new ArrayList();
 		/* get the iterator of the course list */
-        Iterator iterator = courseList.iterator();
-		/* iterator the coruse list */
-        while (iterator.hasNext()) {
-			/* get one object array from the course list */
-            Object obj[] = (Object[]) iterator.next();
+        /* iterator the coruse list */
+        for (Object aCourseList : courseList) {
+            /* get one object array from the course list */
+            Object obj[] = (Object[]) aCourseList;
 			/* get the course from the object array */
             Course course = (Course) obj[0];
 			/* create a new corplan */
@@ -281,7 +221,7 @@ public class CorplanServiceImp implements CorplanService {
             String idcor = course.getIdcor();
 			/* get the semester from a course */
             String semester = course.getSemester();
-            String idcorsem = null;
+            String idcorsem;
 			/* set the course field of the corplan object */
             corplan.setCourse(course);
 			/* set the semester field of the corplan object */
@@ -305,7 +245,6 @@ public class CorplanServiceImp implements CorplanService {
     }
 
     public void dropAllCorplan() {
-		/* delete all the corplan */
         corplanDAO.deleteAllCorplan();
     }
 }

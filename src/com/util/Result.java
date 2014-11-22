@@ -6,7 +6,7 @@ package com.util;
 public class Result {
     private boolean result;
 
-    public boolean isResult() {
+    public boolean getResult() {
         return result;
     }
 

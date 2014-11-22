@@ -7,9 +7,8 @@ import org.hibernate.cfg.Configuration;
 /**
  * Configures and provides access to Hibernate sessions, tied to the current
  * thread of execution. Follows the Thread Local Session pattern, see
- * {@link http://hibernate.org/42.html }.
  */
-public class HibernateSessionFactory {
+class HibernateSessionFactory {
 
     /**
      * Location of hibernate.cfg.xml file. Location should be on the classpath
@@ -18,9 +17,9 @@ public class HibernateSessionFactory {
      * the default package. Use #setConfigFile() to update the location of the
      * configuration file for the current session.
      */
-    private static String CONFIG_FILE_LOCATION = "/hibernate.cfg.xml";
+    private static final String CONFIG_FILE_LOCATION = "/hibernate.cfg.xml";
     private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
-    private static Configuration configuration = new Configuration();
+    private static final Configuration configuration = new Configuration();
     private static org.hibernate.SessionFactory sessionFactory;
     private static String configFile = CONFIG_FILE_LOCATION;
 
@@ -45,7 +44,7 @@ public class HibernateSessionFactory {
      * @throws HibernateException
      */
     public static Session getSession() throws HibernateException {
-        Session session = (Session) threadLocal.get();
+        Session session = threadLocal.get();
 
         if (session == null || !session.isOpen()) {
             if (sessionFactory == null) {
@@ -62,27 +61,13 @@ public class HibernateSessionFactory {
     /**
      * Rebuild hibernate session factory
      */
-    public static void rebuildSessionFactory() {
+    private static void rebuildSessionFactory() {
         try {
             configuration.configure(configFile);
             sessionFactory = configuration.buildSessionFactory();
         } catch (Exception e) {
             System.err.println("%%%% Error Creating SessionFactory %%%%");
             e.printStackTrace();
-        }
-    }
-
-    /**
-     * Close the single hibernate session instance.
-     *
-     * @throws HibernateException
-     */
-    public static void closeSession() throws HibernateException {
-        Session session = (Session) threadLocal.get();
-        threadLocal.set(null);
-
-        if (session != null) {
-            session.close();
         }
     }
 

@@ -4,7 +4,7 @@ package com.bean.courclass;
  * CourclassId entity. @author MyEclipse Persistence Tools
  */
 
-public class CourclassId implements java.io.Serializable {
+class CourclassId implements java.io.Serializable {
 
     // Fields
 
@@ -40,7 +40,7 @@ public class CourclassId implements java.io.Serializable {
 
     // Property accessors
 
-    public String getId() {
+    String getId() {
         return this.id;
     }
 
@@ -48,7 +48,7 @@ public class CourclassId implements java.io.Serializable {
         this.id = id;
     }
 
-    public String getIdcor() {
+    String getIdcor() {
         return this.idcor;
     }
 
@@ -56,7 +56,7 @@ public class CourclassId implements java.io.Serializable {
         this.idcor = idcor;
     }
 
-    public String getIdcm() {
+    String getIdcm() {
         return this.idcm;
     }
 
@@ -64,7 +64,7 @@ public class CourclassId implements java.io.Serializable {
         this.idcm = idcm;
     }
 
-    public String getCampus() {
+    String getCampus() {
         return this.campus;
     }
 
@@ -72,7 +72,7 @@ public class CourclassId implements java.io.Serializable {
         this.campus = campus;
     }
 
-    public String getGrade() {
+    String getGrade() {
         return this.grade;
     }
 
@@ -80,7 +80,7 @@ public class CourclassId implements java.io.Serializable {
         this.grade = grade;
     }
 
-    public String getSemester() {
+    String getSemester() {
         return this.semester;
     }
 
@@ -88,7 +88,7 @@ public class CourclassId implements java.io.Serializable {
         this.semester = semester;
     }
 
-    public Integer getStunum() {
+    Integer getStunum() {
         return this.stunum;
     }
 

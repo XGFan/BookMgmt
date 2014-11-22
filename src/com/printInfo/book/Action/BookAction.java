@@ -2,24 +2,17 @@ package com.printInfo.book.Action;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
-import javassist.bytecode.Descriptor.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts2.ServletActionContext;
-
 import com.bean.book.Book;
 import com.bean.corbook.Corbookview;
 import com.bean.course.Course;
 import com.bean.coursebk.Coursebk;
 import com.bean.coursebk.CoursebkDAO;
 import com.bean.supplier.Supplier;
-import com.priInfo.corbook.corbookService;
 import com.priInfo.course.CourseService;
 import com.printInfo.book.Service.BookService;
 import com.printInfo.book.Service.CourseBookViewService;
@@ -37,7 +30,6 @@ public class BookAction {
     private String bookname;
     private String pub;
     private Pagination pagination;// 页码
-    private corbookService corbookservice;
     private CoursebkDAO coursebkDao;
     private List<Book> list = new ArrayList<Book>();
 
@@ -55,14 +47,6 @@ public class BookAction {
 
     public void setCoursebkDao(CoursebkDAO coursebkDao) {
         this.coursebkDao = coursebkDao;
-    }
-
-    public corbookService getCorbookservice() {
-        return corbookservice;
-    }
-
-    public void setCorbookservice(corbookService corbookservice) {
-        this.corbookservice = corbookservice;
     }
 
     public SupplierService getSupSer() {
@@ -132,7 +116,7 @@ public class BookAction {
     /**
      * 通过教材名称、出版社、ISBN 精确查询
      *
-     * @return
+     * @return null
      */
     public String accurateBookQuery() {
         try {
@@ -177,7 +161,7 @@ public class BookAction {
      */
     public String getAccPagination() {
         try {
-			/* 获取页面端传递的参数 */
+            /* 获取页面端传递的参数 */
             HttpServletRequest request = ServletActionContext.getRequest();
             String bkname = request.getParameter("bkname");
             String publihser = request.getParameter("publisher");
@@ -214,9 +198,9 @@ public class BookAction {
     public String getfuzzyPagination() {
         try {
 			/* 获取页面端传递的参数 */
-            HttpServletRequest request = ServletActionContext.getRequest();
+//            HttpServletRequest request = ServletActionContext.getRequest();
             // String condition = request.getParameter("condition");
-            int totalRecord = 0;
+            int totalRecord;
             if (pagination == null)
                 pagination = new Pagination(8);
             pagination.setSize(8);
@@ -247,7 +231,7 @@ public class BookAction {
     }
 
     /**
-     * @param args
+     *
      */
     public String addBook() {
         Book book = new Book();
@@ -257,7 +241,6 @@ public class BookAction {
         book.setIdbk(myFmt.format(new Date()) + String.format("%1$05d", random)
                 + "");
         bookService.addBook(book);
-        this.list = list;
         return null;
     }
 
@@ -267,20 +250,10 @@ public class BookAction {
     public String deleteBook() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String idbk = request.getParameter("idbk");
-        boolean tag = false;
+        boolean tag;
         tag = bookService.deleteBook(idbk);
         Result result = new Result(tag);
         SendData.send(result);
-        return null;
-    }
-
-    public String updateBook() {
-
-        Book book = new Book();
-        book.setIdbk("20134720608");
-        book.setBkname("123");
-        bookService.updateBook(book);
-        this.list = list;
         return null;
     }
 
@@ -301,8 +274,7 @@ public class BookAction {
     public String searchByISBNBook() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String isbn = request.getParameter("ISBN");
-        List<Book> list = bookService.searchByISBN(isbn);
-        this.list = list;
+        this.list = bookService.searchByISBN(isbn);
         return null;
     }
 
@@ -319,7 +291,7 @@ public class BookAction {
     public List<Book> findBookByBkname() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String bkname = request.getParameter("bkname");
-        List<Book> list = null;
+        List<Book> list;
         list = bookService.searchByBkname(bkname);
         SendData.send(list);
         return null;
@@ -328,8 +300,7 @@ public class BookAction {
     /**
      * 修改课本信息 2014.4.4
      *
-     * @param
-     * @author zhangchi
+     * @return null
      */
     public String modifyAll() {
         HttpServletRequest request = ServletActionContext.getRequest();
@@ -357,9 +328,8 @@ public class BookAction {
         }
 
         book.setSupplier(sup);
-        bookService.updateBook(book);
-        boolean tag = true;
-        Result result = new Result(tag);
+        Result result = new Result(false);
+        result.setResult(bookService.updateBook(book));
         SendData.send(result);
         return null;
     }

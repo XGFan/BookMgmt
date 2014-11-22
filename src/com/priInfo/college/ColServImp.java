@@ -18,36 +18,21 @@ public class ColServImp implements ColServ {
         this.collegeDAO = collegeDAO;
     }
 
-    /**
-     * delete the college by the idcm;
-     */
     public boolean deleteCollegeById(String idcm) {
         return collegeDAO.deleteById(idcm);
     }
 
-    /**
-     * update the information of the college
-     */
-    public boolean editCol(College col) {
-        collegeDAO.save(col);
-        return false;
-    }
-
-
     public List<Object> initCol() {
         List list = collegeDAO.findAll();
-        // return list.subList(0, 9);
         return ConvertUtils.ToCollegeList(list);
     }
 
-    /**
-     * add a row of the college information
-     */
     public boolean saveCol(College col) {
         List list = collegeDAO.getCol(col.getCol(), col.getMajor());
+        boolean tag = false;
         if (list.size() > 0) {
             // 如果已经存在专业，不添加
-            return false;
+            tag = false;
         } else {
             // 先查找学院是否存在
             List colMajorList = collegeDAO.findByColOrderByIdcm(col.getCol());
@@ -66,14 +51,13 @@ public class ColServImp implements ColServ {
                     majorCode = "0" + majorCode;
                 }
                 col.setIdcm(colCode + majorCode);
-                collegeDAO.save(col);
-                return true;
+                if(collegeDAO.save(col))
+                    tag = true;
             } else {
                 // 不存在学院，获取所有学院，生成学院代码
                 List colList = collegeDAO.findAllOrderByIdcm();
                 if (colList.size() > 0) {
                     College lastCol = (College) colList.get(colList.size() - 1);
-                    // 获取学院代码
                     // 学院代码
                     String colCode = lastCol.getIdcm().substring(0, 2);
                     colCode = Integer.parseInt(colCode) + 1 + "";
@@ -85,30 +69,27 @@ public class ColServImp implements ColServ {
                     }
                     // 设置IDCM
                     col.setIdcm(colCode + majorCode);
-                    collegeDAO.save(col);
-                    return true;
+                    if(collegeDAO.save(col))
+                        tag = true;
                 } else {
                     //数据库中不存在任何专业信息
                     col.setIdcm("0101");
-                    collegeDAO.save(col);
-                    return true;
+                    if(collegeDAO.save(col))
+                        tag = true;
                 }
             }
         }
+        return tag;
     }
 
     public boolean updateCol(College col) {
         return collegeDAO.update(col);
     }
 
-    /**
-     * 精确查询
-     */
     public List<Object> searchByCol(String col) {
         List list = collegeDAO.findByCol(col);
         return ConvertUtils.ToCollegeList(list);
     }
-
 
     public List<Object> searchByCol(String col, Pagination pagination) {
         List list = collegeDAO.findByCol(col);
@@ -126,45 +107,27 @@ public class ColServImp implements ColServ {
         return ConvertUtils.ToCollegeList(list);
     }
 
-    public List getAllCol() {
+    public List getAllColName() {
         return collegeDAO.getAllCol();
     }
 
-    public List getMajorByCol(String col) {
+    public List getMajorNameByCol(String col) {
         return collegeDAO.getMajorByCol(col);
     }
 
-    /**
-     * query the information of the college by the major
-     */
-    public List<Object> searchByMajor(String major) {
-        List list = collegeDAO.findByMajor(major);
-        return ConvertUtils.ToCollegeList(list);
-    }
-
-    /**
-     * 根据ID来获取专业记录
-     */
-    public College searchById(String id) {
-        return collegeDAO.findById(id);
-    }
-
     public List<College> getCols(String col, String major) {
-        List<College> list = collegeDAO.getCol(col, major);
-        return list;
+        return collegeDAO.getCol(col, major);
     }
 
-    public List<College> getCol(String col, String major) {
+    public List getCol(String col, String major) {
         List<College> list = collegeDAO.getCol(col, major);
         return ConvertUtils.ToCollegeList(list);
     }
-
 
     public List fuzzyQuery(String condition) {
         List list = collegeDAO.fuzzyQuery(condition);
         return ConvertUtils.ToCollegeList(list);
     }
-
 
     public List fuzzyQuery(String condition, Pagination pagination) {
 

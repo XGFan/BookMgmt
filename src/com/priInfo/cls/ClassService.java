@@ -7,18 +7,10 @@ import com.bean.college.College;
 import com.util.Pagination;
 
 public interface ClassService {
-    /**
-     * 查询所有班级
-     *
-     * @return
-     */
-    public List findAll();
 
     /**
      * 通过班级编号查询班级信息
-     *
-     * @param idcls
-     * @return
+     *todo
      */
     public Class findById(String idcls);
 
@@ -33,9 +25,7 @@ public interface ClassService {
 
     /**
      * 根据分页信息获取所有班级
-     *
-     * @param pagination
-     * @return
+     *todo
      */
     public List findAllByPagination(Pagination pagination);
 
@@ -54,15 +44,13 @@ public interface ClassService {
 
     /**
      * 获取所有校区
-     *
-     * @return
+     *todo
      */
     public List getAllCampus();
 
     /**
      * 获取所有年级
-     *
-     * @return
+     *todo
      */
     public List getAllGrade();
 
@@ -70,7 +58,7 @@ public interface ClassService {
      * 批量删除班级
      *
      * @param idclses id LIST
-     * @return
+     * @return boolean
      */
     public boolean deleteClasses(String[] idclses);
 

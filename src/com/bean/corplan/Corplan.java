@@ -1,8 +1,5 @@
 package com.bean.corplan;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.bean.course.Course;
 
 /**

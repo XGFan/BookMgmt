@@ -5,7 +5,6 @@ import java.util.*;
 import com.bean.book.Book;
 import com.bean.college.College;
 import com.bean.corbook.Corbookview;
-import com.bean.corbook.CorbookviewId;
 import com.bean.corplan.Corplan;
 import com.bean.course.*;
 import com.bean.supplier.Supplier;
@@ -18,10 +17,9 @@ public class ConvertUtils {
      * @return 表现层的list（由map组成）
      */
     public static List ToCourseList(List list) {
-        Iterator it = list.iterator();
         List courselist = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            Object[] object = (Object[]) list.get(i);
+        for (Object aList : list) {
+            Object[] object = (Object[]) aList;
             Course course = (Course) object[0];
             Map map = new HashMap();
             map.put("idcm", course.getCollege().getIdcm());
@@ -57,10 +55,9 @@ public class ConvertUtils {
 
     /* 将数据库处理的结果转换为表示层学需要的数据 */
     public static List ToBookList(List list) {
-        Iterator it = list.iterator();
         List booklist = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            Object[] object = (Object[]) list.get(i);
+        for (Object aList : list) {
+            Object[] object = (Object[]) aList;
             Book book = (Book) object[0];
             Map map = new HashMap();
             map.put("idbk", book.getIdbk());
@@ -77,11 +74,9 @@ public class ConvertUtils {
 
     /* 将数据库处理的结果转换为表示层学需要的数据 */
     public static List ToBookListFromBook(List list) {
-        Iterator it = list.iterator();
         List booklist = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            Object object = (Object) list.get(i);
-            Book book = (Book) object;
+        for (Object aList : list) {
+            Book book = (Book) aList;
             Map map = new HashMap();
             map.put("idbk", book.getIdbk());
             map.put("bkname", book.getBkname());
@@ -96,12 +91,10 @@ public class ConvertUtils {
     }
 
     public static List ToCorBookList(List list) {
-        Iterator it = list.iterator();
         List corbooklist = new ArrayList();
 
-        for (int i = 0; i < list.size(); i++) {
-            Object object = (Object) list.get(i);
-            Corbookview cbv = (Corbookview) object;
+        for (Object aList : list) {
+            Corbookview cbv = (Corbookview) aList;
             Map map = new HashMap();
             map.put("col", cbv.getCol());
             map.put("major", cbv.getMajor());
@@ -127,11 +120,9 @@ public class ConvertUtils {
     }
 
     public static List ToPubList(List list) {
-        Iterator it = list.iterator();
         List publist = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            Object object = (Object) list.get(i);
-            Supplier sup = (Supplier) object;
+        for (Object aList : list) {
+            Supplier sup = (Supplier) aList;
             Map map = new HashMap();
             map.put("idsp", sup.getIdsp());
             map.put("supplier", sup.getSupplier());
@@ -158,8 +149,8 @@ public class ConvertUtils {
     /**
      * 把学院，专业，班级号的list转换成map形式的list
      *
-     * @param list
-     * @return
+     * @param  list obj-list
+     * @return map list
      */
     public static List ToCollegeList(List list) {
         Iterator it = list.iterator();

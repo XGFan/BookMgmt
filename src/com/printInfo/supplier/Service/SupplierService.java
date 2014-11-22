@@ -1,7 +1,6 @@
 package com.printInfo.supplier.Service;
 
 import java.util.List;
-import java.util.Set;
 
 import com.bean.supplier.Supplier;
 
@@ -11,16 +10,7 @@ public interface SupplierService {
      */
     public List<Supplier> initSup();
 
-    /**
-     * query the information of the college by the major
-     */
-    public Set supplierList();
-
     public List getAllSupplier();
-
-    public Set publisterList();
-
-    public List findPage(int page, int maxpage);
 
     public List<Supplier> searchByPubSup(String publisher, String supplier);
 

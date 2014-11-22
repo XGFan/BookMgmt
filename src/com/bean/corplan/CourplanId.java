@@ -50,7 +50,7 @@ public class CourplanId implements java.io.Serializable {
 
     // Property accessors
 
-    public String getIdcorsem() {
+    String getIdcorsem() {
         return this.idcorsem;
     }
 
@@ -58,7 +58,7 @@ public class CourplanId implements java.io.Serializable {
         this.idcorsem = idcorsem;
     }
 
-    public String getIdcor() {
+    String getIdcor() {
         return this.idcor;
     }
 
@@ -66,7 +66,7 @@ public class CourplanId implements java.io.Serializable {
         this.idcor = idcor;
     }
 
-    public String getCorname() {
+    String getCorname() {
         return this.corname;
     }
 
@@ -74,7 +74,7 @@ public class CourplanId implements java.io.Serializable {
         this.corname = corname;
     }
 
-    public String getCol() {
+    String getCol() {
         return this.col;
     }
 
@@ -82,7 +82,7 @@ public class CourplanId implements java.io.Serializable {
         this.col = col;
     }
 
-    public String getMajor() {
+    String getMajor() {
         return this.major;
     }
 
@@ -90,7 +90,7 @@ public class CourplanId implements java.io.Serializable {
         this.major = major;
     }
 
-    public String getSemester() {
+    String getSemester() {
         return this.semester;
     }
 

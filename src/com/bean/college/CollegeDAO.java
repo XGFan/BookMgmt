@@ -1,35 +1,24 @@
 package com.bean.college;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.LockMode;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
- * A data access object (DAO) providing persistence and search support for
- * College entities. Transaction control of the save(), update() and delete()
- * operations can directly support Spring container-managed transactions or they
- * can be augmented to handle user-managed Spring transactions. Each of these
- * methods provides additional information for how to configure it for the
- * desired type of transaction control.
- *
+ * 学院专业DAO
  * @author MyEclipse Persistence Tools
  * @see com.bean.college.College
  */
 
 public class CollegeDAO extends HibernateDaoSupport {
     private static final Log log = LogFactory.getLog(CollegeDAO.class);
-    // property constants
-    public static final String COL = "col";
-    public static final String MAJOR = "major";
-    public static final String SEMNUM = "semnum";
+    private static final String COL = "col";
+    private static final String MAJOR = "major";
+    private static final String SEMNUM = "semnum";
 
     protected void initDao() {
-        // do nothing
     }
 
     /**
@@ -69,30 +58,14 @@ public class CollegeDAO extends HibernateDaoSupport {
     }
 
     /**
-     * 删除学院专业实例
-     *
-     * @param persistentInstance 学院专业信息实例
-     */
-    public void delete(College persistentInstance) {
-        log.debug("deleting College instance");
-        try {
-            getHibernateTemplate().delete(persistentInstance);
-            log.debug("delete successful");
-        } catch (RuntimeException re) {
-            log.error("delete failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * 根据学院ID来删除学院专业信息
+     * 根据学院专业ID来删除学院专业信息
      *
      * @param idcm 学院专业ID
      * @return 操作是否成功
      */
     public boolean deleteById(String idcm) {
         log.debug("deleting College instance");
-        boolean result = false;
+        boolean result;
         try {
             College persistentInstance = findById(idcm);
             getHibernateTemplate().delete(persistentInstance);
@@ -112,42 +85,13 @@ public class CollegeDAO extends HibernateDaoSupport {
      * @param id 学院专业id
      * @return 找到的该专业的信息
      */
-    public College findById(java.lang.String id) {
+    College findById(java.lang.String id) {
         log.debug("getting College instance with id: " + id);
         try {
-            College instance = (College) getHibernateTemplate().get(
+            return (College) getHibernateTemplate().get(
                     "com.bean.college.College", id);
-            return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
-            throw re;
-        }
-    }
-
-	/*
-     * public List<College> findById(java.lang.String id) {
-	 * log.debug("getting College instance with id: " + id); try { College
-	 * instance = (College) getHibernateTemplate().get(
-	 * "com.bean.college.College", id); List<College> list=new
-	 * ArrayList<College>(); list.add(instance); return list; } catch
-	 * (RuntimeException re) { log.error("get failed", re); throw re; } }
-	 */
-
-    /**
-     * 根据实例example来查找学院专业信息
-     *
-     * @param instance 学院专业example
-     * @return LIST
-     */
-    public List findByExample(College instance) {
-        log.debug("finding College instance by example");
-        try {
-            List results = getHibernateTemplate().findByExample(instance);
-            log.debug("find by example successful, result size: "
-                    + results.size());
-            return results;
-        } catch (RuntimeException re) {
-            log.error("find by example failed", re);
             throw re;
         }
     }
@@ -159,12 +103,12 @@ public class CollegeDAO extends HibernateDaoSupport {
      * @param value        属性值
      * @return 查找的结果LIST
      */
-    public List findByProperty(String propertyName, Object value) {
+    List findByProperty(String propertyName, Object value) {
         log.debug("finding College instance with property: " + propertyName
                 + ", value: " + value);
         try {
             String queryString = "from College as model where model."
-                    + propertyName + " like '%" + (String) value + "%'";
+                    + propertyName + " like '%" + value + "%'";
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find by property name failed", re);
@@ -182,18 +126,10 @@ public class CollegeDAO extends HibernateDaoSupport {
         return findByProperty(COL, col);
     }
 
-    public List findByMajor(Object major) {
-        return findByProperty(MAJOR, major);
-    }
-
-    public List findBySemnum(Object semnum) {
-        return findByProperty(SEMNUM, semnum);
-    }
-
     /**
      * 返回所有的学院专业信息
      *
-     * @return LIST
+     * @return college obj LIST
      */
     public List findAll() {
         log.debug("finding all College instances");
@@ -238,55 +174,8 @@ public class CollegeDAO extends HibernateDaoSupport {
         }
     }
 
-    public List findAllDistinct() {
-        log.debug("finding all College instances");
-        try {
-            String queryString = "select distinct cl.idcm,cl.col from College as cl";
-            System.out.println(queryString);
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-    public College merge(College detachedInstance) {
-        log.debug("merging College instance");
-        try {
-            College result = (College) getHibernateTemplate().merge(
-                    detachedInstance);
-            log.debug("merge successful");
-            return result;
-        } catch (RuntimeException re) {
-            log.error("merge failed", re);
-            throw re;
-        }
-    }
-
-    public void attachDirty(College instance) {
-        log.debug("attaching dirty College instance");
-        try {
-            getHibernateTemplate().saveOrUpdate(instance);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public void attachClean(College instance) {
-        log.debug("attaching clean College instance");
-        try {
-            getHibernateTemplate().lock(instance, LockMode.NONE);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
     /**
-     * 获取所有的学院名称
+     * 获取所有的distinct学院名称
      */
     public List getAllCol() {
         log.debug("finding all Cols");
@@ -300,14 +189,13 @@ public class CollegeDAO extends HibernateDaoSupport {
     }
 
     /**
-     * 通过学院名称获取所有的专业名称
+     * 通过学院名称获取所有的distinct专业名称
      */
     public List getMajorByCol(String col) {
         log.debug("finding all Majors by colname");
         try {
             String queryString = "select distinct major from College as c where c.col='"
                     + col + "'";
-            List list = getHibernateTemplate().find(queryString);
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -348,10 +236,6 @@ public class CollegeDAO extends HibernateDaoSupport {
             log.error("find all failed", re);
             throw re;
         }
-    }
-
-    public static CollegeDAO getFromApplicationContext(ApplicationContext ctx) {
-        return (CollegeDAO) ctx.getBean("CollegeDAO");
     }
 
 }

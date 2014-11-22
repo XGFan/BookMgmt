@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.util.Pagination;
 import com.bean.bookpurchaseview.Bookpurchaseview;
-import com.priInfo.college.ColServ;
 import com.priInfo.cls.ClassService;
 
 import javax.servlet.http.HttpServletRequest;

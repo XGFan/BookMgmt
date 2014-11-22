@@ -4,7 +4,7 @@ package com.bean.corbkview;
  * CorbkviewId entity. @author MyEclipse Persistence Tools
  */
 
-public class CorbkviewId implements java.io.Serializable {
+class CorbkviewId implements java.io.Serializable {
 
     // Fields
 
@@ -57,7 +57,7 @@ public class CorbkviewId implements java.io.Serializable {
 
     // Property accessors
 
-    public Integer getId() {
+    Integer getId() {
         return this.id;
     }
 
@@ -65,7 +65,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.id = id;
     }
 
-    public String getIdcor() {
+    String getIdcor() {
         return this.idcor;
     }
 
@@ -73,7 +73,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.idcor = idcor;
     }
 
-    public String getIdbk() {
+    String getIdbk() {
         return this.idbk;
     }
 
@@ -81,7 +81,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.idbk = idbk;
     }
 
-    public String getCol() {
+    String getCol() {
         return this.col;
     }
 
@@ -89,7 +89,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.col = col;
     }
 
-    public String getMajor() {
+    String getMajor() {
         return this.major;
     }
 
@@ -97,7 +97,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.major = major;
     }
 
-    public String getSemester() {
+    String getSemester() {
         return this.semester;
     }
 
@@ -105,7 +105,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.semester = semester;
     }
 
-    public String getCorname() {
+    String getCorname() {
         return this.corname;
     }
 
@@ -113,7 +113,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.corname = corname;
     }
 
-    public String getBkname() {
+    String getBkname() {
         return this.bkname;
     }
 
@@ -121,7 +121,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.bkname = bkname;
     }
 
-    public String getPublisher() {
+    String getPublisher() {
         return this.publisher;
     }
 
@@ -129,7 +129,7 @@ public class CorbkviewId implements java.io.Serializable {
         this.publisher = publisher;
     }
 
-    public String getIsbn() {
+    String getIsbn() {
         return this.isbn;
     }
 

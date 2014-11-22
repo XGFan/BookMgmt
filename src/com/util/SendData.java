@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JsonConfig;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -27,7 +26,7 @@ public class SendData {
             // jsonConfig.setIgnoreDefaultExcludes(false); // 设置默认忽略
             // jsonConfig.setExcludes(new String[] { "courses","classes" });
 			/* 将查询结果转换为JSON数据格式 */
-            JSONArray json = null;
+            JSONArray json;
             json = JSONArray.fromObject(obj);
             // System.out.println(json);
 			/* 将数据返回到客户端 */

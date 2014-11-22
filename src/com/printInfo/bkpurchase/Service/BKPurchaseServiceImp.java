@@ -34,7 +34,6 @@ import com.bean.bkpurchase.Bkpurchase;
 import com.bean.bkpurchase.BkpurchaseDAOInf;
 import com.bean.book.Book;
 import com.bean.book.BookDAOInf;
-import com.bean.bookcorsup.Bookcorsup;
 import com.bean.bookcorsup.BookcorsupDAOInf;
 import com.bean.bookpurchase.BookpurchaseDAO;
 import com.bean.bookpurchaseview.Bookpurchaseview;
@@ -49,21 +48,21 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
     private BookpurchaseviewDAO bookpurchaseviewDAO;
     private BookpurchaseDAO bookpurchaseDAO;
 
-    public static final String NO = "序号";
+    private static final String NO = "序号";
     public static final String COL = "学院";
     public static final String MAJOR = "专业";
     public static final String SEMNUM = "学制";
-    public static final String CAMPUS = "校区";
+    private static final String CAMPUS = "校区";
     public static final String EDITION = "版本";
     public static final String GRADE = "年级";
     public static final String CORNAME = "课程名称";
     public static final String SEMESTER = "学期";
-    public static final String BKNAME = "书名";
-    public static final String AUTHOR = "作者";
-    public static final String ISBN = "ISBN";
-    public static final String BKNUM = "订购数量";
-    public static final String PUBLISHER = "出版社";
-    public static final String SUPPLIER = "供应商";
+    private static final String BKNAME = "书名";
+    private static final String AUTHOR = "作者";
+    private static final String ISBN = "ISBN";
+    private static final String BKNUM = "订购数量";
+    private static final String PUBLISHER = "出版社";
+    private static final String SUPPLIER = "供应商";
 
     public BkpurchaseDAOInf getBkpurdao() {
         return bkpurdao;
@@ -113,21 +112,8 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         this.bookpurchaseDAO = bookpurchaseDAO;
     }
 
-    /* 分页代码 page 表第几页，//////////////// */
-    public List findPage(int page, int maxpage) {
-        List list = bkpurdao.findAll();
-        int max = list.size();
-        List<Bkpurchase> bkpurlist = new ArrayList<Bkpurchase>();
-        for (int i = (page - 1) * maxpage; i < max; i++) {
-            Bkpurchase bkpur = new Bkpurchase();
-            bkpur = (Bkpurchase) list.get(i);
-            bkpurlist.add(bkpur);
-        }
-        return bkpurlist;
-    }
-
     // 生成教材采购清单的Excel文件，2014.3.19，zhangchi
-    public void generateXlsFile() {
+    void generateXlsFile() {
         String purchaseDateStr = this.getBKPurDate();
         // 学期格式2012-2013-1
         // 获取学年
@@ -209,7 +195,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
                         if (obj[8].equals("1")) {
                             pubEdition = (String) obj[7];
                         } else {
-                            pubEdition = (String) obj[7] + (String) obj[8] + "版";
+                            pubEdition = obj[7].toString() + obj[8].toString() + "版";
                         }
                         cell.setCellValue(new HSSFRichTextString(pubEdition));
                         break;
@@ -249,7 +235,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
     }
 
     // 生成教材采购清单的Excel文件，2014.3.19，zhangchi
-    public void generateFreshManXlsFile() {
+    void generateFreshManXlsFile() {
         String purchaseDateStr = this.getBKPurDate();
         // 学期格式2012-2013-1
         // 获取学年
@@ -331,7 +317,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
                         if (obj[8].equals("1")) {
                             pubEdition = (String) obj[7];
                         } else {
-                            pubEdition = (String) obj[7] + (String) obj[8] + "版";
+                            pubEdition = obj[7].toString() + obj[8].toString() + "版";
                         }
                         cell.setCellValue(new HSSFRichTextString(pubEdition));
                         break;
@@ -400,17 +386,6 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         return ccdao.findByCorSem(idcor, semester);
     }
 
-    public String getSupplierbyidbk(String idbk) {
-        List list = bcsdao.findByProperty("idbk", idbk);
-        String supplier = null;
-        System.out.println("supplier" + list.size());
-        for (Object cor : list) {
-            Bookcorsup course = (Bookcorsup) cor;
-            supplier = course.getSupplier();
-        }
-        return supplier;
-    }
-
     public List<Map> getBKPurInfo() {
         Set<Map> purinfolist = new HashSet<Map>();
         List<Map> list = new ArrayList<Map>();
@@ -456,9 +431,6 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         return list;
     }
 
-    /**
-     * 获取在某一供应商处购买的图书列表，2014.3.23-zhagnchi *
-     */
     public List getPurInfoBySupplier(String supplier) {
         // 返回采购清单到页面
         List result = new ArrayList();
@@ -492,6 +464,10 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         return result;
     }
 
+    /**
+     * todo
+     * it is wrong
+     */
     public void alterBKPurchase(String semester) {
         try {
             /** 获取xml文件路径获取 **/
@@ -534,6 +510,10 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         }
     }
 
+    /**
+     * it is wrong
+     * todo
+     */
     public String getBKPurDate() {
         String str = null;
         try {

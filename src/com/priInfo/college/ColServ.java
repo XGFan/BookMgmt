@@ -7,43 +7,36 @@ import com.util.Pagination;
 
 public interface ColServ {
     /**
-     * 找到所有学院专业信息，以map形式的list返回
+     * 找到所有学院专业信息
      *
-     * @return
+     * @return 学院专业信息 map list
      */
     public List<Object> initCol();
 
     /**
-     * query the information of the college by the major
-     */
-    public List<Object> searchByMajor(String major);
-
-    /**
-     * 通过学院精确查找专业班级信息
+     * 通过学院名精确查找专业班级信息
      *
-     * @param col 学院
-     * @return map形式的list列表，包含所有
+     * @param col 学院名
+     * @return 学院专业信息 map list
      */
     public List<Object> searchByCol(String col);
 
     /**
      * 通过学院精确查找专业班级信息，根据分页信息返回一页信息
      *
-     * @param col        学院
+     * @param col        学院名
      * @param pagination 分页信息
      * @return 以map形式的list返回一页信息
      */
     public List<Object> searchByCol(String col, Pagination pagination);
 
     /**
-     * delete the college by the idcm;
+     * 根据学院专业ID来删除学院专业信息
+     *
+     * @param idcm 学院专业id
+     * @return boolean
      */
     public boolean deleteCollegeById(String idcm);
-
-    /**
-     * update the information of the college
-     */
-    public boolean editCol(College col);
 
     /**
      * 添加学院专业信息
@@ -54,32 +47,30 @@ public interface ColServ {
     public boolean saveCol(College col);
 
     /**
-     * 更新col实例
+     * 更新学院专业实例
      *
-     * @param col
+     * @param col 学院专业实例
      * @return boolean
      */
     public boolean updateCol(College col);
 
-    public College searchById(String id);
-
     /**
-     * 获取所有的学院
+     * 获取所有的学院名
      *
-     * @return LIST
+     * @return 学院名 string  LIST
      */
-    public List getAllCol();
+    public List getAllColName();
 
     /**
-     * 根据学院获取所有专业
+     * 根据学院名获取其专业名
      *
      * @param col 学院名
-     * @return 专业 obj LIST
+     * @return 专业名 string LIST
      */
-    public List getMajorByCol(String col);
+    public List getMajorNameByCol(String col);
 
     /**
-     * 根据学院,专业来获取学院专业记录
+     * 根据学院名,专业名来获取学院专业记录
      *
      * @param col   学院名
      * @param major 专业名
@@ -92,24 +83,24 @@ public interface ColServ {
      *
      * @param col   学院名
      * @param major 专业名
-     * @return 学院专业map list
+     * @return 学院专业信息  map list
      */
-    public List<College> getCol(String col, String major);
+    public List getCol(String col, String major);
 
     /**
      * 通过学院或者专业来模糊查找
      *
      * @param condition 关键字
-     * @return 以map形式保存的list
+     * @return map list
      */
     public List fuzzyQuery(String condition);
 
     /**
-     * 根据关键字进行查找，并通过分页信息返回一页map形式的list
+     * 通过学院或者专业来模糊查找，根据分页信息分页
      *
      * @param condition  关键词
      * @param pagination 分页信息
-     * @return
+     * @return 一页 map list
      */
     public List fuzzyQuery(String condition, Pagination pagination);
 

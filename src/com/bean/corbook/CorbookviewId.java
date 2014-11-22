@@ -4,7 +4,7 @@ package com.bean.corbook;
  * CorbookviewId entity. @author MyEclipse Persistence Tools
  */
 
-public class CorbookviewId implements java.io.Serializable {
+class CorbookviewId implements java.io.Serializable {
 
     private String idcorsem;
     private String idbk;

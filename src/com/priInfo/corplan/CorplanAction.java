@@ -48,7 +48,7 @@ public class CorplanAction extends ActionSupport {
     /**
      * 获取所有的科目
      *
-     * @return
+     * @return null
      */
     public String list() {
         List list = courseService.init();
@@ -155,7 +155,7 @@ public class CorplanAction extends ActionSupport {
     /**
      * 模糊查询教学计划
      *
-     * @return
+     * @return null
      */
     public String fuzzyQuery() {
         try {
@@ -163,7 +163,7 @@ public class CorplanAction extends ActionSupport {
             HttpServletRequest request = ServletActionContext.getRequest();
             String condition = request.getParameter("condition");
 
-            List corplanList = null;
+            List corplanList;
 			/* 学院为和专业为全部，获取所有课程 */
             corplanList = corplanService.fuzzyFind(condition);
             SendData.send(corplanList);
@@ -234,7 +234,7 @@ public class CorplanAction extends ActionSupport {
         String major = request.getParameter("major");
         String corname = request.getParameter("corname");
         String semester = request.getParameter("semester");
-        boolean tag = false;
+        boolean tag;
 		/* invoke the method of corplanService to add or update a corplan */
         tag = corplanService.updateCorplan(col, major, corname, semester); // 更新教学计划
         Result result = new Result(tag);
@@ -307,8 +307,7 @@ public class CorplanAction extends ActionSupport {
     public String dropAllCorplan() {
 		/* drop all the corplan data */
         corplanService.dropAllCorplan();
-        boolean tag = true;
-        Result result = new Result(tag);
+        Result result = new Result(true);
         SendData.send(result);
         return null;
     }
@@ -316,13 +315,12 @@ public class CorplanAction extends ActionSupport {
     /**
      * 初始化教学计划
      *
-     * @return
+     * @return null
      */
     public String initCorplan() {
 		/* initialize the corplan based on the course table */
         corplanService.initCorplan();
-        boolean tag = true;
-        Result result = new Result(tag);
+        Result result = new Result(true);
         SendData.send(result);
         return null;
     }

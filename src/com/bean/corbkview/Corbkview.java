@@ -105,6 +105,10 @@ public class Corbkview implements java.io.Serializable {
         this.id = id;
     }
 
+    public Integer getId(){
+        return id;
+    }
+
     /**
      * default constructor
      */

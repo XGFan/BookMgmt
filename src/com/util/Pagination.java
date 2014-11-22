@@ -37,7 +37,7 @@ public class Pagination {
     /**
      * 获取每页的数量
      *
-     * @return
+     * @return 每页记录数量
      */
     public int getSize() {
         return size;
@@ -46,7 +46,7 @@ public class Pagination {
     /**
      * 设置每页的条目数量
      *
-     * @param size
+     * @param size 每页记录数量
      */
     public void setSize(int size) {
         this.size = size;
@@ -73,7 +73,7 @@ public class Pagination {
         return totalPage;
     }
 
-    public void setTotalPage() {
+    void setTotalPage() {
         this.totalPage = totalRecord % size == 0 ? totalRecord / size : totalRecord / size + 1;
     }
 
@@ -84,7 +84,7 @@ public class Pagination {
     /**
      * 设置所有记录，并计算出所有页码
      *
-     * @param totalRecord
+     * @param totalRecord  设置所有记录数量
      */
     public void setTotalRecord(int totalRecord) {
         if (totalRecord < 1)

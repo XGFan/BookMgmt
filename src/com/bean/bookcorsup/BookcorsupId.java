@@ -4,7 +4,7 @@ package com.bean.bookcorsup;
  * BookcorsupId entity. @author MyEclipse Persistence Tools
  */
 
-public class BookcorsupId implements java.io.Serializable {
+class BookcorsupId implements java.io.Serializable {
 
     /*id*/
     private Integer id;
@@ -52,7 +52,7 @@ public class BookcorsupId implements java.io.Serializable {
 
     // Property accessors
 
-    public Integer getId() {
+    Integer getId() {
         return this.id;
     }
 
@@ -60,7 +60,7 @@ public class BookcorsupId implements java.io.Serializable {
         this.id = id;
     }
 
-    public String getIdcor() {
+    String getIdcor() {
         return this.idcor;
     }
 
@@ -68,7 +68,7 @@ public class BookcorsupId implements java.io.Serializable {
         this.idcor = idcor;
     }
 
-    public String getIdbk() {
+    String getIdbk() {
         return this.idbk;
     }
 
@@ -76,7 +76,7 @@ public class BookcorsupId implements java.io.Serializable {
         this.idbk = idbk;
     }
 
-    public String getBkname() {
+    String getBkname() {
         return this.bkname;
     }
 
@@ -84,7 +84,7 @@ public class BookcorsupId implements java.io.Serializable {
         this.bkname = bkname;
     }
 
-    public String getSemester() {
+    String getSemester() {
         return this.semester;
     }
 
@@ -92,7 +92,7 @@ public class BookcorsupId implements java.io.Serializable {
         this.semester = semester;
     }
 
-    public String getSupplier() {
+    String getSupplier() {
         return this.supplier;
     }
 

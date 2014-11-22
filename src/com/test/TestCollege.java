@@ -1,10 +1,8 @@
 package com.test;
 
-import java.util.List;
-
+import com.util.ConvertUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.bean.college.College;
 import com.bean.college.CollegeDAO;
 import com.priInfo.college.ColAction;
 
@@ -21,9 +19,10 @@ public class TestCollege {
         //clg.setCol("liuei");
         //clt.update(clg);
         //clt.query("信息工程学院");
-        clt.accurateQuery();
-        List collist = clgDao.findByMajor("医学信息工程");
-        System.out.println(collist.size());
+//        clt.accurateQuery();
+//        List collist = clgDao.findByMajor("医学信息工程");
+        System.out.println(ConvertUtils.ToCollegeList(clgDao.findAll()));
+//        System.out.println(collist.size());
         //clt.
         //System.out.println();
     }

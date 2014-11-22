@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.LockMode;
-import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -27,75 +25,6 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 
     protected void initDao() {
         // do nothing
-    }
-
-    /**
-     * 保存课程书本视图
-     *
-     * @param transientInstance
-     */
-    public void save(Corbookview transientInstance) {
-        log.debug("saving Corbookview instance");
-        try {
-            getHibernateTemplate().save(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * 删除课程书本视图
-     *
-     * @param persistentInstance
-     */
-    public void delete(Corbookview persistentInstance) {
-        log.debug("deleting Corbookview instance");
-        try {
-            getHibernateTemplate().delete(persistentInstance);
-            log.debug("delete successful");
-        } catch (RuntimeException re) {
-            log.error("delete failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * 根据id查找
-     *
-     * @param id
-     * @return
-     */
-    public Corbookview findById(com.bean.corbook.CorbookviewId id) {
-        log.debug("getting Corbookview instance with id: " + id);
-        try {
-            Corbookview instance = (Corbookview) getHibernateTemplate().get(
-                    "com.bean.corbook.Corbookview", id);
-            return instance;
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * 根据example查找
-     *
-     * @param instance example
-     * @return List
-     */
-    public List findByExample(Corbookview instance) {
-        log.debug("finding Corbookview instance by example");
-        try {
-            List results = getHibernateTemplate().findByExample(instance);
-            log.debug("find by example successful, result size: "
-                    + results.size());
-            return results;
-        } catch (RuntimeException re) {
-            log.error("find by example failed", re);
-            throw re;
-        }
     }
 
     /**
@@ -121,7 +50,7 @@ public class CorbookviewDAO extends HibernateDaoSupport {
     /**
      * 返回所有信息
      *
-     * @return
+     * @return 科目书本视图 obj list
      */
     public List findAll() {
         log.debug("finding all Corbookview instances");
@@ -151,61 +80,4 @@ public class CorbookviewDAO extends HibernateDaoSupport {
         }
     }
 
-    /**
-     * 选出使用了某本书的所有安排
-     *
-     * @param bkname 书本名称
-     * @return LIST
-     */
-    public List findByBk(String bkname) {
-        log.debug("finding all Corbookview instances");
-        try {
-            String queryString = "from Corbookview view where view.bkname like '%"
-                    + bkname + "%'";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-    public Corbookview merge(Corbookview detachedInstance) {
-        log.debug("merging Corbookview instance");
-        try {
-            Corbookview result = (Corbookview) getHibernateTemplate().merge(
-                    detachedInstance);
-            log.debug("merge successful");
-            return result;
-        } catch (RuntimeException re) {
-            log.error("merge failed", re);
-            throw re;
-        }
-    }
-
-    public void attachDirty(Corbookview instance) {
-        log.debug("attaching dirty Corbookview instance");
-        try {
-            getHibernateTemplate().saveOrUpdate(instance);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public void attachClean(Corbookview instance) {
-        log.debug("attaching clean Corbookview instance");
-        try {
-            getHibernateTemplate().lock(instance, LockMode.NONE);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public static CorbookviewDAO getFromApplicationContext(
-            ApplicationContext ctx) {
-        return (CorbookviewDAO) ctx.getBean("CorbookviewDAO");
-    }
 }

@@ -12,7 +12,6 @@ import com.bean.coursebk.Coursebk;
 import com.bean.coursebk.CoursebkDAO;
 import com.bean.corplan.Corplan;
 import com.bean.corplan.CorplanDAO;
-import com.bean.corbook.Corbook;
 import com.bean.corbook.CorbookDAO;
 import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
@@ -80,15 +79,8 @@ public class CourseServiceImp implements CourseService {
         return ConvertUtils.ToCourseList(list);
     }
 
-    public List<Object> init(Pagination pagination) {
-        List list = this.init();
-        return GetPaginationInfo.getSubList(list, pagination);
-    }
-
-
     public List<Object> findByCol(String col) {
-        List list = ConvertUtils.ToCourseList(courseDAO.getCourseByCol(col));
-        return list;
+        return ConvertUtils.ToCourseList(courseDAO.getCourseByCol(col));
     }
 
     public List<Object> findByCol(String col, Pagination pagination) {
@@ -96,23 +88,8 @@ public class CourseServiceImp implements CourseService {
         return GetPaginationInfo.getSubList(list, pagination);
     }
 
-    /**
-     * 业务方法，通过专业来查找课程
-     */
-    public List<Object> findByMajor(String major) {
-        List list = ConvertUtils
-                .ToCourseList(courseDAO.getCourseByMajor(major));
-        return list;
-    }
-
-    public List<Object> findByMajor(String major, Pagination pagination) {
-        return ConvertUtils.ToCourseList(courseDAO.getCourseByMajor(major));
-    }
-
-
     public List<Object> findByColMajor(String col, String major) {
-        List list = ConvertUtils.ToCourseList(courseDAO.getCourseByColMajor(col, major));
-        return list;
+        return ConvertUtils.ToCourseList(courseDAO.getCourseByColMajor(col, major));
     }
 
     public List<Object> findByColMajor(String col, String major, Pagination pagination) {
@@ -120,29 +97,13 @@ public class CourseServiceImp implements CourseService {
         return GetPaginationInfo.getSubList(list, pagination);
     }
 
-    /**
-     * 业务方法，通过课程名称获取课程信息
-     */
-    public List<Object> findByCorName(String corname) {
-        List list = ConvertUtils.ToCourseList(courseDAO
-                .getCourseByCorname(corname));
-        return list;
-    }
-
     public List<Object> findFuzzyByCorName(String col, String major, String corname) {
         List list = courseDAO.getCourseFuzzyByCorname(col, major, corname);
         return ConvertUtils.ToCourseList(list);
     }
 
-    public List<Object> findByCorName(String corname, Pagination pagination) {
-        List list = this.findByCorName(corname);
-        return GetPaginationInfo.getSubList(list, pagination);
-    }
-
-
     public List<Object> findByColMajorSem(String col, String major, String sem) {
-        List list = ConvertUtils.ToCourseList(courseDAO.getCourseByColMajorSem(col, major, sem));
-        return list;
+        return ConvertUtils.ToCourseList(courseDAO.getCourseByColMajorSem(col, major, sem));
     }
 
     public List<Object> findByColMajorSem(String col, String major, String sem, Pagination pagination) {
@@ -151,8 +112,7 @@ public class CourseServiceImp implements CourseService {
     }
 
     public List<Object> fuzzyQuery(String condition) {
-        List list = ConvertUtils.ToCourseList(courseDAO.fuzzyQuery(condition));
-        return list;
+        return ConvertUtils.ToCourseList(courseDAO.fuzzyQuery(condition));
     }
 
     public List<Object> fuzzyQuery(String condition, Pagination pagination) {
@@ -175,7 +135,7 @@ public class CourseServiceImp implements CourseService {
             System.out.println("idbk:" + idbk);
         }
 		/* 查找学院 */
-        List collegeList = new ArrayList();
+        List collegeList;
         collegeList = collegeDAO.getCol(col, major);
         College college = null;
         String idcm = null;
@@ -205,7 +165,7 @@ public class CourseServiceImp implements CourseService {
 			/* 从该学院专业的所有课程中取出最后一条课程 */
             //	System.out.println("get the last course of the college");
             //	System.out.println("$$$$$$$"+idcm);
-            String serialNum = "";
+            String serialNum;
             if (allCourseList.size() != 0) {
                 Object[] temp = (Object[]) allCourseList
                         .get(allCourseList.size() - 1);
@@ -259,7 +219,7 @@ public class CourseServiceImp implements CourseService {
 		/* 生成教学计划 */
         Corplan corplan = new Corplan();
         String idcor = course.getIdcor();
-        String idcorsem = null;
+        String idcorsem;
 
         corplan.setCourse(course);
         String sem = course.getSemester();
@@ -290,7 +250,7 @@ public class CourseServiceImp implements CourseService {
             System.out.println("idbk:" + idbk);
         }
 		/* 查找学院 */
-        List collegeList = new ArrayList();
+        List collegeList;
         collegeList = collegeDAO.getCol(col, major);
         College college = null;
         String idcm = null;
@@ -360,7 +320,7 @@ public class CourseServiceImp implements CourseService {
 		/* 生成教学计划 */
         Corplan corplan = new Corplan();
         String idcor = course.getIdcor();
-        String idcorsem = null;
+        String idcorsem;
 
         corplan.setCourse(course);
         String sem = course.getSemester();
@@ -388,7 +348,6 @@ public class CourseServiceImp implements CourseService {
         }
         return tag;
     }
-
 
     public boolean updateCourse(Course course, String idbkStr) {
         boolean tag = false;
@@ -422,45 +381,9 @@ public class CourseServiceImp implements CourseService {
         return tag;
     }
 
-    /**
-     * 删除课程信息
-     */
-    public boolean deleteCourse(String idcor, String semester) {
-        boolean tag = false;
-        if (semester.length() == 1)
-            semester = "0" + semester;
-        String idcorsem = idcor + semester;
-        /** 删除corbook数据 **/
-        List<Corbook> listcorbook = corbookDAO.findByIdcorsem(idcorsem);
-        if (listcorbook.size() > 0) {
-            for (Corbook corbook : listcorbook) {
-                corbookDAO.delete(corbook);
-            }
-        }
-        /** 删除教学计划数据 **/
-        List<Corplan> listcorplan = corplanDAO.findByIdcorsem(idcorsem);
-        if (listcorplan.size() > 0) {
-            for (Corplan corplan : listcorplan) {
-                corplanDAO.delete(corplan);
-            }
-        }
-
-        Course course = null;
-        course = courseDAO.findById(idcor);
-        try {
-            courseDAO.delete(course);
-            tag = true;
-            System.out.println("删除成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return tag;
-    }
-
-
     public boolean deleteCourse(String idcor) {
         boolean tag = false;
-        Course course = null;
+        Course course;
         course = courseDAO.findById(idcor);
         if (course != null) {
             try {

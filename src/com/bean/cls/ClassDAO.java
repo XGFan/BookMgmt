@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.LockMode;
-import org.springframework.context.ApplicationContext;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -23,11 +21,11 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class ClassDAO extends HibernateDaoSupport {
     private static final Log log = LogFactory.getLog(ClassDAO.class);
     // property constants
-    public static final String CAMPUS = "campus";
-    public static final String GRADE = "grade";
-    public static final String SEMESTER = "semester";
-    public static final String CLSNO = "clsno";
-    public static final String STUNUM = "stunum";
+    private static final String CAMPUS = "campus";
+    private static final String GRADE = "grade";
+    private static final String SEMESTER = "semester";
+    private static final String CLSNO = "clsno";
+    private static final String STUNUM = "stunum";
 
     protected void initDao() {
         // do nothing
@@ -74,72 +72,12 @@ public class ClassDAO extends HibernateDaoSupport {
     public Class findById(java.lang.String id) {
         log.debug("getting Class instance with id: " + id);
         try {
-            Class instance = (Class) getHibernateTemplate().get(
+            return (Class) getHibernateTemplate().get(
                     "com.bean.cls.Class", id);
-            return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
             throw re;
         }
-    }
-
-    /**
-     * 根据传入的example进行模糊查找
-     *
-     * @param instance 班级实例example
-     * @return 查找到的班级信息LIST
-     */
-    public List findByExample(Class instance) {
-        log.debug("finding Class instance by example");
-        try {
-            List results = getHibernateTemplate().findByExample(instance);
-            log.debug("find by example successful, result size: "
-                    + results.size());
-            return results;
-        } catch (RuntimeException re) {
-            log.error("find by example failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * 根据传入的属性名和属性值来进行查找
-     *
-     * @param propertyName 属性名
-     * @param value        属性值
-     * @return 查找到的班级信息LIST
-     */
-    public List findByProperty(String propertyName, Object value) {
-        log.debug("finding Class instance with property: " + propertyName
-                + ", value: " + value);
-        try {
-            String queryString = "from Class as model where model."
-                    + propertyName + "= ?";
-            return getHibernateTemplate().find(queryString, value);
-        } catch (RuntimeException re) {
-            log.error("find by property name failed", re);
-            throw re;
-        }
-    }
-
-    public List findByCampus(Object campus) {
-        return findByProperty(CAMPUS, campus);
-    }
-
-    public List findByGrade(Object grade) {
-        return findByProperty(GRADE, grade);
-    }
-
-    public List findBySemester(Object semester) {
-        return findByProperty(SEMESTER, semester);
-    }
-
-    public List findByClsno(Object clsno) {
-        return findByProperty(CLSNO, clsno);
-    }
-
-    public List findByStunum(Object stunum) {
-        return findByProperty(STUNUM, stunum);
     }
 
     /**
@@ -156,56 +94,6 @@ public class ClassDAO extends HibernateDaoSupport {
             log.error("find all failed", re);
             throw re;
         }
-    }
-
-    public List getClassWithJoin() {
-        log.debug("finding all Class instances");
-        try {
-            String queryString = "from Class c join c.college cc";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-    public Class merge(Class detachedInstance) {
-        log.debug("merging Class instance");
-        try {
-            Class result = (Class) getHibernateTemplate().merge(
-                    detachedInstance);
-            log.debug("merge successful");
-            return result;
-        } catch (RuntimeException re) {
-            log.error("merge failed", re);
-            throw re;
-        }
-    }
-
-    public void attachDirty(Class instance) {
-        log.debug("attaching dirty Class instance");
-        try {
-            getHibernateTemplate().saveOrUpdate(instance);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public void attachClean(Class instance) {
-        log.debug("attaching clean Class instance");
-        try {
-            getHibernateTemplate().lock(instance, LockMode.NONE);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public static ClassDAO getFromApplicationContext(ApplicationContext ctx) {
-        return (ClassDAO) ctx.getBean("ClassDAO");
     }
 
     /**
@@ -226,8 +114,7 @@ public class ClassDAO extends HibernateDaoSupport {
                 + "%' or c.grade like '%"
                 + condition
                 + "%' or c.campus like '%" + condition + "%'";
-        List list = getHibernateTemplate().find(queryString);
-        return list;
+        return getHibernateTemplate().find(queryString);
     }
 
     /**
@@ -253,8 +140,7 @@ public class ClassDAO extends HibernateDaoSupport {
                 + grade
                 + "%'"
                 + " order by cc.col,cc.major,c.grade,c.clsno";
-        List list = getHibernateTemplate().find(queryString);
-        return list;
+        return getHibernateTemplate().find(queryString);
     }
 
     public List getAllCampus() {

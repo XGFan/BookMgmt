@@ -1,6 +1,5 @@
 package com.priInfo.cls;
 
-import java.util.Iterator;
 import java.util.List;
 
 import com.bean.cls.Class;
@@ -102,9 +101,6 @@ public class ClassAction extends ActionSupport {
      * @return null
      */
     public String list() {
-        /*获取所有的班级信息*/
-//        这个没用,下面就被overwrite了.
-//		List clslist = classService.findAll();
         /*设置好分页配置信息*/
         if (pagination == null)
             pagination = new Pagination(9);
@@ -180,7 +176,7 @@ public class ClassAction extends ActionSupport {
      * @return 学院LIST
      */
     public List getAllCol() {
-        List list = collegeService.getAllCol();
+        List list = collegeService.getAllColName();
         SendData.send(list);
         return null;
     }
@@ -203,9 +199,6 @@ public class ClassAction extends ActionSupport {
      */
     public List getAllGrade() {
         List list = classService.getAllGrade();
-        for (int i = 0; i < list.size(); i++) {
-            // System.out.println(list.get(i));
-        }
         SendData.send(list);
         return null;
     }
@@ -219,11 +212,11 @@ public class ClassAction extends ActionSupport {
         HttpServletRequest request = ServletActionContext.getRequest();
         /*获取学院名称*/
         String col = request.getParameter("col");
-        List list = null;
+        List list;
         if ("----全部----".equals(col) || "请选择".equals(col))
-            list = collegeService.getMajorByCol("");
+            list = collegeService.getMajorNameByCol("");
         else
-            list = collegeService.getMajorByCol(col);
+            list = collegeService.getMajorNameByCol(col);
         SendData.send(list);
         return null;
     }
@@ -256,8 +249,7 @@ public class ClassAction extends ActionSupport {
         int addclsnnum = Integer.parseInt(request.getParameter("addclsnnum"));
         String addcol = request.getParameter("addcol");
         String addmajor = request.getParameter("addmajor");
-        College addcollege = (College) collegeService.getCols(addcol,
-                addmajor).get(0);
+        College addcollege = collegeService.getCols(addcol,addmajor).get(0);
         boolean result = classService.addClasses(addcampus, addgrade,
                 addclsnnum, addcollege);
         SendData.send(result);

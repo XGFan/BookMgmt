@@ -1,10 +1,5 @@
 package com.test;
 
-import java.util.List;
-import java.util.Map;
-
-import com.util.SendData;
-import com.bean.corplan.*;
 import com.priInfo.corplan.CorplanService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

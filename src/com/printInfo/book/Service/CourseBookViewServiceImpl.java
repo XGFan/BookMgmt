@@ -1,14 +1,10 @@
 package com.printInfo.book.Service;
 
 import java.util.List;
-import java.util.Map;
 
-import com.bean.book.Book;
 import com.bean.book.BookDAO;
 import com.bean.corbook.Corbookview;
 import com.bean.corbook.CorbookviewDAO;
-import com.bean.corbook.CorbookviewId;
-import com.bean.course.Course;
 import com.bean.course.CourseDAO;
 import com.util.ConvertUtils;
 
@@ -51,28 +47,10 @@ public class CourseBookViewServiceImpl implements CourseBookViewService {
         return ConvertUtils.ToCorBookList(list);
     }
 
-    // 重写findByCourse方法，返回list类型
-    public List<Corbookview> findByCourseList(String idcor) {
-        List<Corbookview> list = corBookViewDAO.findByProperty("idcor", idcor);
-        return list;
-    }
-
-    public List<Corbookview> searchall() {
-        List list = corBookViewDAO.findAll();
-        return list;
-    }
-
-    /* 执行全修改 */
-    public boolean modify(Book book, List<Course> course) {
-        bookDAO.updateBook(book);
-        return true;
-    }
-
     public List<Corbookview> findAllCourse() {
         List<Corbookview> list = corBookViewDAO.findAll();
         return ConvertUtils.ToCorBookList(list);
     }
-
 
     public List<Corbookview> findAllBk() {
         List<Corbookview> list = corBookViewDAO.findAll();
@@ -84,9 +62,4 @@ public class CourseBookViewServiceImpl implements CourseBookViewService {
         return ConvertUtils.ToCorBookList(list);
     }
 
-    /* 添加课程，查询教材 */
-    public List<Corbookview> findBookByBkname(String bkname) {
-        List<Corbookview> list = corBookViewDAO.findByBk(bkname);
-        return ConvertUtils.ToCorBookList(list);
-    }
 }

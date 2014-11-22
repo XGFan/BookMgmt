@@ -1,13 +1,8 @@
 package com.printInfo.supplier.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import com.bean.supplier.Supplier;
-import com.bean.supplier.SupplierDAO;
 import com.bean.supplier.SupplierDAOInf;
 import com.util.ConvertUtils;
 
@@ -30,50 +25,8 @@ public class SupplierServiceImp implements SupplierService {
         return ConvertUtils.ToPubList(list);
     }
 
-    public Set publisterList() {
-        List<Supplier> list = supplierDAO.findAll();
-        Set set = new HashSet();
-        for (Supplier su : list) {
-            set.add(su.getPublisher());
-        }
-
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            String str = (String) it.next();
-            System.out.println(str);
-        }
-        return set;
-    }
-
-    public Set supplierList() {
-        List<Supplier> list = supplierDAO.findAll();
-        Set set = new HashSet();
-        for (Supplier su : list) {
-            set.add(su.getSupplier());
-        }
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            String str = (String) it.next();
-        }
-        return set;
-    }
-
     public List getAllSupplier() {
-        List<Supplier> list = supplierDAO.findAllSupplier();
-        return list;
-    }
-
-    /* 分页代码 page 表第几页，//////////////// */
-    public List findPage(int page, int maxpage) {
-        List list = supplierDAO.findAll();
-        int max = list.size();
-        List<Supplier> su = new ArrayList<Supplier>();
-        for (int i = (page - 1) * maxpage; i < max; i++) {
-            Supplier supplier = new Supplier();
-            supplier = (Supplier) list.get(i);
-            su.add(supplier);
-        }
-        return su;
+        return supplierDAO.findAllSupplier();
     }
 
     /* 根据出版社查询出版社的idsp */
@@ -128,8 +81,7 @@ public class SupplierServiceImp implements SupplierService {
      * @see com.printInfo.supplier.SupplierService#initSup()
      */
     public List<Supplier> initSup() {
-        List list = supplierDAO.findAll();
-        return list;
+        return supplierDAO.findAll();
     }
 
     /*
@@ -178,7 +130,6 @@ public class SupplierServiceImp implements SupplierService {
 
     // 为某一供应商添加出版社
     public boolean addPub(String publisher, String supplier) {
-        String info = null;
         List list = supplierDAO.findAllOrderByIdsp();
         Supplier sup = (Supplier) list.get(list.size() - 1);// 获得最后一个元素对象
         String idsp = String.valueOf(Integer.parseInt(sup.getIdsp()) + 1);

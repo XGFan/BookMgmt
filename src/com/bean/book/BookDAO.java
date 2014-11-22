@@ -1,21 +1,11 @@
 package com.bean.book;
 
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.HibernateException;
-import org.hibernate.LockMode;
-import org.hibernate.Session;
-import org.springframework.context.ApplicationContext;
-import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.bean.college.College;
-import com.bean.corbook.CorbookviewId;
-import com.printInfo.book.Service.CourseBookViewService;
 
 /**
  * A data access object (DAO) providing persistence and search support for Book
@@ -54,19 +44,8 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
         }
     }
 
-    public void saveOrUpdate(Book transientInstance) {
-        log.debug("saving Book instance");
-        try {
-            getHibernateTemplate().saveOrUpdate(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            throw re;
-        }
-    }
-
     public boolean delete(Book persistentInstance) {
-        boolean result = false;
+        boolean result;
         log.debug("deleting Book instance");
         try {
             getHibernateTemplate().delete(persistentInstance);
@@ -83,24 +62,10 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
     public Book findById(java.lang.String id) {
         log.debug("getting Book instance with id: " + id);
         try {
-            Book instance = (Book) getHibernateTemplate().get(
+            return (Book) getHibernateTemplate().get(
                     "com.bean.book.Book", id);
-            return instance;
         } catch (RuntimeException re) {
             log.error("get failed", re);
-            throw re;
-        }
-    }
-
-    public List findByExample(Book instance) {
-        log.debug("finding Book instance by example");
-        try {
-            List results = getHibernateTemplate().findByExample(instance);
-            log.debug("find by example successful, result size: "
-                    + results.size());
-            return results;
-        } catch (RuntimeException re) {
-            log.error("find by example failed", re);
             throw re;
         }
     }
@@ -123,7 +88,7 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
     }
 
     public List FuzzyFindByBkname(String bkname) {
-        String queryString = null;
+        String queryString;
         try {
             queryString = "from Book b where b.bkname like '%" + bkname + "%'";
             return getHibernateTemplate().find(queryString);
@@ -140,40 +105,6 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-    public Book merge(Book detachedInstance) {
-        log.debug("merging Book instance");
-        try {
-            Book result = (Book) getHibernateTemplate().merge(detachedInstance);
-            log.debug("merge successful");
-            return result;
-        } catch (RuntimeException re) {
-            log.error("merge failed", re);
-            throw re;
-        }
-    }
-
-    public void attachDirty(Book instance) {
-        log.debug("attaching dirty Book instance");
-        try {
-            getHibernateTemplate().saveOrUpdate(instance);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
-            throw re;
-        }
-    }
-
-    public void attachClean(Book instance) {
-        log.debug("attaching clean Book instance");
-        try {
-            getHibernateTemplate().lock(instance, LockMode.NONE);
-            log.debug("attach successful");
-        } catch (RuntimeException re) {
-            log.error("attach failed", re);
             throw re;
         }
     }
@@ -196,22 +127,6 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find by BookPub name failed", re);
-            throw re;
-        }
-    }
-
-    public static BookDAO getFromApplicationContext(ApplicationContext ctx) {
-        return (BookDAO) ctx.getBean("BookDAO");
-    }
-
-    // 通过教材查询课程
-    public List<CorbookviewId> searchByBook(String idbk) {
-        log.debug("finding all Course instances");
-        try {
-            String queryString = "from corbookview ";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
             throw re;
         }
     }

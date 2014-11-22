@@ -14,8 +14,9 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import com.bean.bookpurchaseview.Bookpurchaseview;
 import com.bean.bookpurchaseview.BookpurchaseviewId;
+import org.apache.poi.hssf.util.Region;
 
-public class POI2EXCEL {
+class POI2EXCEL {
 
     public static void createEXCEL(List<Bookpurchaseview> bkpurview)
             throws Exception {
@@ -25,9 +26,8 @@ public class POI2EXCEL {
             // 创建Excel文档
             HSSFWorkbook wb = new HSSFWorkbook();
             // sheet 对应一个工作页
-            int n = 0;
-            for (int i = 0; i < bkpurview.size(); i++) {
-                bkpurviewIDs.add(bkpurview.get(i).getId());
+            for (Bookpurchaseview aBkpurview : bkpurview) {
+                bkpurviewIDs.add(aBkpurview.getId());
             }
             List<String> idclses = new ArrayList();
             Map<String, String> idclsString = new HashMap();
@@ -44,8 +44,8 @@ public class POI2EXCEL {
                     System.out.println(header);
                 }
             }
-            for (int i = 0; i < idclses.size(); i++) {
-                String headerStr = (String) idclsString.get(idclses.get(i));
+            for (String idclse : idclses) {
+                String headerStr = idclsString.get(idclse);
                 HSSFSheet sheet = wb.createSheet(headerStr);
                 HSSFRow header1 = sheet.createRow(0); // 下标为0的行开始
                 HSSFRow header2 = sheet.createRow(1); // 下标为1的行
@@ -69,7 +69,7 @@ public class POI2EXCEL {
                 cs.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中
                 header1.getCell((short) 0).setCellStyle(cs);
 
-                org.apache.poi.hssf.util.Region region = new org.apache.poi.hssf.util.Region(0, (short) 0, 1, (short) 5);
+                Region region = new Region(0, (short) 0, 1, (short) 5);
                 sheet.addMergedRegion(region);
                 stuNumRow.getCell((short) 5).setCellValue(new HSSFRichTextString("人数:"));
 
@@ -89,7 +89,7 @@ public class POI2EXCEL {
                 }
                 int k = 6;
                 for (int j = 0; j < bkpurview.size() - 1; j++) {
-                    if (idclses.get(i).equals(bkpurviewIDs.get(j).getIdcls())) {
+                    if (idclse.equals(bkpurviewIDs.get(j).getIdcls())) {
                         // 创建电子表格的一行
                         if (!bkpurviewIDs.get(j).getBkname().equals("") && !bkpurviewIDs.get(j).getBkname().equals("已发")) {
                             HSSFRow row = sheet.createRow(k); // 下标为1的行开始

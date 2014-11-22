@@ -7,9 +7,7 @@ import net.sf.json.JSONArray;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.bean.course.Course;
 import com.bean.course.CourseDAO;
-import com.priInfo.college.ColAction;
 import com.priInfo.course.CourseService;
 
 public class TestCourse {

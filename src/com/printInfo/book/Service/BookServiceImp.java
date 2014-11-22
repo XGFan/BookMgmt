@@ -19,20 +19,13 @@ public class BookServiceImp implements BookService {
         this.bookDAO = bookDAO;
     }
 
-    public String addBook(Book book) {
+    public void addBook(Book book) {
         bookDAO.save(book);
-        return null;
-    }
-
-    public boolean deleteBook(Book book) {
-        Book temp = bookDAO.findById(book.getIdbk());
-        bookDAO.delete(temp);
-        return false;
     }
 
     public boolean deleteBook(String idbk) {
         Book temp = bookDAO.findById(idbk);
-        boolean tag = false;
+        boolean tag;
         tag = bookDAO.delete(temp);
         return tag;
     }
@@ -53,11 +46,7 @@ public class BookServiceImp implements BookService {
         return ConvertUtils.ToBookListFromBook(list);
     }
 
-    /**
-     * 通过页码和教材名称和出版社进行查询教材信息 *
-     */
-    public List<Book> searchByBookPub(String bookname, String pub,
-                                      Pagination pagination) {
+    public List<Book> searchByBookPub(String bookname, String pub,Pagination pagination) {
         List list = this.searchByBookPub(bookname, pub);
         return GetPaginationInfo.getSubList(list, pagination);
     }
@@ -67,9 +56,6 @@ public class BookServiceImp implements BookService {
         return ConvertUtils.ToBookListFromBook(list);
     }
 
-    /**
-     * 通过页码和ISBN进行查询教材信息 *
-     */
     public List<Book> searchByISBN(String isbn, Pagination pagination) {
         List list = this.searchByISBN(isbn);
         return GetPaginationInfo.getSubList(list, pagination);

@@ -14,7 +14,7 @@ import com.util.Pagination;
 
 public class ClassServiceImpl implements ClassService {
 
-    public ClassDAO classDAO;
+    private ClassDAO classDAO;
 
     public ClassDAO getClassDAO() {
         return classDAO;
@@ -24,18 +24,13 @@ public class ClassServiceImpl implements ClassService {
         this.classDAO = classDAO;
     }
 
-    public List findAll() {
-        List list = classDAO.findAll();
-        return this.class2List(list);
-    }
-
     /**
      * 将List转换成map类型
      *
      * @param l list
      * @return map类型的list
      */
-    public static List class2List(List l) {
+    private static List class2List(List l) {
         Iterator it = l.iterator();
         List clslist = new ArrayList();
         while (it.hasNext()) {
@@ -65,33 +60,6 @@ public class ClassServiceImpl implements ClassService {
         return GetPaginationInfo.getSubList(class2List(classDAO.findAll()), pagination);
     }
 
-    /**
-     * 分页处理的一个函数
-     *
-     * @param pagination 分页信息
-     * @param list       需要处理的信息
-     * @return 处理好的一页信息
-     * @deprecated
-     */
-    public List dealToList(Pagination pagination, List list) {
-        /*设置分页的总共记录条数为list的条数*/
-        pagination.setTotalRecord(list.size());
-        /*如果分页的单页条数小于list条数*/
-        if (pagination.getSize() < list.size()) {
-            /*当前页起始位置+一页的条数，即当前页的最大条目值，略微拗口*/
-            int range = pagination.getStart() + pagination.getSize();
-            /*如果range依旧小于list条数*/
-            if (range < list.size()) {
-                /*从list中截取1页作为新的list*/
-                list = list.subList(pagination.getStart(),
-                        pagination.getStart() + pagination.getSize());
-            } else {
-                list = list.subList(pagination.getStart(), list.size());
-            }
-        }
-        return list;
-    }
-
     public List accurateQuery(String col, String major, String grade, String campus, Pagination pagination) {
         return GetPaginationInfo.getSubList(class2List(classDAO.getClassByGradeCampusColMajor(col, major, grade, campus)), pagination);
     }
@@ -116,11 +84,10 @@ public class ClassServiceImpl implements ClassService {
     }
 
 
-    public boolean addClasses(String campus, String grade, int clsnum,
-                              College college) {
+    public boolean addClasses(String campus, String grade, int clsnum, College college) {
         Class cls = new Class();
         Integer j = classDAO.getClsNum(grade, college.getIdcm()) + 1;// 班级表此时班号最大值
-        String idcls = "";
+        String idcls;
         for (int i = classDAO.getClsNum(grade, college.getIdcm()) + 1; i < j
                 + clsnum; i++) {
             if (i < 10) {
@@ -129,7 +96,6 @@ public class ClassServiceImpl implements ClassService {
                 idcls = grade + college.getIdcm() + i;
             }
             cls.setIdcls(idcls);
-            idcls = "";
             cls.setCollege(college);
             cls.setCampus(campus);
             cls.setGrade(grade);

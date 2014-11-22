@@ -2,9 +2,6 @@ package com.bean.supplier;
 
 import java.util.List;
 
-import org.hibernate.LockMode;
-import org.springframework.context.ApplicationContext;
-
 public interface SupplierDAOInf {
 
     public void save(Supplier transientInstance);
@@ -12,8 +9,6 @@ public interface SupplierDAOInf {
     public void delete(Supplier persistentInstance);
 
     public Supplier findById(java.lang.String id);
-
-    public List findByExample(Supplier instance);
 
     public List findByProperty(String propertyName, Object value);
 

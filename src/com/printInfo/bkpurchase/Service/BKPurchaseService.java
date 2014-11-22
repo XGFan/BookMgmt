@@ -5,8 +5,6 @@ import java.util.Map;
 
 public interface BKPurchaseService {
 
-    public List findPage(int page, int maxpage);
-
     public List getbklist(String semester);
 
     public List getcorlistbyidbk(String idbk);

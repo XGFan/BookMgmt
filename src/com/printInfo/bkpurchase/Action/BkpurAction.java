@@ -1,10 +1,8 @@
 package com.printInfo.bkpurchase.Action;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,11 +12,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.bean.bookcorsup.Bookcorsup;
 import com.bean.courclass.Courclass;
-import com.bean.supplier.Supplier;
 import com.opensymphony.xwork2.ActionContext;
 import com.printInfo.bkpurchase.Service.BKPurchaseService;
 import com.printInfo.supplier.Service.SupplierService;
-import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
 import com.util.SendData;
@@ -56,7 +52,7 @@ public class BkpurAction {
 
             System.out.println("supplier:" + supplier);
 
-            int totalRecord = 0;
+            int totalRecord;
             if (pagination == null)
                 pagination = new Pagination(6);
             List<Map> list = bkpurser.getBKPurInfo();
@@ -92,7 +88,7 @@ public class BkpurAction {
             // 获取页面端传递的参数
             System.out.println("initPage()");
 
-            int totalRecord = 0;
+            int totalRecord;
             if (pagination == null)
                 pagination = new Pagination(6);
             this.bkpurlist = bkpurser.getBKPurInfo();
@@ -123,7 +119,7 @@ public class BkpurAction {
             if (pagination == null)
                 pagination = new Pagination(6);
             pagination.setCurrentPage(currentPage);
-            List<Map> list = null;
+            List<Map> list;
             // 学院为和专业为全部，获取所有课程
             list = GetPaginationInfo.getSubList(this.bkpurlist, pagination);
             // for(Map s:list){
@@ -184,7 +180,11 @@ public class BkpurAction {
         return null;
     }
 
-    /* 获取购书表日期信息 */
+    /**
+     *  todo
+     *  wrong
+     * @return null
+     */
     public String getBKPurDate() {
         String purdate = bkpurser.getBKPurDate();
         List<String> list = new ArrayList<String>();
@@ -193,7 +193,11 @@ public class BkpurAction {
         return null;
     }
 
-    /* 修改购书表日期信息 */
+    /*
+    修改购书表日期信息
+    it is wrong
+    todo
+     */
     public String alterBKPurDate() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String bkpurdate = request.getParameter("alterdate");
