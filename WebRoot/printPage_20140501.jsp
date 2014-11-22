@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page language="java"
-	import="com.bean.bookpurchaseview.Bookpurchaseview,com.bean.bookpurchaseview.BookpurchaseviewId,java.util.*;"%>
+	import="com.bean.bookpurchaseview.Bookpurchaseview,com.bean.bookpurchaseview.Bookpurchaseview.BookpurchaseviewId,java.util.*;"%>
 <%
 	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";

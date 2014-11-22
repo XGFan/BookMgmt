@@ -1,7 +1,6 @@
 package com.util;
 
 import com.bean.bookpurchaseview.Bookpurchaseview;
-import com.bean.bookpurchaseview.BookpurchaseviewId;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.Region;
 
@@ -15,7 +14,7 @@ class POI2EXCEL {
             throws Exception {
         if (bkpurview != null && bkpurview.size() > 0) {
             int CountColumnNum = 7;
-            List<BookpurchaseviewId> bkpurviewIDs = new ArrayList();
+            List<Bookpurchaseview.BookpurchaseviewId> bkpurviewIDs = new ArrayList();
             // 创建Excel文档
             HSSFWorkbook wb = new HSSFWorkbook();
             // sheet 对应一个工作页

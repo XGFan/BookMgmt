@@ -1,7 +1,6 @@
 package com.util;
 
 import com.bean.bookpurchaseview.Bookpurchaseview;
-import com.bean.bookpurchaseview.BookpurchaseviewId;
 import org.apache.poi.hssf.record.PrintSetupRecord;
 import org.apache.poi.xwpf.usermodel.*;
 
@@ -34,7 +33,7 @@ class POI2WORD {
         rt1.setFontFamily("Courier");
         // 设置上下两行之间的间距
         rt1.setTextPosition(20);
-        BookpurchaseviewId bkpurviewID = bkpurview.get(0).getId();
+        Bookpurchaseview.BookpurchaseviewId bkpurviewID = bkpurview.get(0).getId();
         System.out.println(bkpurviewID.getCol() + bkpurviewID.getGrade() + bkpurviewID.getMajor()
                 + bkpurviewID.getClsno() + "班第" + bkpurviewID.getSemester() + "学期教材发放清单");
         String header = bkpurviewID.getCol() + bkpurviewID.getGrade() + bkpurviewID.getMajor()

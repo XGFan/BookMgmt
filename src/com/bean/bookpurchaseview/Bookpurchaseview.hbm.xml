@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <!--suppress HibernateMappingDatasourceDomInspection -->
     <class name="com.bean.bookpurchaseview.Bookpurchaseview" table="bookpurchaseview" catalog="bookmgmt">
-        <composite-id name="id" class="com.bean.bookpurchaseview.BookpurchaseviewId">
+        <composite-id name="id" class="com.bean.bookpurchaseview.Bookpurchaseview$BookpurchaseviewId">
             <key-property name="idcm" type="java.lang.String">
                 <column name="idcm" length="4"/>
             </key-property>
