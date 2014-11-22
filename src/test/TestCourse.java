@@ -1,4 +1,4 @@
-package com.test;
+package test;
 
 import com.bean.course.CourseDAO;
 import com.priInfo.course.CourseService;

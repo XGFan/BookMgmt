@@ -1,4 +1,4 @@
-package com.test;
+package test;
 
 import com.priInfo.corplan.CorplanService;
 import org.springframework.context.ApplicationContext;
