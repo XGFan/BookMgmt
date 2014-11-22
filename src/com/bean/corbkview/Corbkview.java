@@ -115,19 +115,5 @@ public class Corbkview implements java.io.Serializable {
         this.id = id;
     }
 
-    /** full constructor */
-//	public Corbkview(CorbkviewId id) {
-//		this.id = id;
-//	}
-//
-//	// Property accessors
-
-//	public CorbkviewId getId() {
-//		return this.id;
-//	}
-//
-//	public void setId(CorbkviewId id) {
-//		this.id = id;
-//	}
 
 }
