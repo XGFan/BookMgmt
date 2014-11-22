@@ -207,7 +207,7 @@
         <property name="classService" ref="classService"/>
     </bean>
     <!--new start-->
-    <bean id="bookDao_new" class="com.bean.book.BookDaoNew">
+    <bean id="bookDao_new" class="com.dao.BookDaoNew">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
     <!--new end-->

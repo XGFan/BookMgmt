@@ -1,5 +1,6 @@
-package com.bean.book;
+package com.dao;
 
+import com.bean.book.Book;
 import com.dao.BookDAOInf;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
