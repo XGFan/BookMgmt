@@ -1,7 +1,6 @@
 package com.dao;
 
 import com.bean.book.Book;
-import com.dao.BookDAOInf;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import java.util.List;
