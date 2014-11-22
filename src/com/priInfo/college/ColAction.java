@@ -94,7 +94,7 @@ public class ColAction extends ActionSupport {
                 pagination = new Pagination(6);
             pagination.setSize(6);
             /* 设置总页面数目,总记录数量 */
-			/* 从页面获取参数，包括学院，第几页 */
+            /* 从页面获取参数，包括学院，第几页 */
             HttpServletRequest request = ServletActionContext.getRequest();
             String col = request.getParameter("col");
             int currentPage = Integer.parseInt(request
@@ -143,7 +143,7 @@ public class ColAction extends ActionSupport {
      */
     public String fuzzyQuery() {
         try {
-            List collist = null;
+            List collist;
 			/* 获取客户端封装的数据 */
             if (pagination == null)
                 pagination = new Pagination(6);
@@ -206,7 +206,7 @@ public class ColAction extends ActionSupport {
     public String getMajorByCol() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String col = request.getParameter("col");
-        List list = null;
+        List list;
         if ("----全部----".equals(col) || "--请选择--".equals(col)) {
             list = csv.getMajorNameByCol("");
         } else {
@@ -225,7 +225,7 @@ public class ColAction extends ActionSupport {
         HttpServletRequest request = ServletActionContext.getRequest();
         String col = request.getParameter("col");
         String major = request.getParameter("major");
-        List list = null;
+        List list;
         if ("--请选择--".equals(col) || "----全部----".equals(col))
             list = csv.getCol("", major);
         else
@@ -246,7 +246,7 @@ public class ColAction extends ActionSupport {
         String major = request.getParameter("major");
         Integer semnum = Integer.parseInt(request.getParameter("semnum"));
         College college = new College(idcm, col, major, semnum);
-        Boolean tag = false;// 定义一个变量用于标识是否修改成功
+        Boolean tag;// 定义一个变量用于标识是否修改成功
         tag = csv.updateCol(college);// 返回是否修改成功
         Result result = new Result(tag);
         SendData.send(result);// 将数据发送到服务器端

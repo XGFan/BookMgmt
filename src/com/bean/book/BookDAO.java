@@ -30,7 +30,6 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
     private static final Log log = LogFactory.getLog(BookDAO.class);
 
     protected void initDao() {
-        // do nothing
     }
 
     public void save(Book transientInstance) {
@@ -53,7 +52,6 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
             result = true;
         } catch (RuntimeException re) {
             log.error("delete failed", re);
-            result = false;
             throw re;
         }
         return result;
@@ -74,9 +72,8 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
         log.debug("finding Book instance with property: " + propertyName
                 + ", value: " + value);
         try {
-            String queryString = "from Book as model where model."
-                    + propertyName + "= ?";
-            return getHibernateTemplate().find(queryString, value);
+            String hql = "from Book book where book." + propertyName + " = ?";
+            return getHibernateTemplate().find(hql, value);
         } catch (RuntimeException re) {
             log.error("find by property name failed", re);
             throw re;

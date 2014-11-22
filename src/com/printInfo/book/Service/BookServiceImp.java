@@ -68,7 +68,7 @@ public class BookServiceImp implements BookService {
 
     public boolean updateBook(Book book) {
         bookDAO.updateBook(book);
-        return false;
+        return true;
     }
 
 }

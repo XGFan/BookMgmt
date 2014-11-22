@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+        "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<!-- <constant name="" value=""></constant> -->
+    <!-- <constant name="" value=""></constant> -->
     <!--采用了通配符的方式来匹配action路径-->
-	<!-- 与学院有关的包 -->
-	<package name="college" extends="struts-default">
-		<action name="college_*" class="collegeAction" method="{1}">
-			<result name="*">/college.jsp</result>
-		</action>
+    <!-- 与学院有关的包 -->
+    <package name="college" extends="struts-default">
+        <action name="college_*" class="collegeAction" method="{1}">
+            <result name="*">/college.jsp</result>
+        </action>
 
         <!--课程-->
-		<action name="course_*" class="courseAction" method="{1}">
-			<result name="*">/course.jsp</result>
-		</action>
+        <action name="course_*" class="courseAction" method="{1}">
+            <result name="*">/course.jsp</result>
+        </action>
         <!--教学计划-->
-		<action name="corplan_*" class="corplanAction" method="{1}">
-			<result name="*">/corplan.jsp</result>
-		</action>
+        <action name="corplan_*" class="corplanAction" method="{1}">
+            <result name="*">/corplan.jsp</result>
+        </action>
         <!--书-->
-		<action name="book_*" class="bookAction" method="{1}">
-			<result name="*">/book/book.jsp</result>
-		</action>
-	</package>
+        <action name="book_*" class="bookAction" method="{1}">
+            <result name="*">/book/book.jsp</result>
+        </action>
+    </package>
 
-	<!-- 与供应商有关的包 -->
-	<package name="supplier" extends="struts-default">
-		<action name="supplier_*" class="supAction" method="{1}">
-		</action>
-	</package>
+    <!-- 与供应商有关的包 -->
+    <package name="supplier" extends="struts-default">
+        <action name="supplier_*" class="supAction" method="{1}">
+        </action>
+    </package>
 
-	<!-- 与班级有关的包 -->
-	<package name="class" extends="struts-default">
-		<action name="class_*" class="classAction" method="{1}">
-		</action>
-	</package>
+    <!-- 与班级有关的包 -->
+    <package name="class" extends="struts-default">
+        <action name="class_*" class="classAction" method="{1}">
+        </action>
+    </package>
 
-	<!-- 与购书有关的包 -->
-	<package name="bkpurchase" extends="struts-default">
-		<action name="bkpur_*" class="bkpurAction" method="{1}">
-		</action>
-	</package>
-	
-	<package name="bkdistribute" extends="struts-default">
-		<action name="bkdist_*" class="bkdistAction" method="{1}">
-			<result name="SUCCESS">/printPage.jsp</result>
-		</action>
-	</package>
+    <!-- 与购书有关的包 -->
+    <package name="bkpurchase" extends="struts-default">
+        <action name="bkpur_*" class="bkpurAction" method="{1}">
+        </action>
+    </package>
+
+    <package name="bkdistribute" extends="struts-default">
+        <action name="bkdist_*" class="bkdistAction" method="{1}">
+            <result name="SUCCESS">/printPage.jsp</result>
+        </action>
+    </package>
 </struts>    

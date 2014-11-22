@@ -143,17 +143,4 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
         }
     }
 
-    List findByProperty(String propertyName, Object value) {
-        log.debug("finding Bookpurchase instance with property: "
-                + propertyName + ", value: " + value);
-        try {
-            String queryString = "from Bookpurchase as model where model."
-                    + propertyName + "= ?";
-            return getHibernateTemplate().find(queryString, value);
-        } catch (RuntimeException re) {
-            log.error("find by property name failed", re);
-            throw re;
-        }
-    }
-
 }

@@ -79,7 +79,7 @@ public class SupAction {
 
     public String initPage() {
         try {
-			/* 获取页面端传递的参数 */
+            /* 获取页面端传递的参数 */
             int totalRecord = 0;
             if (pagination == null)
                 pagination = new Pagination(8);

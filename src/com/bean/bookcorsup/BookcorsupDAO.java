@@ -31,8 +31,7 @@ public class BookcorsupDAO extends HibernateDaoSupport implements
     public List findbklist(String str) {
 //		log.debug("finding all Bookcorsup instances");
         try {
-            String queryString = "select distinct idbk from Bookcorsup where semester in("
-                    + str + ")";
+            String queryString = "select distinct idbk from Bookcorsup where semester in( " + str + " )";
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);

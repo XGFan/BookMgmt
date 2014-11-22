@@ -2,9 +2,6 @@ package com.bean.bkpurchase;
 
 import java.util.List;
 
-/**
- * 教科书购买表DAO
- */
 public interface BkpurchaseDAOInf {
 
 

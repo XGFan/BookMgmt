@@ -74,7 +74,7 @@ public class CorplanServiceImp implements CorplanService {
         collegeList = collegeDAO.getCol(col, major);
         College college = null;
         String idcm = null;
-		/* 1.1未查找到相应的学院，返回false */
+        /* 1.1未查找到相应的学院，返回false */
         if (collegeList.size() == 0)
             return false;
 		/* 1.2存在相应的学院 */

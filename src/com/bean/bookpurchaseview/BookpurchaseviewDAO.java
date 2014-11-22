@@ -30,8 +30,7 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
     public List<Bookpurchaseview> findByYearAndSem(int year, int sem) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
         try {
-            String queryString = "from Bookpurchaseview as b where (((" + year
-                    + "- b.id.grade)*2 + " + sem + ") = b.id.semester)";
+            String queryString = "from Bookpurchaseview as b where (((" + year + "- b.id.grade)*2 + " + sem + ") = b.id.semester)";
             queryString += " order by b.id.col,b.id.major,b.id.grade desc,b.id.clsno";
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {

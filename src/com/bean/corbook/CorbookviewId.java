@@ -27,7 +27,7 @@ class CorbookviewId implements java.io.Serializable {
 
     /** minimal constructor */
 /*	public CorbookviewId(String idcorsem, String idbk, String idcor,
-			String col, String major, String semester, String publisher) {
+            String col, String major, String semester, String publisher) {
 		this.idcorsem = idcorsem;
 		this.idbk = idbk;
 		this.idcor = idcor;

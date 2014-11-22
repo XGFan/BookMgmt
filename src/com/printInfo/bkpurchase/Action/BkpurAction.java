@@ -208,7 +208,7 @@ public class BkpurAction {
     public String searchAllSup() {
         // System.out.println("searchAllSup");
         List list = supplierService.getAllSupplier();
-		/*
+        /*
 		 * Iterator it = list.iterator(); while (it.hasNext()) { String str =
 		 * (String) it.next(); // System.out.println(str); }
 		 * 

@@ -71,7 +71,7 @@ public class CorplanAction extends ActionSupport {
             String col = request.getParameter("col");
             String major = request.getParameter("major");
             String semester = request.getParameter("semester");
-			/* check null and blank of the parameters */
+            /* check null and blank of the parameters */
             boolean hasCol = !(col == null || "".equals(col)
                     || "----全部----".equals(col) || "--请选择--".equals(col));
             boolean hasMajor = !(major == null || "".equals(major)

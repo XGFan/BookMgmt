@@ -11,7 +11,7 @@ public class TestCollege {
     public static void main(String args[]) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
         ColAction clt = (ColAction) ctx.getBean("collegeAction");
-        CollegeDAO clgDao = (CollegeDAO) ctx.getBean("CollegeDAO");
+        CollegeDAO clgDao = (CollegeDAO) ctx.getBean("collegeDAO");
         //clt.list();//College(String idcm, String col, String major, Integer semnum)
         //College clg = new College("liub","liub","liub",9);
         //clt.add(clg);

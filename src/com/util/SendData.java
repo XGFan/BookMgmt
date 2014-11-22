@@ -28,7 +28,7 @@ public class SendData {
             JSONArray json;
             json = JSONArray.fromObject(obj);
             // System.out.println(json);
-			/* 将数据返回到客户端 */
+            /* 将数据返回到客户端 */
             out.println(json.toString());
             out.flush();
             out.close();

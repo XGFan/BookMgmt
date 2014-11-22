@@ -74,7 +74,6 @@ public class CollegeDAO extends HibernateDaoSupport {
             result = true;
         } catch (RuntimeException re) {
             log.error("delete failed", re);
-            result = false;
             throw re;
         }
         return result;

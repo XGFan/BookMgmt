@@ -107,7 +107,7 @@ public class CourseAction extends ActionSupport {
                 corlist = courseService.findByCol("", pagination);
             }
             if (!hasCol & hasMajor & !hasSem) {
-				/* 学院为和学期为全部，获取该专业所有课程 */
+                /* 学院为和学期为全部，获取该专业所有课程 */
                 corlist = courseService.findByColMajor("", major, pagination);
             }
             if (!hasCol & hasMajor & hasSem) {

@@ -204,7 +204,7 @@ public class BookAction {
             if (pagination == null)
                 pagination = new Pagination(8);
             pagination.setSize(8);
-			/* 获取某专业某一学期的课程 */
+            /* 获取某专业某一学期的课程 */
             totalRecord = bookService.initBook().size();
 
             pagination.setTotalRecord(totalRecord);
@@ -218,7 +218,7 @@ public class BookAction {
     }
 
     public String searchAllBook() {
-        List list = null;
+        List list;
         if (pagination == null)
             pagination = new Pagination(8);
         pagination.setSize(8);
@@ -268,7 +268,7 @@ public class BookAction {
             }
         }
         this.list = list;
-        return "ex";
+        return null;
     }
 
     public String searchByISBNBook() {
@@ -281,7 +281,7 @@ public class BookAction {
     public List<CourseBookViewService> findCourseByIdbk() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String idbk = request.getParameter("idbk");
-        List<Corbookview> list = null;
+        List<Corbookview> list;
         list = corbkviewService.findCourseByIdbk(idbk);
         SendData.send(list);
         return null;

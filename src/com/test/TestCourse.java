@@ -15,7 +15,7 @@ public class TestCourse {
         CourseService courseService = (CourseService) ctx
                 .getBean("courseService");
 
-        CourseDAO courseDAO = (CourseDAO) ctx.getBean("CourseDAO");
+        CourseDAO courseDAO = (CourseDAO) ctx.getBean("courseDAO");
 
         System.out.println(courseService.addNewCourse("", "信息工程学院", "医学信息工程", "JAVA2程序设计", "5"));
 

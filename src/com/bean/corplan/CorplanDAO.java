@@ -72,11 +72,6 @@ public class CorplanDAO extends HibernateDaoSupport {
         }
     }
 
-    public List getCorplanWithJoin() {
-        String queryString = "from Corplan cp join cp.course cpc join cpc.college cpcc ";
-        return getHibernateTemplate().find(queryString);
-    }
-
     /*连接教学计划，课程，学院三张表，根据学院，专业，学期查询教学计划
         * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）*/
     public List getCorplanByColMajorSem(String col, String major,
@@ -149,23 +144,6 @@ public class CorplanDAO extends HibernateDaoSupport {
                 + "%'"
                 + " or cp.semester like '%" + condition + "%'";
         System.out.println(queryString);
-        return getHibernateTemplate().find(queryString);
-    }
-
-    /* 已知学院专业，通过课程名称模糊查找*/
-    public List getCorplanFuzzyByColMajorCorname(String col, String major,
-                                                 String condition) {
-//		String queryString = "from courplan where col ='"
-//			+ col
-//			+ "' and major ='"
-//			+ major
-//			+ "' and corname like '%" + condition + "%'";
-        String queryString = "from Corplan cp join cp.course cpc join cpc.college cpcc where cpcc.col ='"
-                + col
-                + "' and cpcc.major ='"
-                + major
-                + "' and cpc.corname like '%" + condition + "%'";
-        //System.out.println(queryString);
         return getHibernateTemplate().find(queryString);
     }
 
