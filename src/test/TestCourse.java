@@ -1,7 +1,7 @@
 package test;
 
-import com.bean.course.CourseDAO;
-import com.priInfo.course.CourseService;
+import com.dao.CourseDAO;
+import com.service.CourseService;
 import net.sf.json.JSONArray;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

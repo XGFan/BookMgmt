@@ -2,7 +2,7 @@ package com.action;
 
 import com.bean.college.College;
 import com.opensymphony.xwork2.ActionSupport;
-import com.priInfo.college.ColServ;
+import com.service.ColServ;
 import com.util.Pagination;
 import com.util.Result;
 import com.util.SendData;

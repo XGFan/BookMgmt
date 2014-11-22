@@ -1,6 +1,6 @@
 package test;
 
-import com.bean.college.CollegeDAO;
+import com.dao.CollegeDAO;
 import com.action.ColAction;
 import com.util.ConvertUtils;
 import org.springframework.context.ApplicationContext;

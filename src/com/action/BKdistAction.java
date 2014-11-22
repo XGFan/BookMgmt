@@ -1,9 +1,9 @@
 package com.action;
 
 import com.bean.bookpurchaseview.Bookpurchaseview;
-import com.priInfo.cls.ClassService;
-import com.printInfo.bkdistribute.Service.BKDistributeService;
-import com.printInfo.bkpurchase.Service.BKPurchaseService;
+import com.service.ClassService;
+import com.service.BKDistributeService;
+import com.service.BKPurchaseService;
 import com.util.Pagination;
 import org.apache.struts2.ServletActionContext;
 

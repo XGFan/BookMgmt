@@ -1,6 +1,6 @@
 package test;
 
-import com.priInfo.corplan.CorplanService;
+import com.service.CorplanService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

@@ -2,7 +2,7 @@ package com.action;
 
 import com.bean.supplier.Supplier;
 import com.opensymphony.xwork2.ActionContext;
-import com.printInfo.supplier.Service.SupplierService;
+import com.service.SupplierService;
 import com.util.*;
 import org.apache.struts2.ServletActionContext;
 
