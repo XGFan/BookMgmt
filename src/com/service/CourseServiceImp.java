@@ -4,7 +4,6 @@ import com.bean.book.Book;
 import com.dao.BookDAO;
 import com.bean.college.College;
 import com.dao.CollegeDAO;
-import com.dao.CorbookDAO;
 import com.bean.corplan.Corplan;
 import com.dao.CorplanDAO;
 import com.bean.course.Course;
@@ -21,7 +20,6 @@ public class CourseServiceImp implements CourseService {
     private CourseDAO courseDAO;
     private CollegeDAO collegeDAO;
     private CorplanDAO corplanDAO;
-    private CorbookDAO corbookDAO;
     private CoursebkDAO coursebkDAO;
     private BookDAO bookDAO;
 
@@ -65,13 +63,6 @@ public class CourseServiceImp implements CourseService {
         this.corplanDAO = corplanDAO;
     }
 
-    public CorbookDAO getCorbookDAO() {
-        return corbookDAO;
-    }
-
-    public void setCorbookDAO(CorbookDAO corbookDAO) {
-        this.corbookDAO = corbookDAO;
-    }
 
 
     public List<Object> init() {

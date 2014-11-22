@@ -76,7 +76,6 @@
     <bean id="courseService" class="com.service.CourseServiceImp">
         <property name="courseDAO" ref="courseDAO"/>
         <property name="collegeDAO" ref="collegeDAO"/>
-        <property name="corbookDAO" ref="corbookDAO"/>
         <property name="corplanDAO" ref="corplanDAO"/>
         <property name="coursebkDAO" ref="coursebkDAO"/>
         <property name="bookDAO" ref="bookDAO"/>
@@ -99,16 +98,11 @@
     <!-- 定义与教学计划Corplan相应的corplanService -->
     <bean id="corplanService" class="com.service.CorplanServiceImp">
         <property name="corplanDAO" ref="corplanDAO"/>
-        <!--<property name="courplanDAO" ref="CourplanDAO" /> -->
         <property name="courseDAO" ref="courseDAO"/>
         <property name="collegeDAO" ref="collegeDAO"/>
     </bean>
     <!-- 定义与教学计划Corplan相应的CorplanDAO -->
     <bean id="corplanDAO" class="com.dao.CorplanDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-
-    <bean id="corbookDAO" class="com.dao.CorbookDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
@@ -188,12 +182,11 @@
     <bean id="bookcorsupDAO" class="com.dao.BookcorsupDAO">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean id="corbkviewDAO" class="com.dao.CorbkviewDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+    <!--<bean id="corbkviewDAO" class="com.dao.CorbkviewDAO">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
 
-    <!-- <bean id="CourplanDAO" class="com.dao.CourplanDAO"> <property
-        name="sessionFactory"> <ref bean="sessionFactory" /> </property> </bean> -->
+
 
     <!-- 发放书本的Action类的配置信息 -->
     <bean id="bkdistService"

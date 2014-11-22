@@ -2,7 +2,6 @@ package com.service;
 
 import com.bean.college.College;
 import com.dao.CollegeDAO;
-import com.dao.CorbookDAO;
 import com.bean.corplan.Corplan;
 import com.dao.CorplanDAO;
 import com.bean.course.Course;
@@ -16,15 +15,6 @@ public class CorplanServiceImp implements CorplanService {
     private CorplanDAO corplanDAO;
     private CourseDAO courseDAO;
     private CollegeDAO collegeDAO;
-    private CorbookDAO corbookDAO;
-
-    public CorbookDAO getCorbookDAO() {
-        return corbookDAO;
-    }
-
-    public void setCorbookDAO(CorbookDAO corbookDAO) {
-        this.corbookDAO = corbookDAO;
-    }
 
     public CollegeDAO getCollegeDAO() {
         return collegeDAO;

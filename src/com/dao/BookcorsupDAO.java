@@ -39,17 +39,6 @@ public class BookcorsupDAO extends HibernateDaoSupport implements
         }
     }
 
-    // public List findbklisteven(){
-    // log.debug("finding all Bookcorsup instances");
-    // try {
-    // String queryString =
-    // "select distinct idbk from Bookcorsup where semester in('2','4','6','8','10')";
-    // return getHibernateTemplate().find(queryString);
-    // } catch (RuntimeException re) {
-    // log.error("find all failed", re);
-    // throw re;
-    // }
-    // }
     public List findcorlistbyidbk(String idbk) {
         log.debug("finding all Bookcorsup instances");
         try {
