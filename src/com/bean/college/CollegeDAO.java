@@ -1,13 +1,14 @@
 package com.bean.college;
 
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import java.util.List;
+
 /**
  * 学院专业DAO
+ *
  * @author MyEclipse Persistence Tools
  * @see com.bean.college.College
  */

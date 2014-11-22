@@ -1,20 +1,14 @@
 package com.printInfo.supplier.Action;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
 import com.bean.supplier.Supplier;
 import com.opensymphony.xwork2.ActionContext;
 import com.printInfo.supplier.Service.SupplierService;
-import com.util.ConvertUtils;
-import com.util.GetPaginationInfo;
-import com.util.Pagination;
-import com.util.Result;
-import com.util.SendData;
+import com.util.*;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SupAction {
     private Pagination pagination;// 用于进行分页查询
@@ -70,7 +64,7 @@ public class SupAction {
             ActionContext.getContext().getSession().put("suplist", suplist);
 
             totalRecord = suplist.size();
-			/* 设置总页面数目,总记录数量 */
+            /* 设置总页面数目,总记录数量 */
             pagination.setTotalRecord(totalRecord);
 
             // System.out.println("totalPage:" + pagination.getTotalPage());

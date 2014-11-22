@@ -1,10 +1,10 @@
 package com.bean.course;
 
-import java.util.*;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import java.util.List;
 
 /**
  * 对科目信息进行读写

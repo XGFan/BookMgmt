@@ -17,9 +17,9 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  */
 
 public class CourplanDAO extends HibernateDaoSupport {
+    public static final String IDCOR = "idcor";
     private static final Log log = LogFactory.getLog(CourplanDAO.class);
     private static final String SEMESTER = "semester";
-    public static final String IDCOR = "idcor";
 
     // property constants
 

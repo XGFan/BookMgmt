@@ -1,11 +1,10 @@
 package com.util;
 
-import java.io.PrintWriter;
-import javax.servlet.http.HttpServletResponse;
-
 import net.sf.json.JSONArray;
-
 import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  * 通信类
@@ -25,7 +24,7 @@ public class SendData {
             // JsonConfig jsonConfig = new JsonConfig(); // 建立配置文件
             // jsonConfig.setIgnoreDefaultExcludes(false); // 设置默认忽略
             // jsonConfig.setExcludes(new String[] { "courses","classes" });
-			/* 将查询结果转换为JSON数据格式 */
+            /* 将查询结果转换为JSON数据格式 */
             JSONArray json;
             json = JSONArray.fromObject(obj);
             // System.out.println(json);

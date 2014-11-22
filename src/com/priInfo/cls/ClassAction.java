@@ -1,18 +1,15 @@
 package com.priInfo.cls;
 
-import java.util.List;
-
 import com.bean.cls.Class;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
 import com.bean.college.College;
 import com.opensymphony.xwork2.ActionSupport;
 import com.priInfo.college.ColServ;
 import com.util.Pagination;
 import com.util.SendData;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public class ClassAction extends ActionSupport {
 
@@ -249,7 +246,7 @@ public class ClassAction extends ActionSupport {
         int addclsnnum = Integer.parseInt(request.getParameter("addclsnnum"));
         String addcol = request.getParameter("addcol");
         String addmajor = request.getParameter("addmajor");
-        College addcollege = collegeService.getCols(addcol,addmajor).get(0);
+        College addcollege = collegeService.getCols(addcol, addmajor).get(0);
         boolean result = classService.addClasses(addcampus, addgrade,
                 addclsnnum, addcollege);
         SendData.send(result);

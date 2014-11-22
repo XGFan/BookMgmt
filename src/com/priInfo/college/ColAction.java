@@ -1,16 +1,14 @@
 package com.priInfo.college;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
+import com.bean.college.College;
 import com.opensymphony.xwork2.ActionSupport;
 import com.util.Pagination;
 import com.util.Result;
 import com.util.SendData;
-import com.bean.college.College;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public class ColAction extends ActionSupport {
 
@@ -95,7 +93,7 @@ public class ColAction extends ActionSupport {
             if (pagination == null)
                 pagination = new Pagination(6);
             pagination.setSize(6);
-			/* 设置总页面数目,总记录数量 */
+            /* 设置总页面数目,总记录数量 */
 			/* 从页面获取参数，包括学院，第几页 */
             HttpServletRequest request = ServletActionContext.getRequest();
             String col = request.getParameter("col");

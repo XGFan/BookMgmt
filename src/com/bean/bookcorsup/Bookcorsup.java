@@ -43,6 +43,12 @@ public class Bookcorsup implements java.io.Serializable {
 
     // Property accessors
 
+    /**
+     * default constructor
+     */
+    public Bookcorsup() {
+    }
+
     public Integer getId() {
         return this.id;
     }
@@ -87,16 +93,10 @@ public class Bookcorsup implements java.io.Serializable {
         return this.supplier;
     }
 
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
-    }
-
     // Constructors
 
-    /**
-     * default constructor
-     */
-    public Bookcorsup() {
+    public void setSupplier(String supplier) {
+        this.supplier = supplier;
     }
 
 

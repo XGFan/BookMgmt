@@ -1,9 +1,9 @@
 package com.priInfo.college;
 
-import java.util.List;
-
 import com.bean.college.College;
 import com.util.Pagination;
+
+import java.util.List;
 
 public interface ColServ {
     /**

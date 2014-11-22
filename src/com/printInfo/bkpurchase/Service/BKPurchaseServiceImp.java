@@ -1,35 +1,5 @@
 package com.printInfo.bkpurchase.Service;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Properties;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRichTextString;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
 import com.bean.bkpurchase.Bkpurchase;
 import com.bean.bkpurchase.BkpurchaseDAOInf;
 import com.bean.book.Book;
@@ -39,30 +9,45 @@ import com.bean.bookpurchase.BookpurchaseDAO;
 import com.bean.bookpurchaseview.Bookpurchaseview;
 import com.bean.bookpurchaseview.BookpurchaseviewDAO;
 import com.bean.courclass.CourclassDAOInf;
+import org.apache.poi.hssf.usermodel.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.*;
 
 public class BKPurchaseServiceImp implements BKPurchaseService {
-    private BkpurchaseDAOInf bkpurdao;
-    private BookcorsupDAOInf bcsdao;
-    private CourclassDAOInf ccdao;
-    private BookDAOInf bookdao;
-    private BookpurchaseviewDAO bookpurchaseviewDAO;
-    private BookpurchaseDAO bookpurchaseDAO;
-
-    private static final String NO = "序号";
     public static final String COL = "学院";
     public static final String MAJOR = "专业";
     public static final String SEMNUM = "学制";
-    private static final String CAMPUS = "校区";
     public static final String EDITION = "版本";
     public static final String GRADE = "年级";
     public static final String CORNAME = "课程名称";
     public static final String SEMESTER = "学期";
+    private static final String NO = "序号";
+    private static final String CAMPUS = "校区";
     private static final String BKNAME = "书名";
     private static final String AUTHOR = "作者";
     private static final String ISBN = "ISBN";
     private static final String BKNUM = "订购数量";
     private static final String PUBLISHER = "出版社";
     private static final String SUPPLIER = "供应商";
+    private BkpurchaseDAOInf bkpurdao;
+    private BookcorsupDAOInf bcsdao;
+    private CourclassDAOInf ccdao;
+    private BookDAOInf bookdao;
+    private BookpurchaseviewDAO bookpurchaseviewDAO;
+    private BookpurchaseDAO bookpurchaseDAO;
 
     public BkpurchaseDAOInf getBkpurdao() {
         return bkpurdao;

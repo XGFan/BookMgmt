@@ -1,8 +1,8 @@
 package com.printInfo.bkdistribute.Service;
 
-import java.util.List;
-
 import com.bean.bookpurchaseview.BookpurchaseviewDAO;
+
+import java.util.List;
 
 public class BKDistributeServiceImp implements BKDistributeService {
     private BookpurchaseviewDAO bookpurchaseviewDAO;

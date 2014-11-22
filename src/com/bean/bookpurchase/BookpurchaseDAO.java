@@ -1,8 +1,6 @@
 package com.bean.bookpurchase;
 
-import java.sql.SQLException;
-import java.util.List;
-
+import com.bean.bookpurchaseview.Bookpurchaseview;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
@@ -12,7 +10,8 @@ import org.hibernate.Transaction;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.bean.bookpurchaseview.Bookpurchaseview;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -27,6 +26,7 @@ import com.bean.bookpurchaseview.Bookpurchaseview;
  */
 
 public class BookpurchaseDAO extends HibernateDaoSupport {
+    public static final String ISBN = "isbn";
     private static final Log log = LogFactory.getLog(BookpurchaseDAO.class);
     // property constants
     private static final String IDCM = "idcm";
@@ -46,7 +46,6 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
     private static final String BKNAME = "bkname";
     private static final String AUTHOR = "author";
     private static final String EDITION = "edition";
-    public static final String ISBN = "isbn";
     private static final String IDSP = "idsp";
     private static final String PUBLISHER = "publisher";
     private static final String SUPPLIER = "supplier";
@@ -98,7 +97,6 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
 
     /**
      * 清空bookpurchase表
-     *
      */
     public void bathDelete() {
         log.debug("deleting Bookpurchase instance");
@@ -124,7 +122,6 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
 
     /**
      * 获取统计后的书本列表
-     *
      */
     public List<Object[]> getBookList() {
         log.debug("merging Bookpurchase instance");

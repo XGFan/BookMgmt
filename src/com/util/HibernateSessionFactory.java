@@ -18,11 +18,7 @@ class HibernateSessionFactory {
      * configuration file for the current session.
      */
     private static final String CONFIG_FILE_LOCATION = "/hibernate.cfg.xml";
-    private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
-    private static final Configuration configuration = new Configuration();
-    private static org.hibernate.SessionFactory sessionFactory;
     private static String configFile = CONFIG_FILE_LOCATION;
-
     static {
         try {
             configuration.configure(configFile);
@@ -32,6 +28,9 @@ class HibernateSessionFactory {
             e.printStackTrace();
         }
     }
+    private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+    private static final Configuration configuration = new Configuration();
+    private static org.hibernate.SessionFactory sessionFactory;
 
     private HibernateSessionFactory() {
     }

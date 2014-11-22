@@ -1,15 +1,5 @@
 package com.printInfo.bkpurchase.Action;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.bean.bookcorsup.Bookcorsup;
 import com.bean.courclass.Courclass;
 import com.opensymphony.xwork2.ActionContext;
@@ -18,6 +8,14 @@ import com.printInfo.supplier.Service.SupplierService;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
 import com.util.SendData;
+import org.apache.struts2.ServletActionContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class BkpurAction {
     private BKPurchaseService bkpurser;
@@ -68,7 +66,7 @@ public class BkpurAction {
             ActionContext.getContext().getSession().put("bkpurlist", bkpurlist);
 
             totalRecord = bkpurlist.size();
-			/* 设置总页面数目,总记录数量 */
+            /* 设置总页面数目,总记录数量 */
             pagination.setTotalRecord(totalRecord);
 
             System.out.println("totalPage:" + pagination.getTotalPage());
@@ -181,8 +179,9 @@ public class BkpurAction {
     }
 
     /**
-     *  todo
-     *  wrong
+     * todo
+     * wrong
+     *
      * @return null
      */
     public String getBKPurDate() {

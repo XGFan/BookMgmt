@@ -29,6 +29,12 @@ public class Corbkview implements java.io.Serializable {
 
     // Constructors
 
+    /**
+     * default constructor
+     */
+    public Corbkview() {
+    }
+
     public String getIdcor() {
         return idcor;
     }
@@ -101,18 +107,12 @@ public class Corbkview implements java.io.Serializable {
         this.isbn = isbn;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
 
-    /**
-     * default constructor
-     */
-    public Corbkview() {
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /** full constructor */

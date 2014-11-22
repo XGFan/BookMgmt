@@ -1,15 +1,16 @@
 package com.priInfo.corplan;
 
-import java.util.*;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-import com.bean.college.*;
-import com.bean.course.*;
+import com.bean.college.College;
+import com.bean.course.Course;
 import com.opensymphony.xwork2.ActionSupport;
 import com.priInfo.college.ColServ;
 import com.priInfo.course.CourseService;
-import com.util.*;
+import com.util.Result;
+import com.util.SendData;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public class CorplanAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
@@ -66,7 +67,7 @@ public class CorplanAction extends ActionSupport {
         try {
             /* get the Servlet API */
             HttpServletRequest request = ServletActionContext.getRequest();
-			/* get the parameters sent from the browser */
+            /* get the parameters sent from the browser */
             String col = request.getParameter("col");
             String major = request.getParameter("major");
             String semester = request.getParameter("semester");

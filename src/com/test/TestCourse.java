@@ -1,14 +1,12 @@
 package com.test;
 
-import java.util.List;
-
+import com.bean.course.CourseDAO;
+import com.priInfo.course.CourseService;
 import net.sf.json.JSONArray;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.bean.course.CourseDAO;
-import com.priInfo.course.CourseService;
+import java.util.List;
 
 public class TestCourse {
     public static void main(String args[]) {

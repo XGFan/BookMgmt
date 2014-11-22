@@ -1,13 +1,13 @@
 package com.util;
 
-import java.util.*;
-
 import com.bean.book.Book;
 import com.bean.college.College;
 import com.bean.corbook.Corbookview;
 import com.bean.corplan.Corplan;
-import com.bean.course.*;
+import com.bean.course.Course;
 import com.bean.supplier.Supplier;
+
+import java.util.*;
 
 public class ConvertUtils {
     /**
@@ -149,7 +149,7 @@ public class ConvertUtils {
     /**
      * 把学院，专业，班级号的list转换成map形式的list
      *
-     * @param  list obj-list
+     * @param list obj-list
      * @return map list
      */
     public static List ToCollegeList(List list) {

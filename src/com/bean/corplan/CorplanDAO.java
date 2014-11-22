@@ -1,9 +1,10 @@
 package com.bean.corplan;
 
-import java.util.List;
-
-import org.apache.commons.logging.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -18,10 +19,10 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  */
 
 public class CorplanDAO extends HibernateDaoSupport {
+    public static final String IDCOR = "idcor";
     private static final Log log = LogFactory.getLog(CorplanDAO.class);
     // property constants
     private static final String SEMESTER = "semester";
-    public static final String IDCOR = "idcor";
 
     protected void initDao() {
         // do nothing
@@ -178,7 +179,7 @@ public class CorplanDAO extends HibernateDaoSupport {
 
     /**
      * 初始化，根据Course自动生成所有的Corplan
-     *todo
+     * todo
      */
     public void initAllCorplan(List entities) {
         getHibernateTemplate().saveOrUpdateAll(entities);

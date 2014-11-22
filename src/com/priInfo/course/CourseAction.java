@@ -1,17 +1,20 @@
 package com.priInfo.course;
 
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
 import com.bean.corbook.Corbookview;
-import com.bean.course.*;
+import com.bean.course.Course;
 import com.opensymphony.xwork2.ActionSupport;
 import com.priInfo.college.ColServ;
 import com.printInfo.book.Service.CourseBookViewService;
-import com.util.*;
+import com.util.Pagination;
+import com.util.Result;
+import com.util.SendData;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CourseAction extends ActionSupport {
     private static final long serialVersionUID = 1L;
@@ -100,7 +103,7 @@ public class CourseAction extends ActionSupport {
             // System.out.println("专业:"+hasMajor);
             // System.out.println("学期:"+hasSem);
             if (!hasCol & !hasMajor) {
-				/* 学院和专业为全部，获取所有课程 */
+                /* 学院和专业为全部，获取所有课程 */
                 corlist = courseService.findByCol("", pagination);
             }
             if (!hasCol & hasMajor & !hasSem) {

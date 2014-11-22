@@ -1,10 +1,10 @@
 package com.bean.bkpurchase;
 
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -20,11 +20,11 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 public class BkpurchaseDAO extends HibernateDaoSupport implements
         BkpurchaseDAOInf {
-    private static final Log log = LogFactory.getLog(BkpurchaseDAO.class);
     // property constants
     public static final String BKNUM = "bknum";
     public static final String CAMPUS = "campus";
     public static final String SUPPLIER = "supplier";
+    private static final Log log = LogFactory.getLog(BkpurchaseDAO.class);
 
     protected void initDao() {
         // do nothing

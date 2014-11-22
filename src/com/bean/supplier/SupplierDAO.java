@@ -1,11 +1,10 @@
 package com.bean.supplier;
 
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -131,7 +130,7 @@ public class SupplierDAO extends HibernateDaoSupport implements SupplierDAOInf {
 
 	/* 根据出版社查idsp */
     /*
-	 * public Supplier findByPub(String publisher) {
+     * public Supplier findByPub(String publisher) {
 	 * log.debug("finding all Supplier instances"); try { String queryString =
 	 * "from Supplier where publisher='"+publisher+"'"; List
 	 * list=getHibernateTemplate().find(queryString); return list; } catch

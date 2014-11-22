@@ -1,14 +1,16 @@
 package com.priInfo.corplan;
 
-import java.util.*;
-
 import com.bean.college.College;
 import com.bean.college.CollegeDAO;
-import com.bean.corbook.*;
-import com.bean.corplan.*;
+import com.bean.corbook.CorbookDAO;
+import com.bean.corplan.Corplan;
+import com.bean.corplan.CorplanDAO;
 import com.bean.course.Course;
 import com.bean.course.CourseDAO;
 import com.util.ConvertUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CorplanServiceImp implements CorplanService {
     private CorplanDAO corplanDAO;
@@ -67,7 +69,7 @@ public class CorplanServiceImp implements CorplanService {
                 || "".equals(semester)) {
             return false;
         }
-		/* 1.查找学院 */
+        /* 1.查找学院 */
         List collegeList;
         collegeList = collegeDAO.getCol(col, major);
         College college = null;
@@ -169,7 +171,7 @@ public class CorplanServiceImp implements CorplanService {
         return true;
     }
 
-    public boolean deleteCorplan(String col, String major, String semester,String idcor, String corname) {
+    public boolean deleteCorplan(String col, String major, String semester, String idcor, String corname) {
 		/* query the corplan from the database */
         Corplan corplan;
         List corplanList;

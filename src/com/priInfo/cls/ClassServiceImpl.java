@@ -1,28 +1,16 @@
 package com.priInfo.cls;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import com.bean.cls.ClassDAO;
 import com.bean.cls.Class;
+import com.bean.cls.ClassDAO;
 import com.bean.college.College;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
 
+import java.util.*;
+
 public class ClassServiceImpl implements ClassService {
 
     private ClassDAO classDAO;
-
-    public ClassDAO getClassDAO() {
-        return classDAO;
-    }
-
-    public void setClassDAO(ClassDAO classDAO) {
-        this.classDAO = classDAO;
-    }
 
     /**
      * 将List转换成map类型
@@ -50,6 +38,14 @@ public class ClassServiceImpl implements ClassService {
         }
         System.out.println(clslist);
         return clslist;
+    }
+
+    public ClassDAO getClassDAO() {
+        return classDAO;
+    }
+
+    public void setClassDAO(ClassDAO classDAO) {
+        this.classDAO = classDAO;
     }
 
     public List fuzzyFind(String condition, Pagination pagination) {

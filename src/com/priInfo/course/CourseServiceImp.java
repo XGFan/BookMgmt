@@ -1,21 +1,21 @@
 package com.priInfo.course;
 
-import java.util.*;
-
 import com.bean.book.Book;
 import com.bean.book.BookDAO;
 import com.bean.college.College;
 import com.bean.college.CollegeDAO;
+import com.bean.corbook.CorbookDAO;
+import com.bean.corplan.Corplan;
+import com.bean.corplan.CorplanDAO;
 import com.bean.course.Course;
 import com.bean.course.CourseDAO;
 import com.bean.coursebk.Coursebk;
 import com.bean.coursebk.CoursebkDAO;
-import com.bean.corplan.Corplan;
-import com.bean.corplan.CorplanDAO;
-import com.bean.corbook.CorbookDAO;
 import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
+
+import java.util.List;
 
 public class CourseServiceImp implements CourseService {
     private CourseDAO courseDAO;
@@ -134,7 +134,7 @@ public class CourseServiceImp implements CourseService {
         for (String idbk : idbkArray) {
             System.out.println("idbk:" + idbk);
         }
-		/* 查找学院 */
+        /* 查找学院 */
         List collegeList;
         collegeList = collegeDAO.getCol(col, major);
         College college = null;

@@ -1,10 +1,10 @@
 package com.bean.courclass;
 
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -32,7 +32,7 @@ public class CourclassDAO extends HibernateDaoSupport implements
         log.debug("finding all Courclass instances");
         try {
             String queryString = "from Courclass where idcor='" + idcor
-                    + "' and semester='" +semester + "'";
+                    + "' and semester='" + semester + "'";
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);

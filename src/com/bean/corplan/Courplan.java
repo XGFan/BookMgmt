@@ -22,14 +22,6 @@ public class Courplan implements java.io.Serializable {
 
     // Constructors
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
     /**
      * default constructor
      */
@@ -41,6 +33,14 @@ public class Courplan implements java.io.Serializable {
      */
     public Courplan(CourplanId id) {
         this.id = id;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     // Property accessors

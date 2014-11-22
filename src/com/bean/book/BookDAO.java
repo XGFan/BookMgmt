@@ -1,10 +1,10 @@
 package com.bean.book;
 
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import java.util.List;
 
 
 /**
@@ -20,7 +20,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  */
 
 public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
-    private static final Log log = LogFactory.getLog(BookDAO.class);
     // property constants
     public static final String BKNAME = "bkname";
     public static final String AUTHOR = "author";
@@ -28,6 +27,7 @@ public class BookDAO extends HibernateDaoSupport implements BookDAOInf {
     public static final String ISBN = "isbn";
     public static final String PRICE = "price";
     public static final String MEMO = "memo";
+    private static final Log log = LogFactory.getLog(BookDAO.class);
 
     protected void initDao() {
         // do nothing

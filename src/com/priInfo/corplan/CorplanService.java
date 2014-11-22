@@ -44,7 +44,7 @@ public interface CorplanService {
      * @param corname  科目名
      * @return boolean
      */
-    public boolean deleteCorplan(String col, String major, String semester,String idcor, String corname);
+    public boolean deleteCorplan(String col, String major, String semester, String idcor, String corname);
 
     /**
      * 初始化教学计划表，重新生成，根据课程信息

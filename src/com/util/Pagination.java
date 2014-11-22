@@ -16,6 +16,16 @@ public class Pagination {
     private int totalRecord = 0;
 
     /**
+     * 构造方法，根据size来确定每页条目数量
+     *
+     * @param size 每页条目数量
+     */
+    public Pagination(int size) {
+        super();
+        this.size = size;
+    }
+
+    /**
      * 获取当前页开始（初始）位置
      *
      * @return int 开始（初始）位置
@@ -84,7 +94,7 @@ public class Pagination {
     /**
      * 设置所有记录，并计算出所有页码
      *
-     * @param totalRecord  设置所有记录数量
+     * @param totalRecord 设置所有记录数量
      */
     public void setTotalRecord(int totalRecord) {
         if (totalRecord < 1)
@@ -93,16 +103,6 @@ public class Pagination {
         //获取页数
         this.totalPage = totalRecord % size == 0 ? totalRecord / size : totalRecord / size + 1;
         setTotalPage();
-    }
-
-    /**
-     * 构造方法，根据size来确定每页条目数量
-     *
-     * @param size 每页条目数量
-     */
-    public Pagination(int size) {
-        super();
-        this.size = size;
     }
 
     @Override

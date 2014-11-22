@@ -1,12 +1,12 @@
 package com.printInfo.book.Service;
 
-import java.util.List;
-
 import com.bean.book.Book;
 import com.bean.book.BookDAOInf;
 import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
+
+import java.util.List;
 
 public class BookServiceImp implements BookService {
     private BookDAOInf bookDAO;
@@ -46,7 +46,7 @@ public class BookServiceImp implements BookService {
         return ConvertUtils.ToBookListFromBook(list);
     }
 
-    public List<Book> searchByBookPub(String bookname, String pub,Pagination pagination) {
+    public List<Book> searchByBookPub(String bookname, String pub, Pagination pagination) {
         List list = this.searchByBookPub(bookname, pub);
         return GetPaginationInfo.getSubList(list, pagination);
     }

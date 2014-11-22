@@ -1,16 +1,16 @@
 package com.priInfo.cls;
 
-import java.util.List;
-
 import com.bean.cls.Class;
 import com.bean.college.College;
 import com.util.Pagination;
+
+import java.util.List;
 
 public interface ClassService {
 
     /**
      * 通过班级编号查询班级信息
-     *todo
+     * todo
      */
     public Class findById(String idcls);
 
@@ -25,7 +25,7 @@ public interface ClassService {
 
     /**
      * 根据分页信息获取所有班级
-     *todo
+     * todo
      */
     public List findAllByPagination(Pagination pagination);
 
@@ -44,13 +44,13 @@ public interface ClassService {
 
     /**
      * 获取所有校区
-     *todo
+     * todo
      */
     public List getAllCampus();
 
     /**
      * 获取所有年级
-     *todo
+     * todo
      */
     public List getAllGrade();
 

@@ -1,9 +1,9 @@
 package com.bean.book;
 
+import com.bean.supplier.Supplier;
+
 import java.util.HashSet;
 import java.util.Set;
-
-import com.bean.supplier.Supplier;
 
 /**
  * Book entity. @author MyEclipse Persistence Tools

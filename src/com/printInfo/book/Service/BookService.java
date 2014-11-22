@@ -1,9 +1,9 @@
 package com.printInfo.book.Service;
 
-import java.util.List;
-
 import com.bean.book.Book;
 import com.util.Pagination;
+
+import java.util.List;
 
 public interface BookService {
     public List<Object> initBook();

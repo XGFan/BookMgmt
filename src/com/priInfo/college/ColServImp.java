@@ -1,11 +1,11 @@
 package com.priInfo.college;
 
-import java.util.List;
-
-import com.util.ConvertUtils;
-import com.util.Pagination;
 import com.bean.college.College;
 import com.bean.college.CollegeDAO;
+import com.util.ConvertUtils;
+import com.util.Pagination;
+
+import java.util.List;
 
 public class ColServImp implements ColServ {
     private CollegeDAO collegeDAO;
@@ -51,7 +51,7 @@ public class ColServImp implements ColServ {
                     majorCode = "0" + majorCode;
                 }
                 col.setIdcm(colCode + majorCode);
-                if(collegeDAO.save(col))
+                if (collegeDAO.save(col))
                     tag = true;
             } else {
                 // 不存在学院，获取所有学院，生成学院代码
@@ -69,12 +69,12 @@ public class ColServImp implements ColServ {
                     }
                     // 设置IDCM
                     col.setIdcm(colCode + majorCode);
-                    if(collegeDAO.save(col))
+                    if (collegeDAO.save(col))
                         tag = true;
                 } else {
                     //数据库中不存在任何专业信息
                     col.setIdcm("0101");
-                    if(collegeDAO.save(col))
+                    if (collegeDAO.save(col))
                         tag = true;
                 }
             }

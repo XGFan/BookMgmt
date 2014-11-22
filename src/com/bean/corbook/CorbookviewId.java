@@ -10,7 +10,7 @@ class CorbookviewId implements java.io.Serializable {
     private String idbk;
     private String idcor;
     /*private String corname;
-	private String col;
+    private String col;
 	private String major;
 	private String semester;
 	private String bkname;

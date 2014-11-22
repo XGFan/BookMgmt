@@ -1,12 +1,5 @@
 package com.printInfo.book.Action;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import org.apache.struts2.ServletActionContext;
 import com.bean.book.Book;
 import com.bean.corbook.Corbookview;
 import com.bean.course.Course;
@@ -20,6 +13,13 @@ import com.printInfo.supplier.Service.SupplierService;
 import com.util.Pagination;
 import com.util.Result;
 import com.util.SendData;
+import org.apache.struts2.ServletActionContext;
+
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class BookAction {
     private BookService bookService;
@@ -197,7 +197,7 @@ public class BookAction {
 
     public String getfuzzyPagination() {
         try {
-			/* 获取页面端传递的参数 */
+            /* 获取页面端传递的参数 */
 //            HttpServletRequest request = ServletActionContext.getRequest();
             // String condition = request.getParameter("condition");
             int totalRecord;

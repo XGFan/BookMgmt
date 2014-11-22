@@ -1,9 +1,9 @@
 package com.bean.course;
 
+import com.bean.college.College;
+
 import java.util.HashSet;
 import java.util.Set;
-
-import com.bean.college.College;
 
 /**
  * Course entity. @author MyEclipse Persistence Tools

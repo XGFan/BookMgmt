@@ -1,8 +1,8 @@
 package com.printInfo.supplier.Service;
 
-import java.util.List;
-
 import com.bean.supplier.Supplier;
+
+import java.util.List;
 
 public interface SupplierService {
     /**

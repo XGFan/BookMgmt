@@ -1,9 +1,9 @@
 package com.priInfo.course;
 
-import java.util.List;
-
-import com.bean.course.*;
+import com.bean.course.Course;
 import com.util.Pagination;
+
+import java.util.List;
 
 public interface CourseService {
 
@@ -127,8 +127,9 @@ public interface CourseService {
 
     /**
      * 更新课程信息
-     *
+     * <p/>
      * TODO 这个不像是更新科目
+     *
      * @deprecated
      */
     public boolean updateCourse(Course course);
