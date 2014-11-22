@@ -8,7 +8,6 @@
             <column name="id"/>
             <!--<generator class="assigned" /> -->
         </id>
-        <!--<composite-id name="id" class="com.bean.corplan.CourplanId"></composite-id> -->
         <property name="idcorsem" type="java.lang.String">
             <column name="idcorsem" length="10"/>
         </property>
