@@ -1,4 +1,4 @@
-package com.printInfo.bkpurchase.Action;
+package com.action;
 
 import com.bean.bookcorsup.Bookcorsup;
 import com.bean.courclass.Courclass;

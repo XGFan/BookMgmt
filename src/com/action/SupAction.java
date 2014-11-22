@@ -1,4 +1,4 @@
-package com.printInfo.supplier.Action;
+package com.action;
 
 import com.bean.supplier.Supplier;
 import com.opensymphony.xwork2.ActionContext;

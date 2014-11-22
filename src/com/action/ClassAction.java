@@ -1,8 +1,9 @@
-package com.priInfo.cls;
+package com.action;
 
 import com.bean.cls.Class;
 import com.bean.college.College;
 import com.opensymphony.xwork2.ActionSupport;
+import com.priInfo.cls.ClassService;
 import com.priInfo.college.ColServ;
 import com.util.Pagination;
 import com.util.SendData;

@@ -1,9 +1,10 @@
-package com.priInfo.corplan;
+package com.action;
 
 import com.bean.college.College;
 import com.bean.course.Course;
 import com.opensymphony.xwork2.ActionSupport;
 import com.priInfo.college.ColServ;
+import com.priInfo.corplan.CorplanService;
 import com.priInfo.course.CourseService;
 import com.util.Result;
 import com.util.SendData;

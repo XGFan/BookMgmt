@@ -1,7 +1,7 @@
 package test;
 
 import com.bean.college.CollegeDAO;
-import com.priInfo.college.ColAction;
+import com.action.ColAction;
 import com.util.ConvertUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

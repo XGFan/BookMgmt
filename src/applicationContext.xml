@@ -53,7 +53,7 @@
     </bean>
     <!--College部分 -->
     <!-- 定义与学院College相应的collegeAction -->
-    <bean id="collegeAction" class="com.priInfo.college.ColAction">
+    <bean id="collegeAction" class="com.action.ColAction">
         <property name="csv" ref="colServ"/>
     </bean>
     <!-- 定义与学院相关的服务colServ -->
@@ -67,7 +67,7 @@
 
     <!--Course部分 -->
     <!-- 定义与课程Course相应的courseAction -->
-    <bean id="courseAction" class="com.priInfo.course.CourseAction">
+    <bean id="courseAction" class="com.action.CourseAction">
         <property name="collgeService" ref="colServ"/>
         <property name="courseService" ref="courseService"/>
         <property name="courseBookViewService" ref="courseBookViewService"/>
@@ -91,7 +91,7 @@
 
     <!--Corplan部分 -->
     <!-- 定义与教学计划Corplan相应的corplanAction -->
-    <bean id="corplanAction" class="com.priInfo.corplan.CorplanAction">
+    <bean id="corplanAction" class="com.action.CorplanAction">
         <property name="collgeService" ref="colServ"/>
         <property name="courseService" ref="courseService"/>
         <property name="corplanService" ref="corplanService"/>
@@ -113,7 +113,7 @@
     </bean>
 
     <!-- book -->
-    <bean id="bookAction" class="com.printInfo.book.Action.BookAction">
+    <bean id="bookAction" class="com.action.BookAction">
         <property name="bookService" ref="bookService"/>
         <property name="courseService" ref="courseService"/>
         <property name="corbkviewService" ref="courseBookViewService"/>
@@ -136,7 +136,7 @@
     </bean>
 
     <!-- supplier 部分 -->
-    <bean id="supAction" class="com.printInfo.supplier.Action.SupAction">
+    <bean id="supAction" class="com.action.SupAction">
         <property name="supser" ref="supService"/>
         <!-- supSer 是供应商service类 -->
     </bean>
@@ -148,7 +148,7 @@
     </bean>
 
     <!-- class部分 -->
-    <bean id="classAction" class="com.priInfo.cls.ClassAction">
+    <bean id="classAction" class="com.action.ClassAction">
         <property name="classService" ref="classService"/>
         <property name="collegeService" ref="colServ"/>
     </bean>
@@ -160,7 +160,7 @@
     </bean>
 
     <!-- Bkpurchase 部分 -->
-    <bean id="bkpurAction" class="com.printInfo.bkpurchase.Action.BkpurAction">
+    <bean id="bkpurAction" class="com.action.BkpurAction">
         <property name="bkpurser" ref="bkpurService"/>
         <!-- bkpurser 是购书service类 -->
         <property name="supplierService" ref="supService"/>
@@ -201,7 +201,7 @@
         <property name="bookpurchaseviewDAO" ref="bookpurchaseviewDAO"/>
     </bean>
 
-    <bean id="bkdistAction" class="com.printInfo.bkdistribute.Action.BKdistAction">
+    <bean id="bkdistAction" class="com.action.BKdistAction">
         <property name="bkdistser" ref="bkdistService"/>
         <property name="bkpurser" ref="bkpurService"/>
         <property name="classService" ref="classService"/>

@@ -1,9 +1,10 @@
-package com.priInfo.course;
+package com.action;
 
 import com.bean.corbook.Corbookview;
 import com.bean.course.Course;
 import com.opensymphony.xwork2.ActionSupport;
 import com.priInfo.college.ColServ;
+import com.priInfo.course.CourseService;
 import com.printInfo.book.Service.CourseBookViewService;
 import com.util.Pagination;
 import com.util.Result;

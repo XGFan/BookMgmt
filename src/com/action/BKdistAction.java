@@ -1,4 +1,4 @@
-package com.printInfo.bkdistribute.Action;
+package com.action;
 
 import com.bean.bookpurchaseview.Bookpurchaseview;
 import com.priInfo.cls.ClassService;

@@ -1,4 +1,4 @@
-package com.printInfo.book.Action;
+package com.action;
 
 import com.bean.book.Book;
 import com.bean.corbook.Corbookview;
