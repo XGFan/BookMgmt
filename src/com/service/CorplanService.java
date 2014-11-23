@@ -25,7 +25,7 @@ public interface CorplanService {
 
     /**
      * 这个从函数名来说是更新，但是内容不是更新，更像是新保存
-     *
+     * todo
      * @param col      学院名
      * @param major    专业名
      * @param corname  科目名
@@ -36,7 +36,7 @@ public interface CorplanService {
 
     /**
      * 删除教学计划
-     *
+     * todo
      * @param col      学院名
      * @param major    专业名
      * @param semester 学期
@@ -48,12 +48,13 @@ public interface CorplanService {
 
     /**
      * 初始化教学计划表，重新生成，根据课程信息
+     * todo
      */
     public void initCorplan();
 
     /**
      * 删除所有教学计划
      */
-    public void dropAllCorplan();
+    public boolean dropAllCorplan();
 
 }

@@ -59,7 +59,7 @@ public interface BookDAO {
     List findByBknameFuzzy(String bkname);
 
     /**
-     * 根据教材名，进行模糊查找
+     * 根据教材id，进行精确查找
      *
      * @param idbk 教材id
      * @return 教材 obj LIST

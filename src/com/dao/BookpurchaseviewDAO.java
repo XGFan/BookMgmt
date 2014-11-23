@@ -22,12 +22,9 @@ import java.util.List;
 public class BookpurchaseviewDAO extends HibernateDaoSupport {
     private static final Log log = LogFactory.getLog(BookpurchaseviewDAO.class);
 
-    // property constants
-
     protected void initDao() {
-        // do nothing
     }
-
+//todo
     public List<Bookpurchaseview> findByYearAndSem(int year, int sem) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
         try {
@@ -39,7 +36,7 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
             throw re;
         }
     }
-
+//todo
     public List<Bookpurchaseview> findByYearAndSemAndCol(int year, int sem,
                                                          String idcls) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
@@ -49,14 +46,13 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
                     + ") = b.id.semester and b.id.idcls= '" + idcls + "')";
             //queryString += " order by b.id.col,b.id.major,b.id.grade desc,b.id.clsno";
             queryString += " order by convert_gbk(b.id.bkname) asc";
-            // System.out.println(queryString);
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
         }
     }
-
+//todo
     public List<Bookpurchaseview> findByYearAndSemAndGrade(int year, int sem,
                                                            int grade) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
@@ -65,7 +61,6 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
                     + "- b.id.grade)*2 + " + sem
                     + ") = b.id.semester and b.id.grade= '" + grade + "')";
             queryString += " order by b.id.col,b.id.major,b.id.grade desc,b.id.clsno";
-            // System.out.println(queryString);
             return getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);

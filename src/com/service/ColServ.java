@@ -11,7 +11,7 @@ public interface ColServ {
      *
      * @return 学院专业信息 map list
      */
-    public List<Object> initCol();
+    public List initCol();
 
     /**
      * 通过学院名精确查找专业班级信息
@@ -19,7 +19,7 @@ public interface ColServ {
      * @param col 学院名
      * @return 学院专业信息 map list
      */
-    public List<Object> searchByCol(String col);
+    public List searchByCol(String col);
 
     /**
      * 通过学院精确查找专业班级信息，根据分页信息返回一页信息
@@ -28,7 +28,7 @@ public interface ColServ {
      * @param pagination 分页信息
      * @return 以map形式的list返回一页信息
      */
-    public List<Object> searchByCol(String col, Pagination pagination);
+    public List searchByCol(String col, Pagination pagination);
 
     /**
      * 根据学院专业ID来删除学院专业信息
@@ -76,7 +76,7 @@ public interface ColServ {
      * @param major 专业名
      * @return 学院专业信息 obj list
      */
-    public List<College> getCols(String col, String major);
+    public List getCols(String col, String major);
 
     /**
      * 根据学院名称和专业名称获取记录

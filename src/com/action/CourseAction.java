@@ -368,7 +368,7 @@ public class CourseAction extends ActionSupport {
      */
     public List<Corbookview> findAllBook() {
         List<Corbookview> list;
-        list = courseBookViewService.findAllBk();
+        list = courseBookViewService.findAllCourse();
         SendData.send(list);
         return null;
     }

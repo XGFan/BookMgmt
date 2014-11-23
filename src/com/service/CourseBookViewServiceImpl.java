@@ -38,27 +38,22 @@ public class CourseBookViewServiceImpl implements CourseBookViewService {
         this.corBookViewDAO = corBookViewDAO;
     }
 
-    public List<Corbookview> findCourseByIdbk(String idbk) {
-        List<Corbookview> list = corBookViewDAO.findByIdbk(idbk);
+    public List findCourseByIdbk(String idbk) {
+        List list = corBookViewDAO.findByIdbk(idbk);
         return ConvertUtils.ToCorBookList(list);
     }
 
-    public List<Corbookview> findByCourse(String idcor) {
-        List<Corbookview> list = corBookViewDAO.findByIdcor(idcor);
+    public List findByCourse(String idcor) {
+        List list = corBookViewDAO.findByIdcor(idcor);
         return ConvertUtils.ToCorBookList(list);
     }
 
-    public List<Corbookview> findAllCourse() {
-        List<Corbookview> list = corBookViewDAO.findAll();
+    public List findAllCourse() {
+        List list = corBookViewDAO.findAll();
         return ConvertUtils.ToCorBookList(list);
     }
 
-    public List<Corbookview> findAllBk() {
-        List<Corbookview> list = corBookViewDAO.findAll();
-        return ConvertUtils.ToCorBookList(list);
-    }
-
-    public List<Corbookview> findCourseByCorname(String corname) {
+    public List findCourseByCorname(String corname) {
         List<Corbookview> list = corBookViewDAO.findCourseByCorname(corname);
         return ConvertUtils.ToCorBookList(list);
     }

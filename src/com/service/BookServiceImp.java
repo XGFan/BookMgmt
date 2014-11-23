@@ -30,45 +30,44 @@ public class BookServiceImp implements BookService {
         return tag;
     }
 
-    public List<Object> initBook() {
+    public List initBook() {
         List list = bookDAO.findAll();
         return ConvertUtils.ToBookList(list);
     }
 
-    public List<Object> initBook(Pagination pagination) {
+    public List initBook(Pagination pagination) {
         List list = this.initBook();
         return GetPaginationInfo.getSubList(list, pagination);
 
     }
 
-    public List<Book> searchByBookPub(String bookname, String pub) {
+    public List searchByBookPub(String bookname, String pub) {
         List list = bookDAO.findByBookPubFuzzy(bookname, pub);
         return ConvertUtils.ToBookListFromBook(list);
     }
 
-    public List<Book> searchByBookPub(String bookname, String pub, Pagination pagination) {
+    public List searchByBookPub(String bookname, String pub, Pagination pagination) {
         List list = this.searchByBookPub(bookname, pub);
         return GetPaginationInfo.getSubList(list, pagination);
     }
 
-    public List<Book> searchByISBN(String isbn) {
+    public List searchByISBN(String isbn) {
         List list = bookDAO.findByIdbkAccurate(isbn);
         return ConvertUtils.ToBookListFromBook(list);
     }
 
-    public List<Book> searchByISBN(String isbn, Pagination pagination) {
+    public List searchByISBN(String isbn, Pagination pagination) {
         List list = this.searchByISBN(isbn);
         return GetPaginationInfo.getSubList(list, pagination);
     }
 
-    public List<Book> searchByBkname(String bkname) {
-        List<Book> list = bookDAO.findByBknameFuzzy(bkname);
+    public List searchByBkname(String bkname) {
+        List list = bookDAO.findByBknameFuzzy(bkname);
         return ConvertUtils.ToBookListFromBook(list);
     }
 
     public boolean updateBook(Book book) {
-        bookDAO.update(book);
-        return true;
+        return bookDAO.update(book);
     }
 
 }

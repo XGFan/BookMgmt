@@ -17,10 +17,7 @@ public class SupplierServiceImp implements SupplierService {
         this.supplierDAO = supplierDAO;
     }
 
-    /*
-     * 初始化供应商信息。
-     */
-    public List<Object> findAllPub() {
+    public List findAllPub() {
         List list = supplierDAO.findAllOrderByPublisher();
         return ConvertUtils.ToPubList(list);
     }
@@ -29,14 +26,10 @@ public class SupplierServiceImp implements SupplierService {
         return supplierDAO.findAllSupplier();
     }
 
-    /* 根据出版社查询出版社的idsp */
-    public List<Supplier> findByPublish(String publish) {
+    public List findByPublish(String publish) {
         return supplierDAO.findByPublisher(publish);
     }
 
-    /*
-     * 根据idsp删除出版社信息。若供应商为“其他”则删除该条记录否则 按供应商名进行查询 若记录条数为1，则将出版社置为null.否则删除该条记录
-     */
     public boolean delPub(Supplier sup) {
         String supplier = sup.getSupplier();
         if (supplier.equals("其他")) {
@@ -54,11 +47,6 @@ public class SupplierServiceImp implements SupplierService {
         return true;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see com.printInfo.supplier.SupplierService#delSup(java.lang.String)
-     */
     public boolean delSup(String sup) {
         List<Supplier> list = supplierDAO.findBySupplier(sup);
         for (Supplier s : list) {
@@ -77,19 +65,11 @@ public class SupplierServiceImp implements SupplierService {
         return true;
     }
 
-    /*
-     * @see com.printInfo.supplier.SupplierService#initSup()
-     */
-    public List<Supplier> initSup() {
+    public List initSup() {
         return supplierDAO.findAll();
     }
 
-    /*
-     * @see
-     * com.printInfo.supplier.SupplierService#searchByPubSup(java.lang.String,
-     * java.lang.String)
-     */
-    public List<Supplier> searchByPubSup(String publisher, String supplier) {
+    public List searchByPubSup(String publisher, String supplier) {
         if (supplier.trim().equals("--请选择--")) {
             if (publisher.equals("")) {// 查询整张表
                 return supplierDAO.findAll();
@@ -108,9 +88,6 @@ public class SupplierServiceImp implements SupplierService {
         }
     }
 
-    /*
-     * 添加供应商 ，或为相应的供应商添加出版社（若无相应的供应商则返回到添加供应商的界面。若有供应商则添加）
-     */
     public boolean addSup(String supplier) {
         List list = supplierDAO.findAllOrderByIdsp();
         Supplier sup = (Supplier) list.get(list.size() - 1);// 获得最后一个元素对象
@@ -128,14 +105,12 @@ public class SupplierServiceImp implements SupplierService {
         }
     }
 
-    // 为某一供应商添加出版社
     public boolean addPub(String publisher, String supplier) {
         List list = supplierDAO.findAllOrderByIdsp();
         Supplier sup = (Supplier) list.get(list.size() - 1);// 获得最后一个元素对象
+        /*生成新的idsp*/
         String idsp = String.valueOf(Integer.parseInt(sup.getIdsp()) + 1);
-
         List supList = supplierDAO.accfindBySubPub(supplier, publisher);
-
         if (supList.isEmpty()) { // 判断list为空用 isempty 或list.size()==0
             Supplier temp = new Supplier();
             temp.setIdsp(idsp);
@@ -148,9 +123,6 @@ public class SupplierServiceImp implements SupplierService {
     }
 
     public boolean updateSupplier(Supplier supplier) {
-        System.out.println("service :" + supplier.getSupplier() + "  "
-                + supplier.getPublisher());
-        supplierDAO.updateSup(supplier);
-        return true;
+        return supplierDAO.updateSup(supplier);
     }
 }

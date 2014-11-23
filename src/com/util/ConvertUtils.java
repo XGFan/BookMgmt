@@ -1,6 +1,8 @@
 package com.util;
 
 import com.bean.book.Book;
+import com.bean.cls.*;
+import com.bean.cls.Class;
 import com.bean.college.College;
 import com.bean.corbook.Corbookview;
 import com.bean.corplan.Corplan;
@@ -33,7 +35,39 @@ public class ConvertUtils {
         return courselist;
     }
 
-    /* 将数据库处理的结果转换为表示层学需要的数据 */
+    /**
+     * 将obj List转换成map list类型
+     *
+     * @param list obj list
+     * @return map list
+     */
+    public static List class2List(List list) {
+        Iterator it = list.iterator();
+        List clslist = new ArrayList();
+        while (it.hasNext()) {
+            Map map = new HashMap();
+            com.bean.cls.Class cls = (Class) it.next();
+            map.put("col", cls.getCollege().getCol());
+            map.put("major", cls.getCollege().getMajor());
+            map.put("idcm", cls.getCollege().getIdcm());
+            map.put("semester", cls.getSemester());
+            map.put("campus", cls.getCampus());
+            map.put("clsno", cls.getClsno());
+            map.put("grade", cls.getGrade());
+            map.put("idcls", cls.getIdcls());
+            map.put("clsno", cls.getClsno());
+            map.put("stunum", cls.getStunum());
+            clslist.add(map);
+        }
+        System.out.println(clslist);
+        return clslist;
+    }
+
+    /**
+     * 将数据库处理的结果转换为表示层学需要的数据
+     * @param list obj list
+     * @return mpa list
+     */
     public static List ToCorplanList(List list) {
         Iterator it = list.iterator();
         List corplanlist = new ArrayList();
@@ -53,7 +87,11 @@ public class ConvertUtils {
         return corplanlist;
     }
 
-    /* 将数据库处理的结果转换为表示层学需要的数据 */
+    /**
+     * 将数据库处理的结果转换为表示层学需要的数据
+     * @param list obj list
+     * @return map list
+     */
     public static List ToBookList(List list) {
         List booklist = new ArrayList();
         for (Object aList : list) {
@@ -72,7 +110,11 @@ public class ConvertUtils {
         return booklist;
     }
 
-    /* 将数据库处理的结果转换为表示层学需要的数据 */
+    /**
+     * 将数据库处理的结果转换为表示层学需要的数据
+     * @param list obj list
+     * @return map list
+     */
     public static List ToBookListFromBook(List list) {
         List booklist = new ArrayList();
         for (Object aList : list) {
@@ -90,6 +132,11 @@ public class ConvertUtils {
         return booklist;
     }
 
+    /**
+     * 将数据库处理的结果转换为表示层学需要的数据
+     * @param list obj list
+     * @return map list
+     */
     public static List ToCorBookList(List list) {
         List corbooklist = new ArrayList();
 

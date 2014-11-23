@@ -236,7 +236,7 @@ public class CorplanServiceImp implements CorplanService {
 
     }
 
-    public void dropAllCorplan() {
-        corplanDAO.deleteAllCorplan();
+    public boolean dropAllCorplan() {
+        return corplanDAO.deleteAllCorplan();
     }
 }

@@ -2,10 +2,12 @@ package com.service;
 
 import com.bean.college.College;
 import com.dao.CollegeDAO;
-import com.util.ConvertUtils;
+import com.util.GetPaginationInfo;
 import com.util.Pagination;
 
 import java.util.List;
+
+import static com.util.ConvertUtils.ToCollegeList;
 
 public class ColServImp implements ColServ {
     private CollegeDAO collegeDAO;
@@ -22,9 +24,9 @@ public class ColServImp implements ColServ {
         return collegeDAO.deleteById(idcm);
     }
 
-    public List<Object> initCol() {
+    public List initCol() {
         List list = collegeDAO.findAll();
-        return ConvertUtils.ToCollegeList(list);
+        return ToCollegeList(list);
     }
 
     public boolean saveCol(College col) {
@@ -86,25 +88,14 @@ public class ColServImp implements ColServ {
         return collegeDAO.update(col);
     }
 
-    public List<Object> searchByCol(String col) {
+    public List searchByCol(String col) {
         List list = collegeDAO.findByCol(col);
-        return ConvertUtils.ToCollegeList(list);
+        return ToCollegeList(list);
     }
 
-    public List<Object> searchByCol(String col, Pagination pagination) {
+    public List searchByCol(String col, Pagination pagination) {
         List list = collegeDAO.findByCol(col);
-        // 设置总记录的条数
-        pagination.setTotalRecord(list.size());
-        if (pagination.getSize() < list.size()) {
-            int range = pagination.getStart() + pagination.getSize();
-            if (range < list.size()) {
-                list = list.subList(pagination.getStart(),
-                        pagination.getStart() + pagination.getSize());
-            } else {
-                list = list.subList(pagination.getStart(), list.size());
-            }
-        }
-        return ConvertUtils.ToCollegeList(list);
+        return ToCollegeList(GetPaginationInfo.getSubList(list, pagination));
     }
 
     public List getAllColName() {
@@ -115,34 +106,22 @@ public class ColServImp implements ColServ {
         return collegeDAO.getMajorByCol(col);
     }
 
-    public List<College> getCols(String col, String major) {
+    public List getCols(String col, String major) {
         return collegeDAO.getCol(col, major);
     }
 
     public List getCol(String col, String major) {
-        List<College> list = collegeDAO.getCol(col, major);
-        return ConvertUtils.ToCollegeList(list);
+        List list = collegeDAO.getCol(col, major);
+        return ToCollegeList(list);
     }
 
     public List fuzzyQuery(String condition) {
         List list = collegeDAO.fuzzyQuery(condition);
-        return ConvertUtils.ToCollegeList(list);
+        return ToCollegeList(list);
     }
 
     public List fuzzyQuery(String condition, Pagination pagination) {
-
         List list = collegeDAO.fuzzyQuery(condition);
-        // 设置总记录的条数
-        pagination.setTotalRecord(list.size());
-        if (pagination.getSize() < list.size()) {
-            int range = pagination.getStart() + pagination.getSize();
-            if (range < list.size()) {
-                list = list.subList(pagination.getStart(),
-                        pagination.getStart() + pagination.getSize());
-            } else {
-                list = list.subList(pagination.getStart(), list.size());
-            }
-        }
-        return ConvertUtils.ToCollegeList(list);
+        return ToCollegeList(GetPaginationInfo.getSubList(list, pagination));
     }
 }

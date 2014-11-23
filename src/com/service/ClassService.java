@@ -9,23 +9,25 @@ import java.util.List;
 public interface ClassService {
 
     /**
-     * 通过班级编号查询班级信息
-     * todo
+     * 根据班级id查找班级
+     * @param idcls 班级id
+     * @return class obj
      */
     public Class findById(String idcls);
 
     /**
      * 根据条件进行模糊查询，并根据分页信息进行返回list
      *
-     * @param condition  查询条件(LIKE)
+     * @param condition  查询条件
      * @param pagination 分页配置信息
-     * @return list
+     * @return map list
      */
     public List fuzzyFind(String condition, Pagination pagination);
 
     /**
-     * 根据分页信息获取所有班级
-     * todo
+     * 获取所有班级,根据分页信息返回一页
+     * @param pagination 分页信息
+     * @return 一页班级
      */
     public List findAllByPagination(Pagination pagination);
 
@@ -44,20 +46,20 @@ public interface ClassService {
 
     /**
      * 获取所有校区
-     * todo
+     * @return string list
      */
     public List getAllCampus();
 
     /**
      * 获取所有年级
-     * todo
+     * @return string list
      */
     public List getAllGrade();
 
     /**
      * 批量删除班级
      *
-     * @param idclses id LIST
+     * @param idclses id []
      * @return boolean
      */
     public boolean deleteClasses(String[] idclses);
@@ -67,14 +69,14 @@ public interface ClassService {
      *
      * @param campus  校区
      * @param grade   年级
-     * @param clsnnum 班号
+     * @param clsnnum 需要添加班级数量
      * @param college 学院
      * @return bool
      */
     public boolean addClasses(String campus, String grade, int clsnnum, College college);
 
     /**
-     * 针对校区和人数的修改
+     * 修改班级
      *
      * @param cls 班级
      * @return bool

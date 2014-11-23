@@ -80,9 +80,9 @@ public class CorbookviewDAO extends HibernateDaoSupport {
     }
 
     /**
-     * 返回所有信息
+     * 返回所有CourseBookView
      *
-     * @return 科目书本视图 obj list
+     * @return CourseBookView obj list
      */
     public List findAll() {
         log.debug("finding all Corbookview instances");
@@ -100,7 +100,7 @@ public class CorbookviewDAO extends HibernateDaoSupport {
      * 通过corname模糊查找
      *
      * @param corname 科目名称
-     * @return LIST
+     * @return CourseBookView obj LIST
      */
     public List findCourseByCorname(String corname) {
         return findByPropertyFuzzy("corname",corname);

@@ -147,6 +147,7 @@ public class CorplanDAO extends HibernateDaoSupport {
 
     /**
      * 删除所有教学计划
+     * @return boolean
      */
     public boolean deleteAllCorplan() {
         List corplanList = this.findAll();

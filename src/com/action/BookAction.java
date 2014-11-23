@@ -257,20 +257,6 @@ public class BookAction {
         return null;
     }
 
-    public String searchByBPBook() {
-        String bookname = "生药学实验";
-        String pub = "医药科技";
-        System.out.println(bookService);
-        List<Book> list = bookService.searchByBookPub(bookname, pub);
-        if (list != null) {
-            for (Book b : list) {
-                System.out.println("bookname" + b.getBkname());
-            }
-        }
-        this.list = list;
-        return null;
-    }
-
     public String searchByISBNBook() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String isbn = request.getParameter("ISBN");

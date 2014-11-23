@@ -72,7 +72,7 @@ public interface SupplierDAO {
     public List findAllOrderByPublisher();
 
     /**
-     * 返回所有，根据idsp排序
+     * 返回所有供应商，根据idsp排序
      * @return Supplier obj LIST
      */
     public List findAllOrderByIdsp();

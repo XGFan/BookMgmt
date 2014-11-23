@@ -101,9 +101,9 @@ public class CollegeDAO extends HibernateDaoSupport {
      *
      * @param propertyName 属性名
      * @param value        属性值
-     * @return 查找的结果LIST
+     * @return College obj LIST
      */
-    List findByProperty(String propertyName, Object value) {
+    List findByProperty(String propertyName, String value) {
         log.debug("finding College instance with property: " + propertyName
                 + ", value: " + value);
         try {
@@ -120,9 +120,9 @@ public class CollegeDAO extends HibernateDaoSupport {
      * 根据学院查找
      *
      * @param col 学院
-     * @return 学院专业班级信息
+     * @return College obj LIST
      */
-    public List findByCol(Object col) {
+    public List findByCol(String col) {
         return findByProperty(COL, col);
     }
 
@@ -176,31 +176,36 @@ public class CollegeDAO extends HibernateDaoSupport {
 
     /**
      * 获取所有的distinct学院名称
+     * @return string list
      */
     public List getAllCol() {
         log.debug("finding all Cols");
+        List list = null;
         try {
             String queryString = "select distinct col from College";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
      * 通过学院名称获取所有的distinct专业名称
+     * @param col 学院名
+     * @return distinct专业 string list
      */
     public List getMajorByCol(String col) {
         log.debug("finding all Majors by colname");
+        List list = null;
         try {
             String queryString = "select distinct major from College as c where c.col='"
                     + col + "'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
@@ -225,17 +230,20 @@ public class CollegeDAO extends HibernateDaoSupport {
 
     /**
      * 模糊查询，通过学院或者专业
+     * @param condition 关键字
+     * @return College obj list
      */
     public List fuzzyQuery(String condition) {
         log.debug("finding Col by colname or major");
+        List list = null;
         try {
             String queryString = "from College as c where c.col like '%"
                     + condition + "%' or c.major like '%" + condition + "%'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
 }

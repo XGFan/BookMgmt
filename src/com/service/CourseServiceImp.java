@@ -2,7 +2,6 @@ package com.service;
 
 import com.bean.book.Book;
 import com.dao.*;
-import com.dao.BookDAOImp;
 import com.bean.college.College;
 import com.bean.corplan.Corplan;
 import com.bean.course.Course;
@@ -62,48 +61,48 @@ public class CourseServiceImp implements CourseService {
 
 
 
-    public List<Object> init() {
+    public List init() {
         List list = courseDAO.findAll();
         return ConvertUtils.ToCourseList(list);
     }
 
-    public List<Object> findByCol(String col) {
+    public List findByCol(String col) {
         return ConvertUtils.ToCourseList(courseDAO.getCourseByCol(col));
     }
 
-    public List<Object> findByCol(String col, Pagination pagination) {
-        List list = this.findByCol(col);
+    public List findByCol(String col, Pagination pagination) {
+        List list = findByCol(col);
         return GetPaginationInfo.getSubList(list, pagination);
     }
 
-    public List<Object> findByColMajor(String col, String major) {
+    public List findByColMajor(String col, String major) {
         return ConvertUtils.ToCourseList(courseDAO.getCourseByColMajor(col, major));
     }
 
-    public List<Object> findByColMajor(String col, String major, Pagination pagination) {
-        List list = this.findByColMajor(col, major);
+    public List findByColMajor(String col, String major, Pagination pagination) {
+        List list = findByColMajor(col, major);
         return GetPaginationInfo.getSubList(list, pagination);
     }
 
-    public List<Object> findFuzzyByCorName(String col, String major, String corname) {
+    public List findFuzzyByCorName(String col, String major, String corname) {
         List list = courseDAO.getCourseFuzzyByCorname(col, major, corname);
         return ConvertUtils.ToCourseList(list);
     }
 
-    public List<Object> findByColMajorSem(String col, String major, String sem) {
+    public List findByColMajorSem(String col, String major, String sem) {
         return ConvertUtils.ToCourseList(courseDAO.getCourseByColMajorSem(col, major, sem));
     }
 
-    public List<Object> findByColMajorSem(String col, String major, String sem, Pagination pagination) {
-        List list = this.findByColMajorSem(col, major, sem);
+    public List findByColMajorSem(String col, String major, String sem, Pagination pagination) {
+        List list = findByColMajorSem(col, major, sem);
         return GetPaginationInfo.getSubList(list, pagination);
     }
 
-    public List<Object> fuzzyQuery(String condition) {
+    public List fuzzyQuery(String condition) {
         return ConvertUtils.ToCourseList(courseDAO.fuzzyQuery(condition));
     }
 
-    public List<Object> fuzzyQuery(String condition, Pagination pagination) {
+    public List fuzzyQuery(String condition, Pagination pagination) {
         List list = ConvertUtils.ToCourseList(courseDAO.fuzzyQuery(condition));
         return GetPaginationInfo.getSubList(list, pagination);
     }
@@ -370,15 +369,15 @@ public class CourseServiceImp implements CourseService {
     }
 
     public boolean deleteCourse(String idcor) {
-        boolean tag = false;
+        boolean tag = true;
         Course course;
         course = courseDAO.findById(idcor);
         if (course != null) {
             try {
                 courseDAO.delete(course);
-                tag = true;
             } catch (Exception e) {
                 e.printStackTrace();
+                tag = false;
             }
         }
         return tag;
