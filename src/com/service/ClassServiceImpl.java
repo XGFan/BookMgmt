@@ -80,8 +80,7 @@ public class ClassServiceImpl implements ClassService {
     }
 
     public boolean editClasses(Class cls) {
-        classDAO.saveOrUpdate(cls);
-        return true;
+        return classDAO.saveOrUpdate(cls);
     }
 
     public Class findById(String idcls) {

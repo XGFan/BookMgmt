@@ -240,8 +240,10 @@ public class BookAction {
         int random = (int) Math.floor(Math.random() * 100000);
         book.setIdbk(myFmt.format(new Date()) + String.format("%1$05d", random)
                 + "");
-        bookService.addBook(book);
-        return null;
+        if( bookService.addBook(book))
+            return "success";
+        else
+            return "fail";
     }
 
     /**

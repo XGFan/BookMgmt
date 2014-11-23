@@ -6,7 +6,7 @@ public interface CourseBookViewService {
     /**
      * 通过教材id查找CourseBookView
      *
-     * @param idbk
+     * @param idbk 教材id
      * @return CourseBookView map list
      */
     public List findCourseByIdbk(String idbk);

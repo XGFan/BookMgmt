@@ -56,7 +56,7 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
                 + ", value: " + value);
         List list = null;
         try {
-            String hql = "from Book book where book." + propertyName + " = ?";
+            String hql = "from Book book where book." + propertyName + "=?";
             list = getHibernateTemplate().find(hql, value);
         } catch (RuntimeException re) {
             log.error("accurate find by " + propertyName + " failed", re);
@@ -84,8 +84,14 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
     }
 
     public boolean update(Book book) {
-        getHibernateTemplate().saveOrUpdate(book);
-        return true;
+        boolean tag = true;
+        try{
+            getHibernateTemplate().saveOrUpdate(book);
+        }catch (RuntimeException re){
+            log.debug("update book failed",re);
+            tag = false;
+        }
+        return tag;
     }
 
     public List findByBknameFuzzy(String bkname) {

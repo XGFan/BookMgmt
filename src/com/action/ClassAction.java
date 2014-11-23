@@ -247,7 +247,7 @@ public class ClassAction extends ActionSupport {
         int addclsnnum = Integer.parseInt(request.getParameter("addclsnnum"));
         String addcol = request.getParameter("addcol");
         String addmajor = request.getParameter("addmajor");
-        College addcollege = collegeService.getCols(addcol, addmajor).get(0);
+        College addcollege = (College) collegeService.getCols(addcol, addmajor).get(0);
         boolean result = classService.addClasses(addcampus, addgrade,
                 addclsnnum, addcollege);
         SendData.send(result);

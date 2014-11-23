@@ -31,14 +31,15 @@ public class CollegeDAO extends HibernateDaoSupport {
      */
     public boolean save(College transientInstance) {
         log.debug("saving College instance");
+        boolean tag = true;
         try {
             getHibernateTemplate().saveOrUpdate(transientInstance);
             log.debug("save successful");
-            return true;
         } catch (RuntimeException re) {
             log.error("save failed", re);
-            throw re;
+            tag = false;
         }
+        return tag;
     }
 
     /**
@@ -49,14 +50,15 @@ public class CollegeDAO extends HibernateDaoSupport {
      */
     public boolean update(College transientInstance) {
         log.debug("update College instance");
+        boolean tag = true;
         try {
             getHibernateTemplate().saveOrUpdate(transientInstance);
             log.debug("update successful");
-            return true;
         } catch (RuntimeException re) {
             log.error("update failed", re);
-            throw re;
+            tag = false;
         }
+        return false;
     }
 
     /**

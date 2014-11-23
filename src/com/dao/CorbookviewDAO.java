@@ -25,7 +25,7 @@ public class CorbookviewDAO extends HibernateDaoSupport {
      * @param value        属性值
      * @return Corbookview obj LIST
      */
-    public List findByPropertyAccurate(String propertyName, String value) {
+    List findByPropertyAccurate(String propertyName, String value) {
         log.debug("finding Corbookview instance with property: " + propertyName
                 + ", value: " + value);
         List list = null;
@@ -46,7 +46,7 @@ public class CorbookviewDAO extends HibernateDaoSupport {
      * @param value        属性值
      * @return Corbookview obj LIST
      */
-    public List findByPropertyFuzzy(String propertyName, String value) {
+    List findByPropertyFuzzy(String propertyName, String value) {
         log.debug("finding Corbookview instance with property: " + propertyName
                 + ", value: " + value);
         List list = null;
