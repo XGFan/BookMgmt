@@ -83,6 +83,11 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
         return findByPropertyAccurate("idbk", idbk);
     }
 
+    @Override
+    public List findByIsbnAccurate(String isbn) {
+        return findByPropertyAccurate("isbn", isbn);
+    }
+
     public boolean update(Book book) {
         boolean tag = true;
         try{

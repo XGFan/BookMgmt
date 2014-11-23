@@ -52,7 +52,7 @@ public class CorbookviewDAO extends HibernateDaoSupport {
         List list = null;
         try {
             String queryString = "from Corbookview as model where model."
-                    + propertyName + " like '%" + value + "'%";
+                    + propertyName + " like '%" + value + "%'";
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("fuzzy find by " + propertyName + " failed", re);
@@ -77,7 +77,7 @@ public class CorbookviewDAO extends HibernateDaoSupport {
      * @return Corbookview obj list
      */
     public List findByIdbk(String Idbk) {
-        return findByPropertyAccurate("idcor", Idbk);
+        return findByPropertyAccurate("idbk", Idbk);
     }
 
     /**

@@ -52,7 +52,7 @@ public class BookServiceImp implements BookService {
     }
 
     public List searchByISBN(String isbn) {
-        List list = bookDAO.findByIdbkAccurate(isbn);
+        List list = bookDAO.findByIsbnAccurate(isbn);
         return ConvertUtils.ToBookListFromBook(list);
     }
 

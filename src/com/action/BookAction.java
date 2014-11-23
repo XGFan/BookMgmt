@@ -266,14 +266,13 @@ public class BookAction {
         return null;
     }
 
-    public List<CourseBookViewService> findCourseByIdbk() {
+    public List findCourseByIdbk() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String idbk = request.getParameter("idbk");
         List<Corbookview> list;
         list = corbkviewService.findCourseByIdbk(idbk);
         SendData.send(list);
         return null;
-
     }
 
     public List<Book> findBookByBkname() {

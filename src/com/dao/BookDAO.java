@@ -67,6 +67,14 @@ public interface BookDAO {
     List findByIdbkAccurate(String idbk);
 
     /**
+     * 根据isbn，进行精确查找
+     *
+     * @param isbn isbn
+     * @return 教材 obj LIST
+     */
+    List findByIsbnAccurate(String isbn);
+
+    /**
      * 返回所有教材LIST(join 供应商)
      * edition,author,price,bkname,idbk,isbn,publisher
      *
