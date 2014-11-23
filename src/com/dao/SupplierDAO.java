@@ -1,185 +1,117 @@
 package com.dao;
 
 import com.bean.supplier.Supplier;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import java.util.List;
 
-/**
- * A data access object (DAO) providing persistence and search support for
- * Supplier entities. Transaction control of the save(), update() and delete()
- * operations can directly support Spring container-managed transactions or they
- * can be augmented to handle user-managed Spring transactions. Each of these
- * methods provides additional information for how to configure it for the
- * desired type of transaction control.
- *
- * @author MyEclipse Persistence Tools
- * @see com.bean.supplier.Supplier
- */
+public interface SupplierDAO {
 
-public class SupplierDAO extends HibernateDaoSupport implements SupplierDAOInf {
-    private static final Log log = LogFactory.getLog(SupplierDAO.class);
-    // property constants
-    private static final String SUPPLIER = "supplier";
-    private static final String PUBLISHER = "publisher";
+    /**
+     * 保存
+     * @param transientInstance 实例
+     * @return boolean
+     */
+    public boolean save(Supplier transientInstance);
 
-    protected void initDao() {
-        // do nothing
-    }
+    /**
+     * 删除
+     * @param persistentInstance 实例
+     * @return boolean
+     */
+    public boolean delete(Supplier persistentInstance);
 
-    /*
+    /**
+     * 根据id查找Supplier
+     * @param id id
+     * @return Supplier obj
+     */
+    public Supplier findById(java.lang.String id);
+
+    /**
+     * 传入属性名和属性值精确查找，返回查找结果LIST
+     *
+     * @param propertyName 属性名
+     * @param value        属性值
+     * @return Supplier obj LIST
+     */
+    List findByPropertyAccurate(String propertyName, String value);
+
+    /**
+     * 传入属性名和属性值模糊查找，返回查找结果LIST
+     *
+     * @param propertyName 属性名
+     * @param value        属性值
+     * @return Supplier obj LIST
+     */
+    List findByPropertyFuzzy(String propertyName, String value);
+
+    /**
+     * 根据供应商精确查找
+     * @param supplier 供应商
+     * @return Supplier obj LIST
+     */
+    public List findBySupplier(String supplier);
+
+    /**
+     * 根据出版社精确查找
+     * @param publisher 出版社
+     * @return Supplier obj LIST
+     */
+    public List findByPublisher(String publisher);
+
+    /**
+     * 返回所有 Supplier obj LIST
+     * @return Supplier obj LIST
+     */
+    public List findAll();
+
+    /**
+     * 返回所有，根据publisher排序
+     * @return Supplier obj LIST
+     */
+    public List findAllOrderByPublisher();
+
+    /**
+     * 返回所有，根据idsp排序
+     * @return Supplier obj LIST
+     */
+    public List findAllOrderByIdsp();
+
+    /**
+     * 返回所有distinct的供应商
+     * @return string list
+     */
+    public List findAllSupplier();
+
+    /**
      * supplier 的模糊查询
+     * @param publisher 出版社
+     * @return list
      */
-    public List<Supplier> likeFindByPub(String publisher) {
-        String hql = "from Supplier where publisher like ?";
-        return getHibernateTemplate().find(hql, "%" + publisher + "%");
-    }
+    public List likeFindByPub(String publisher);
 
-    /*
-     * 按supplier 精确查询，publisher模糊查询
+    /**
+     * todo 这hql语句有问题
+     * @param supplier 供应商
+     * @param publisher 出版社
+     * @return 查找内容
      */
-    public List findBySubPub(String supplier, String publisher) {
+    public List findBySubPub(String supplier, String publisher);
 
-        String hql = "from Supplier where supplier='" + supplier
-                + "' and publisher like ?";
-        return getHibernateTemplate().find(hql, "%" + publisher + "%");
-    }
-
-    /*
+    /**
+     * todo 这hql语句看着不对劲
      * 按supplier 精确查询，publisher精确查询
+     * @param supplier 供应商
+     * @param publisher 出版社
+     * @return 查找内容
      */
-    public List accfindBySubPub(String supplier, String publisher) {
-        log.debug("accfindBySubPub");
-        try {
-            String hql = "from Supplier where supplier='" + supplier;
-            hql += "' and publisher = '" + publisher + "'";
-            return getHibernateTemplate().find(hql);
-        } catch (RuntimeException re) {
-            log.error("accfindBySubPub failed", re);
-            throw re;
-        }
-    }
+    public List accfindBySubPub(String supplier, String publisher);
 
-    /*
-     * 根据每个对象查出他们的子对象，如果有子对象就更新， //没子对象就不更新，所以假设查到子对象了，并更新了子对象
+    /**
+     * 更新
+     * @param sup supplier Object
+     * @return boolean
      */
-    public void updateSup(Supplier sup) {
-        try {
-            getHibernateTemplate().saveOrUpdate(sup);
-            log.debug("updateSup successful");
-        } catch (RuntimeException re) {
-            log.error("updateSup failed", re);
-            throw re;
-        }
-    }
-
-    public void save(Supplier transientInstance) {
-        log.debug("saving Supplier instance");
-        try {
-            getHibernateTemplate().save(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            throw re;
-        }
-    }
-
-    public void delete(Supplier persistentInstance) {
-        log.debug("deleting Supplier instance");
-        try {
-            getHibernateTemplate().delete(persistentInstance);
-            log.debug("delete successful");
-        } catch (RuntimeException re) {
-            log.error("delete failed", re);
-            throw re;
-        }
-    }
-
-    public Supplier findById(java.lang.String id) {
-        log.debug("getting Supplier instance with id: " + id);
-        try {
-            return (Supplier) getHibernateTemplate().get(
-                    "com.bean.supplier.Supplier", id);
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
-    }
-
-    public List findByProperty(String propertyName, Object value) {
-        log.debug("finding Supplier instance with property: " + propertyName
-                + ", value: " + value);
-        try {
-            String queryString = "from Supplier as model where model."
-                    + propertyName + "= ?";
-            return getHibernateTemplate().find(queryString, value);
-        } catch (RuntimeException re) {
-            log.error("find by property name failed", re);
-            throw re;
-        }
-    }
-
-    public List findBySupplier(Object supplier) {
-        return findByProperty(SUPPLIER, supplier);
-    }
-
-    public List findByPublisher(Object publisher) {
-        return findByProperty(PUBLISHER, publisher);
-    }
-
-	/* 根据出版社查idsp */
-    /*
-     * public Supplier findByPub(String publisher) {
-	 * log.debug("finding all Supplier instances"); try { String queryString =
-	 * "from Supplier where publisher='"+publisher+"'"; List
-	 * list=getHibernateTemplate().find(queryString); return list; } catch
-	 * (RuntimeException re) { log.error("find all failed", re); throw re; } }
-	 */
-
-    public List findAll() {
-        log.debug("finding all publisher instances");
-        try {
-            String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-    public List findAllSupplier() {
-        log.debug("finding all Supplier instances");
-        try {
-            String queryString = "select distinct s.supplier from Supplier s order by convert_gbk(s.supplier) asc";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-    public List findAllOrderByPublisher() {
-        log.debug("finding all Supplier instances");
-        try {
-            String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
-
-    public List findAllOrderByIdsp() {
-        log.debug("finding all Supplier instances");
-        try {
-            String queryString = "from Supplier s order by s.idsp";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
+    public boolean updateSup(Supplier sup);
 
 }

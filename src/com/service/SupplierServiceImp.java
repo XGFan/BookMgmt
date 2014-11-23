@@ -1,19 +1,19 @@
 package com.service;
 
 import com.bean.supplier.Supplier;
-import com.dao.SupplierDAOInf;
+import com.dao.SupplierDAO;
 import com.util.ConvertUtils;
 
 import java.util.List;
 
 public class SupplierServiceImp implements SupplierService {
-    private SupplierDAOInf supplierDAO;
+    private SupplierDAO supplierDAO;
 
-    public SupplierDAOInf getSupplierDAO() {
+    public SupplierDAO getSupplierDAO() {
         return supplierDAO;
     }
 
-    public void setSupplierDAO(SupplierDAOInf supplierDAO) {
+    public void setSupplierDAO(SupplierDAO supplierDAO) {
         this.supplierDAO = supplierDAO;
     }
 
@@ -31,7 +31,7 @@ public class SupplierServiceImp implements SupplierService {
 
     /* 根据出版社查询出版社的idsp */
     public List<Supplier> findByPublish(String publish) {
-        return supplierDAO.findByProperty("publisher", publish);
+        return supplierDAO.findByPublisher(publish);
     }
 
     /*
@@ -60,7 +60,7 @@ public class SupplierServiceImp implements SupplierService {
      * @see com.printInfo.supplier.SupplierService#delSup(java.lang.String)
      */
     public boolean delSup(String sup) {
-        List<Supplier> list = supplierDAO.findByProperty("supplier", sup);
+        List<Supplier> list = supplierDAO.findBySupplier(sup);
         for (Supplier s : list) {
             String publisher = s.getPublisher();
             if (publisher == null) {

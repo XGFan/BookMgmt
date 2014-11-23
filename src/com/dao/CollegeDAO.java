@@ -67,15 +67,14 @@ public class CollegeDAO extends HibernateDaoSupport {
      */
     public boolean deleteById(String idcm) {
         log.debug("deleting College instance");
-        boolean result;
+        boolean result = true;
         try {
             College persistentInstance = findById(idcm);
             getHibernateTemplate().delete(persistentInstance);
             log.debug("delete successful");
-            result = true;
         } catch (RuntimeException re) {
             log.error("delete failed", re);
-            throw re;
+            result = false;
         }
         return result;
     }
@@ -211,17 +210,17 @@ public class CollegeDAO extends HibernateDaoSupport {
      * @param major 专业名称
      * @return 学院专业 obj list
      */
-    public List<College> getCol(String col, String major) {
+    public List getCol(String col, String major) {
         log.debug("finding Col by colname and major");
+        List list = null;
         try {
             String queryString = "from College as c where c.col='" + col
                     + "' and c.major='" + major + "'";
-            // System.out.println(queryString);
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**

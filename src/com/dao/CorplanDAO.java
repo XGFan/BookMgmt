@@ -8,25 +8,15 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import java.util.List;
 
 /**
- * A data access object (DAO) providing persistence and search support for
- * Corplan entities. Transaction control of the save(), update() and delete()
- * operations can directly support Spring container-managed transactions or they
- * can be augmented to handle user-managed Spring transactions. Each of these
- * methods provides additional information for how to configure it for the
- * desired type of transaction control.
  *
  * @author MyEclipse Persistence Tools
  * @see com.bean.corplan.Corplan
  */
 
 public class CorplanDAO extends HibernateDaoSupport {
-    public static final String IDCOR = "idcor";
     private static final Log log = LogFactory.getLog(CorplanDAO.class);
-    // property constants
-    private static final String SEMESTER = "semester";
 
     protected void initDao() {
-        // do nothing
     }
 
     /**
@@ -34,15 +24,17 @@ public class CorplanDAO extends HibernateDaoSupport {
      *
      * @param transientInstance 课程计划实例
      */
-    public void save(Corplan transientInstance) {
+    public boolean save(Corplan transientInstance) {
         log.debug("saving Corplan  ");
+        boolean tag = true;
         try {
             getHibernateTemplate().saveOrUpdate(transientInstance);
             log.debug("save successful");
         } catch (RuntimeException re) {
             log.error("save failed", re);
-            throw re;
+            tag = false;
         }
+        return tag;
     }
 
     /**
@@ -50,31 +42,43 @@ public class CorplanDAO extends HibernateDaoSupport {
      *
      * @param persistentInstance 教学计划实例
      */
-    public void delete(Corplan persistentInstance) {
+    public boolean delete(Corplan persistentInstance) {
         log.debug("deleting Corplan instance");
+        boolean tag = true;
         try {
             getHibernateTemplate().delete(persistentInstance);
             log.debug("delete successful");
         } catch (RuntimeException re) {
             log.error("delete failed", re);
-            throw re;
+            tag = false;
         }
+        return tag;
     }
 
-    //查询所有的教学计划
+    /**
+     * 所有corplan
+     * @return all corplan obj list
+     */
     List findAll() {
         log.debug("finding all Corplan instances");
+        List list = null;
         try {
             String queryString = "from Corplan";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
-    /*连接教学计划，课程，学院三张表，根据学院，专业，学期查询教学计划
-        * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）*/
+    /**
+     * 连接教学计划，课程，学院三张表，根据学院，专业，学期查询教学计划
+     * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）
+     * @param col 学院名
+     * @param major 专业名
+     * @param semester 学期
+     * @return list
+     */
     public List getCorplanByColMajorSem(String col, String major,
                                         String semester) {
         String queryString = "from Corplan cp join cp.course cpc join cpc.college cpcc where cpcc.col like '%"
@@ -94,20 +98,13 @@ public class CorplanDAO extends HibernateDaoSupport {
      * @param semester 学期
      * @param corname  科目名称
      * @param idcor    科目id
-     * @return 教学计划 obj list
+     * @return list
      */
     public List getCorplanByColMajorSemCornameIdcor(String col, String major,
                                                     String semester, String corname, String idcor) {
         log.debug("get Corplan instance");
+        List list = null;
         try {
-//			String queryString = "from courplan where col like '%"
-//				+ col
-//				+ "%' and major ='"
-//				+ major
-//				+ "' and semester ='"
-//				+ semester
-//				+ "' and idcor ='"
-//				+ idcor + "' and corname ='" + corname + "'";
             String queryString = "from Corplan cp join cp.course cpc join cpc.college cpcc where cpcc.col like '%"
                     + col
                     + "%' and cpcc.major ='"
@@ -116,11 +113,11 @@ public class CorplanDAO extends HibernateDaoSupport {
                     + semester
                     + "' and cpc.idcor ='"
                     + idcor + "' and cpc.corname ='" + corname + "'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("attach failed", re);
-            throw re;
         }
+        return list;
     }
 
 
@@ -151,9 +148,16 @@ public class CorplanDAO extends HibernateDaoSupport {
     /**
      * 删除所有教学计划
      */
-    public void deleteAllCorplan() {
+    public boolean deleteAllCorplan() {
         List corplanList = this.findAll();
-        getHibernateTemplate().deleteAll(corplanList);
+        boolean tag = true;
+        try{
+            getHibernateTemplate().deleteAll(corplanList);
+        }catch (RuntimeException re){
+            log.debug("delete All Corplan failed",re);
+            tag = false;
+        }
+        return tag;
     }
 
     /**

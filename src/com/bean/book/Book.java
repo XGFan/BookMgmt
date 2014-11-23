@@ -7,8 +7,8 @@ import java.util.Set;
 
 /**
  * Book entity. @author MyEclipse Persistence Tools
+ *
  */
-
 public class Book implements java.io.Serializable {
 
     /**

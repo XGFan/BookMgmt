@@ -1,14 +1,10 @@
 package com.service;
 
 import com.bean.bkpurchase.Bkpurchase;
-import com.dao.BkpurchaseDAOInf;
+import com.dao.*;
 import com.bean.book.Book;
-import com.dao.BookDAOInf;
-import com.dao.BookcorsupDAOInf;
-import com.dao.BookpurchaseDAO;
+import com.dao.BookDAO;
 import com.bean.bookpurchaseview.Bookpurchaseview;
-import com.dao.BookpurchaseviewDAO;
-import com.dao.CourclassDAOInf;
 import org.apache.poi.hssf.usermodel.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -42,42 +38,42 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
     private static final String BKNUM = "订购数量";
     private static final String PUBLISHER = "出版社";
     private static final String SUPPLIER = "供应商";
-    private BkpurchaseDAOInf bkpurdao;
-    private BookcorsupDAOInf bcsdao;
-    private CourclassDAOInf ccdao;
-    private BookDAOInf bookdao;
+    private BkpurchaseDAO bkpurdao;
+    private BookcorsupDAO bcsdao;
+    private CourclassDAO ccdao;
+    private BookDAO bookdao;
     private BookpurchaseviewDAO bookpurchaseviewDAO;
     private BookpurchaseDAO bookpurchaseDAO;
 
-    public BkpurchaseDAOInf getBkpurdao() {
+    public BkpurchaseDAO getBkpurdao() {
         return bkpurdao;
     }
 
-    public void setBkpurdao(BkpurchaseDAOInf bkpurdao) {
+    public void setBkpurdao(BkpurchaseDAO bkpurdao) {
         this.bkpurdao = bkpurdao;
     }
 
-    public BookcorsupDAOInf getBcsdao() {
+    public BookcorsupDAO getBcsdao() {
         return bcsdao;
     }
 
-    public void setBcsdao(BookcorsupDAOInf bcsdao) {
+    public void setBcsdao(BookcorsupDAO bcsdao) {
         this.bcsdao = bcsdao;
     }
 
-    public CourclassDAOInf getCcdao() {
+    public CourclassDAO getCcdao() {
         return ccdao;
     }
 
-    public void setCcdao(CourclassDAOInf ccdao) {
+    public void setCcdao(CourclassDAO ccdao) {
         this.ccdao = ccdao;
     }
 
-    public BookDAOInf getBookdao() {
+    public BookDAO getBookdao() {
         return bookdao;
     }
 
-    public void setBookdao(BookDAOInf bookdao) {
+    public void setBookdao(BookDAO bookdao) {
         this.bookdao = bookdao;
     }
 
@@ -379,7 +375,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
             Map map = new HashMap();
             Integer total = 0;
             String idbk = bk.getBook().getIdbk();
-            List<Book> booklist = bookdao.findByProperty("idbk", idbk);
+            List<Book> booklist = bookdao.findByIdbkAccurate(idbk);
             for (Book b : booklist) {
                 map.put("idbk", idbk);
                 map.put("BKName", b.getBkname());

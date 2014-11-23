@@ -13,23 +13,12 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import java.sql.SQLException;
 import java.util.List;
-
 /**
- * A data access object (DAO) providing persistence and search support for
- * Bookpurchase entities. Transaction control of the save(), update() and
- * delete() operations can directly support Spring container-managed
- * transactions or they can be augmented to handle user-managed Spring
- * transactions. Each of these methods provides additional information for how
- * to configure it for the desired type of transaction control.
- *
- * @author MyEclipse Persistence Tools
- * @see com.bean.bookpurchase.Bookpurchase
+ * todo
  */
-
 public class BookpurchaseDAO extends HibernateDaoSupport {
     public static final String ISBN = "isbn";
     private static final Log log = LogFactory.getLog(BookpurchaseDAO.class);
-    // property constants
     private static final String IDCM = "idcm";
     private static final String COL = "col";
     private static final String MAJOR = "major";
@@ -52,7 +41,6 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
     private static final String SUPPLIER = "supplier";
 
     protected void initDao() {
-        // do nothing
     }
 
     /*将筛选后的课程信息保存到临时表中 2014.3.18 zhangchi*/

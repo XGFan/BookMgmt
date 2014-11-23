@@ -1,7 +1,7 @@
 package com.service;
 
 import com.bean.book.Book;
-import com.dao.BookDAOInf;
+import com.dao.BookDAO;
 import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
@@ -9,18 +9,18 @@ import com.util.Pagination;
 import java.util.List;
 
 public class BookServiceImp implements BookService {
-    private BookDAOInf bookDAO;
+    private BookDAO bookDAO;
 
-    public BookDAOInf getBookDAO() {
+    public BookDAO getBookDAO() {
         return bookDAO;
     }
 
-    public void setBookDAO(BookDAOInf bookDAO) {
+    public void setBookDAO(BookDAO bookDAO) {
         this.bookDAO = bookDAO;
     }
 
-    public void addBook(Book book) {
-        bookDAO.save(book);
+    public boolean addBook(Book book) {
+        return bookDAO.save(book);
     }
 
     public boolean deleteBook(String idbk) {
@@ -42,7 +42,7 @@ public class BookServiceImp implements BookService {
     }
 
     public List<Book> searchByBookPub(String bookname, String pub) {
-        List list = bookDAO.getByBookPub(bookname, pub);
+        List list = bookDAO.findByBookPubFuzzy(bookname, pub);
         return ConvertUtils.ToBookListFromBook(list);
     }
 
@@ -52,7 +52,7 @@ public class BookServiceImp implements BookService {
     }
 
     public List<Book> searchByISBN(String isbn) {
-        List list = bookDAO.findByProperty("isbn", isbn);
+        List list = bookDAO.findByIdbkAccurate(isbn);
         return ConvertUtils.ToBookListFromBook(list);
     }
 
@@ -62,12 +62,12 @@ public class BookServiceImp implements BookService {
     }
 
     public List<Book> searchByBkname(String bkname) {
-        List<Book> list = bookDAO.FuzzyFindByBkname(bkname);
+        List<Book> list = bookDAO.findByBknameFuzzy(bkname);
         return ConvertUtils.ToBookListFromBook(list);
     }
 
     public boolean updateBook(Book book) {
-        bookDAO.updateBook(book);
+        bookDAO.update(book);
         return true;
     }
 

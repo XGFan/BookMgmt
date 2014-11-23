@@ -16,9 +16,6 @@ import java.util.List;
 
 public class CourseDAO extends HibernateDaoSupport {
     private static final Log log = LogFactory.getLog(CourseDAO.class);
-    // property constants
-    private static final String CORNAME = "corname";
-    private static final String SEMESTER = "semester";
 
     protected void initDao() {
     }
@@ -32,14 +29,15 @@ public class CourseDAO extends HibernateDaoSupport {
      */
     public boolean save(Course transientInstance) {
         log.debug("saving Course instance");
+        boolean tag = true;
         try {
             getHibernateTemplate().saveOrUpdate(transientInstance);
             log.debug("save successful");
-            return true;
         } catch (RuntimeException re) {
             log.error("save failed", re);
-            throw re;
+            tag = false;
         }
+        return tag;
     }
 
     /**
@@ -47,15 +45,17 @@ public class CourseDAO extends HibernateDaoSupport {
      *
      * @param persistentInstance 科目实例
      */
-    public void delete(Course persistentInstance) {
+    public boolean delete(Course persistentInstance) {
         log.debug("deleting Course instance");
+        boolean tag = true;
         try {
             getHibernateTemplate().delete(persistentInstance);
             log.debug("delete successful");
         } catch (RuntimeException re) {
             log.error("delete failed", re);
-            throw re;
+            tag = false;
         }
+        return tag;
     }
 
     /**
@@ -66,228 +66,180 @@ public class CourseDAO extends HibernateDaoSupport {
      */
     public Course findById(java.lang.String id) {
         log.debug("getting Course instance with id: " + id);
+        Course course = null;
         try {
-            return (Course) getHibernateTemplate().get(
+            course = (Course) getHibernateTemplate().get(
                     "com.bean.course.Course", id);
         } catch (RuntimeException re) {
             log.error("get failed", re);
-            throw re;
         }
+        return course;
     }
 
     /**
-     * 找到所有的科目信息
+     * 找到所有的科目信息(join)
      *
-     * @return 科目 obj list
+     * @return 科目 list
      */
     public List findAll() {
         log.debug("finding all Course instances");
+        List list = null;
         try {
             String queryString = "from Course c join c.college cc";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
-     * 根据学院名称查找科目
+     * 根据学院名称查找科目(join)
      *
      * @param col 学院名称
-     * @return 科目信息 obj list
+     * @return 科目信息  list
      */
     public List getCourseByCol(String col) {
         log.debug("finding all Courses by colname");
+        List list = null;
         try {
             String queryString = "from Course c join c.college cc where cc.col like '%"
                     + col + "%'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
-     * 精确查找（学院专业id，学院名，专业名，科目名）
+     * 精确查找（学院专业id，学院名，专业名，科目名）(join)
      *
      * @param idcm    学院专业id
      * @param col     学院名
      * @param major   专业名
      * @param corname 科目名
-     * @return 科目 obj list
+     * @return 科目 list
      */
     public List getCourseByIdcmColMajorCorname(String idcm, String col, String major, String corname) {
         log.debug("finding all Courses by idcm col major corname");
+        List list = null;
         try {
             String queryString = "from Course c join c.college cc where cc.idcm = '"
                     + idcm + "' and c.corname = '" + corname + "' and cc.col = '" + col + "' and cc.major = '" + major + "'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
-     * 精确查找（学院专业id，科目名称）
+     * 精确查找（学院专业id，科目名称）(join)
      *
      * @param idcm     学院专业id
      * @param corname  科目名称
      * @param semester 所在学期
-     * @return 科目 obj list
+     * @return 科目 list
      */
     public List getCourseByIdcmCornameSem(String idcm, String corname, String semester) {
         log.debug("finding all Courses by idcmcornamesem");
+        List list = null;
         try {
             String queryString = "from Course c join c.college cc where cc.idcm = '"
                     + idcm + "' and c.corname = '" + corname + "' and c.semester = '" + semester + "'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
-    /*
-     * public List getCourseByMajor(String major){
-	 * log.debug("finding all Courses by major"); try { SessionFactory
-	 * ssf=getHibernateTemplate().getSessionFactory(); String queryString =
-	 * "select b.col,b.major,b.idcm,a.idcor,a.corname,a.semester "; queryString
-	 * = queryString +"from course as a,college as b where a.idcm=b.idcm ";
-	 * queryString = queryString +" and b.major='" + major + "'"; Session
-	 * session = ssf.openSession(); Query query =
-	 * session.createSQLQuery(queryString); List list = query.list(); return
-	 * list; } catch (RuntimeException re) { log.error("find all failed", re);
-	 * throw re; } }
-	 */
     /**
-     * 閫氳繃瀛﹂櫌涓撲笟鏉ヨ幏鍙栬绋嬩俊鎭?	 *
-     * @param col
-     * @param major
-     * @return
-     */
-    // public List getCourseByColMajor(String col,String major){
-    // log.debug("finding all Courses by colname nad major");
-    // try {
-    // SessionFactory ssf=getHibernateTemplate().getSessionFactory();
-    // String queryString =
-    // "select a.idcor,b.col,b.major,b.idcm,a.corname,a.semester ";
-    // queryString = queryString
-    // +"from course as a,college as b where a.idcm=b.idcm ";
-    // queryString = queryString +"and b.col ='" + col +"' and b.major ='" +
-    // major + "'";
-    // Session session = ssf.openSession();
-    // //Query query =
-    // session.createSQLQuery(queryString).setResultTransformer(Transformers.aliasToBean(CourseTemp.class));
-    // Query query = session.createSQLQuery(queryString).addScalar("idcor",
-    // Hibernate.STRING).addScalar("col", Hibernate.STRING).addScalar("major",
-    // Hibernate.STRING).addScalar("idcm",
-    // Hibernate.STRING).addScalar("corname",
-    // Hibernate.STRING).addScalar("semester", Hibernate.STRING);
-    // List list = query.list();
-    // List<CourseTemp> result = new ArrayList<CourseTemp>();
-    // for(int i=0;i<list.size();i++){
-    // CourseTemp temp = new CourseTemp();
-    // Object[] object = (Object[])list .get(i);
-    // temp.setIdcor(object[0].toString());
-    // temp.setCol(object[1].toString());
-    // temp.setMajor(object[2].toString());
-    // temp.setIdcm(object[3].toString());
-    // temp.setCorname(object[4].toString());
-    // temp.setSemester(object[5].toString());
-    // result.add(temp);
-    // //System.out.println(temp.toString());
-    // }
-    // return result;
-    // } catch (RuntimeException re) {
-    // log.error("find all failed", re);
-    // throw re;
-    // }
-    // }
-
-    /**
-     * 通过学院和专业查找科目，专业是模糊查找
+     * 通过学院和专业查找科目，专业是模糊查找(join)
      *
      * @param col   学院
      * @param major 专业
-     * @return 科目 obj list
+     * @return 科目  list
      */
     public List getCourseByColMajor(String col, String major) {
         log.debug("finding all Courses by colname nad major");
+        List list = null;
         try {
             String queryString = "from Course c join c.college cc where cc.col like '%"
                     + col + "%' and cc.major ='" + major + "'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
-     * 根据学院，专业，科目进行查找，其中科目名称是模糊查找
+     * 根据学院，专业，科目进行查找，其中科目名称是模糊查找(join)
      *
      * @param col     学院名称
      * @param major   专业
      * @param corname 科目名称
-     * @return 科目信息 obj list
+     * @return 科目信息  list
      */
     public List getCourseFuzzyByCorname(String col, String major, String corname) {
         log.debug("finding all Courses by corname");
+        List list = null;
         try {
             String queryString = "from Course c join c.college cc where cc.col ='"
                     + col
                     + "' and cc.major ='"
                     + major
                     + "' and c.corname like '%" + corname + "%'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
-     * 根据学院，专业，学期查找
+     * 根据学院，专业，学期查找(join)
      *
      * @param col   学院名称
      * @param major 专业名称
      * @param sem   课程安排在哪个学期
-     * @return 学院专业在某个学期的课程 obj list
+     * @return 学院专业在某个学期的课程  list
      */
     public List getCourseByColMajorSem(String col, String major, String sem) {
         log.debug("finding all Courses by col,major,sem");
+        List list = null;
         try {
             String queryString = "from Course c join c.college cc where ";
             queryString += "cc.col like '%" + col + "%' and cc.major='" + major
                     + "' and c.semester='" + sem + "'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
-     * 模糊查找，从学院，专业，科目名查询
+     * 模糊查找，从学院，专业，科目名查询(join)
      *
      * @param condition 关键字
-     * @return 科目 obj list
+     * @return  list
      */
     public List fuzzyQuery(String condition) {
         log.debug("finding all Courses by col or major or corname");
+        List list = null;
         try {
             String queryString = "from Course c join c.college cc where ";
             queryString += "cc.col like '%" + condition
                     + "%' or cc.major like '%" + condition
                     + "%' or c.corname like '%" + condition + "%'";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
 }

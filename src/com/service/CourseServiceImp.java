@@ -1,15 +1,12 @@
 package com.service;
 
 import com.bean.book.Book;
-import com.dao.BookDAO;
+import com.dao.*;
+import com.dao.BookDAOImp;
 import com.bean.college.College;
-import com.dao.CollegeDAO;
 import com.bean.corplan.Corplan;
-import com.dao.CorplanDAO;
 import com.bean.course.Course;
-import com.dao.CourseDAO;
 import com.bean.coursebk.Coursebk;
-import com.dao.CoursebkDAO;
 import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
@@ -21,13 +18,13 @@ public class CourseServiceImp implements CourseService {
     private CollegeDAO collegeDAO;
     private CorplanDAO corplanDAO;
     private CoursebkDAO coursebkDAO;
-    private BookDAO bookDAO;
+    private BookDAOImp bookDAO;
 
-    public BookDAO getBookDAO() {
+    public BookDAOImp getBookDAO() {
         return bookDAO;
     }
 
-    public void setBookDAO(BookDAO bookDAO) {
+    public void setBookDAO(BookDAOImp bookDAO) {
         this.bookDAO = bookDAO;
     }
 

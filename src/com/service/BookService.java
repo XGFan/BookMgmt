@@ -24,7 +24,7 @@ public interface BookService {
 
     public boolean deleteBook(String idbk);
 
-    public void addBook(Book book);
+    public boolean addBook(Book book);
 
     public boolean updateBook(Book book);
 }

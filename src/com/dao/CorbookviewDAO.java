@@ -7,13 +7,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import java.util.List;
 
 /**
- * A data access object (DAO) providing persistence and search support for
- * Corbookview entities. Transaction control of the save(), update() and
- * delete() operations can directly support Spring container-managed
- * transactions or they can be augmented to handle user-managed Spring
- * transactions. Each of these methods provides additional information for how
- * to configure it for the desired type of transaction control.
- *
+ * 
  * @author MyEclipse Persistence Tools
  * @see com.bean.corbook.Corbookview
  */
@@ -21,30 +15,68 @@ import java.util.List;
 public class CorbookviewDAO extends HibernateDaoSupport {
     private static final Log log = LogFactory.getLog(CorbookviewDAO.class);
 
-    // property constants
 
     protected void initDao() {
-        // do nothing
     }
 
     /**
-     * 根据属性名和属性值查找
+     * 根据属性名和属性值精确查找
      *
      * @param propertyName 属性名
      * @param value        属性值
-     * @return LIST
+     * @return Corbookview obj LIST
      */
-    public List findByProperty(String propertyName, Object value) {
+    public List findByPropertyAccurate(String propertyName, String value) {
         log.debug("finding Corbookview instance with property: " + propertyName
                 + ", value: " + value);
+        List list = null;
         try {
             String queryString = "from Corbookview as model where model."
                     + propertyName + "= ?";
-            return getHibernateTemplate().find(queryString, value);
+            list = getHibernateTemplate().find(queryString, value);
         } catch (RuntimeException re) {
-            log.error("find by property name failed", re);
-            throw re;
+            log.error("accurate find by " + propertyName + " failed", re);
         }
+        return list;
+    }
+
+    /**
+     * 根据属性名和属性值模糊查找
+     *
+     * @param propertyName 属性名
+     * @param value        属性值
+     * @return Corbookview obj LIST
+     */
+    public List findByPropertyFuzzy(String propertyName, String value) {
+        log.debug("finding Corbookview instance with property: " + propertyName
+                + ", value: " + value);
+        List list = null;
+        try {
+            String queryString = "from Corbookview as model where model."
+                    + propertyName + " like '%" + value +"'%";
+            list = getHibernateTemplate().find(queryString);
+        } catch (RuntimeException re) {
+            log.error("fuzzy find by " + propertyName + " failed", re);
+        }
+        return list;
+    }
+
+    /**
+     * 通过idcor精确查找
+     * @param Idcor 科目id
+     * @return Corbookview obj list
+     */
+    public List findByIdcor(String Idcor){
+        return findByPropertyAccurate("idcor", Idcor);
+    }
+
+    /**
+     * 通过idbk精确查找
+     * @param Idbk 教材id
+     * @return Corbookview obj list
+     */
+    public List findByIdbk(String Idbk){
+        return findByPropertyAccurate("idcor", Idbk);
     }
 
     /**
@@ -54,30 +86,24 @@ public class CorbookviewDAO extends HibernateDaoSupport {
      */
     public List findAll() {
         log.debug("finding all Corbookview instances");
+        List list = null;
         try {
             String queryString = "from Corbookview";
-            return getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return list;
     }
 
     /**
-     * 根据科目名称查找课程
+     * 通过corname模糊查找
      *
      * @param corname 科目名称
      * @return LIST
      */
     public List findCourseByCorname(String corname) {
-        log.debug("findCourseByCorname");
-        try {
-            String queryString = "from Corbookview view where view.corname like '%" + corname + "%'";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("findCourseByCorname failed", re);
-            throw re;
-        }
+        return findByPropertyFuzzy("corname",corname);
     }
 
 }

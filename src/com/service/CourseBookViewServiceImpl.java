@@ -1,6 +1,7 @@
 package com.service;
 
 import com.dao.BookDAO;
+import com.dao.BookDAOImp;
 import com.bean.corbook.Corbookview;
 import com.dao.CorbookviewDAO;
 import com.dao.CourseDAO;
@@ -38,12 +39,12 @@ public class CourseBookViewServiceImpl implements CourseBookViewService {
     }
 
     public List<Corbookview> findCourseByIdbk(String idbk) {
-        List<Corbookview> list = corBookViewDAO.findByProperty("idbk", idbk);
+        List<Corbookview> list = corBookViewDAO.findByIdbk(idbk);
         return ConvertUtils.ToCorBookList(list);
     }
 
     public List<Corbookview> findByCourse(String idcor) {
-        List<Corbookview> list = corBookViewDAO.findByProperty("idcor", idcor);
+        List<Corbookview> list = corBookViewDAO.findByIdcor(idcor);
         return ConvertUtils.ToCorBookList(list);
     }
 
