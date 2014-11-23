@@ -1,13 +1,13 @@
 package com.service;
 
 import com.bean.cls.Class;
-import com.dao.ClassDAO;
 import com.bean.college.College;
+import com.dao.ClassDAO;
+import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
-import com.util.ConvertUtils;
 
-import java.util.*;
+import java.util.List;
 
 public class ClassServiceImpl implements ClassService {
 
@@ -47,7 +47,7 @@ public class ClassServiceImpl implements ClassService {
         Class cls;
         for (String idcls : idclses) {
             cls = classDAO.findById(idcls);
-            if(cls != null){
+            if (cls != null) {
                 if (!classDAO.delete(cls))
                     return false;
             }
@@ -73,7 +73,7 @@ public class ClassServiceImpl implements ClassService {
             cls.setSemester("1");
             cls.setClsno(i);
             cls.setStunum(50);
-            if(!classDAO.save(cls))
+            if (!classDAO.save(cls))
                 return false;
         }
         return true;

@@ -8,7 +8,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import java.util.List;
 
 /**
- *
  * @author MyEclipse Persistence Tools
  * @see com.bean.coursebk.Coursebk
  */

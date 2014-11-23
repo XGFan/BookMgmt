@@ -1,10 +1,10 @@
 package com.service;
 
 import com.bean.college.College;
-import com.dao.CollegeDAO;
 import com.bean.corplan.Corplan;
-import com.dao.CorplanDAO;
 import com.bean.course.Course;
+import com.dao.CollegeDAO;
+import com.dao.CorplanDAO;
 import com.dao.CourseDAO;
 import com.util.ConvertUtils;
 
@@ -67,7 +67,7 @@ public class CorplanServiceImp implements CorplanService {
         /* 1.1未查找到相应的学院，返回false */
         if (collegeList.size() == 0)
             return false;
-		/* 1.2存在相应的学院 */
+        /* 1.2存在相应的学院 */
         if (collegeList.size() > 0) {
             college = (College) collegeList.get(0);
             // System.out.println(college.toString());

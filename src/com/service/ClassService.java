@@ -10,6 +10,7 @@ public interface ClassService {
 
     /**
      * 根据班级id查找班级
+     *
      * @param idcls 班级id
      * @return class obj
      */
@@ -26,6 +27,7 @@ public interface ClassService {
 
     /**
      * 获取所有班级,根据分页信息返回一页
+     *
      * @param pagination 分页信息
      * @return 一页班级
      */
@@ -46,12 +48,14 @@ public interface ClassService {
 
     /**
      * 获取所有校区
+     *
      * @return string list
      */
     public List getAllCampus();
 
     /**
      * 获取所有年级
+     *
      * @return string list
      */
     public List getAllGrade();

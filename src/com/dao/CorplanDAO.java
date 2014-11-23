@@ -8,7 +8,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import java.util.List;
 
 /**
- *
  * @author MyEclipse Persistence Tools
  * @see com.bean.corplan.Corplan
  */
@@ -57,6 +56,7 @@ public class CorplanDAO extends HibernateDaoSupport {
 
     /**
      * 所有corplan
+     *
      * @return all corplan obj list
      */
     List findAll() {
@@ -74,8 +74,9 @@ public class CorplanDAO extends HibernateDaoSupport {
     /**
      * 连接教学计划，课程，学院三张表，根据学院，专业，学期查询教学计划
      * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）
-     * @param col 学院名
-     * @param major 专业名
+     *
+     * @param col      学院名
+     * @param major    专业名
      * @param semester 学期
      * @return list
      */
@@ -147,15 +148,16 @@ public class CorplanDAO extends HibernateDaoSupport {
 
     /**
      * 删除所有教学计划
+     *
      * @return boolean
      */
     public boolean deleteAllCorplan() {
         List corplanList = this.findAll();
         boolean tag = true;
-        try{
+        try {
             getHibernateTemplate().deleteAll(corplanList);
-        }catch (RuntimeException re){
-            log.debug("delete All Corplan failed",re);
+        } catch (RuntimeException re) {
+            log.debug("delete All Corplan failed", re);
             tag = false;
         }
         return tag;

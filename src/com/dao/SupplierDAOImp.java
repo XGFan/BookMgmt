@@ -8,7 +8,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import java.util.List;
 
 /**
- *
  * @author MyEclipse Persistence Tools
  * @see com.bean.supplier.Supplier
  */
@@ -28,7 +27,7 @@ public class SupplierDAOImp extends HibernateDaoSupport implements SupplierDAO {
         List list = null;
         try {
             String hql = "from Supplier s where s." + propertyName + " = ?";
-            list =  getHibernateTemplate().find(hql, value);
+            list = getHibernateTemplate().find(hql, value);
         } catch (RuntimeException re) {
             log.error("accurate find by " + propertyName + " failed", re);
         }
@@ -42,7 +41,7 @@ public class SupplierDAOImp extends HibernateDaoSupport implements SupplierDAO {
         List list = null;
         try {
             String hql = "from Supplier b where b." + propertyName + " like '%" + value + "%'";
-            list =  getHibernateTemplate().find(hql);
+            list = getHibernateTemplate().find(hql);
         } catch (RuntimeException re) {
             log.error("fuzzy find by " + propertyName + " failed", re);
         }
@@ -51,7 +50,7 @@ public class SupplierDAOImp extends HibernateDaoSupport implements SupplierDAO {
 
 
     public List likeFindByPub(String publisher) {
-        return findByPropertyFuzzy(PUBLISHER,publisher);
+        return findByPropertyFuzzy(PUBLISHER, publisher);
     }
 
     public List findBySubPub(String supplier, String publisher) {

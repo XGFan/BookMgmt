@@ -5,7 +5,8 @@ import java.util.List;
 public interface CourclassDAO {
     /**
      * todo
-     * @param idcor 科目id
+     *
+     * @param idcor    科目id
      * @param semester 学期
      * @return ？
      */

@@ -1,12 +1,11 @@
 package com.service;
 
-import com.bean.corbook.Corbookview;
-
 import java.util.List;
 
 public interface CourseBookViewService {
     /**
      * 通过教材id查找CourseBookView
+     *
      * @param idbk
      * @return CourseBookView map list
      */

@@ -225,7 +225,7 @@ public class CourseDAO extends HibernateDaoSupport {
      * 模糊查找，从学院，专业，科目名查询(join)
      *
      * @param condition 关键字
-     * @return  list
+     * @return list
      */
     public List fuzzyQuery(String condition) {
         log.debug("finding all Courses by col or major or corname");

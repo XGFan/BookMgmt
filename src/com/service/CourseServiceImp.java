@@ -1,11 +1,11 @@
 package com.service;
 
 import com.bean.book.Book;
-import com.dao.*;
 import com.bean.college.College;
 import com.bean.corplan.Corplan;
 import com.bean.course.Course;
 import com.bean.coursebk.Coursebk;
+import com.dao.*;
 import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
@@ -58,7 +58,6 @@ public class CourseServiceImp implements CourseService {
     public void setCorplanDAO(CorplanDAO corplanDAO) {
         this.corplanDAO = corplanDAO;
     }
-
 
 
     public List init() {
@@ -132,7 +131,7 @@ public class CourseServiceImp implements CourseService {
         //**********************************************
         //System.out.println(collegeList.size());
         //**********************************************
-		/* 存在相应的学院 */
+        /* 存在相应的学院 */
         if (collegeList.size() > 0) {
             college = (College) collegeList.get(0);
             // collegeList只有一个元素所以使用get(0)取得collegeList中的元素

@@ -87,7 +87,7 @@ public class SupAction {
             this.suplist = supser.initSup();
             ActionContext.getContext().getSession().put("suplist", suplist);
             totalRecord = suplist.size();
-			/* 设置总页面数目,总记录数量 */
+            /* 设置总页面数目,总记录数量 */
             pagination.setTotalRecord(totalRecord);
 
             // System.out.println("totalPage:" + pagination.getTotalPage());

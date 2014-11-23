@@ -92,9 +92,9 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
                 + "%' or c.grade like '%"
                 + condition
                 + "%' or c.campus like '%" + condition + "%'";
-        try{
+        try {
             list = getHibernateTemplate().find(queryString);
-        }catch (RuntimeException re){
+        } catch (RuntimeException re) {
             log.error("find class failed", re);
         }
         return list;
@@ -116,9 +116,9 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
                 + "%'"
                 + " order by cc.col,cc.major,c.grade,c.clsno";
         List list = null;
-        try{
-            list =  getHibernateTemplate().find(queryString);
-        }catch (RuntimeException re){
+        try {
+            list = getHibernateTemplate().find(queryString);
+        } catch (RuntimeException re) {
             log.error("find class ByGradeCampusColMajor failed", re);
         }
         return list;
@@ -130,7 +130,7 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
         List list = null;
         try {
             String queryString = "select distinct campus from Class";
-            list =  getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -143,7 +143,7 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
         List list = null;
         try {
             String queryString = "select distinct grade from Class";
-             list = getHibernateTemplate().find(queryString);
+            list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }

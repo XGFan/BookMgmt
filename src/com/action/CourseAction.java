@@ -4,8 +4,8 @@ import com.bean.corbook.Corbookview;
 import com.bean.course.Course;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.ColServ;
-import com.service.CourseService;
 import com.service.CourseBookViewService;
+import com.service.CourseService;
 import com.util.Pagination;
 import com.util.Result;
 import com.util.SendData;
@@ -112,7 +112,7 @@ public class CourseAction extends ActionSupport {
                 corlist = courseService.findByColMajor("", major, pagination);
             }
             if (!hasCol & hasMajor & hasSem) {
-				/* 学院为为全部，获取该专业某学期所有课程 */
+                /* 学院为为全部，获取该专业某学期所有课程 */
                 corlist = courseService.findByColMajorSem("", major, semester,
                         pagination);
             }

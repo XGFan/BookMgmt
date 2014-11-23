@@ -7,7 +7,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import java.util.List;
 
 /**
- * 
  * @author MyEclipse Persistence Tools
  * @see com.bean.corbook.Corbookview
  */
@@ -53,7 +52,7 @@ public class CorbookviewDAO extends HibernateDaoSupport {
         List list = null;
         try {
             String queryString = "from Corbookview as model where model."
-                    + propertyName + " like '%" + value +"'%";
+                    + propertyName + " like '%" + value + "'%";
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("fuzzy find by " + propertyName + " failed", re);
@@ -63,19 +62,21 @@ public class CorbookviewDAO extends HibernateDaoSupport {
 
     /**
      * 通过idcor精确查找
+     *
      * @param Idcor 科目id
      * @return Corbookview obj list
      */
-    public List findByIdcor(String Idcor){
+    public List findByIdcor(String Idcor) {
         return findByPropertyAccurate("idcor", Idcor);
     }
 
     /**
      * 通过idbk精确查找
+     *
      * @param Idbk 教材id
      * @return Corbookview obj list
      */
-    public List findByIdbk(String Idbk){
+    public List findByIdbk(String Idbk) {
         return findByPropertyAccurate("idcor", Idbk);
     }
 
@@ -103,7 +104,7 @@ public class CorbookviewDAO extends HibernateDaoSupport {
      * @return CourseBookView obj LIST
      */
     public List findCourseByCorname(String corname) {
-        return findByPropertyFuzzy("corname",corname);
+        return findByPropertyFuzzy("corname", corname);
     }
 
 }

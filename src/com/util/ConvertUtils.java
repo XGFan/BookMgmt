@@ -1,7 +1,6 @@
 package com.util;
 
 import com.bean.book.Book;
-import com.bean.cls.*;
 import com.bean.cls.Class;
 import com.bean.college.College;
 import com.bean.corbook.Corbookview;
@@ -65,6 +64,7 @@ public class ConvertUtils {
 
     /**
      * 将数据库处理的结果转换为表示层学需要的数据
+     *
      * @param list obj list
      * @return mpa list
      */
@@ -89,6 +89,7 @@ public class ConvertUtils {
 
     /**
      * 将数据库处理的结果转换为表示层学需要的数据
+     *
      * @param list obj list
      * @return map list
      */
@@ -112,6 +113,7 @@ public class ConvertUtils {
 
     /**
      * 将数据库处理的结果转换为表示层学需要的数据
+     *
      * @param list obj list
      * @return map list
      */
@@ -134,6 +136,7 @@ public class ConvertUtils {
 
     /**
      * 将数据库处理的结果转换为表示层学需要的数据
+     *
      * @param list obj list
      * @return map list
      */

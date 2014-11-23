@@ -57,22 +57,25 @@ public interface ClassDAO {
      * @param campus 校区
      * @return LIST
      */
-    List getClassByGradeCampusColMajor(String col, String major,String grade, String campus);
+    List getClassByGradeCampusColMajor(String col, String major, String grade, String campus);
 
     /**
      * 返回distinct校区
+     *
      * @return string list
      */
     List getAllCampus();
 
     /**
      * 返回distinct年级
+     *
      * @return string list
      */
     List getAllGrade();
 
     /**
      * save or update
+     *
      * @param persistentInstance class实例
      * @return boolean
      */
@@ -81,8 +84,9 @@ public interface ClassDAO {
     /**
      * 获得班号
      * todo
+     *
      * @param grade 年级
-     * @param idcm 学院专业id
+     * @param idcm  学院专业id
      * @return int班号
      */
     int getClsNum(String grade, String idcm);

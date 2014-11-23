@@ -50,7 +50,7 @@ public interface CourseService {
      * @param pagination 分页信息
      * @return 一页信息 map list
      */
-    public List findByColMajor(String col, String major,Pagination pagination);
+    public List findByColMajor(String col, String major, Pagination pagination);
 
     /**
      * 根据学院，专业，科目进行查找，其中科目名称是模糊查找(join)
@@ -83,7 +83,7 @@ public interface CourseService {
      * @return 学院专业在某个学期的科目 一页 map list
      */
     public List findByColMajorSem(String col, String major, String sem,
-                                          Pagination pagination);
+                                  Pagination pagination);
 
     /**
      * 模糊查找，从学院，专业，科目名查询(join)
@@ -119,6 +119,7 @@ public interface CourseService {
     /**
      * 添加一门新科目，并生成课程计划
      * todo
+     *
      * @param idbkStr  教材id
      * @param col      学院名
      * @param major    专业名
@@ -140,6 +141,7 @@ public interface CourseService {
     /**
      * 更新课程
      * todo
+     *
      * @param course  课程
      * @param idbkStr 选用的教科书
      * @return boolean

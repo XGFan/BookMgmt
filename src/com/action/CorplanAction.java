@@ -81,7 +81,7 @@ public class CorplanAction extends ActionSupport {
                     || "----全部----".equals(semester) || "--请选择--"
                     .equals(semester));
             //System.out.println(col + "," + major + "," + semester);
-			/* init the corplanlist */
+            /* init the corplanlist */
             List corplanList = null;
 			/* fetch the corplan data from the service layer */
             if (hasCol && hasMajor && hasSem) {

@@ -209,7 +209,7 @@ public class BkpurAction {
         // System.out.println("searchAllSup");
         List list = supplierService.getAllSupplier();
         /*
-		 * Iterator it = list.iterator(); while (it.hasNext()) { String str =
+         * Iterator it = list.iterator(); while (it.hasNext()) { String str =
 		 * (String) it.next(); // System.out.println(str); }
 		 * 
 		 * // list=ConvertUtils.ToSuppList(list);

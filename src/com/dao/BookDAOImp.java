@@ -44,7 +44,7 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
         log.debug("getting Book instance with id: " + id);
         Book book = null;
         try {
-            book = (Book) getHibernateTemplate().get("com.bean.book.Book",id);
+            book = (Book) getHibernateTemplate().get("com.bean.book.Book", id);
         } catch (RuntimeException re) {
             log.error("get failed", re);
         }
@@ -57,7 +57,7 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
         List list = null;
         try {
             String hql = "from Book book where book." + propertyName + " = ?";
-            list =  getHibernateTemplate().find(hql, value);
+            list = getHibernateTemplate().find(hql, value);
         } catch (RuntimeException re) {
             log.error("accurate find by " + propertyName + " failed", re);
         }
@@ -71,7 +71,7 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
         List list = null;
         try {
             String hql = "from Book b where b." + propertyName + " like '%" + value + "%'";
-            list =  getHibernateTemplate().find(hql);
+            list = getHibernateTemplate().find(hql);
         } catch (RuntimeException re) {
             log.error("fuzzy find by " + propertyName + " failed", re);
         }
@@ -80,7 +80,7 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
 
     @Override
     public List findByIdbkAccurate(String idbk) {
-        return findByPropertyAccurate("idbk",idbk);
+        return findByPropertyAccurate("idbk", idbk);
     }
 
     public boolean update(Book book) {
@@ -89,7 +89,7 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
     }
 
     public List findByBknameFuzzy(String bkname) {
-        return findByPropertyFuzzy("bkname",bkname);
+        return findByPropertyFuzzy("bkname", bkname);
     }
 
     public List findAll() {
@@ -107,17 +107,17 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
         List list = null;
         String queryString;
         try {
-            if(!bookname.trim().equals("")){
-                if(!pub.trim().equals("")){
+            if (!bookname.trim().equals("")) {
+                if (!pub.trim().equals("")) {
                     queryString = "select b from Book b join b.supplier p where p.publisher like '%"
                             + pub + "%' and b.bkname like '%" + bookname + "%'";
-                }else{
+                } else {
                     queryString = "from Book b where b.bkname like '%" + bookname + "%'";
                 }
-            }else{
-                if(!pub.trim().equals("")){
-                    queryString = "select b from Book b join b.supplier p where p.publisher like '%"+ pub + "%'";
-                }else{
+            } else {
+                if (!pub.trim().equals("")) {
+                    queryString = "select b from Book b join b.supplier p where p.publisher like '%" + pub + "%'";
+                } else {
                     queryString = "select b from Book b join b.supplier";
                 }
             }

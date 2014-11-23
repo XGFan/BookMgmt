@@ -176,6 +176,7 @@ public class CollegeDAO extends HibernateDaoSupport {
 
     /**
      * 获取所有的distinct学院名称
+     *
      * @return string list
      */
     public List getAllCol() {
@@ -192,6 +193,7 @@ public class CollegeDAO extends HibernateDaoSupport {
 
     /**
      * 通过学院名称获取所有的distinct专业名称
+     *
      * @param col 学院名
      * @return distinct专业 string list
      */
@@ -230,6 +232,7 @@ public class CollegeDAO extends HibernateDaoSupport {
 
     /**
      * 模糊查询，通过学院或者专业
+     *
      * @param condition 关键字
      * @return College obj list
      */

@@ -101,7 +101,7 @@ public class ColAction extends ActionSupport {
             int currentPage = Integer.parseInt(request
                     .getParameter("currentPage"));
             pagination.setCurrentPage(currentPage);
-			/* 使用分页查询 */
+            /* 使用分页查询 */
             if ("----全部----".equals(col) || "--请选择--".equals(col))
                 collist = csv.searchByCol("", pagination);
             else

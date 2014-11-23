@@ -24,7 +24,8 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
 
     protected void initDao() {
     }
-//todo
+
+    //todo
     public List<Bookpurchaseview> findByYearAndSem(int year, int sem) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
         try {
@@ -36,7 +37,8 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
             throw re;
         }
     }
-//todo
+
+    //todo
     public List<Bookpurchaseview> findByYearAndSemAndCol(int year, int sem,
                                                          String idcls) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
@@ -52,7 +54,8 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
             throw re;
         }
     }
-//todo
+
+    //todo
     public List<Bookpurchaseview> findByYearAndSemAndGrade(int year, int sem,
                                                            int grade) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
