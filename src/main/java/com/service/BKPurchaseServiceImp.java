@@ -19,7 +19,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.*;
 
 @Service("bKPurchaseService")
@@ -708,9 +707,13 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         generateFreshManXlsFile();
         return result;
     }
-//    todo
-    void generateFreshManXlsFile(){}
-//    todo
-    void generateXlsFile(){}
+
+    //    todo
+    void generateFreshManXlsFile() {
+    }
+
+    //    todo
+    void generateXlsFile() {
+    }
 
 }

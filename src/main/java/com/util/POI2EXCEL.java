@@ -1,16 +1,16 @@
 package com.util;
 
 import com.bean.bookpurchaseview.Bookpurchaseview;
+
+import java.util.List;
+
 //import org.apache.poi.hssf.usermodel.*;
 //import org.apache.poi.hssf.util.Region;
 
-import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 class POI2EXCEL {
     public static void createEXCEL(List<Bookpurchaseview> bkpurview)
-            throws Exception {}
+            throws Exception {
+    }
 
 //    public static void createEXCEL(List<Bookpurchaseview> bkpurview)
 //            throws Exception {

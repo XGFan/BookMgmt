@@ -10,7 +10,7 @@ import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
  * Created by guofan on 2014/11/24
  */
 public class RestConfig extends ResourceConfig {
-    public RestConfig(){
+    public RestConfig() {
         register(RequestContextFilter.class);
         register(JacksonFeature.class);
         register(PubApi.class);

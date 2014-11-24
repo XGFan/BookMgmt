@@ -1,22 +1,20 @@
 package com.util;
 
 import com.bean.bookpurchaseview.Bookpurchaseview;
+
+import java.util.List;
+
 //import org.apache.poi.hssf.record.PrintSetupRecord;
 //import org.apache.poi.xwpf.usermodel.*;
-
-import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 
 /**
  * @author Administrator
  */
 class POI2WORD {
-//    PrintSetupRecord printSetupRecord;
-public static void createWord(List<Bookpurchaseview> bkpurview) throws Exception {
-}
+    //    PrintSetupRecord printSetupRecord;
+    public static void createWord(List<Bookpurchaseview> bkpurview) throws Exception {
+    }
 //    public static void createWord(List<Bookpurchaseview> bkpurview) throws Exception {
 //        //创建word文档对象；
 //        XWPFDocument doc = new XWPFDocument();

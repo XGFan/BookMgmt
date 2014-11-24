@@ -28,7 +28,7 @@ public interface ClassService {
     /**
      * 根据条件进行模糊查询
      *
-     * @param condition  查询条件
+     * @param condition 查询条件
      * @return map list
      */
     public List fuzzyFind(String condition);
@@ -65,14 +65,15 @@ public interface ClassService {
     /**
      * 根据学院，专业，年级，校区精确查询班级信息
      *
-     * @param col        学院
-     * @param major      专业
-     * @param grade      年纪
-     * @param campus     校区
+     * @param col    学院
+     * @param major  专业
+     * @param grade  年纪
+     * @param campus 校区
      * @return 查询结果LIST
      */
     public List accurateQuery(String col, String major, String grade,
                               String campus);
+
     /**
      * 获取所有校区
      *
@@ -96,6 +97,7 @@ public interface ClassService {
     public boolean deleteClasses(String[] idclses);
 
     public boolean deleteClass(String idcls);
+
     /**
      * 添加班级
      *

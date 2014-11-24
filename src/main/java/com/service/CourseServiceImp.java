@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service("courseService")
 public class CourseServiceImp implements CourseService {
     @Autowired
@@ -145,7 +146,7 @@ public class CourseServiceImp implements CourseService {
             idcm = college.getIdcm();
         }
         //System.out.println("starting add a course");
-		/* 查找Course,根据学院、专业、课程名称 */
+        /* 查找Course,根据学院、专业、课程名称 */
         Course course = new Course(null, college, corname, null, null, null);
         //System.out.println("check if the course is existed");
         // List courseList = courseDAO.findByExample(course);

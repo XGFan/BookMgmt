@@ -22,43 +22,47 @@ public class PubApi {
     ClassService classServie;
     @Autowired
     CollegeService collegeService;
+
     /**
      * 所有校区
+     *
      * @return json
      */
     @GET
     @Path("/campus")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getCampus(){
+    public JSONObject getCampus() {
         return JSONObject.fromObject(classServie.getAllCampus());
     }
 
     /**
      * 所有年级
+     *
      * @return json
      */
     @GET
     @Path("/grade")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getGrade(){
+    public JSONObject getGrade() {
         return JSONObject.fromObject(classServie.getAllGrade());
     }
 
     /**
      * 所有学院
+     *
      * @return json
      */
     @GET
     @Path("/col")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getCol(@PathParam("campus")String campus){
+    public JSONObject getCol(@PathParam("campus") String campus) {
         return JSONObject.fromObject(collegeService.getAllColName());
     }
 
     @GET
     @Path("/major/{col}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getMajor(@PathParam("col")String col){
+    public JSONArray getMajor(@PathParam("col") String col) {
         return JSONArray.fromObject(collegeService.getMajorNameByCol("col"));
     }
 

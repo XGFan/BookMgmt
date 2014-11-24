@@ -107,37 +107,37 @@ public class ClassDAOImp implements ClassDAO {
                                               String grade, String campus) {
         boolean flag = true;
         String queryString = "from com.bean.cls.ClassInfo c join fetch c.college cc ";
-        if(col!="") {
+        if (col != "") {
             flag = false;
             queryString += "where ";
-            queryString +="cc.col = '"+ col+"'";
+            queryString += "cc.col = '" + col + "'";
         }
-        if(major!="") {
-            if(flag) {
+        if (major != "") {
+            if (flag) {
                 queryString += "where ";
-            }else{
+            } else {
                 queryString += " and ";
             }
             flag = false;
             queryString += "cc.major = '" + major + "'";
         }
-        if(grade!="") {
-            if(flag) {
+        if (grade != "") {
+            if (flag) {
                 queryString += "where ";
-            }else{
+            } else {
                 queryString += " and ";
             }
             flag = false;
             queryString += "c.grade = " + grade;
         }
-        if(campus!="") {
-            if(flag) {
+        if (campus != "") {
+            if (flag) {
                 queryString += "where ";
-            }else{
+            } else {
                 queryString += " and ";
             }
             flag = false;
-            queryString += "c.campus = '" + campus +"'";
+            queryString += "c.campus = '" + campus + "'";
         }
         queryString += " order by cc.col,cc.major,c.grade,c.clsno";
         List list = null;

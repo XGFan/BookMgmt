@@ -80,7 +80,7 @@ public class CorplanServiceImp implements CorplanService {
             idcm = college.getIdcm();
         }
         // System.out.println("The College is finded!" + idcm);
-		/* 2.查找Course,根据学院、专业、课程名称 */
+        /* 2.查找Course,根据学院、专业、课程名称 */
         // String sem=semester;
         Course course = new Course(null, college, corname, semester, null, null);
         // System.out.println("The Course is builded!");

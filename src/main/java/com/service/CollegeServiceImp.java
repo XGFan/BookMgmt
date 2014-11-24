@@ -99,11 +99,11 @@ public class CollegeServiceImp implements CollegeService {
 
     @Override
     public College getCollege(String col, String major) {
-        List list = collegeDAO.getCol(col,major);
-        if(list == null||list.isEmpty()){
+        List list = collegeDAO.getCol(col, major);
+        if (list == null || list.isEmpty()) {
             return null;
-        }else{
-            return (College)(list.get(0));
+        } else {
+            return (College) (list.get(0));
         }
     }
 

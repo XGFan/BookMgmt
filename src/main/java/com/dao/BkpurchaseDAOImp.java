@@ -13,13 +13,12 @@ import java.util.List;
  */
 @Repository("bkpurchaseDAO")
 public class BkpurchaseDAOImp implements BkpurchaseDAO {
-    @Autowired
-    HibernateTemplate hibernateTemplate;
     public static final String BKNUM = "bknum";
     public static final String CAMPUS = "campus";
     public static final String SUPPLIER = "supplier";
     private static final Log log = LogFactory.getLog(BkpurchaseDAOImp.class);
-
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
     public HibernateTemplate getHibernateTemplate() {
         return hibernateTemplate;

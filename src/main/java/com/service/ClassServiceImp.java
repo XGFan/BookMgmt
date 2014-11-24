@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service("classServie")
 public class ClassServiceImp implements ClassService {
     @Autowired
@@ -62,7 +63,7 @@ public class ClassServiceImp implements ClassService {
 
     public boolean deleteClasses(String[] idclses) {
         for (String idcls : idclses) {
-            if(!deleteClass(idcls))
+            if (!deleteClass(idcls))
                 return false;
         }
         return true;
