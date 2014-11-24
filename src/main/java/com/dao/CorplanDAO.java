@@ -168,6 +168,6 @@ public class CorplanDAO extends HibernateDaoSupport {
      * todo
      */
     public void initAllCorplan(List entities) {
-        getHibernateTemplate().saveOrUpdateAll(entities);
+        getHibernateTemplate().saveOrUpdate(entities);
     }
 }

@@ -29,20 +29,20 @@
         </property>
         <property name="mappingResources">
             <list>
-                <value>com/bean/college/College.hbm.xml</value>
-                <value>com/bean/course/Course.hbm.xml</value>
-                <value>com/bean/corplan/Corplan.hbm.xml</value>
-                <value>com/bean/corbook/Corbook.hbm.xml</value>
-                <value>com/bean/book/Book.hbm.xml</value>
-                <value>com/bean/supplier/Supplier.hbm.xml</value>
-                <value>com/bean/corbook/Corbookview.hbm.xml</value>
-                <value>com/bean/cls/Class.hbm.xml</value>
-                <value>com/bean/bookcorsup/Bookcorsup.hbm.xml</value>
-                <value>com/bean/courclass/Courclass.hbm.xml</value>
-                <value>com/bean/bkpurchase/Bkpurchase.hbm.xml</value>
-                <value>com/bean/coursebk/Coursebk.hbm.xml</value>
-                <value>com/bean/bookpurchaseview/Bookpurchaseview.hbm.xml</value>
-                <value>com/bean/bookpurchase/Bookpurchase.hbm.xml</value>
+                <value>hbm/College.hbm.xml</value>
+                <value>hbm/Course.hbm.xml</value>
+                <value>hbm/Corplan.hbm.xml</value>
+                <value>hbm/Corbook.hbm.xml</value>
+                <value>hbm/Book.hbm.xml</value>
+                <value>hbm/Supplier.hbm.xml</value>
+                <value>hbm/Corbookview.hbm.xml</value>
+                <value>hbm/Class.hbm.xml</value>
+                <value>hbm/Bookcorsup.hbm.xml</value>
+                <value>hbm/Courclass.hbm.xml</value>
+                <value>hbm/Bkpurchase.hbm.xml</value>
+                <value>hbm/Coursebk.hbm.xml</value>
+                <value>hbm/Bookpurchaseview.hbm.xml</value>
+                <value>hbm/Bookpurchase.hbm.xml</value>
             </list>
         </property>
     </bean>

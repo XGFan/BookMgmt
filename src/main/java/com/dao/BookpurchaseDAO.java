@@ -126,7 +126,7 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
             queryString += " ,convert_gbk(bk.publisher) asc";
             queryString += " ,bk.edition asc,convert_gbk(bk.bkname) asc";
             queryString += " ,convert_gbk(bk.author) asc,bk.grade";
-            return getHibernateTemplate().find(queryString);
+            return (List<Object[]>)getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("merge failed", re);
             throw re;

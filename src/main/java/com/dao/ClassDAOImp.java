@@ -175,7 +175,7 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
         // List<Object[]>
         // list=this.getSession().createQuery(queryString).list();
         /** 在将上面这句话转换成下面这句话之前，每次只能添加2次班级，系统就不能访问数据库，但是Tomcat正常开启。张驰 20140506**/
-        List<Object[]> list = getHibernateTemplate().find(queryString);
+        List<Object[]> list = (List<Object[]>)getHibernateTemplate().find(queryString);
         Integer clsNum = 0;
         for (Object[] objs : list) {
             Class cls = (Class) objs[0];

@@ -26,7 +26,7 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
     }
 
     //todo
-    public List<Bookpurchaseview> findByYearAndSem(int year, int sem) {
+    public List findByYearAndSem(int year, int sem) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
         try {
             String queryString = "from Bookpurchaseview as b where (((" + year + "- b.id.grade)*2 + " + sem + ") = b.id.semester)";
@@ -39,7 +39,7 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
     }
 
     //todo
-    public List<Bookpurchaseview> findByYearAndSemAndCol(int year, int sem,
+    public List findByYearAndSemAndCol(int year, int sem,
                                                          String idcls) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
         try {
@@ -56,7 +56,7 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
     }
 
     //todo
-    public List<Bookpurchaseview> findByYearAndSemAndGrade(int year, int sem,
+    public List findByYearAndSemAndGrade(int year, int sem,
                                                            int grade) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
         try {
