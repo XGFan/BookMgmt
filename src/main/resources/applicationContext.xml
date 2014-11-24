@@ -94,7 +94,7 @@
     <!--DAO End-->
 
     <!--Service Start-->
-    <bean id="colServ" class="com.service.ColServImp">
+    <bean id="colServ" class="com.service.CollegeServiceImp">
         <property name="collegeDAO" ref="collegeDAO"/>
     </bean>
     <bean id="courseService" class="com.service.CourseServiceImp">
@@ -120,11 +120,6 @@
     <bean id="supService" class="com.service.SupplierServiceImp">
         <property name="supplierDAO" ref="supplierDAO"/>
     </bean>
-    <bean id="bkpurAction" class="com.action.BkpurAction">
-        <property name="bkpurser" ref="bkpurService"/>
-        <!-- bkpurser 是购书service类 -->
-        <property name="supplierService" ref="supService"/>
-    </bean>
     <bean id="bkpurService" class="com.service.BKPurchaseServiceImp">
         <property name="bkpurdao" ref="bkpurchaseDAO"/>
         <property name="bcsdao" ref="bookcorsupDAO"/>
@@ -142,39 +137,6 @@
     </bean>
     <!--Service End-->
 
-    <!--Action Start-->
-    <bean id="collegeAction" class="com.action.ColAction">
-        <property name="csv" ref="colServ"/>
-    </bean>
-    <bean id="courseAction" class="com.action.CourseAction">
-        <property name="collgeService" ref="colServ"/>
-        <property name="courseService" ref="courseService"/>
-        <property name="courseBookViewService" ref="courseBookViewService"/>
-    </bean>
-    <bean id="corplanAction" class="com.action.CorplanAction">
-        <property name="collgeService" ref="colServ"/>
-        <property name="courseService" ref="courseService"/>
-        <property name="corplanService" ref="corplanService"/>
-    </bean>
-    <bean id="bookAction" class="com.action.BookAction">
-        <property name="bookService" ref="bookService"/>
-        <property name="courseService" ref="courseService"/>
-        <property name="corbkviewService" ref="courseBookViewService"/>
-        <property name="supSer" ref="supService"/>
-        <property name="coursebkDao" ref="coursebkDAO"/>
-    </bean>
-    <bean id="supAction" class="com.action.SupAction">
-        <property name="supser" ref="supService"/>
-    </bean>
-    <bean id="classAction" class="com.action.ClassAction">
-        <property name="classService" ref="classService"/>
-        <property name="collegeService" ref="colServ"/>
-    </bean>
-    <bean id="bkdistAction" class="com.action.BKdistAction">
-        <property name="bkdistser" ref="bkdistService"/>
-        <property name="bkpurser" ref="bkpurService"/>
-        <property name="classService" ref="classService"/>
-    </bean>
-    <!--Action End-->
+
 
 </beans>

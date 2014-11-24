@@ -1,17 +1,21 @@
-//package com.api;
-//
-//import org.glassfish.jersey.server.ResourceConfig;
-//
-//import javax.ws.rs.ApplicationPath;
-//
-///**
-// * DATE:2014/11/24
-// * TIME:16:07
-// * Created by guofan on 2014/11/24
-// */
-//@ApplicationPath("api")
-//public class RestConfig extends ResourceConfig {
-//    public RestConfig() {
-//        packages("api");
-//    }
-//}
+package com.api;
+
+import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
+
+/**
+ * DATE:2014/11/24
+ * TIME:22:24
+ * Created by guofan on 2014/11/24
+ */
+public class RestConfig extends ResourceConfig {
+    public RestConfig(){
+        register(RequestContextFilter.class);
+//        register(PodcastRestService.class);
+//        register(PodcastLegacyRestService.class);
+        register(JacksonFeature.class);
+//        register(LoggingResponseFilter.class);
+        register(Class.class);
+    }
+}

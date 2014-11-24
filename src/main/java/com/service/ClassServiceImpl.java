@@ -29,6 +29,11 @@ public class ClassServiceImpl implements ClassService {
         return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.findAll()), pagination);
     }
 
+    @Override
+    public List findAll() {
+        return ConvertUtils.class2List(classDAO.findAll());
+    }
+
     public List accurateQuery(String col, String major, String grade, String campus, Pagination pagination) {
         return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getClassByGradeCampusColMajor(col, major, grade, campus)), pagination);
     }

@@ -1,5 +1,7 @@
 package com.util;
 
+import net.sf.json.JSONArray;
+
 import java.util.List;
 
 public class GetPaginationInfo {
@@ -22,5 +24,13 @@ public class GetPaginationInfo {
             }
         }
         return list;
+    }
+
+    public static JSONArray getSubList(List list,int page,int num){
+        if((page-1)*num > list.size()){
+            return JSONArray.fromObject(list.subList((page-1)*num,list.size()));
+        }else{
+            return JSONArray.fromObject(list.subList((page-1)*num,page*num));
+        }
     }
 }

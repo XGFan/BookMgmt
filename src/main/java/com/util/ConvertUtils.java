@@ -58,7 +58,6 @@ public class ConvertUtils {
             map.put("stunum", cls.getStunum());
             clslist.add(map);
         }
-        System.out.println(clslist);
         return clslist;
     }
 

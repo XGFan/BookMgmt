@@ -25,6 +25,7 @@ public interface ClassService {
      */
     public List fuzzyFind(String condition, Pagination pagination);
 
+
     /**
      * 获取所有班级,根据分页信息返回一页
      *
@@ -32,6 +33,13 @@ public interface ClassService {
      * @return 一页班级
      */
     public List findAllByPagination(Pagination pagination);
+
+    /**
+     * 获取所有班级,根据分页信息返回一页
+     *
+     * @return 所有班级
+     */
+    public List findAll();
 
     /**
      * 根据学院，专业，年级，校区精确查询班级信息,返回一页信息
