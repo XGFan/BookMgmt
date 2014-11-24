@@ -11,11 +11,11 @@
 
     <dependencies>
         <!--struts-->
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-core</artifactId>
-            <version>2.3.16.3</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.struts</groupId>-->
+            <!--<artifactId>struts2-core</artifactId>-->
+            <!--<version>2.3.16.3</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -28,11 +28,11 @@
             <version>4.1.1.RELEASE</version>
         </dependency>
         <!--struts2和spring的组合依赖-->
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-spring-plugin</artifactId>
-            <version>2.3.16.3</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.struts</groupId>-->
+            <!--<artifactId>struts2-spring-plugin</artifactId>-->
+            <!--<version>2.3.16.3</version>-->
+        <!--</dependency>-->
         <!--hibernate-->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -75,16 +75,19 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <!--jstl-->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
-
+        <!--&lt;!&ndash;jersey restful&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+            <!--<artifactId>jersey-container-servlet</artifactId>-->
+            <!--<version>2.13</version>-->
+        <!--</dependency>-->
     </dependencies>
-
-
 
     <build>
     <plugins>
