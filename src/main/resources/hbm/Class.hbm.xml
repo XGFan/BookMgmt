@@ -6,7 +6,7 @@
 -->
 <hibernate-mapping>
     <!--suppress HibernateMappingDatasourceDomInspection -->
-    <class name="com.bean.cls.Class" table="class" catalog="bookmgmt">
+    <class name="com.bean.cls.ClassInfo" table="class" catalog="bookmgmt">
         <id name="idcls" type="java.lang.String">
             <!--suppress HibernateMappingDatasourceDomInspection -->
             <column name="idcls" length="12"/>

@@ -3,10 +3,13 @@ package com.service;
 import com.bean.supplier.Supplier;
 import com.dao.SupplierDAO;
 import com.util.ConvertUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service("supplierService")
 public class SupplierServiceImp implements SupplierService {
+    @Autowired
     private SupplierDAO supplierDAO;
 
     public SupplierDAO getSupplierDAO() {

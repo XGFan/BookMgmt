@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.bean.cls.Class;
+import com.bean.cls.ClassInfo;
 
 import java.util.List;
 
@@ -16,14 +16,14 @@ public interface ClassDAO {
      *
      * @param transientInstance 班级信息实例
      */
-    boolean save(Class transientInstance);
+    boolean save(ClassInfo transientInstance);
 
     /**
      * 删除班级实例
      *
      * @param persistentInstance 班级信息实例
      */
-    boolean delete(Class persistentInstance);
+    boolean delete(ClassInfo persistentInstance);
 
     /**
      * 根据班级id查找班级
@@ -31,7 +31,7 @@ public interface ClassDAO {
      * @param id 班级id
      * @return 班级 obj
      */
-    Class findById(String id);
+    ClassInfo findById(String id);
 
     /**
      * 返回所有的班级信息
@@ -79,7 +79,7 @@ public interface ClassDAO {
      * @param persistentInstance class实例
      * @return boolean
      */
-    boolean saveOrUpdate(Class persistentInstance);
+    boolean update(ClassInfo persistentInstance);
 
     /**
      * 获得班号

@@ -1,16 +1,18 @@
 package com.service;
 
-import com.bean.cls.Class;
+import com.bean.cls.ClassInfo;
 import com.bean.college.College;
 import com.dao.ClassDAO;
 import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class ClassServiceImpl implements ClassService {
-
+@Service("classServie")
+public class ClassServiceImp implements ClassService {
+    @Autowired
     private ClassDAO classDAO;
 
     public ClassDAO getClassDAO() {
@@ -23,6 +25,11 @@ public class ClassServiceImpl implements ClassService {
 
     public List fuzzyFind(String condition, Pagination pagination) {
         return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getClassFuzzy(condition)), pagination);
+    }
+
+    @Override
+    public List fuzzyFind(String condition) {
+        return ConvertUtils.class2List(classDAO.getClassFuzzy(condition));
     }
 
     public List findAllByPagination(Pagination pagination) {
@@ -38,6 +45,11 @@ public class ClassServiceImpl implements ClassService {
         return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getClassByGradeCampusColMajor(col, major, grade, campus)), pagination);
     }
 
+    @Override
+    public List accurateQuery(String col, String major, String grade, String campus) {
+        return ConvertUtils.class2List(classDAO.getClassByGradeCampusColMajor(col, major, grade, campus));
+    }
+
     public List getAllCampus() {
         return classDAO.getAllCampus();
     }
@@ -49,20 +61,21 @@ public class ClassServiceImpl implements ClassService {
 
 
     public boolean deleteClasses(String[] idclses) {
-        Class cls;
         for (String idcls : idclses) {
-            cls = classDAO.findById(idcls);
-            if (cls != null) {
-                if (!classDAO.delete(cls))
-                    return false;
-            }
+            if(!deleteClass(idcls))
+                return false;
         }
         return true;
     }
 
+    @Override
+    public boolean deleteClass(String idcls) {
+        ClassInfo cls = classDAO.findById(idcls);
+        return classDAO.delete(cls);
+    }
 
     public boolean addClasses(String campus, String grade, int clsnum, College college) {
-        Class cls = new Class();
+        ClassInfo cls = new ClassInfo();
         Integer j = classDAO.getClsNum(grade, college.getIdcm()) + 1;// 班级表此时班号最大值
         String idcls;
         for (int i = j; i < j + clsnum; i++) {
@@ -84,11 +97,11 @@ public class ClassServiceImpl implements ClassService {
         return true;
     }
 
-    public boolean editClasses(Class cls) {
-        return classDAO.saveOrUpdate(cls);
+    public boolean updateClass(ClassInfo cls) {
+        return classDAO.update(cls);
     }
 
-    public Class findById(String idcls) {
+    public ClassInfo findById(String idcls) {
         return classDAO.findById(idcls);
     }
 

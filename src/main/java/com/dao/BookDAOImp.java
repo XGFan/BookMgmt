@@ -3,13 +3,25 @@ package com.dao;
 import com.bean.book.Book;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
+@Repository("BookDAO")
+public class BookDAOImp implements BookDAO {
     private static final Log log = LogFactory.getLog(BookDAOImp.class);
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
 
     protected void initDao() {
     }
@@ -90,10 +102,10 @@ public class BookDAOImp extends HibernateDaoSupport implements BookDAO {
 
     public boolean update(Book book) {
         boolean tag = true;
-        try{
+        try {
             getHibernateTemplate().saveOrUpdate(book);
-        }catch (RuntimeException re){
-            log.debug("update book failed",re);
+        } catch (RuntimeException re) {
+            log.debug("update book failed", re);
             tag = false;
         }
         return tag;

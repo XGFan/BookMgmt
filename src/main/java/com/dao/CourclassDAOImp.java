@@ -2,27 +2,29 @@ package com.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * A data access object (DAO) providing persistence and search support for
- * Courclass entities. Transaction control of the save(), update() and delete()
- * operations can directly support Spring container-managed transactions or they
- * can be augmented to handle user-managed Spring transactions. Each of these
- * methods provides additional information for how to configure it for the
- * desired type of transaction control.
- *
  * @author MyEclipse Persistence Tools
  * @see com.bean.courclass.Courclass
  */
-
-public class CourclassDAOImp extends HibernateDaoSupport implements
+@Repository("courclassDAO")
+public class CourclassDAOImp implements
         CourclassDAO {
     private static final Log log = LogFactory.getLog(CourclassDAOImp.class);
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
-    protected void initDao() {
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
     }
 
     public List findByCorSem(String idcor, String semester) {

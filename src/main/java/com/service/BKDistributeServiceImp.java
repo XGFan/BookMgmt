@@ -1,10 +1,13 @@
 package com.service;
 
 import com.dao.BookpurchaseviewDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service("bKDistributeService")
 public class BKDistributeServiceImp implements BKDistributeService {
+    @Autowired
     private BookpurchaseviewDAO bookpurchaseviewDAO;
 
     public BookpurchaseviewDAO getBookpurchaseviewDAO() {

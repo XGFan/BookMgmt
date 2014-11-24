@@ -1,9 +1,10 @@
 package com.dao;
 
-import com.bean.bookpurchaseview.Bookpurchaseview;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -18,11 +19,18 @@ import java.util.List;
  * @author MyEclipse Persistence Tools
  * @see com.bean.bookpurchaseview.Bookpurchaseview
  */
-
-public class BookpurchaseviewDAO extends HibernateDaoSupport {
+@Repository("bookpurchaseviewDAO")
+public class BookpurchaseviewDAO {
     private static final Log log = LogFactory.getLog(BookpurchaseviewDAO.class);
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
-    protected void initDao() {
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
     }
 
     //todo
@@ -40,7 +48,7 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
 
     //todo
     public List findByYearAndSemAndCol(int year, int sem,
-                                                         String idcls) {
+                                       String idcls) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
         try {
             String queryString = "from Bookpurchaseview as b where (((" + year
@@ -57,7 +65,7 @@ public class BookpurchaseviewDAO extends HibernateDaoSupport {
 
     //todo
     public List findByYearAndSemAndGrade(int year, int sem,
-                                                           int grade) {
+                                         int grade) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
         try {
             String queryString = "from Bookpurchaseview as b where (((" + year

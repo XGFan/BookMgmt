@@ -1,7 +1,7 @@
 package com.util;
 
 import com.bean.book.Book;
-import com.bean.cls.Class;
+import com.bean.cls.ClassInfo;
 import com.bean.college.College;
 import com.bean.corbook.Corbookview;
 import com.bean.corplan.Corplan;
@@ -45,7 +45,7 @@ public class ConvertUtils {
         List clslist = new ArrayList();
         while (it.hasNext()) {
             Map map = new HashMap();
-            com.bean.cls.Class cls = (Class) it.next();
+            ClassInfo cls = (ClassInfo) it.next();
             map.put("col", cls.getCollege().getCol());
             map.put("major", cls.getCollege().getMajor());
             map.put("idcm", cls.getCollege().getIdcm());

@@ -1,6 +1,6 @@
 package com.service;
 
-import com.bean.cls.Class;
+import com.bean.cls.ClassInfo;
 import com.bean.college.College;
 import com.util.Pagination;
 
@@ -14,7 +14,7 @@ public interface ClassService {
      * @param idcls 班级id
      * @return class obj
      */
-    public Class findById(String idcls);
+    public ClassInfo findById(String idcls);
 
     /**
      * 根据条件进行模糊查询，并根据分页信息进行返回list
@@ -24,6 +24,14 @@ public interface ClassService {
      * @return map list
      */
     public List fuzzyFind(String condition, Pagination pagination);
+
+    /**
+     * 根据条件进行模糊查询
+     *
+     * @param condition  查询条件
+     * @return map list
+     */
+    public List fuzzyFind(String condition);
 
 
     /**
@@ -55,6 +63,17 @@ public interface ClassService {
                               String campus, Pagination pagination);
 
     /**
+     * 根据学院，专业，年级，校区精确查询班级信息
+     *
+     * @param col        学院
+     * @param major      专业
+     * @param grade      年纪
+     * @param campus     校区
+     * @return 查询结果LIST
+     */
+    public List accurateQuery(String col, String major, String grade,
+                              String campus);
+    /**
      * 获取所有校区
      *
      * @return string list
@@ -76,6 +95,7 @@ public interface ClassService {
      */
     public boolean deleteClasses(String[] idclses);
 
+    public boolean deleteClass(String idcls);
     /**
      * 添加班级
      *
@@ -93,5 +113,5 @@ public interface ClassService {
      * @param cls 班级
      * @return bool
      */
-    public boolean editClasses(Class cls);
+    public boolean updateClass(ClassInfo cls);
 }

@@ -4,12 +4,16 @@ import com.bean.college.College;
 import com.dao.CollegeDAO;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static com.util.ConvertUtils.ToCollegeList;
 
+@Service("collegeService")
 public class CollegeServiceImp implements CollegeService {
+    @Autowired
     private CollegeDAO collegeDAO;
 
     public CollegeDAO getCollegeDAO() {
@@ -93,6 +97,16 @@ public class CollegeServiceImp implements CollegeService {
         return ToCollegeList(list);
     }
 
+    @Override
+    public College getCollege(String col, String major) {
+        List list = collegeDAO.getCol(col,major);
+        if(list == null||list.isEmpty()){
+            return null;
+        }else{
+            return (College)(list.get(0));
+        }
+    }
+
     public List searchByCol(String col, Pagination pagination) {
         List list = collegeDAO.findByCol(col);
         return ToCollegeList(GetPaginationInfo.getSubList(list, pagination));
@@ -106,7 +120,7 @@ public class CollegeServiceImp implements CollegeService {
         return collegeDAO.getMajorByCol(col);
     }
 
-    public List getCols(String col, String major) {
+    public List getColObj(String col, String major) {
         return collegeDAO.getCol(col, major);
     }
 

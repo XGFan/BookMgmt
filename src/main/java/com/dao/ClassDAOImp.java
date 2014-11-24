@@ -1,34 +1,36 @@
 package com.dao;
 
-import com.bean.cls.Class;
+import com.bean.cls.ClassInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * A data access object (DAO) providing persistence and search support for Class
- * entities. Transaction control of the save(), update() and delete() operations
- * can directly support Spring container-managed transactions or they can be
- * augmented to handle user-managed Spring transactions. Each of these methods
- * provides additional information for how to configure it for the desired type
- * of transaction control.
- *
  * @author MyEclipse Persistence Tools
- * @see com.bean.cls.Class
+ * @see com.bean.cls.ClassInfo
  */
-
-public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
+@Repository("classDAO")
+public class ClassDAOImp implements ClassDAO {
     private static final Log log = LogFactory.getLog(ClassDAOImp.class);
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
-    protected void initDao() {
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
     }
 
     @Override
-    public boolean save(com.bean.cls.Class transientInstance) {
+    public boolean save(ClassInfo transientInstance) {
         boolean tag = true;
-        log.debug("saving Class instance");
+        log.debug("saving ClassInfo instance");
         try {
             getHibernateTemplate().save(transientInstance);
             log.debug("save successful");
@@ -40,9 +42,9 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
     }
 
     @Override
-    public boolean delete(Class persistentInstance) {
+    public boolean delete(ClassInfo persistentInstance) {
         boolean tag = true;
-        log.debug("deleting Class instance");
+        log.debug("deleting ClassInfo instance");
         try {
             getHibernateTemplate().delete(persistentInstance);
             log.debug("delete successful");
@@ -54,11 +56,11 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
     }
 
     @Override
-    public Class findById(java.lang.String id) {
-        Class cls = null;
-        log.debug("getting Class instance with id: " + id);
+    public ClassInfo findById(java.lang.String id) {
+        ClassInfo cls = null;
+        log.debug("getting ClassInfo instance with id: " + id);
         try {
-            cls = (Class) getHibernateTemplate().get("com.bean.cls.Class", id);
+            cls = (ClassInfo) getHibernateTemplate().get("com.bean.cls.ClassInfo", id);
         } catch (RuntimeException re) {
             log.error("get failed", re);
         }
@@ -68,9 +70,9 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
     @Override
     public List findAll() {
         List list = null;
-        log.debug("finding all Class instances");
+        log.debug("finding all ClassInfo instances");
         try {
-            String queryString = "from Class";
+            String queryString = "from ClassInfo";
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -81,7 +83,7 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
     @Override
     public List getClassFuzzy(String condition) {
         List list = null;
-        String queryString = "from com.bean.cls.Class c join fetch c.college cc"
+        String queryString = "from com.bean.cls.ClassInfo c join fetch c.college cc"
                 + " where cc.col like '%"
                 + condition
                 + "%' or cc.major like '%"
@@ -103,19 +105,43 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
     @Override
     public List getClassByGradeCampusColMajor(String col, String major,
                                               String grade, String campus) {
-        String queryString = "from com.bean.cls.Class c join fetch c.college cc where"
-                + " cc.col like '%"
-                + col
-                + "%' and cc.major like '%"
-                + major
-                + "%'"
-                + " and c.campus like '%"
-                + campus
-                + "%' and c.grade like '%"
-                + grade
-                + "%'"
-                + " order by cc.col,cc.major,c.grade,c.clsno";
+        boolean flag = true;
+        String queryString = "from com.bean.cls.ClassInfo c join fetch c.college cc ";
+        if(col!="") {
+            flag = false;
+            queryString += "where ";
+            queryString +="cc.col = '"+ col+"'";
+        }
+        if(major!="") {
+            if(flag) {
+                queryString += "where ";
+            }else{
+                queryString += " and ";
+            }
+            flag = false;
+            queryString += "cc.major = '" + major + "'";
+        }
+        if(grade!="") {
+            if(flag) {
+                queryString += "where ";
+            }else{
+                queryString += " and ";
+            }
+            flag = false;
+            queryString += "c.grade = " + grade;
+        }
+        if(campus!="") {
+            if(flag) {
+                queryString += "where ";
+            }else{
+                queryString += " and ";
+            }
+            flag = false;
+            queryString += "c.campus = '" + campus +"'";
+        }
+        queryString += " order by cc.col,cc.major,c.grade,c.clsno";
         List list = null;
+        System.out.println(queryString);
         try {
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
@@ -129,7 +155,7 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
         log.debug("finding all Cols");
         List list = null;
         try {
-            String queryString = "select distinct campus from Class";
+            String queryString = "select distinct campus from ClassInfo";
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -142,7 +168,7 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
         log.debug("finding all Cols");
         List list = null;
         try {
-            String queryString = "select distinct grade from Class";
+            String queryString = "select distinct grade from ClassInfo";
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -151,14 +177,14 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
     }
 
     @Override
-    public boolean saveOrUpdate(Class persistentInstance) {
+    public boolean update(ClassInfo persistentInstance) {
         boolean tag = true;
-        log.debug("saveOrUpdating Class instance");
+        log.debug("saveOrUpdating ClassInfo instance");
         try {
-            getHibernateTemplate().saveOrUpdate(persistentInstance);
-            log.debug("saveOrUpdate successful");
+            getHibernateTemplate().update(persistentInstance);
+            log.debug("update successful");
         } catch (RuntimeException re) {
-            log.error("saveOrUpdate failed", re);
+            log.error("update failed", re);
             tag = false;
         }
         return tag;
@@ -166,7 +192,7 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
 
     @Override
     public int getClsNum(String grade, String idcm) {
-        String queryString = "from com.bean.cls.Class c join c.college cc where c.clsno=any(select max(c1.clsno) from Class c1 join c1.college cc1 where c1.grade='"
+        String queryString = "from com.bean.cls.ClassInfo c join c.college cc where c.clsno=any(select max(c1.clsno) from ClassInfo c1 join c1.college cc1 where c1.grade='"
                 + grade
                 + "' and cc1.idcm ='"
                 + idcm
@@ -175,10 +201,10 @@ public class ClassDAOImp extends HibernateDaoSupport implements ClassDAO {
         // List<Object[]>
         // list=this.getSession().createQuery(queryString).list();
         /** 在将上面这句话转换成下面这句话之前，每次只能添加2次班级，系统就不能访问数据库，但是Tomcat正常开启。张驰 20140506**/
-        List<Object[]> list = (List<Object[]>)getHibernateTemplate().find(queryString);
+        List<Object[]> list = (List<Object[]>) getHibernateTemplate().find(queryString);
         Integer clsNum = 0;
         for (Object[] objs : list) {
-            Class cls = (Class) objs[0];
+            ClassInfo cls = (ClassInfo) objs[0];
             // System.out.println(cls.getClsno());
             clsNum = cls.getClsno();
         }

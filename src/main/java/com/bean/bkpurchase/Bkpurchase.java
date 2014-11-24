@@ -7,9 +7,7 @@ import com.bean.book.Book;
  * 教科书购买表
  */
 
-/**
- *
- */
+
 public class Bkpurchase implements java.io.Serializable {
 
     /**

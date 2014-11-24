@@ -4,7 +4,8 @@ import com.bean.bkpurchase.Bkpurchase;
 import com.bean.book.Book;
 import com.bean.bookpurchaseview.Bookpurchaseview;
 import com.dao.*;
-//import org.apache.poi.hssf.usermodel.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.*;
 
+@Service("bKPurchaseService")
 public class BKPurchaseServiceImp implements BKPurchaseService {
     public static final String COL = "学院";
     public static final String MAJOR = "专业";
@@ -37,11 +39,17 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
     private static final String BKNUM = "订购数量";
     private static final String PUBLISHER = "出版社";
     private static final String SUPPLIER = "供应商";
+    @Autowired
     private BkpurchaseDAO bkpurdao;
+    @Autowired
     private BookcorsupDAO bcsdao;
+    @Autowired
     private CourclassDAO ccdao;
+    @Autowired
     private BookDAO bookdao;
+    @Autowired
     private BookpurchaseviewDAO bookpurchaseviewDAO;
+    @Autowired
     private BookpurchaseDAO bookpurchaseDAO;
 
     public BkpurchaseDAO getBkpurdao() {

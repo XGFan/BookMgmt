@@ -7,13 +7,19 @@ import com.dao.CollegeDAO;
 import com.dao.CorplanDAO;
 import com.dao.CourseDAO;
 import com.util.ConvertUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service("corplanService")
 public class CorplanServiceImp implements CorplanService {
+    @Autowired
     private CorplanDAO corplanDAO;
+    @Autowired
     private CourseDAO courseDAO;
+    @Autowired
     private CollegeDAO collegeDAO;
 
     public CollegeDAO getCollegeDAO() {

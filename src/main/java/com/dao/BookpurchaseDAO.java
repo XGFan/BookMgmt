@@ -8,8 +8,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +20,8 @@ import java.util.List;
 /**
  * todo
  */
-public class BookpurchaseDAO extends HibernateDaoSupport {
+@Repository("bookpurchaseDAO")
+public class BookpurchaseDAO {
     public static final String ISBN = "isbn";
     private static final Log log = LogFactory.getLog(BookpurchaseDAO.class);
     private static final String IDCM = "idcm";
@@ -40,6 +44,16 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
     private static final String IDSP = "idsp";
     private static final String PUBLISHER = "publisher";
     private static final String SUPPLIER = "supplier";
+    @Autowired
+    HibernateTemplate hibernateTemplate;
+
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
 
     protected void initDao() {
     }
@@ -126,7 +140,7 @@ public class BookpurchaseDAO extends HibernateDaoSupport {
             queryString += " ,convert_gbk(bk.publisher) asc";
             queryString += " ,bk.edition asc,convert_gbk(bk.bkname) asc";
             queryString += " ,convert_gbk(bk.author) asc,bk.grade";
-            return (List<Object[]>)getHibernateTemplate().find(queryString);
+            return (List<Object[]>) getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("merge failed", re);
             throw re;

@@ -5,12 +5,18 @@ import com.dao.BookDAO;
 import com.dao.CorbookviewDAO;
 import com.dao.CourseDAO;
 import com.util.ConvertUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class CourseBookViewServiceImpl implements CourseBookViewService {
+@Service("courseBookViewService")
+public class CourseBookViewServiceImp implements CourseBookViewService {
+    @Autowired
     private BookDAO bookDAO;
+    @Autowired
     private CourseDAO courseDAO;
+    @Autowired
     private CorbookviewDAO corBookViewDAO;
 
     public BookDAO getBookDAO() {

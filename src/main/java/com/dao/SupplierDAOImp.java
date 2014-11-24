@@ -3,7 +3,9 @@ package com.dao;
 import com.bean.supplier.Supplier;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,13 +13,20 @@ import java.util.List;
  * @author MyEclipse Persistence Tools
  * @see com.bean.supplier.Supplier
  */
-
-public class SupplierDAOImp extends HibernateDaoSupport implements SupplierDAO {
+@Repository("supplierDAO")
+public class SupplierDAOImp implements SupplierDAO {
     private static final Log log = LogFactory.getLog(SupplierDAOImp.class);
     private static final String SUPPLIER = "supplier";
     private static final String PUBLISHER = "publisher";
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
-    protected void initDao() {
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
     }
 
     @Override

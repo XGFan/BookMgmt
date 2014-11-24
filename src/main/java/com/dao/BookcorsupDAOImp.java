@@ -2,13 +2,25 @@ package com.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class BookcorsupDAOImp extends HibernateDaoSupport implements
-        BookcorsupDAO {
+@Repository("bookcorsupDAO")
+public class BookcorsupDAOImp implements BookcorsupDAO {
     private static final Log log = LogFactory.getLog(BookcorsupDAOImp.class);
+    @Autowired
+    HibernateTemplate hibernateTemplate;
+
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
 
     protected void initDao() {
     }

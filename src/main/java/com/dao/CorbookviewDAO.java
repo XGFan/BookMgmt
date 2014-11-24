@@ -2,7 +2,9 @@ package com.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,12 +12,18 @@ import java.util.List;
  * @author MyEclipse Persistence Tools
  * @see com.bean.corbook.Corbookview
  */
-
-public class CorbookviewDAO extends HibernateDaoSupport {
+@Repository("corbookviewDAO")
+public class CorbookviewDAO {
     private static final Log log = LogFactory.getLog(CorbookviewDAO.class);
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
 
-    protected void initDao() {
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
     }
 
     /**

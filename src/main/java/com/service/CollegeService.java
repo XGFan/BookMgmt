@@ -21,6 +21,8 @@ public interface CollegeService {
      */
     public List searchByCol(String col);
 
+    public College getCollege(String col,String major);
+
     /**
      * 通过学院精确查找专业班级信息，根据分页信息返回一页信息
      *
@@ -76,7 +78,7 @@ public interface CollegeService {
      * @param major 专业名
      * @return 学院专业信息 obj list
      */
-    public List getCols(String col, String major);
+    public List getColObj(String col, String major);
 
     /**
      * 根据学院名称和专业名称获取记录

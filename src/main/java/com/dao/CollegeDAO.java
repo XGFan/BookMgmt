@@ -3,7 +3,9 @@ package com.dao;
 import com.bean.college.College;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -13,14 +15,21 @@ import java.util.List;
  * @author MyEclipse Persistence Tools
  * @see com.bean.college.College
  */
-
-public class CollegeDAO extends HibernateDaoSupport {
+@Repository("collegeDAO")
+public class CollegeDAO {
     private static final Log log = LogFactory.getLog(CollegeDAO.class);
     private static final String COL = "col";
     private static final String MAJOR = "major";
     private static final String SEMNUM = "semnum";
+    @Autowired
+    HibernateTemplate hibernateTemplate;
 
-    protected void initDao() {
+    public HibernateTemplate getHibernateTemplate() {
+        return hibernateTemplate;
+    }
+
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
     }
 
     /**

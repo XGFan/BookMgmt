@@ -33,4 +33,11 @@ public class GetPaginationInfo {
             return JSONArray.fromObject(list.subList((page-1)*num,page*num));
         }
     }
+    public static JSONArray getSubList(JSONArray jsonArray,int page,int num){
+        if((page-1)*num > jsonArray.size()){
+            return JSONArray.fromObject(jsonArray.subList((page-1)*num,jsonArray.size()));
+        }else{
+            return JSONArray.fromObject(jsonArray.subList((page-1)*num,page*num));
+        }
+    }
 }

@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+       xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 定义数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver">
         </property>
         <property name="url"
-                  value="jdbc:mysql://localhost:3306/bookmgmt?useUnicode=true&amp;characterEncoding=UTF-8">
+                  value="jdbc:mysql://localhost:3306/bookmgmt">
         </property>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
     </bean>
     <!-- 定义与Hibernate参数 -->
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">
-                    com.util.MySQL5LocalDialect
-                </prop>
-                <prop key="hibernate.show_sql">false</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-            </props>
-        </property>
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
         <property name="mappingResources">
             <list>
                 <value>hbm/College.hbm.xml</value>
@@ -46,97 +38,52 @@
             </list>
         </property>
     </bean>
-    <bean id="hibernateTemplate"
-          class="org.springframework.orm.hibernate3.HibernateTemplate">
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <!--spring事务管理器-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" >
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--&lt;!&ndash; 配置事务通知属性 &ndash;&gt;-->
+    <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+        <!--&lt;!&ndash; 定义事务传播属性 &ndash;&gt;-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="insert*" propagation="REQUIRED" />-->
+            <!--<tx:method name="update*" propagation="REQUIRED" />-->
+            <!--<tx:method name="edit*" propagation="REQUIRED" />-->
+            <!--<tx:method name="save*" propagation="REQUIRED" />-->
+            <!--<tx:method name="add*" propagation="REQUIRED" />-->
+            <!--<tx:method name="new*" propagation="REQUIRED" />-->
+            <!--<tx:method name="set*" propagation="REQUIRED" />-->
+            <!--<tx:method name="remove*" propagation="REQUIRED" />-->
+            <!--<tx:method name="delete*" propagation="REQUIRED" />-->
+            <!--<tx:method name="change*" propagation="REQUIRED" />-->
+            <!--<tx:method name="get*" propagation="REQUIRED" read-only="true" />-->
+            <!--<tx:method name="find*" propagation="REQUIRED" read-only="true" />-->
+            <!--<tx:method name="load*" propagation="REQUIRED" read-only="true" />-->
+            <!--<tx:method name="*" propagation="REQUIRED" read-only="false" />-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+
+    <!--&lt;!&ndash; 配置事务切面 &ndash;&gt;-->
+    <!--<aop:config>-->
+        <!--<aop:pointcut id="serviceOperation"-->
+                      <!--expression="execution(* com.service..*.*(..))"  />-->
+        <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />-->
+    <!--</aop:config>-->
+
+    <context:component-scan base-package="com" />
     <!--DAO Start-->
-    <bean id="collegeDAO" class="com.dao.CollegeDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="courseDAO" class="com.dao.CourseDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="coursebkDAO" class="com.dao.CoursebkDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="corplanDAO" class="com.dao.CorplanDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="bookDAO" class="com.dao.BookDAOImp">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="corbookviewDAO" class="com.dao.CorbookviewDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="classDAO" class="com.dao.ClassDAOImp">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="supplierDAO" class="com.dao.SupplierDAOImp">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="bookpurchaseviewDAO" class="com.dao.BookpurchaseviewDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="bookpurchaseDAO" class="com.dao.BookpurchaseDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="bkpurchaseDAO" class="com.dao.BkpurchaseDAOImp">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="courclassDAO" class="com.dao.CourclassDAOImp">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <bean id="bookcorsupDAO" class="com.dao.BookcorsupDAOImp">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
-    <!--DAO End-->
-
-    <!--Service Start-->
-    <bean id="colServ" class="com.service.CollegeServiceImp">
-        <property name="collegeDAO" ref="collegeDAO"/>
-    </bean>
-    <bean id="courseService" class="com.service.CourseServiceImp">
-        <property name="courseDAO" ref="courseDAO"/>
-        <property name="collegeDAO" ref="collegeDAO"/>
-        <property name="corplanDAO" ref="corplanDAO"/>
-        <property name="coursebkDAO" ref="coursebkDAO"/>
-        <property name="bookDAO" ref="bookDAO"/>
-    </bean>
-    <bean id="corplanService" class="com.service.CorplanServiceImp">
-        <property name="corplanDAO" ref="corplanDAO"/>
-        <property name="courseDAO" ref="courseDAO"/>
-        <property name="collegeDAO" ref="collegeDAO"/>
-    </bean>
-    <bean id="bookService" class="com.service.BookServiceImp">
-        <property name="bookDAO" ref="bookDAO"/>
-    </bean>
-    <bean id="courseBookViewService" class="com.service.CourseBookViewServiceImpl">
-        <property name="corBookViewDAO" ref="corbookviewDAO"/>
-        <property name="bookDAO" ref="bookDAO"/>
-        <property name="courseDAO" ref="courseDAO"/>
-    </bean>
-    <bean id="supService" class="com.service.SupplierServiceImp">
-        <property name="supplierDAO" ref="supplierDAO"/>
-    </bean>
-    <bean id="bkpurService" class="com.service.BKPurchaseServiceImp">
-        <property name="bkpurdao" ref="bkpurchaseDAO"/>
-        <property name="bcsdao" ref="bookcorsupDAO"/>
-        <property name="ccdao" ref="courclassDAO"/>
-        <property name="bookdao" ref="bookDAO"/>
-        <property name="bookpurchaseviewDAO" ref="bookpurchaseviewDAO"/>
-        <property name="bookpurchaseDAO" ref="bookpurchaseDAO"/>
-    </bean>
-    <bean id="classService" class="com.service.ClassServiceImpl">
-        <property name="classDAO" ref="classDAO"/>
-    </bean>
-    <bean id="bkdistService"
-          class="com.service.BKDistributeServiceImp">
-        <property name="bookpurchaseviewDAO" ref="bookpurchaseviewDAO"/>
-    </bean>
-    <!--Service End-->
-
+    <!--<bean id="collegeDAO" class="com.dao.CollegeDAO">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
+    <!--<bean id="courseDAO" class="com.dao.CourseDAO">-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
 
 
 </beans>

@@ -3,10 +3,10 @@ package com.bean.cls;
 import com.bean.college.College;
 
 /**
- * Class entity. @author MyEclipse Persistence Tools
+ * ClassInfo entity. @author MyEclipse Persistence Tools
  */
 /*班级信息*/
-public class Class implements java.io.Serializable {
+public class ClassInfo implements java.io.Serializable {
 
     // Fields
     /*班级id*/
@@ -29,14 +29,14 @@ public class Class implements java.io.Serializable {
     /**
      * default constructor
      */
-    public Class() {
+    public ClassInfo() {
     }
 
     /**
      * full constructor
      */
-    public Class(String idcls, College college, String campus, String grade,
-                 String semester, Integer clsno, Integer stunum) {
+    public ClassInfo(String idcls, College college, String campus, String grade,
+                     String semester, Integer clsno, Integer stunum) {
         this.idcls = idcls;
         this.college = college;
         this.campus = campus;
@@ -106,7 +106,7 @@ public class Class implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "Class [campus=" + campus + ", clsno=" + clsno + ", college="
+        return "ClassInfo [campus=" + campus + ", clsno=" + clsno + ", college="
                 + college + ", grade=" + grade + ", idcls=" + idcls
                 + ", semester=" + semester + ", stunum=" + stunum + "]";
     }

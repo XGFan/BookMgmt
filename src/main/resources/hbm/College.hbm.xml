@@ -22,7 +22,7 @@
             <key>
                 <column name="idcm" length="4"/>
             </key>
-            <one-to-many class="com.bean.cls.Class"/>
+            <one-to-many class="com.bean.cls.ClassInfo"/>
         </set>
         <set name="courses" inverse="true" cascade="all">
             <key>
