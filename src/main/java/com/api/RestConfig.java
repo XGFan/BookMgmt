@@ -15,5 +15,6 @@ public class RestConfig extends ResourceConfig {
         register(JacksonFeature.class);
         register(PubApi.class);
         register(ClassApi.class);
+        register(CollegeApi.class);
     }
 }
