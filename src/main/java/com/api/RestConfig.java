@@ -4,6 +4,8 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
+import com.bean.college.College;
+
 /**
  * DATE:2014/11/24
  * TIME:22:24
@@ -15,5 +17,6 @@ public class RestConfig extends ResourceConfig {
         register(JacksonFeature.class);
         register(PubApi.class);
         register(ClassApi.class);
+        register(CollegeApi.class);
     }
 }
