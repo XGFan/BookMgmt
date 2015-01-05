@@ -31,8 +31,8 @@ public class PubApi {
     @GET
     @Path("/campus")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getCampus() {
-        return JSONObject.fromObject(classServie.getAllCampus());
+    public JSONArray getCampus() {
+        return JSONArray.fromObject(classServie.getAllCampus());
     }
 
     /**
@@ -43,8 +43,8 @@ public class PubApi {
     @GET
     @Path("/grade")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getGrade() {
-        return JSONObject.fromObject(classServie.getAllGrade());
+    public JSONArray getGrade() {
+        return JSONArray.fromObject(classServie.getAllGrade());
     }
 
     /**
@@ -55,9 +55,10 @@ public class PubApi {
     @GET
     @Path("/col")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getCol(@PathParam("campus") String campus) {
-        return JSONObject.fromObject(collegeService.getAllColName());
+    public JSONArray getCol(@PathParam("campus") String campus) {
+        return JSONArray.fromObject(collegeService.getAllColName());
     }
+
 
     @GET
     @Path("/major/{col}")

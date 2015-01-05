@@ -66,6 +66,7 @@ public class ClassApi {
 
     @POST
     @Path("/new")
+//    @Consumes("application/x-www-form-urlencoded;text/html;charset=utf-8")
     @Produces("application/json;charset=UTF-8")
     public boolean addClass(
             @FormParam("campus") String campus,
