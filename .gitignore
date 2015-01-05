@@ -5,3 +5,4 @@ WebRoot/WEB-INF/lib/
 .settings/
 *.iml
 target/
+.classpath
