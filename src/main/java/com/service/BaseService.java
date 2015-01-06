@@ -1,4 +1,4 @@
-package com.newService;
+package com.service;
 
 import java.util.List;
 import com.util.Result;
@@ -15,20 +15,11 @@ public interface BaseService<T> {
      * @param entity 实例
      * @return result
      */
-    public Result add(T entity);
+    public boolean add(T entity);
 
-    /**
-     * 修改
-     *
-     * @param entity 实例
-     * @param id     实例id
-     * @return result
-     */
-//    public Result edit(T entity, int id);
+    public boolean del(T entity);
 
-    public Result edit(T entity);
-
-//    public Result del(int id);
+    public boolean update(T entity);
 
     public List getAll();
 

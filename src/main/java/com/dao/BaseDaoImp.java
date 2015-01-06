@@ -1,4 +1,4 @@
-package com.newDao;
+package com.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,7 +30,7 @@ public class BaseDaoImp<T> implements BaseDao<T> {
         this.sessionFactory = sessionFactory;
     }
 
-    private Session getCurrentSession() {
+    public Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }
 

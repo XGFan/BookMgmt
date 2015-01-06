@@ -1,7 +1,6 @@
-package com.newService;
+package com.service;
 
-import com.newDao.BaseDao;
-import com.util.Result;
+import com.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.List;
 public class BaseServiceTemplate<T> implements BaseService<T> {
 
     BaseDao<T> baseDao;
-    Result result;
 
     public BaseDao<T> getBaseDao(){
         return baseDao;
@@ -26,31 +24,21 @@ public class BaseServiceTemplate<T> implements BaseService<T> {
     }
 
     public BaseServiceTemplate() {
-        result = new Result();
     }
 
-    /**
-     * 保存
-     *
-     * @param entity 实例
-     * @return result
-     */
-    public Result add(T entity) {
-        if (getBaseDao().add(entity)) {
-            result.setStatus(true);
-        } else {
-            result.setMsg("添加失败");
-        }
-        return result;
+
+    public boolean add(T entity) {
+        return getBaseDao().add(entity);
     }
 
-    public Result edit(T entity) {
-        if (getBaseDao().update(entity)) {
-            result.setStatus(true);
-        } else {
-            result.setMsg("修改失败");
-        }
-        return result;
+
+    public boolean del(T entity) {
+        return getBaseDao().del(entity);
+    }
+
+
+    public boolean update(T entity) {
+        return getBaseDao().update(entity);
     }
 
     public List getAll() {
