@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  * @see com.bean.course.Course
  */
 @Repository("courseDAO")
-public class CourseDAO {
+public class CourseDAO extends BaseDaoImp<Course> {
     private static final Log log = LogFactory.getLog(CourseDAO.class);
     @Autowired
     HibernateTemplate hibernateTemplate;
@@ -29,61 +30,7 @@ public class CourseDAO {
         this.hibernateTemplate = hibernateTemplate;
     }
 
-    /**
-     * 保存科目
-     *
-     * @param transientInstance 科目实例
-     * @return boolean
-     * @see com.bean.course.Course
-     */
-    public boolean save(Course transientInstance) {
-        log.debug("saving Course instance");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().saveOrUpdate(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            tag = false;
-        }
-        return tag;
-    }
 
-    /**
-     * 删除科目
-     *
-     * @param persistentInstance 科目实例
-     */
-    public boolean delete(Course persistentInstance) {
-        log.debug("deleting Course instance");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().delete(persistentInstance);
-            log.debug("delete successful");
-        } catch (RuntimeException re) {
-            log.error("delete failed", re);
-            tag = false;
-        }
-        return tag;
-    }
-
-    /**
-     * 根据科目id查找科目
-     *
-     * @param id 科目id
-     * @return 科目 obj list
-     */
-    public Course findById(java.lang.String id) {
-        log.debug("getting Course instance with id: " + id);
-        Course course = null;
-        try {
-            course = (Course) getHibernateTemplate().get(
-                    "com.bean.course.Course", id);
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-        }
-        return course;
-    }
 
     /**
      * 找到所有的科目信息(join)

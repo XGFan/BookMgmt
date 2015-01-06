@@ -116,9 +116,9 @@ public class BookpurchaseDAO {
                     return null;
                 }
             });
-            log.debug("delete successful");
+            log.debug("del successful");
         } catch (RuntimeException re) {
-            log.error("delete failed", re);
+            log.error("del failed", re);
             throw re;
         }
     }

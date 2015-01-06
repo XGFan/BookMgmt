@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.bean.corbook.Corbook;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
  * @see com.bean.corbook.Corbookview
  */
 @Repository("corbookviewDAO")
-public class CorbookviewDAO {
+public class CorbookviewDAO extends BaseDaoImp<Corbook> {
     private static final Log log = LogFactory.getLog(CorbookviewDAO.class);
     @Autowired
     HibernateTemplate hibernateTemplate;
@@ -26,47 +27,6 @@ public class CorbookviewDAO {
         this.hibernateTemplate = hibernateTemplate;
     }
 
-    /**
-     * 根据属性名和属性值精确查找
-     *
-     * @param propertyName 属性名
-     * @param value        属性值
-     * @return Corbookview obj LIST
-     */
-    List findByPropertyAccurate(String propertyName, String value) {
-        log.debug("finding Corbookview instance with property: " + propertyName
-                + ", value: " + value);
-        List list = null;
-        try {
-            String queryString = "from Corbookview as model where model."
-                    + propertyName + "= ?";
-            list = getHibernateTemplate().find(queryString, value);
-        } catch (RuntimeException re) {
-            log.error("accurate find by " + propertyName + " failed", re);
-        }
-        return list;
-    }
-
-    /**
-     * 根据属性名和属性值模糊查找
-     *
-     * @param propertyName 属性名
-     * @param value        属性值
-     * @return Corbookview obj LIST
-     */
-    List findByPropertyFuzzy(String propertyName, String value) {
-        log.debug("finding Corbookview instance with property: " + propertyName
-                + ", value: " + value);
-        List list = null;
-        try {
-            String queryString = "from Corbookview as model where model."
-                    + propertyName + " like '%" + value + "%'";
-            list = getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("fuzzy find by " + propertyName + " failed", re);
-        }
-        return list;
-    }
 
     /**
      * 通过idcor精确查找
@@ -75,7 +35,7 @@ public class CorbookviewDAO {
      * @return Corbookview obj list
      */
     public List findByIdcor(String Idcor) {
-        return findByPropertyAccurate("idcor", Idcor);
+        return findByPropertyA("idcor", Idcor);
     }
 
     /**
@@ -85,25 +45,9 @@ public class CorbookviewDAO {
      * @return Corbookview obj list
      */
     public List findByIdbk(String Idbk) {
-        return findByPropertyAccurate("idbk", Idbk);
+        return findByPropertyA("idbk", Idbk);
     }
 
-    /**
-     * 返回所有CourseBookView
-     *
-     * @return CourseBookView obj list
-     */
-    public List findAll() {
-        log.debug("finding all Corbookview instances");
-        List list = null;
-        try {
-            String queryString = "from Corbookview";
-            list = getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-        }
-        return list;
-    }
 
     /**
      * 通过corname模糊查找
@@ -112,7 +56,7 @@ public class CorbookviewDAO {
      * @return CourseBookView obj LIST
      */
     public List findCourseByCorname(String corname) {
-        return findByPropertyFuzzy("corname", corname);
+        return findByPropertyF("corname", corname);
     }
 
 }

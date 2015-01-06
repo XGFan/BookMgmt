@@ -3,6 +3,7 @@ package com.service;
 import com.dao.BaseDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -43,6 +44,11 @@ public class BaseServiceTemplate<T> implements BaseService<T> {
 
     public List getAll() {
         return getBaseDao().findAll();
+    }
+
+    @Override
+    public T findById(Serializable id) {
+        return getBaseDao().findById(id);
     }
 
     public List findAcc(String propertyName, String value) {

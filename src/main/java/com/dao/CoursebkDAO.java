@@ -14,7 +14,7 @@ import java.util.List;
  * @see com.bean.coursebk.Coursebk
  */
 @Repository("coursebkDAO")
-public class CoursebkDAO {
+public class CoursebkDAO extends BaseDaoImp<Coursebk> {
     private static final Log log = LogFactory.getLog(CoursebkDAO.class);
     @Autowired
     HibernateTemplate hibernateTemplate;
@@ -25,24 +25,6 @@ public class CoursebkDAO {
 
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
         this.hibernateTemplate = hibernateTemplate;
-    }
-
-    /**
-     * 保存新的课程
-     *
-     * @param transientInstance 课程实例
-     */
-    public boolean save(Coursebk transientInstance) {
-        log.debug("saving Coursebk instance");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().save(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            tag = false;
-        }
-        return tag;
     }
 
     /**

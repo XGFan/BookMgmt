@@ -14,7 +14,7 @@ import java.util.List;
  * @see com.bean.corplan.Corplan
  */
 @Repository("corplanDAO")
-public class CorplanDAO {
+public class CorplanDAO extends BaseDaoImp<Corplan> {
     private static final Log log = LogFactory.getLog(CorplanDAO.class);
     @Autowired
     HibernateTemplate hibernateTemplate;
@@ -27,58 +27,6 @@ public class CorplanDAO {
         this.hibernateTemplate = hibernateTemplate;
     }
 
-    /**
-     * 保存课程计划
-     *
-     * @param transientInstance 课程计划实例
-     */
-    public boolean save(Corplan transientInstance) {
-        log.debug("saving Corplan  ");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().saveOrUpdate(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            tag = false;
-        }
-        return tag;
-    }
-
-    /**
-     * 删除
-     *
-     * @param persistentInstance 教学计划实例
-     */
-    public boolean delete(Corplan persistentInstance) {
-        log.debug("deleting Corplan instance");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().delete(persistentInstance);
-            log.debug("delete successful");
-        } catch (RuntimeException re) {
-            log.error("delete failed", re);
-            tag = false;
-        }
-        return tag;
-    }
-
-    /**
-     * 所有corplan
-     *
-     * @return all corplan obj list
-     */
-    List findAll() {
-        log.debug("finding all Corplan instances");
-        List list = null;
-        try {
-            String queryString = "from Corplan";
-            list = getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-        }
-        return list;
-    }
 
     /**
      * 连接教学计划，课程，学院三张表，根据学院，专业，学期查询教学计划
@@ -166,7 +114,7 @@ public class CorplanDAO {
         try {
             getHibernateTemplate().deleteAll(corplanList);
         } catch (RuntimeException re) {
-            log.debug("delete All Corplan failed", re);
+            log.debug("del All Corplan failed", re);
             tag = false;
         }
         return tag;

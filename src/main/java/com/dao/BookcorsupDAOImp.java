@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.bean.bookcorsup.Bookcorsup;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("bookcorsupDAO")
-public class BookcorsupDAOImp implements BookcorsupDAO {
+public class BookcorsupDAOImp extends BaseDaoImp<Bookcorsup> implements BookcorsupDAO  {
     private static final Log log = LogFactory.getLog(BookcorsupDAOImp.class);
     @Autowired
     HibernateTemplate hibernateTemplate;

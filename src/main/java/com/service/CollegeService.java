@@ -5,7 +5,7 @@ import com.util.Pagination;
 
 import java.util.List;
 
-public interface CollegeService {
+public interface CollegeService extends BaseService<College> {
     /**
      * 找到所有学院专业信息
      *
@@ -40,21 +40,6 @@ public interface CollegeService {
      */
     public boolean deleteCollegeById(String idcm);
 
-    /**
-     * 添加学院专业信息
-     *
-     * @param col 学院专业obj
-     * @return boolean
-     */
-    public boolean saveCol(College col);
-
-    /**
-     * 更新学院专业实例
-     *
-     * @param col 学院专业实例
-     * @return boolean
-     */
-    public boolean updateCol(College col);
 
     /**
      * 获取所有的学院名

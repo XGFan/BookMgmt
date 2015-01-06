@@ -381,7 +381,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
             Map map = new HashMap();
             Integer total = 0;
             String idbk = bk.getBook().getIdbk();
-            List<Book> booklist = bookdao.findByIdbkAccurate(idbk);
+            List<Book> booklist = bookdao.findByPropertyA("idbk",idbk);
             for (Book b : booklist) {
                 map.put("idbk", idbk);
                 map.put("BKName", b.getBkname());

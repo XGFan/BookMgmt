@@ -84,7 +84,7 @@ public class ClassApi {
     public boolean editClass(@PathParam("idcls") String idcls, @PathParam("stunum") int stuNum) {
         ClassInfo temp = classServie.findById(idcls);
         temp.setStunum(stuNum);
-        return classServie.updateClass(temp);
+        return classServie.update(temp);
     }
 
 

@@ -4,23 +4,8 @@ import com.bean.supplier.Supplier;
 
 import java.util.List;
 
-public interface SupplierDAO {
+public interface SupplierDAO extends BaseDao<Supplier> {
 
-    /**
-     * 保存
-     *
-     * @param transientInstance 实例
-     * @return boolean
-     */
-    public boolean save(Supplier transientInstance);
-
-    /**
-     * 删除
-     *
-     * @param persistentInstance 实例
-     * @return boolean
-     */
-    public boolean delete(Supplier persistentInstance);
 
     /**
      * 根据id查找Supplier
@@ -29,24 +14,6 @@ public interface SupplierDAO {
      * @return Supplier obj
      */
     public Supplier findById(java.lang.String id);
-
-    /**
-     * 传入属性名和属性值精确查找，返回查找结果LIST
-     *
-     * @param propertyName 属性名
-     * @param value        属性值
-     * @return Supplier obj LIST
-     */
-    List findByPropertyAccurate(String propertyName, String value);
-
-    /**
-     * 传入属性名和属性值模糊查找，返回查找结果LIST
-     *
-     * @param propertyName 属性名
-     * @param value        属性值
-     * @return Supplier obj LIST
-     */
-    List findByPropertyFuzzy(String propertyName, String value);
 
     /**
      * 根据供应商精确查找
@@ -64,12 +31,6 @@ public interface SupplierDAO {
      */
     public List findByPublisher(String publisher);
 
-    /**
-     * 返回所有 Supplier obj LIST
-     *
-     * @return Supplier obj LIST
-     */
-    public List findAll();
 
     /**
      * 返回所有，根据publisher排序
@@ -119,12 +80,5 @@ public interface SupplierDAO {
      */
     public List accfindBySubPub(String supplier, String publisher);
 
-    /**
-     * 更新
-     *
-     * @param sup supplier Object
-     * @return boolean
-     */
-    public boolean updateSup(Supplier sup);
 
 }

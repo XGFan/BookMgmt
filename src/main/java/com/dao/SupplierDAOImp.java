@@ -14,7 +14,7 @@ import java.util.List;
  * @see com.bean.supplier.Supplier
  */
 @Repository("supplierDAO")
-public class SupplierDAOImp implements SupplierDAO {
+public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO {
     private static final Log log = LogFactory.getLog(SupplierDAOImp.class);
     private static final String SUPPLIER = "supplier";
     private static final String PUBLISHER = "publisher";
@@ -29,37 +29,8 @@ public class SupplierDAOImp implements SupplierDAO {
         this.hibernateTemplate = hibernateTemplate;
     }
 
-    @Override
-    public List findByPropertyAccurate(String propertyName, String value) {
-        log.debug("accurate finding Supplier instance with property: " + propertyName
-                + ", value: " + value);
-        List list = null;
-        try {
-            String hql = "from Supplier s where s." + propertyName + " = ?";
-            list = getHibernateTemplate().find(hql, value);
-        } catch (RuntimeException re) {
-            log.error("accurate find by " + propertyName + " failed", re);
-        }
-        return list;
-    }
-
-    @Override
-    public List findByPropertyFuzzy(String propertyName, String value) {
-        log.debug("fuzzy finding Supplier instance with property: " + propertyName
-                + ", value: " + value);
-        List list = null;
-        try {
-            String hql = "from Supplier b where b." + propertyName + " like '%" + value + "%'";
-            list = getHibernateTemplate().find(hql);
-        } catch (RuntimeException re) {
-            log.error("fuzzy find by " + propertyName + " failed", re);
-        }
-        return list;
-    }
-
-
     public List likeFindByPub(String publisher) {
-        return findByPropertyFuzzy(PUBLISHER, publisher);
+        return findByPropertyF(PUBLISHER, publisher);
     }
 
     public List findBySubPub(String supplier, String publisher) {
@@ -67,7 +38,6 @@ public class SupplierDAOImp implements SupplierDAO {
                 + "' and publisher like ?";
         return getHibernateTemplate().find(hql, "%" + publisher + "%");
     }
-
 
     public List accfindBySubPub(String supplier, String publisher) {
         log.debug("accfindBySubPub");
@@ -81,43 +51,6 @@ public class SupplierDAOImp implements SupplierDAO {
         }
     }
 
-    public boolean updateSup(Supplier sup) {
-        boolean tag = true;
-        try {
-            getHibernateTemplate().saveOrUpdate(sup);
-            log.debug("updateSup successful");
-        } catch (RuntimeException re) {
-            log.error("updateSup failed", re);
-            tag = false;
-        }
-        return tag;
-    }
-
-    public boolean save(Supplier transientInstance) {
-        log.debug("saving Supplier instance");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().save(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            tag = false;
-        }
-        return tag;
-    }
-
-    public boolean delete(Supplier persistentInstance) {
-        log.debug("deleting Supplier instance");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().delete(persistentInstance);
-            log.debug("delete successful");
-        } catch (RuntimeException re) {
-            log.error("delete failed", re);
-            tag = false;
-        }
-        return tag;
-    }
 
     public Supplier findById(java.lang.String id) {
         log.debug("getting Supplier instance with id: " + id);
@@ -132,25 +65,13 @@ public class SupplierDAOImp implements SupplierDAO {
     }
 
     public List findBySupplier(String supplier) {
-        return findByPropertyAccurate(SUPPLIER, supplier);
+        return findByPropertyA(SUPPLIER, supplier);
     }
 
     public List findByPublisher(String publisher) {
-        return findByPropertyAccurate(PUBLISHER, publisher);
+        return findByPropertyA(PUBLISHER, publisher);
     }
 
-
-    public List findAll() {
-        log.debug("finding all publisher instances");
-        List list = null;
-        try {
-            String queryString = "from Supplier s";
-            list = getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-        }
-        return list;
-    }
 
     public List findAllSupplier() {
         log.debug("finding all Supplier instances");

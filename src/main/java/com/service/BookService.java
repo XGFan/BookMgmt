@@ -2,10 +2,12 @@ package com.service;
 
 import com.bean.book.Book;
 import com.util.Pagination;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface BookService {
+@Service("bookService")
+public interface BookService extends BaseService<Book>{
     /**
      * 返回所有的教材
      *
@@ -76,19 +78,4 @@ public interface BookService {
      */
     public boolean deleteBook(String idbk);
 
-    /**
-     * 添加实例
-     *
-     * @param book book object
-     * @return boolean
-     */
-    public boolean addBook(Book book);
-
-    /**
-     * 更新实例
-     *
-     * @param book book obj
-     * @return boolean
-     */
-    public boolean updateBook(Book book);
 }

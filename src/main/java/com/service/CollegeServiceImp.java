@@ -12,7 +12,7 @@ import java.util.List;
 import static com.util.ConvertUtils.ToCollegeList;
 
 @Service("collegeService")
-public class CollegeServiceImp implements CollegeService {
+public class CollegeServiceImp extends BaseServiceTemplate<College> implements CollegeService {
     @Autowired
     private CollegeDAO collegeDAO;
 
@@ -33,7 +33,7 @@ public class CollegeServiceImp implements CollegeService {
         return ToCollegeList(list);
     }
 
-    public boolean saveCol(College col) {
+    public boolean add(College col) {
         List list = collegeDAO.getCol(col.getCol(), col.getMajor());
         boolean tag = false;
         if (list.size() > 0) {
@@ -57,7 +57,7 @@ public class CollegeServiceImp implements CollegeService {
                     majorCode = "0" + majorCode;
                 }
                 col.setIdcm(colCode + majorCode);
-                if (collegeDAO.save(col))
+                if (collegeDAO.add(col))
                     tag = true;
             } else {
                 // 不存在学院，获取所有学院，生成学院代码
@@ -75,12 +75,12 @@ public class CollegeServiceImp implements CollegeService {
                     }
                     // 设置IDCM
                     col.setIdcm(colCode + majorCode);
-                    if (collegeDAO.save(col))
+                    if (collegeDAO.add(col))
                         tag = true;
                 } else {
                     //数据库中不存在任何专业信息
                     col.setIdcm("0101");
-                    if (collegeDAO.save(col))
+                    if (collegeDAO.add(col))
                         tag = true;
                 }
             }
@@ -88,12 +88,8 @@ public class CollegeServiceImp implements CollegeService {
         return tag;
     }
 
-    public boolean updateCol(College col) {
-        return collegeDAO.update(col);
-    }
-
     public List searchByCol(String col) {
-        List list = collegeDAO.findByCol(col);
+        List list = collegeDAO.findByPropertyF("col",col);
         return ToCollegeList(list);
     }
 
@@ -108,7 +104,7 @@ public class CollegeServiceImp implements CollegeService {
     }
 
     public List searchByCol(String col, Pagination pagination) {
-        List list = collegeDAO.findByCol(col);
+        List list = collegeDAO.findByPropertyF("col", col);
         return ToCollegeList(GetPaginationInfo.getSubList(list, pagination));
     }
 

@@ -81,14 +81,14 @@ public class CollegeApi {
 //    public boolean addClass(
 //            @FormParam("col") College col
 //    ){
-//        return collegeService.saveCol(col);
+//        return collegeService.add(col);
 //    }
 //更新
 //    @PUT
 //    @Path("/{idcm}")
 //    @Produces("application/json;charset=UTF-8")
 //    public boolean editCollege(@PathParam("idcm") College idcm){
-//        return collegeService.updateCol(idcm);
+//        return collegeService.update(idcm);
 //    }
 
 

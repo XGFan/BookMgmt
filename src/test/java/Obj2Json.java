@@ -1,4 +1,5 @@
 import com.bean.supplier.Supplier;
+import com.dao.BkpurchaseDAO;
 import com.dao.ClassDAO;
 import com.service.ClassService;
 import com.service.SupplierService;
@@ -15,7 +16,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 @ContextConfiguration(locations = {"/applicationContext.xml"})
 public class Obj2Json extends AbstractJUnit4SpringContextTests {
     @Autowired
-    ClassDAO classdao;
+    BkpurchaseDAO bkpurchaseDAO;
     @Autowired
     ClassService classService;
     @Autowired
@@ -42,6 +43,6 @@ public class Obj2Json extends AbstractJUnit4SpringContextTests {
 //        classService.
 //        System.out.println(x);
 //        cout(classService.accurateQuery("信息工程学院", "医学信息工程", "2010", "黄"));
-        cout(supplierService.initSup());
+        cout(bkpurchaseDAO.findAll());
     }
 }

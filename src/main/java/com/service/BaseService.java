@@ -1,5 +1,6 @@
 package com.service;
 
+import java.io.Serializable;
 import java.util.List;
 import com.util.Result;
 
@@ -26,5 +27,7 @@ public interface BaseService<T> {
     public List findAcc(String propertyName, String value);
 
     public List findFuz(String propertyName, String value);
+
+    public T findById(Serializable id);
 
 }

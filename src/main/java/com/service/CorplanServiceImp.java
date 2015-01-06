@@ -116,7 +116,7 @@ public class CorplanServiceImp implements CorplanService {
         // /* 保存到数据库里面 */
         // System.out.println("3333333333333"+"addNewCourse:" +
         // course.toString());
-        // //courseDAO.save(course);
+        // //courseDAO.add(course);
         // }
 		/* 2.2如果存在该课程，则更新其学期 */
         if (courseList.size() > 0) {
@@ -126,7 +126,7 @@ public class CorplanServiceImp implements CorplanService {
             course = (Course) tem[0];
 			/* 设置学期 */
             course.setSemester(semester);
-            courseDAO.save(course);
+            courseDAO.add(course);
 
             Corplan corplan = new Corplan();
             String idcor = course.getIdcor();
@@ -141,7 +141,7 @@ public class CorplanServiceImp implements CorplanService {
             idcorsem = idcor + semester;
             corplan.setIdcorsem(idcorsem);
 
-            corplanDAO.save(corplan);
+            corplanDAO.add(corplan);
         }
 
         // Corplan corplan = new Corplan();
@@ -163,7 +163,7 @@ public class CorplanServiceImp implements CorplanService {
         // System.out.println("hehe!haha!heiehi"+idcorsem);
         // corplan.setIdcorsem(idcorsem);
         //
-        // corplanDAO.save(corplan);
+        // corplanDAO.add(corplan);
         return true;
     }
 
@@ -177,7 +177,7 @@ public class CorplanServiceImp implements CorplanService {
                 major, semester, corname, idcor);
         // System.out.println("corplanList.size:" + corplanList.size());
         if (corplanList.size() > 0) {
-			/* delete the corplan */
+			/* del the corplan */
             Object temp[] = (Object[]) corplanList.get(0);
             corplan = (Corplan) temp[0];
 
@@ -188,10 +188,10 @@ public class CorplanServiceImp implements CorplanService {
             // List<Corbook> list =
             // corbookDAO.findByIdcorsem(cor.getIdcorsem());
             // for (Corbook corbook0 : list) {
-            // corbookDAO.delete(corbook);
+            // corbookDAO.del(corbook);
             // }
 
-            corplanDAO.delete(corplan);
+            corplanDAO.del(corplan);
 
             return true;
         } else

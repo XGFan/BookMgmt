@@ -9,10 +9,11 @@ import com.util.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Service("classServie")
-public class ClassServiceImp implements ClassService {
+public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements ClassService {
     @Autowired
     private ClassDAO classDAO;
 
@@ -72,7 +73,7 @@ public class ClassServiceImp implements ClassService {
     @Override
     public boolean deleteClass(String idcls) {
         ClassInfo cls = classDAO.findById(idcls);
-        return classDAO.delete(cls);
+        return classDAO.del(cls);
     }
 
     public boolean addClasses(String campus, String grade, int clsnum, College college) {
@@ -92,18 +93,10 @@ public class ClassServiceImp implements ClassService {
             cls.setSemester("1");
             cls.setClsno(i);
             cls.setStunum(50);
-            if (!classDAO.save(cls))
+            if (!classDAO.add(cls))
                 return false;
         }
         return true;
-    }
-
-    public boolean updateClass(ClassInfo cls) {
-        return classDAO.update(cls);
-    }
-
-    public ClassInfo findById(String idcls) {
-        return classDAO.findById(idcls);
     }
 
 }

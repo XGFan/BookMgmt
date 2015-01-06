@@ -1,21 +1,18 @@
-package com.service;
+package com.newService;
 
 import com.bean.cls.ClassInfo;
 import com.bean.college.College;
+import com.service.BaseService;
 import com.util.Pagination;
 
-import java.io.Serializable;
 import java.util.List;
 
-public interface ClassService extends BaseService<ClassInfo>{
-
-    /**
-     * 根据班级id查找班级
-     *
-     * @param idcls 班级id
-     * @return class obj
-     */
-    public ClassInfo findById(Serializable idcls);
+/**
+ * DATE:2015/1/6
+ * TIME:19:32
+ * Created by guofan on 2015/1/6
+ */
+public interface ClassService extends BaseService<ClassInfo> {
 
     /**
      * 根据条件进行模糊查询，并根据分页信息进行返回list
@@ -29,10 +26,10 @@ public interface ClassService extends BaseService<ClassInfo>{
     /**
      * 根据条件进行模糊查询
      *
-     * @param condition 查询条件
+     * @param keyword 查询关键词
      * @return map list
      */
-    public List fuzzyFind(String condition);
+    public List fuzzyFind(String keyword);
 
 
     /**
@@ -110,4 +107,11 @@ public interface ClassService extends BaseService<ClassInfo>{
      */
     public boolean addClasses(String campus, String grade, int clsnnum, College college);
 
+    /**
+     * 修改班级
+     *
+     * @param cls 班级
+     * @return bool
+     */
+    public boolean updateClass(ClassInfo cls);
 }

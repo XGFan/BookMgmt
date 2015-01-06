@@ -1,7 +1,7 @@
 ﻿$(function(){
 	dg1=$('#dg1').datagrid({
 		title:'年级信息管理',
-		iconCls:'icon-save',
+		iconCls:'icon-add',
 		method:'get',
 		url:'/bookmgmt/api/class',
 	    fit:true,
@@ -114,7 +114,7 @@ function deleteData(){
 		if(r){
 			$.ajax({
 				url:'/bookmgmt/api/class/idcls/'+ids,
-				type:'delete',
+				type:'del',
 				dataType:'json',
 				success:function(result){
 					$.messager.alert("系统提示","删除成功！");

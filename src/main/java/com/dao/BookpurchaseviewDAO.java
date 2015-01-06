@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.bean.bookpurchaseview.Bookpurchaseview;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import java.util.List;
 
 /**
  * A data access object (DAO) providing persistence and search support for
- * Bookpurchaseview entities. Transaction control of the save(), update() and
- * delete() operations can directly support Spring container-managed
+ * Bookpurchaseview entities. Transaction control of the add(), update() and
+ * del() operations can directly support Spring container-managed
  * transactions or they can be augmented to handle user-managed Spring
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
@@ -20,7 +21,7 @@ import java.util.List;
  * @see com.bean.bookpurchaseview.Bookpurchaseview
  */
 @Repository("bookpurchaseviewDAO")
-public class BookpurchaseviewDAO {
+public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
     private static final Log log = LogFactory.getLog(BookpurchaseviewDAO.class);
     @Autowired
     HibernateTemplate hibernateTemplate;

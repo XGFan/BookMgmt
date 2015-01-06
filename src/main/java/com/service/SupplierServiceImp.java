@@ -37,15 +37,15 @@ public class SupplierServiceImp implements SupplierService {
     public boolean delPub(Supplier sup) {
         String supplier = sup.getSupplier();
         if (supplier.equals("其他")) {
-            supplierDAO.delete(sup);
+            supplierDAO.del(sup);
         } else {
             if (supplierDAO.findBySupplier(supplier).size() > 1) {
                 sup = supplierDAO.findById(sup.getIdsp());
-                supplierDAO.delete(sup);
+                supplierDAO.del(sup);
             }
             if (supplierDAO.findBySupplier(supplier).size() == 1) {
                 sup.setPublisher(null);
-                supplierDAO.updateSup(sup);
+                supplierDAO.update(sup);
             }
         }
         return true;
@@ -56,13 +56,13 @@ public class SupplierServiceImp implements SupplierService {
         for (Supplier s : list) {
             String publisher = s.getPublisher();
             if (publisher == null) {
-                supplierDAO.delete(s);
+                supplierDAO.del(s);
             } else {
                 if (supplierDAO.findByPublisher(publisher).size() > 1) {
-                    supplierDAO.delete(s);
+                    supplierDAO.del(s);
                 } else {
                     s.setSupplier("其他");
-                    supplierDAO.updateSup(s);
+                    supplierDAO.update(s);
                 }
             }
         }
@@ -104,7 +104,7 @@ public class SupplierServiceImp implements SupplierService {
             temp.setIdsp(idsp);
             temp.setSupplier(supplier);
             temp.setPublisher(null);
-            supplierDAO.save(temp);
+            supplierDAO.add(temp);
             return true;
         }
     }
@@ -120,13 +120,13 @@ public class SupplierServiceImp implements SupplierService {
             temp.setIdsp(idsp);
             temp.setSupplier(supplier);
             temp.setPublisher(publisher);
-            supplierDAO.save(temp);
+            supplierDAO.add(temp);
             return true;
         } else
             return false;
     }
 
     public boolean updateSupplier(Supplier supplier) {
-        return supplierDAO.updateSup(supplier);
+        return supplierDAO.update(supplier);
     }
 }

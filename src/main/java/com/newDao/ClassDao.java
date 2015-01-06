@@ -1,19 +1,16 @@
-package com.dao;
+package com.newDao;
 
 import com.bean.cls.ClassInfo;
-import org.springframework.stereotype.Repository;
+import com.dao.BaseDao;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
- * .
- * DATE:2014/11/23
- * TIME:15:54
- * Created by guofan on 2014/11/23
+ * DATE:2015/1/6
+ * TIME:19:32
+ * Created by guofan on 2015/1/6
  */
-public interface ClassDAO extends BaseDao<ClassInfo>{
-
+public interface ClassDao extends BaseDao<ClassInfo> {
     /**
      * 模糊查找(join 学院专业)
      *

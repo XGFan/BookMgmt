@@ -6,12 +6,11 @@ import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("bookService")
-public class BookServiceImp implements BookService {
+
+public class BookServiceImp extends BaseServiceTemplate<Book> implements BookService {
     @Autowired
     private BookDAO bookDAO;
 
@@ -23,14 +22,11 @@ public class BookServiceImp implements BookService {
         this.bookDAO = bookDAO;
     }
 
-    public boolean addBook(Book book) {
-        return bookDAO.save(book);
-    }
 
     public boolean deleteBook(String idbk) {
         Book temp = bookDAO.findById(idbk);
         boolean tag;
-        tag = bookDAO.delete(temp);
+        tag = bookDAO.del(temp);
         return tag;
     }
 
@@ -56,7 +52,7 @@ public class BookServiceImp implements BookService {
     }
 
     public List searchByISBN(String isbn) {
-        List list = bookDAO.findByIsbnAccurate(isbn);
+        List list = bookDAO.findByPropertyA("isbn", isbn);
         return ConvertUtils.ToBookListFromBook(list);
     }
 
@@ -66,12 +62,7 @@ public class BookServiceImp implements BookService {
     }
 
     public List searchByBkname(String bkname) {
-        List list = bookDAO.findByBknameFuzzy(bkname);
+        List list = bookDAO.findByPropertyF("bkname",bkname);
         return ConvertUtils.ToBookListFromBook(list);
     }
-
-    public boolean updateBook(Book book) {
-        return bookDAO.update(book);
-    }
-
 }

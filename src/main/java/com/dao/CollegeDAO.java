@@ -16,7 +16,7 @@ import java.util.List;
  * @see com.bean.college.College
  */
 @Repository("collegeDAO")
-public class CollegeDAO {
+public class CollegeDAO extends BaseDaoImp<College> {
     private static final Log log = LogFactory.getLog(CollegeDAO.class);
     private static final String COL = "col";
     private static final String MAJOR = "major";
@@ -32,43 +32,6 @@ public class CollegeDAO {
         this.hibernateTemplate = hibernateTemplate;
     }
 
-    /**
-     * 保存学院专业实例
-     *
-     * @param transientInstance 学院专业信息实例
-     * @return 操作是否成功
-     */
-    public boolean save(College transientInstance) {
-        log.debug("saving College instance");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().saveOrUpdate(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            tag = false;
-        }
-        return tag;
-    }
-
-    /**
-     * 更新学院专业实例
-     *
-     * @param transientInstance 学院专业实例信息
-     * @return 操作是否成功
-     */
-    public boolean update(College transientInstance) {
-        log.debug("update College instance");
-        boolean tag = true;
-        try {
-            getHibernateTemplate().saveOrUpdate(transientInstance);
-            log.debug("update successful");
-        } catch (RuntimeException re) {
-            log.error("update failed", re);
-            tag = false;
-        }
-        return false;
-    }
 
     /**
      * 根据学院专业ID来删除学院专业信息
@@ -82,9 +45,9 @@ public class CollegeDAO {
         try {
             College persistentInstance = findById(idcm);
             getHibernateTemplate().delete(persistentInstance);
-            log.debug("delete successful");
+            log.debug("del successful");
         } catch (RuntimeException re) {
-            log.error("delete failed", re);
+            log.error("del failed", re);
             result = false;
         }
         return result;
@@ -103,52 +66,6 @@ public class CollegeDAO {
                     "com.bean.college.College", id);
         } catch (RuntimeException re) {
             log.error("get failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * 根据属性名和属性名来查找
-     *
-     * @param propertyName 属性名
-     * @param value        属性值
-     * @return College obj LIST
-     */
-    List findByProperty(String propertyName, String value) {
-        log.debug("finding College instance with property: " + propertyName
-                + ", value: " + value);
-        try {
-            String queryString = "from College as model where model."
-                    + propertyName + " like '%" + value + "%'";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find by property name failed", re);
-            throw re;
-        }
-    }
-
-    /**
-     * 根据学院查找
-     *
-     * @param col 学院
-     * @return College obj LIST
-     */
-    public List findByCol(String col) {
-        return findByProperty(COL, col);
-    }
-
-    /**
-     * 返回所有的学院专业信息
-     *
-     * @return college obj LIST
-     */
-    public List findAll() {
-        log.debug("finding all College instances");
-        try {
-            String queryString = "from College";
-            return getHibernateTemplate().find(queryString);
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
             throw re;
         }
     }
