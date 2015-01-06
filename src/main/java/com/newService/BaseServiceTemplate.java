@@ -1,6 +1,6 @@
-package com.service;
+package com.newService;
 
-import com.dao.BaseDao;
+import com.newDao.BaseDao;
 import com.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
