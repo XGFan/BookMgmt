@@ -144,7 +144,7 @@ public class SupplierDAOImp implements SupplierDAO {
         log.debug("finding all publisher instances");
         List list = null;
         try {
-            String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
+            String queryString = "from Supplier s";
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
