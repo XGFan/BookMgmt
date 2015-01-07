@@ -145,7 +145,7 @@ public class CourseServiceImp implements CourseService {
             // collegeList只有一个元素所以使用get(0)取得collegeList中的元素
             idcm = college.getIdcm();
         }
-        //System.out.println("starting add a course");
+        //System.out.println("starting save a course");
         /* 查找Course,根据学院、专业、课程名称 */
         Course course = new Course(null, college, corname, null, null, null);
         //System.out.println("check if the course is existed");
@@ -188,16 +188,16 @@ public class CourseServiceImp implements CourseService {
 			/* 保存到数据库里面 */
 			/* 如果idbkArray为空 */
             if (idbkArray[0].equals("")) {
-                courseDAO.add(course);
+                courseDAO.save(course);
             } else {
-                courseDAO.add(course);
+                courseDAO.save(course);
                 for (String idbk : idbkArray) {
                     Coursebk coursebk = new Coursebk();
                     coursebk.setCourse(course);
                     Book book = new Book();
                     book.setIdbk(idbk);
                     coursebk.setBook(book);
-                    coursebkDAO.add(coursebk);
+                    coursebkDAO.save(coursebk);
                 }
             }
         } else {/* 如果存在该课程，则更新其学期 */
@@ -207,7 +207,7 @@ public class CourseServiceImp implements CourseService {
             course = (Course) tem[0];
 			/* 设置学期 */
             course.setSemester(semester);
-            courseDAO.add(course);
+            courseDAO.save(course);
         }
 
 		/* 生成教学计划 */
@@ -224,7 +224,7 @@ public class CourseServiceImp implements CourseService {
         idcorsem = idcor + semester;
 //		System.out.println(idcorsem);
         corplan.setIdcorsem(idcorsem);
-        corplanDAO.add(corplan);
+        corplanDAO.save(corplan);
 //		System.out.println("finished!");
         return course.getIdcor();
     }
@@ -257,7 +257,7 @@ public class CourseServiceImp implements CourseService {
             // collegeList只有一个元素所以使用get(0)取得collegeList中的元素
             idcm = college.getIdcm();
         }
-        System.out.println("starting add a course");
+        System.out.println("starting save a course");
 		/* 查找Course,根据学院、专业、课程名称 */
         Course course = new Course(null, college, corname, null, null, null);
         System.out.println("check if the course is existed");
@@ -289,16 +289,16 @@ public class CourseServiceImp implements CourseService {
 			/* 保存到数据库里面 */
 			/* 如果idbkArray为空 */
             if (idbkArray[0].equals("")) {
-                courseDAO.add(course);
+                courseDAO.save(course);
             } else {
-                courseDAO.add(course);
+                courseDAO.save(course);
                 for (String idbk : idbkArray) {
                     Coursebk coursebk = new Coursebk();
                     coursebk.setCourse(course);
                     Book book = new Book();
                     book.setIdbk(idbk);
                     coursebk.setBook(book);
-                    coursebkDAO.add(coursebk);
+                    coursebkDAO.save(coursebk);
                 }
             }
         } else {/* 如果存在该课程，则更新其学期 */
@@ -308,7 +308,7 @@ public class CourseServiceImp implements CourseService {
             course = (Course) tem[0];
 			/* 设置学期 */
             course.setSemester(semester);
-            courseDAO.add(course);
+            courseDAO.save(course);
         }
 
 		/* 生成教学计划 */
@@ -325,7 +325,7 @@ public class CourseServiceImp implements CourseService {
         idcorsem = idcor + semester;
         System.out.println(idcorsem);
         corplan.setIdcorsem(idcorsem);
-        corplanDAO.add(corplan);
+        corplanDAO.save(corplan);
         System.out.println("finished!");
         return true;
     }
@@ -338,7 +338,7 @@ public class CourseServiceImp implements CourseService {
         String semester = course.getSemester(); // 得到学期
         List courseList = courseDAO.getCourseByIdcmCornameSem(idcm, corname, semester);
         if (courseList.size() == 0) {
-            tag = courseDAO.add(course);
+            tag = courseDAO.save(course);
         }
         return tag;
     }
@@ -352,10 +352,10 @@ public class CourseServiceImp implements CourseService {
             String[] idbkArray = idbkStr.split(",");
             if ("".equals(idbkArray[0])) {
                 // 如果没有书本信息，仅仅保存课程信息
-                courseDAO.add(course);
+                courseDAO.save(course);
                 tag = true;
             } else {
-                courseDAO.add(course);
+                courseDAO.save(course);
                 for (String idbk : idbkArray) {
                     // 判断这本书是否已经选用教材
                     List courseBkList = coursebkDAO.findByIdcorAndIdbk(course.getIdcor(), idbk);
@@ -365,7 +365,7 @@ public class CourseServiceImp implements CourseService {
                         Coursebk coursebk = new Coursebk();
                         coursebk.setBook(book);
                         coursebk.setCourse(course);
-                        coursebkDAO.add(coursebk);
+                        coursebkDAO.save(coursebk);
                     }
                     tag = true;
                 }
@@ -381,7 +381,7 @@ public class CourseServiceImp implements CourseService {
         course = courseDAO.findById(idcor);
         if (course != null) {
             try {
-                courseDAO.del(course);
+                courseDAO.delete(course);
             } catch (Exception e) {
                 e.printStackTrace();
                 tag = false;

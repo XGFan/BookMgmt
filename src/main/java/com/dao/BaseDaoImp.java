@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 /**
  * DATE:2015/1/6
@@ -46,7 +47,7 @@ public class BaseDaoImp<T> implements BaseDao<T> {
         entityClass = ReflectUtils.getClassGenricType(getClass());
     }
 
-    public boolean add(T obj) {
+    public boolean save(T obj) {
         boolean result = true;
         try {
             this.getCurrentSession().save(obj);
@@ -56,7 +57,7 @@ public class BaseDaoImp<T> implements BaseDao<T> {
         return result;
     }
 
-    public boolean del(T obj) {
+    public boolean delete(T obj) {
         boolean result = true;
         try {
             this.getCurrentSession().delete(obj);
@@ -111,6 +112,7 @@ public class BaseDaoImp<T> implements BaseDao<T> {
         String hql = "from " + entityClass.getName() + " where " + propertyName + " LIKE '%" + value + "%'";
         return findByHql(hql);
     }
+
 
     /**
      * DATE:2014/12/6

@@ -37,11 +37,11 @@ public class SupplierServiceImp implements SupplierService {
     public boolean delPub(Supplier sup) {
         String supplier = sup.getSupplier();
         if (supplier.equals("其他")) {
-            supplierDAO.del(sup);
+            supplierDAO.delete(sup);
         } else {
             if (supplierDAO.findBySupplier(supplier).size() > 1) {
                 sup = supplierDAO.findById(sup.getIdsp());
-                supplierDAO.del(sup);
+                supplierDAO.delete(sup);
             }
             if (supplierDAO.findBySupplier(supplier).size() == 1) {
                 sup.setPublisher(null);
@@ -56,10 +56,10 @@ public class SupplierServiceImp implements SupplierService {
         for (Supplier s : list) {
             String publisher = s.getPublisher();
             if (publisher == null) {
-                supplierDAO.del(s);
+                supplierDAO.delete(s);
             } else {
                 if (supplierDAO.findByPublisher(publisher).size() > 1) {
-                    supplierDAO.del(s);
+                    supplierDAO.delete(s);
                 } else {
                     s.setSupplier("其他");
                     supplierDAO.update(s);
@@ -104,7 +104,7 @@ public class SupplierServiceImp implements SupplierService {
             temp.setIdsp(idsp);
             temp.setSupplier(supplier);
             temp.setPublisher(null);
-            supplierDAO.add(temp);
+            supplierDAO.save(temp);
             return true;
         }
     }
@@ -120,7 +120,7 @@ public class SupplierServiceImp implements SupplierService {
             temp.setIdsp(idsp);
             temp.setSupplier(supplier);
             temp.setPublisher(publisher);
-            supplierDAO.add(temp);
+            supplierDAO.save(temp);
             return true;
         } else
             return false;

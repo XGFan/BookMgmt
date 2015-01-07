@@ -580,7 +580,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         // int tempSem = (year - Integer.parseInt(bkv.getGrade())) * 2 + 1;
         // int sem = Integer.parseInt(bkv.getSemester());
         // if (tempSem == sem) {
-        // result.add(bkv);
+        // result.save(bkv);
         // System.out.println(bkv.toString());
         // }
         // i++;
@@ -594,7 +594,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         // Iterator<Bookpurchaseview> itb = result.iterator();
         // while (itb.hasNext()) {
         // Bookpurchaseview bkv = (Bookpurchaseview) itb.next();
-        // idbkSet.add(bkv.getIdbk());
+        // idbkSet.save(bkv.getIdbk());
         // }
         // System.out.println("idbkSet.size:" + idbkSet.size());
         //

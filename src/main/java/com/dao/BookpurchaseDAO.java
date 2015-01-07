@@ -87,9 +87,9 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
                 bp.setSupplier(bpv.getId().getSupplier());
                 bp.setEdition(bpv.getId().getEdition().toString());
 
-                // list.add(bp);
+                // list.save(bp);
 //                getHibernateTemplate().save(bp);
-                add(bp);
+                save(bp);
 
             }
 
@@ -118,9 +118,9 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
                     return null;
                 }
             });
-            log.debug("del successful");
+            log.debug("delete successful");
         } catch (RuntimeException re) {
-            log.error("del failed", re);
+            log.error("delete failed", re);
             throw re;
         }
     }

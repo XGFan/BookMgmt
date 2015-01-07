@@ -28,13 +28,13 @@ public class BaseServiceTemplate<T> implements BaseService<T> {
     }
 
 
-    public boolean add(T entity) {
-        return getBaseDao().add(entity);
+    public boolean save(T entity) {
+        return getBaseDao().save(entity);
     }
 
 
-    public boolean del(T entity) {
-        return getBaseDao().del(entity);
+    public boolean delete(T entity) {
+        return getBaseDao().delete(entity);
     }
 
 

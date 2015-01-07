@@ -3,8 +3,6 @@ package com.dao;
 import com.bean.corplan.Corplan;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -113,10 +111,10 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
         boolean tag = true;
         try {
             for(Corplan u:corplanList) {
-                del(u);
+                delete(u);
             }
         } catch (RuntimeException re) {
-            log.debug("del All Corplan failed", re);
+            log.debug("delete All Corplan failed", re);
             tag = false;
         }
         return tag;

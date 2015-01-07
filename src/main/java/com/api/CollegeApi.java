@@ -81,7 +81,7 @@ public class CollegeApi {
 //    public boolean addClass(
 //            @FormParam("col") College col
 //    ){
-//        return collegeService.add(col);
+//        return collegeService.save(col);
 //    }
 //更新
 //    @PUT

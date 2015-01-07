@@ -21,14 +21,14 @@ class POI2EXCEL {
 //            HSSFWorkbook wb = new HSSFWorkbook();
 //            // sheet 对应一个工作页
 //            for (Bookpurchaseview aBkpurview : bkpurview) {
-//                bkpurviewIDs.add(aBkpurview.getId());
+//                bkpurviewIDs.save(aBkpurview.getId());
 //            }
 //            List<String> idclses = new ArrayList();
 //            Map<String, String> idclsString = new HashMap();
 //            for (int i = 0; i < bkpurview.size(); i++) {
 //                if (!idclses.contains(
 //                        bkpurviewIDs.get(i).getIdcls())) {
-//                    idclses.add(bkpurviewIDs.get(i).getIdcls());
+//                    idclses.save(bkpurviewIDs.get(i).getIdcls());
 //                    String header = bkpurviewIDs.get(i).getGrade()
 //                            + bkpurviewIDs.get(i).getMajor()
 //                            + bkpurviewIDs.get(i).getClsno() + "班第"

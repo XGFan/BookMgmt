@@ -32,7 +32,7 @@ public class Obj2Json extends AbstractJUnit4SpringContextTests {
 //        classdao.findById("2007020101").toString();
 //        JSONObject x = JSONObject.fromObject(t);
 //        List x =  new ArrayList();
-//        x.add(classService.findById("2007020101"));
+//        x.save(classService.findById("2007020101"));
 //        List y = class2List(x);
 //        System.out.println(y.toString());
 //        JSONArray t = fromObject(y);

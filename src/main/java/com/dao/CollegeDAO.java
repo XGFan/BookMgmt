@@ -33,10 +33,10 @@ public class CollegeDAO extends BaseDaoImp<College> {
         boolean result = true;
         try {
             College persistentInstance = findById(idcm);
-            del(persistentInstance);
-            log.debug("del successful");
+            delete(persistentInstance);
+            log.debug("delete successful");
         } catch (RuntimeException re) {
-            log.error("del failed", re);
+            log.error("delete failed", re);
             result = false;
         }
         return result;

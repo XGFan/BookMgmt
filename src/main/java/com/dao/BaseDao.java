@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -24,14 +25,14 @@ public interface BaseDao<T> {
      * @param obj 实例对象
      * @return boolean
      */
-    boolean add(T obj);
+    boolean save(T obj);
 
     /**
      * 删除
      * @param obj 实例对象
      * @return boolean
      */
-    boolean del(T obj);
+    boolean delete(T obj);
 
     /**
      * 更新

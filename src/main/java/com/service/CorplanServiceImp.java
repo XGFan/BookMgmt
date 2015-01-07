@@ -116,7 +116,7 @@ public class CorplanServiceImp implements CorplanService {
         // /* 保存到数据库里面 */
         // System.out.println("3333333333333"+"addNewCourse:" +
         // course.toString());
-        // //courseDAO.add(course);
+        // //courseDAO.save(course);
         // }
 		/* 2.2如果存在该课程，则更新其学期 */
         if (courseList.size() > 0) {
@@ -126,7 +126,7 @@ public class CorplanServiceImp implements CorplanService {
             course = (Course) tem[0];
 			/* 设置学期 */
             course.setSemester(semester);
-            courseDAO.add(course);
+            courseDAO.save(course);
 
             Corplan corplan = new Corplan();
             String idcor = course.getIdcor();
@@ -141,7 +141,7 @@ public class CorplanServiceImp implements CorplanService {
             idcorsem = idcor + semester;
             corplan.setIdcorsem(idcorsem);
 
-            corplanDAO.add(corplan);
+            corplanDAO.save(corplan);
         }
 
         // Corplan corplan = new Corplan();
@@ -163,7 +163,7 @@ public class CorplanServiceImp implements CorplanService {
         // System.out.println("hehe!haha!heiehi"+idcorsem);
         // corplan.setIdcorsem(idcorsem);
         //
-        // corplanDAO.add(corplan);
+        // corplanDAO.save(corplan);
         return true;
     }
 
@@ -177,7 +177,7 @@ public class CorplanServiceImp implements CorplanService {
                 major, semester, corname, idcor);
         // System.out.println("corplanList.size:" + corplanList.size());
         if (corplanList.size() > 0) {
-			/* del the corplan */
+			/* delete the corplan */
             Object temp[] = (Object[]) corplanList.get(0);
             corplan = (Corplan) temp[0];
 
@@ -188,10 +188,10 @@ public class CorplanServiceImp implements CorplanService {
             // List<Corbook> list =
             // corbookDAO.findByIdcorsem(cor.getIdcorsem());
             // for (Corbook corbook0 : list) {
-            // corbookDAO.del(corbook);
+            // corbookDAO.delete(corbook);
             // }
 
-            corplanDAO.del(corplan);
+            corplanDAO.delete(corplan);
 
             return true;
         } else
@@ -234,7 +234,7 @@ public class CorplanServiceImp implements CorplanService {
             idcorsem = idcor + semester;
 			/* set the primary key of the corplan object */
             corplan.setIdcorsem(idcorsem);
-			/* add one corplan to the corplanlist */
+			/* save one corplan to the corplanlist */
             corplanList.add(corplan);
         }
 		/* sava all the corplan in the corplan list to database */

@@ -16,9 +16,9 @@ public interface BaseService<T> {
      * @param entity 实例
      * @return result
      */
-    public boolean add(T entity);
+    public boolean save(T entity);
 
-    public boolean del(T entity);
+    public boolean delete(T entity);
 
     public boolean update(T entity);
 

@@ -33,7 +33,7 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
         return ToCollegeList(list);
     }
 
-    public boolean add(College col) {
+    public boolean save(College col) {
         List list = collegeDAO.getCol(col.getCol(), col.getMajor());
         boolean tag = false;
         if (list.size() > 0) {
@@ -57,7 +57,7 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
                     majorCode = "0" + majorCode;
                 }
                 col.setIdcm(colCode + majorCode);
-                if (collegeDAO.add(col))
+                if (collegeDAO.save(col))
                     tag = true;
             } else {
                 // 不存在学院，获取所有学院，生成学院代码
@@ -75,12 +75,12 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
                     }
                     // 设置IDCM
                     col.setIdcm(colCode + majorCode);
-                    if (collegeDAO.add(col))
+                    if (collegeDAO.save(col))
                         tag = true;
                 } else {
                     //数据库中不存在任何专业信息
                     col.setIdcm("0101");
-                    if (collegeDAO.add(col))
+                    if (collegeDAO.save(col))
                         tag = true;
                 }
             }

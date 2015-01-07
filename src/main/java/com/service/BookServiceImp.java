@@ -26,7 +26,7 @@ public class BookServiceImp extends BaseServiceTemplate<Book> implements BookSer
     public boolean deleteBook(String idbk) {
         Book temp = bookDAO.findById(idbk);
         boolean tag;
-        tag = bookDAO.del(temp);
+        tag = bookDAO.delete(temp);
         return tag;
     }
 
