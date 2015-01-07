@@ -43,7 +43,7 @@ public class BaseServiceTemplate<T> implements BaseService<T> {
     }
 
     public List getAll() {
-        return getBaseDao().findAll();
+        return getBaseDao().getAll();
     }
 
     @Override

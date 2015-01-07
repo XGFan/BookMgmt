@@ -17,7 +17,7 @@ public interface BookDAO extends BaseDao<Book> {
      *
      * @return obj LIST
      */
-    List findAll();
+    List getAll();
 
     /**
      * 根据教材名和出版社名查找(join 供应商)

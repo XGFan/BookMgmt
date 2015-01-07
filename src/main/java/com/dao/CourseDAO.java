@@ -27,7 +27,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
      *
      * @return 科目 list
      */
-    public List findAll() {
+    public List getAll() {
         log.debug("finding all Course instances");
         List list = null;
         try {

@@ -59,7 +59,7 @@ public interface BaseDao<T> {
      * 返回所有
      * @return obj list
      */
-    List<T> findAll();
+    List<T> getAll();
 
     /**
      * 根据属性名和属性值来精确查找

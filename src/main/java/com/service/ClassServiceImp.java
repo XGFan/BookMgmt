@@ -34,12 +34,12 @@ public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements C
     }
 
     public List findAllByPagination(Pagination pagination) {
-        return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.findAll()), pagination);
+        return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getAll()), pagination);
     }
 
     @Override
     public List findAll() {
-        return ConvertUtils.class2List(classDAO.findAll());
+        return ConvertUtils.class2List(classDAO.getAll());
     }
 
     public List accurateQuery(String col, String major, String grade, String campus, Pagination pagination) {

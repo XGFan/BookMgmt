@@ -29,7 +29,7 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
     }
 
     public List initCol() {
-        List list = collegeDAO.findAll();
+        List list = collegeDAO.getAll();
         return ToCollegeList(list);
     }
 

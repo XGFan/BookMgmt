@@ -376,7 +376,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
     public List<Map> getBKPurInfo() {
         Set<Map> purinfolist = new HashSet<Map>();
         List<Map> list = new ArrayList<Map>();
-        List<Bkpurchase> bkpurlist = bkpurdao.findAll();
+        List<Bkpurchase> bkpurlist = bkpurdao.getAll();
         for (Bkpurchase bk : bkpurlist) {
             Map map = new HashMap();
             Integer total = 0;
@@ -567,7 +567,7 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         // List<Bookpurchaseview> result = new ArrayList<Bookpurchaseview>();
         //
         // // 1.获取数据库视图中所有的数据
-        // List<Bookpurchaseview> list = bookpurchaseviewDAO.findAll();
+        // List<Bookpurchaseview> list = bookpurchaseviewDAO.getAll();
         //
         // System.out.println("list.size:" + list.size());
         // Iterator<Bookpurchaseview> it = list.iterator();

@@ -31,7 +31,7 @@ public class BookServiceImp extends BaseServiceTemplate<Book> implements BookSer
     }
 
     public List initBook() {
-        List list = bookDAO.findAll();
+        List list = bookDAO.getAll();
         return ConvertUtils.ToBookList(list);
     }
 

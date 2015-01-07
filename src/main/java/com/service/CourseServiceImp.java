@@ -69,7 +69,7 @@ public class CourseServiceImp implements CourseService {
 
 
     public List init() {
-        List list = courseDAO.findAll();
+        List list = courseDAO.getAll();
         return ConvertUtils.ToCourseList(list);
     }
 

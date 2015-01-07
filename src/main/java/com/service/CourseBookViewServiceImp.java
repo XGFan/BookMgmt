@@ -54,7 +54,7 @@ public class CourseBookViewServiceImp implements CourseBookViewService {
     }
 
     public List findAllCourse() {
-        List list = corBookViewDAO.findAll();
+        List list = corBookViewDAO.getAll();
         return ConvertUtils.ToCorBookList(list);
     }
 

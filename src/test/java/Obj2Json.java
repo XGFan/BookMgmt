@@ -38,8 +38,8 @@ public class Obj2Json extends AbstractJUnit4SpringContextTests {
 //        JSONArray t = fromObject(y);
 //        cout(y);
 
-//        cout(getSubList(classService.findAll(), 1, 10).toString());
-//        cout(getSubList(classService.findAll(), 1, 10));
+//        cout(getSubList(classService.getAll(), 1, 10).toString());
+//        cout(getSubList(classService.getAll(), 1, 10));
 //        classService.
 //        System.out.println(x);
 //        cout(classService.accurateQuery("信息工程学院", "医学信息工程", "2010", "黄"));

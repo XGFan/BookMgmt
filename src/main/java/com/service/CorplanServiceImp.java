@@ -202,7 +202,7 @@ public class CorplanServiceImp implements CorplanService {
 		/* initialize course list */
         List courseList;
 		/* get all course info from the course talbe */
-        courseList = courseDAO.findAll();
+        courseList = courseDAO.getAll();
 		/* initialize the corplan list */
         List corplanList = new ArrayList();
 		/* get the iterator of the course list */

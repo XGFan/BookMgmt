@@ -13,7 +13,7 @@ import java.util.List;
 public class BookDAOImp extends BaseDaoImp<Book> implements BookDAO {
     private static final Log log = LogFactory.getLog(BookDAOImp.class);
 
-    public List findAll() {
+    public List getAll() {
         log.debug("finding all Book instances");
         try {
             String queryString = "from Book b join b.supplier ss";

@@ -107,7 +107,7 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
      * @return boolean
      */
     public boolean deleteAllCorplan() {
-        List<Corplan> corplanList = this.findAll();
+        List<Corplan> corplanList = this.getAll();
         boolean tag = true;
         try {
             for(Corplan u:corplanList) {

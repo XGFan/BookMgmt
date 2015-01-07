@@ -70,13 +70,13 @@ public class SupplierServiceImp implements SupplierService {
     }
 
     public List initSup() {
-        return supplierDAO.findAll();
+        return supplierDAO.getAll();
     }
 
     public List searchByPubSup(String publisher, String supplier) {
         if (supplier.trim().equals("--请选择--")) {
             if (publisher.equals("")) {// 查询整张表
-                return supplierDAO.findAll();
+                return supplierDAO.getAll();
             } else {
                 // System.out.println("按出版社模糊查询");
                 return supplierDAO.likeFindByPub(publisher);
