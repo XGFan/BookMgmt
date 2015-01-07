@@ -42,22 +42,6 @@ public class CollegeDAO extends BaseDaoImp<College> {
         return result;
     }
 
-    /**
-     * 根据学院专业id来查找学院专业信息
-     *
-     * @param id 学院专业id
-     * @return 找到的该专业的信息
-     */
-//    College findById(java.lang.String id) {
-//        log.debug("getting College instance with id: " + id);
-//        try {
-//            return (College) getHibernateTemplate().get(
-//                    "com.bean.college.College", id);
-//        } catch (RuntimeException re) {
-//            log.error("get failed", re);
-//            throw re;
-//        }
-//    }
 
     /**
      * 获取所有的专业，根据IDCM排序

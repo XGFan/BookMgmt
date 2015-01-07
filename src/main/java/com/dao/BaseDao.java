@@ -18,7 +18,6 @@ import java.util.Map;
  * Created by guofan on 2015/1/6
  */
 @SuppressWarnings("unused")
-@Repository("baseDao")
 public interface BaseDao<T> {
     /**
      * 添加
@@ -59,7 +58,7 @@ public interface BaseDao<T> {
      * 返回所有
      * @return obj list
      */
-    List<T> getAll();
+    List getAll();
 
     /**
      * 根据属性名和属性值来精确查找

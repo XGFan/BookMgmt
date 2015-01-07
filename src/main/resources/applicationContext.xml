@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
     <context:property-placeholder location="classpath:db/local.properties" />
     <!-- 定义数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -19,24 +19,6 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
-        <property name="mappingResources">
-            <list>
-                <value>hbm/College.hbm.xml</value>
-                <value>hbm/Course.hbm.xml</value>
-                <value>hbm/Corplan.hbm.xml</value>
-                <value>hbm/Corbook.hbm.xml</value>
-                <value>hbm/Book.hbm.xml</value>
-                <value>hbm/Supplier.hbm.xml</value>
-                <value>hbm/Corbookview.hbm.xml</value>
-                <value>hbm/Class.hbm.xml</value>
-                <value>hbm/Bookcorsup.hbm.xml</value>
-                <value>hbm/Courclass.hbm.xml</value>
-                <value>hbm/Bkpurchase.hbm.xml</value>
-                <value>hbm/Coursebk.hbm.xml</value>
-                <value>hbm/Bookpurchaseview.hbm.xml</value>
-                <value>hbm/Bookpurchase.hbm.xml</value>
-            </list>
-        </property>
     </bean>
 
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
@@ -78,6 +60,5 @@
     <context:component-scan base-package="com.dao" />
     <context:component-scan base-package="com.service" />
     <context:component-scan base-package="com.api" />
-
 
 </beans>

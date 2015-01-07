@@ -11,7 +11,7 @@ import java.util.List;
  * TIME:18:39
  * Created by guofan on 2015/1/6
  */
-public class BaseServiceTemplate<T> implements BaseService<T> {
+public abstract class BaseServiceTemplate<T> implements BaseService<T> {
 
     BaseDao<T> baseDao;
 

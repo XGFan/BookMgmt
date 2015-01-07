@@ -13,13 +13,13 @@ import java.util.List;
 
 @Service("classServie")
 public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements ClassService {
-    @Autowired
+
     private ClassDAO classDAO;
 
     public ClassDAO getClassDAO() {
         return classDAO;
     }
-
+    @Autowired
     public void setClassDAO(ClassDAO classDAO) {
         this.classDAO = classDAO;
     }
@@ -41,6 +41,10 @@ public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements C
     public List findAll() {
         return ConvertUtils.class2List(classDAO.getAll());
     }
+
+//    public List getAll(){
+//        return super.getAll();
+//    }
 
     public List accurateQuery(String col, String major, String grade, String campus, Pagination pagination) {
         return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getClassByGradeCampusColMajor(col, major, grade, campus)), pagination);

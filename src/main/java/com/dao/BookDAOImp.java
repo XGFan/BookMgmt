@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("BookDAO")
+@Repository("bookDAO")
 public class BookDAOImp extends BaseDaoImp<Book> implements BookDAO {
     private static final Log log = LogFactory.getLog(BookDAOImp.class);
 

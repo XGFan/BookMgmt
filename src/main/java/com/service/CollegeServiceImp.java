@@ -13,13 +13,13 @@ import static com.util.ConvertUtils.ToCollegeList;
 
 @Service("collegeService")
 public class CollegeServiceImp extends BaseServiceTemplate<College> implements CollegeService {
-    @Autowired
+
     private CollegeDAO collegeDAO;
 
     public CollegeDAO getCollegeDAO() {
         return collegeDAO;
     }
-
+    @Autowired
     public void setCollegeDAO(CollegeDAO collegeDAO) {
         this.collegeDAO = collegeDAO;
     }
