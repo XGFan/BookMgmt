@@ -43,6 +43,6 @@ public class Obj2Json extends AbstractJUnit4SpringContextTests {
 //        classService.
 //        System.out.println(x);
 //        cout(classService.accurateQuery("信息工程学院", "医学信息工程", "2010", "黄"));
-        cout(bkpurchaseDAO.findAll());
+        cout(classService.findAll());
     }
 }

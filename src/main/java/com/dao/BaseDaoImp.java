@@ -99,6 +99,7 @@ public class BaseDaoImp<T> implements BaseDao<T> {
 
     public List<T> findAll() {
         String hql = "from " + getEntityClass().getName();
+        System.out.print(hql);
         return findByHql(hql);
     }
 
