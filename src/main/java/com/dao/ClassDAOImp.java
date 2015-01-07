@@ -16,16 +16,6 @@ import java.util.List;
 @Repository("classDAO")
 public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
     private static final Log log = LogFactory.getLog(ClassDAOImp.class);
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
 
     @Override
     public List getClassFuzzy(String condition) {
@@ -42,7 +32,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
                 + condition
                 + "%' or c.campus like '%" + condition + "%'";
         try {
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find class failed", re);
         }
@@ -90,7 +80,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
         List list = null;
         System.out.println(queryString);
         try {
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find class ByGradeCampusColMajor failed", re);
         }
@@ -103,7 +93,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
         List list = null;
         try {
             String queryString = "select distinct campus from ClassInfo";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -116,7 +106,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
         List list = null;
         try {
             String queryString = "select distinct grade from ClassInfo";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -134,7 +124,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
         // List<Object[]>
         // list=this.getSession().createQuery(queryString).list();
         /** 在将上面这句话转换成下面这句话之前，每次只能添加2次班级，系统就不能访问数据库，但是Tomcat正常开启。张驰 20140506**/
-        List<Object[]> list = (List<Object[]>) getHibernateTemplate().find(queryString);
+        List<Object[]> list = (List<Object[]>) getCurrentSession().createQuery(queryString).list();
         Integer clsNum = 0;
         for (Object[] objs : list) {
             ClassInfo cls = (ClassInfo) objs[0];

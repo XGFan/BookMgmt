@@ -16,16 +16,16 @@ import java.util.List;
 @Repository("corplanDAO")
 public class CorplanDAO extends BaseDaoImp<Corplan> {
     private static final Log log = LogFactory.getLog(CorplanDAO.class);
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
+//    @Autowired
+//    HibernateTemplate hibernateTemplate;
+//
+//    public HibernateTemplate getHibernateTemplate() {
+//        return hibernateTemplate;
+//    }
+//
+//    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+//        this.hibernateTemplate = hibernateTemplate;
+//    }
 
 
     /**
@@ -44,7 +44,7 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
                 + "%' and cpcc.major ='"
                 + major
                 + "' and cp.semester = '" + semester + "'";
-        return getHibernateTemplate().find(queryString);
+        return getCurrentSession().createQuery(queryString).list();
     }
 
     /**
@@ -71,7 +71,7 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
                     + semester
                     + "' and cpc.idcor ='"
                     + idcor + "' and cpc.corname ='" + corname + "'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("attach failed", re);
         }
@@ -100,7 +100,7 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
                 + "%'"
                 + " or cp.semester like '%" + condition + "%'";
         System.out.println(queryString);
-        return getHibernateTemplate().find(queryString);
+        return getCurrentSession().createQuery(queryString).list();
     }
 
     /**
@@ -109,10 +109,12 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
      * @return boolean
      */
     public boolean deleteAllCorplan() {
-        List corplanList = this.findAll();
+        List<Corplan> corplanList = this.findAll();
         boolean tag = true;
         try {
-            getHibernateTemplate().deleteAll(corplanList);
+            for(Corplan u:corplanList) {
+                del(u);
+            }
         } catch (RuntimeException re) {
             log.debug("del All Corplan failed", re);
             tag = false;
@@ -125,6 +127,6 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
      * todo
      */
     public void initAllCorplan(List entities) {
-        getHibernateTemplate().saveOrUpdate(entities);
+        getCurrentSession().saveOrUpdate(entities);
     }
 }

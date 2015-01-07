@@ -19,15 +19,5 @@ public class BkpurchaseDAOImp extends BaseDaoImp<Bkpurchase> implements Bkpurcha
     public static final String CAMPUS = "campus";
     public static final String SUPPLIER = "supplier";
     private static final Log log = LogFactory.getLog(BkpurchaseDAOImp.class);
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
 
 }

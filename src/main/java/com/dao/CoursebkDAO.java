@@ -16,16 +16,6 @@ import java.util.List;
 @Repository("coursebkDAO")
 public class CoursebkDAO extends BaseDaoImp<Coursebk> {
     private static final Log log = LogFactory.getLog(CoursebkDAO.class);
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
 
     /**
      * 根据科目id和教科书id来查找课程
@@ -39,8 +29,8 @@ public class CoursebkDAO extends BaseDaoImp<Coursebk> {
         log.debug("getting Coursebk instance with idcor: " + idcor);
         try {
             String[] args = {idcor, idbk};
-            String queryString = "from Coursebk as cb where cb.course.idcor =? and cb.book.idbk=?";
-            return getHibernateTemplate().find(queryString, args);
+            String queryString = "from Coursebk as cb where cb.course.idcor ='"+idcor+"' and cb.book.idbk='"+idbk+"'";
+            return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("get failed", re);
             throw re;

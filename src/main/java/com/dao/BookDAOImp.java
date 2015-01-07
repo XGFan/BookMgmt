@@ -12,23 +12,12 @@ import java.util.List;
 @Repository("BookDAO")
 public class BookDAOImp extends BaseDaoImp<Book> implements BookDAO {
     private static final Log log = LogFactory.getLog(BookDAOImp.class);
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
-
 
     public List findAll() {
         log.debug("finding all Book instances");
         try {
             String queryString = "from Book b join b.supplier ss";
-            return getHibernateTemplate().find(queryString);
+            return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
@@ -53,7 +42,7 @@ public class BookDAOImp extends BaseDaoImp<Book> implements BookDAO {
                     queryString = "select b from Book b join b.supplier";
                 }
             }
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find by BookPub name failed", re);
         }

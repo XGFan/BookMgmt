@@ -19,16 +19,6 @@ import java.util.List;
 @Repository("courseDAO")
 public class CourseDAO extends BaseDaoImp<Course> {
     private static final Log log = LogFactory.getLog(CourseDAO.class);
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
 
 
 
@@ -42,7 +32,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
         List list = null;
         try {
             String queryString = "from Course c join c.college cc";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -61,7 +51,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
         try {
             String queryString = "from Course c join c.college cc where cc.col like '%"
                     + col + "%'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -83,7 +73,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
         try {
             String queryString = "from Course c join c.college cc where cc.idcm = '"
                     + idcm + "' and c.corname = '" + corname + "' and cc.col = '" + col + "' and cc.major = '" + major + "'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -104,7 +94,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
         try {
             String queryString = "from Course c join c.college cc where cc.idcm = '"
                     + idcm + "' and c.corname = '" + corname + "' and c.semester = '" + semester + "'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -124,7 +114,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
         try {
             String queryString = "from Course c join c.college cc where cc.col like '%"
                     + col + "%' and cc.major ='" + major + "'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -148,7 +138,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
                     + "' and cc.major ='"
                     + major
                     + "' and c.corname like '%" + corname + "%'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -170,7 +160,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
             String queryString = "from Course c join c.college cc where ";
             queryString += "cc.col like '%" + col + "%' and cc.major='" + major
                     + "' and c.semester='" + sem + "'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -191,7 +181,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
             queryString += "cc.col like '%" + condition
                     + "%' or cc.major like '%" + condition
                     + "%' or c.corname like '%" + condition + "%'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }

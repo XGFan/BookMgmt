@@ -16,17 +16,6 @@ import java.util.List;
 @Repository("corbookviewDAO")
 public class CorbookviewDAO extends BaseDaoImp<Corbook> {
     private static final Log log = LogFactory.getLog(CorbookviewDAO.class);
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
-
 
     /**
      * 通过idcor精确查找

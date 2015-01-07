@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.bean.courclass.Courclass;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
  * @see com.bean.courclass.Courclass
  */
 @Repository("courclassDAO")
-public class CourclassDAOImp implements
+public class CourclassDAOImp extends BaseDaoImp<Courclass> implements
         CourclassDAO {
     private static final Log log = LogFactory.getLog(CourclassDAOImp.class);
     @Autowired
@@ -32,7 +33,7 @@ public class CourclassDAOImp implements
         try {
             String queryString = "from Courclass where idcor='" + idcor
                     + "' and semester='" + semester + "'";
-            return getHibernateTemplate().find(queryString);
+            return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;

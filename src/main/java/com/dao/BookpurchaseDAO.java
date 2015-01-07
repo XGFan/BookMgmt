@@ -20,7 +20,7 @@ import java.util.List;
  * todo
  */
 @Repository("bookpurchaseDAO")
-public class BookpurchaseDAO {
+public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
     public static final String ISBN = "isbn";
     private static final Log log = LogFactory.getLog(BookpurchaseDAO.class);
     private static final String IDCM = "idcm";
@@ -88,7 +88,9 @@ public class BookpurchaseDAO {
                 bp.setEdition(bpv.getId().getEdition().toString());
 
                 // list.add(bp);
-                getHibernateTemplate().save(bp);
+//                getHibernateTemplate().save(bp);
+                add(bp);
+
             }
 
             // getHibernateTemplate().saveOrUpdateAll(list);
@@ -134,12 +136,12 @@ public class BookpurchaseDAO {
             queryString += " bk.author,bk.publisher,bk.edition,bk.isbn,bk.supplier,bk.campus,sum(bk.stunum) as bknum ";
             queryString += " FROM Bookpurchase AS bk ";
             queryString += " GROUP BY bk.campus,bk.idbk ";
-            queryString += " ORDER BY convert_gbk(bk.supplier) asc";
-            queryString += " ,convert_gbk(bk.campus) asc";
-            queryString += " ,convert_gbk(bk.publisher) asc";
-            queryString += " ,bk.edition asc,convert_gbk(bk.bkname) asc";
+            queryString += " ORDER BY bk.supplier asc";
+            queryString += " ,bk.campusasc";
+            queryString += " ,bk.publisher asc";
+            queryString += " ,bk.edition asc,bk.bkname asc";
             queryString += " ,convert_gbk(bk.author) asc,bk.grade";
-            return (List<Object[]>) getHibernateTemplate().find(queryString);
+            return (List<Object[]>) getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("merge failed", re);
             throw re;

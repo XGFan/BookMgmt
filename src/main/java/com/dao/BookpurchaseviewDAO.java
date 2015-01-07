@@ -9,30 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * A data access object (DAO) providing persistence and search support for
- * Bookpurchaseview entities. Transaction control of the add(), update() and
- * del() operations can directly support Spring container-managed
- * transactions or they can be augmented to handle user-managed Spring
- * transactions. Each of these methods provides additional information for how
- * to configure it for the desired type of transaction control.
- *
- * @author MyEclipse Persistence Tools
- * @see com.bean.bookpurchaseview.Bookpurchaseview
- */
 @Repository("bookpurchaseviewDAO")
 public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
     private static final Log log = LogFactory.getLog(BookpurchaseviewDAO.class);
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
 
     //todo
     public List findByYearAndSem(int year, int sem) {
@@ -40,7 +19,7 @@ public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
         try {
             String queryString = "from Bookpurchaseview as b where (((" + year + "- b.id.grade)*2 + " + sem + ") = b.id.semester)";
             queryString += " order by b.id.col,b.id.major,b.id.grade desc,b.id.clsno";
-            return getHibernateTemplate().find(queryString);
+            return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
@@ -55,9 +34,8 @@ public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
             String queryString = "from Bookpurchaseview as b where (((" + year
                     + "- b.id.grade)*2 + " + sem
                     + ") = b.id.semester and b.id.idcls= '" + idcls + "')";
-            //queryString += " order by b.id.col,b.id.major,b.id.grade desc,b.id.clsno";
             queryString += " order by convert_gbk(b.id.bkname) asc";
-            return getHibernateTemplate().find(queryString);
+            return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
@@ -73,7 +51,7 @@ public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
                     + "- b.id.grade)*2 + " + sem
                     + ") = b.id.semester and b.id.grade= '" + grade + "')";
             queryString += " order by b.id.col,b.id.major,b.id.grade desc,b.id.clsno";
-            return getHibernateTemplate().find(queryString);
+            return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;

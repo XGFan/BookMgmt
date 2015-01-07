@@ -3,8 +3,6 @@ package com.dao;
 import com.bean.college.College;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,16 +19,7 @@ public class CollegeDAO extends BaseDaoImp<College> {
     private static final String COL = "col";
     private static final String MAJOR = "major";
     private static final String SEMNUM = "semnum";
-    @Autowired
-    HibernateTemplate hibernateTemplate;
 
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
 
 
     /**
@@ -44,7 +33,7 @@ public class CollegeDAO extends BaseDaoImp<College> {
         boolean result = true;
         try {
             College persistentInstance = findById(idcm);
-            getHibernateTemplate().delete(persistentInstance);
+            del(persistentInstance);
             log.debug("del successful");
         } catch (RuntimeException re) {
             log.error("del failed", re);
@@ -59,16 +48,16 @@ public class CollegeDAO extends BaseDaoImp<College> {
      * @param id 学院专业id
      * @return 找到的该专业的信息
      */
-    College findById(java.lang.String id) {
-        log.debug("getting College instance with id: " + id);
-        try {
-            return (College) getHibernateTemplate().get(
-                    "com.bean.college.College", id);
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
-    }
+//    College findById(java.lang.String id) {
+//        log.debug("getting College instance with id: " + id);
+//        try {
+//            return (College) getHibernateTemplate().get(
+//                    "com.bean.college.College", id);
+//        } catch (RuntimeException re) {
+//            log.error("get failed", re);
+//            throw re;
+//        }
+//    }
 
     /**
      * 获取所有的专业，根据IDCM排序
@@ -79,7 +68,7 @@ public class CollegeDAO extends BaseDaoImp<College> {
         log.debug("finding all College instances");
         try {
             String queryString = "from College as c order by c.idcm asc";
-            return getHibernateTemplate().find(queryString);
+            return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
@@ -94,8 +83,8 @@ public class CollegeDAO extends BaseDaoImp<College> {
     public List findByColOrderByIdcm(String col) {
         log.debug("finding all College instances");
         try {
-            String queryString = "from College as c where c.col=? order by c.idcm asc";
-            return getHibernateTemplate().find(queryString, col);
+            String queryString = "from College as c where c.col= '"+ col +"' order by c.idcm asc";
+            return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
             throw re;
@@ -112,7 +101,7 @@ public class CollegeDAO extends BaseDaoImp<College> {
         List list = null;
         try {
             String queryString = "select distinct col from College";
-            list = getHibernateTemplate().find(queryString);
+            getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -131,7 +120,7 @@ public class CollegeDAO extends BaseDaoImp<College> {
         try {
             String queryString = "select distinct major from College as c where c.col='"
                     + col + "'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -151,7 +140,7 @@ public class CollegeDAO extends BaseDaoImp<College> {
         try {
             String queryString = "from College as c where c.col='" + col
                     + "' and c.major='" + major + "'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -170,7 +159,7 @@ public class CollegeDAO extends BaseDaoImp<College> {
         try {
             String queryString = "from College as c where c.col like '%"
                     + condition + "%' or c.major like '%" + condition + "%'";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }

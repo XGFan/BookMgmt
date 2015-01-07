@@ -6,15 +6,6 @@ import java.util.List;
 
 public interface SupplierDAO extends BaseDao<Supplier> {
 
-
-    /**
-     * 根据id查找Supplier
-     *
-     * @param id id
-     * @return Supplier obj
-     */
-    public Supplier findById(java.lang.String id);
-
     /**
      * 根据供应商精确查找
      *

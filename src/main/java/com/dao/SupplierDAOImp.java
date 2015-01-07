@@ -18,16 +18,16 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
     private static final Log log = LogFactory.getLog(SupplierDAOImp.class);
     private static final String SUPPLIER = "supplier";
     private static final String PUBLISHER = "publisher";
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
+//    @Autowired
+//    HibernateTemplate hibernateTemplate;
+//
+//    public HibernateTemplate getHibernateTemplate() {
+//        return hibernateTemplate;
+//    }
+//
+//    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+//        this.hibernateTemplate = hibernateTemplate;
+//    }
 
     public List likeFindByPub(String publisher) {
         return findByPropertyF(PUBLISHER, publisher);
@@ -35,8 +35,8 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
 
     public List findBySubPub(String supplier, String publisher) {
         String hql = "from Supplier where supplier='" + supplier
-                + "' and publisher like ?";
-        return getHibernateTemplate().find(hql, "%" + publisher + "%");
+                + "' and publisher like"+"%" + publisher + "%";
+        return getCurrentSession().createQuery(hql).list();
     }
 
     public List accfindBySubPub(String supplier, String publisher) {
@@ -44,25 +44,13 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
         try {
             String hql = "from Supplier where supplier='" + supplier;
             hql += "' and publisher = '" + publisher + "'";
-            return getHibernateTemplate().find(hql);
+            return getCurrentSession().createQuery(hql).list();
         } catch (RuntimeException re) {
             log.error("accfindBySubPub failed", re);
             throw re;
         }
     }
 
-
-    public Supplier findById(java.lang.String id) {
-        log.debug("getting Supplier instance with id: " + id);
-        Supplier sup = null;
-        try {
-            sup = (Supplier) getHibernateTemplate().get(
-                    "com.bean.supplier.Supplier", id);
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-        }
-        return sup;
-    }
 
     public List findBySupplier(String supplier) {
         return findByPropertyA(SUPPLIER, supplier);
@@ -77,8 +65,8 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
         log.debug("finding all Supplier instances");
         List list = null;
         try {
-            String queryString = "select distinct s.supplier from Supplier s order by convert_gbk(s.supplier) asc";
-            list = getHibernateTemplate().find(queryString);
+            String queryString = "select distinct s.supplier from Supplier s order by s.supplier asc";
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -89,8 +77,8 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
         log.debug("finding all Supplier instances");
         List list = null;
         try {
-            String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
-            list = getHibernateTemplate().find(queryString);
+            String queryString = "from Supplier s order by s.publisher asc";
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
@@ -102,7 +90,7 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
         List list = null;
         try {
             String queryString = "from Supplier s order by s.idsp";
-            list = getHibernateTemplate().find(queryString);
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
