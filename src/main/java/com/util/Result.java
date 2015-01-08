@@ -37,7 +37,6 @@ public class Result {
     }
 
     public String toJson() {
-        String json = "{" + "\"status\":\"" + status + "\"," + "\"msg\":\"" + msg + "\"}";
-        return json;
+        return "{" + "\"status\":\"" + status + "\"," + "\"msg\":\"" + msg + "\"}";
     }
 }

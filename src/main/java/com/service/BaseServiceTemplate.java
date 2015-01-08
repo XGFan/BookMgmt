@@ -13,7 +13,7 @@ import java.util.List;
  */
 public abstract class BaseServiceTemplate<T> implements BaseService<T> {
 
-    BaseDao<T> baseDao;
+    private BaseDao<T> baseDao;
 
     public BaseDao<T> getBaseDao(){
         return baseDao;

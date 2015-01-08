@@ -20,7 +20,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.*;
-
+@Deprecated
 @Service("bKPurchaseService")
 public class BKPurchaseServiceImp implements BKPurchaseService {
     public static final String COL = "学院";

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service("corplanService")
-public class CorplanServiceImp implements CorplanService {
+public class CorplanServiceImp extends BaseServiceTemplate<Corplan> implements CorplanService {
     @Autowired
     private CorplanDAO corplanDAO;
     @Autowired

@@ -6,7 +6,7 @@ import com.bean.corplan.Corplan;
 /**
  * Corbook entity. @author MyEclipse Persistence Tools
  */
-
+@Deprecated
 public class Corbook implements java.io.Serializable {
 
     // Fields

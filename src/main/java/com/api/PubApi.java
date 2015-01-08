@@ -64,7 +64,8 @@ public class PubApi {
     @Path("/major/{col}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getMajor(@PathParam("col") String col) {
-        return JSONArray.fromObject(collegeService.getMajorNameByCol("col"));
+        System.out.println(col);
+        return JSONArray.fromObject(collegeService.getMajorNameByCol(col));
     }
 
 }

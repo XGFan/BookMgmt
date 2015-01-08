@@ -1,5 +1,6 @@
 package com.api;
 
+import com.bean.corplan.Corplan;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
@@ -20,5 +21,6 @@ public class RestConfig extends ResourceConfig {
         register(SupplierApi.class);
         register(CourseApi.class);
         register(CourseBkApi.class);
+        register(CorplanApi.class);
     }
 }

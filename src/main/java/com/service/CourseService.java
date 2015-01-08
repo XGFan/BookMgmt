@@ -5,7 +5,7 @@ import com.util.Pagination;
 
 import java.util.List;
 
-public interface CourseService {
+public interface CourseService extends BaseService<Course> {
 
     /**
      * 找到所有的科目信息(join)

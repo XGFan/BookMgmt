@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("courseService")
-public class CourseServiceImp implements CourseService {
+public class CourseServiceImp extends BaseServiceTemplate<Course> implements CourseService {
     @Autowired
     private CourseDAO courseDAO;
     @Autowired

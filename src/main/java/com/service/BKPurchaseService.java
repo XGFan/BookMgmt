@@ -2,7 +2,7 @@ package com.service;
 
 import java.util.List;
 import java.util.Map;
-
+@Deprecated
 public interface BKPurchaseService {
 
     public List getbklist(String semester);

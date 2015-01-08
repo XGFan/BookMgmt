@@ -1,7 +1,6 @@
 package com.dao;
 
 import com.bean.corbkview.Corbkview;
-import com.bean.corbook.Corbook;
 import com.bean.corbook.Corbookview;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

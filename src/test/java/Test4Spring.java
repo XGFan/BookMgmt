@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  * Created by guofan on 2014/11/24
  */
 @ContextConfiguration(locations = {"/applicationContext.xml"})
-public class Test extends AbstractJUnit4SpringContextTests {
+public class Test4Spring extends AbstractJUnit4SpringContextTests {
     @Autowired
     BkpurchaseDAO bkpurchaseDAO;
     @Autowired

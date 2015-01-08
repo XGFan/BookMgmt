@@ -46,7 +46,7 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
     @Autowired
     HibernateTemplate hibernateTemplate;
 
-    public HibernateTemplate getHibernateTemplate() {
+    HibernateTemplate getHibernateTemplate() {
         return hibernateTemplate;
     }
 

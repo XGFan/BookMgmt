@@ -1,8 +1,10 @@
 package com.service;
 
+import com.bean.corplan.Corplan;
+
 import java.util.List;
 
-public interface CorplanService {
+public interface CorplanService extends BaseService<Corplan>{
 
     /**
      * 根据学院，专业，所在学期查询教学计划
@@ -13,6 +15,8 @@ public interface CorplanService {
      * @return 教学计划 map list
      */
     public List findCorplanByColMajorSem(String col, String major, String semester);
+
+//    public
 
     /**
      * 连接教学计划，科目，学院三张表

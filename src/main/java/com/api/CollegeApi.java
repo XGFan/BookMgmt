@@ -119,7 +119,7 @@ public class CollegeApi {
     	College coll=new College();
     	coll.setCol(col);
     	coll.setMajor(major);
-    	coll.setSemnum(semnum);;
+    	coll.setSemnum(semnum);
     	coll.setIdcm(idcm);
         return collegeService.save(coll);
     }
