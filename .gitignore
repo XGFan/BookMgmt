@@ -6,3 +6,4 @@ WebRoot/WEB-INF/lib/
 *.iml
 target/
 .classpath
+.project

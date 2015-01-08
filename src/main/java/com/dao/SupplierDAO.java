@@ -29,7 +29,7 @@ public interface SupplierDAO extends BaseDao<Supplier> {
      * @return Supplier obj LIST
      * Created by Yuanyuan on 2015/1/7
      */
-    public List findByIdsp(String idsp);
+//    public List findByIdsp(String idsp);
 
 
     /**

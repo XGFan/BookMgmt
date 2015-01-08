@@ -97,7 +97,6 @@ public class CollegeApi {
         	return JSONArray.fromObject(collegeService.getColObj(null, null));
     }
 
-<<<<<<< HEAD
 //添加学院专业
 //    @POST
 //    @Path("/new")
@@ -107,7 +106,6 @@ public class CollegeApi {
 //    ){
 //        return collegeService.save(col);
 //    }
-=======
     //添加学院专业============================正常
     @POST
     @Path("/new")
@@ -123,9 +121,8 @@ public class CollegeApi {
     	coll.setMajor(major);
     	coll.setSemnum(semnum);;
     	coll.setIdcm(idcm);
-        return collegeService.saveCol(coll);
+        return collegeService.save(coll);
     }
->>>>>>> maven-01-Yuan
 //更新
 //    @PUT
 //    @Path("/{idcm}")

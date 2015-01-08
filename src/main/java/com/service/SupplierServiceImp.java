@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("supplierService")
-public class SupplierServiceImp implements SupplierService {
+public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements SupplierService {
     @Autowired
     private SupplierDAO supplierDAO;
 
@@ -34,7 +34,17 @@ public class SupplierServiceImp implements SupplierService {
         return supplierDAO.findByPublisher(publish);
     }
 
-    public boolean delPub(Supplier sup) {
+    @Override
+    public List findBySupplier(String supplier) {
+        return supplierDAO.findBySupplier(supplier);
+    }
+
+    @Override
+    public List findByIdsp(String idsp) {
+        return supplierDAO.findByPropertyA("idsp",idsp);
+    }
+
+    public boolean delete(Supplier sup) {
         String supplier = sup.getSupplier();
         if (supplier.equals("其他")) {
             supplierDAO.delete(sup);
@@ -69,7 +79,7 @@ public class SupplierServiceImp implements SupplierService {
         return true;
     }
 
-    public List initSup() {
+    public List getAll() {
         return supplierDAO.getAll();
     }
 
@@ -124,9 +134,5 @@ public class SupplierServiceImp implements SupplierService {
             return true;
         } else
             return false;
-    }
-
-    public boolean updateSupplier(Supplier supplier) {
-        return supplierDAO.update(supplier);
     }
 }

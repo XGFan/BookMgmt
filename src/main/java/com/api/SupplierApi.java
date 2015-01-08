@@ -1,8 +1,5 @@
 package com.api;
 
-import java.util.List;
-
-import com.bean.cls.ClassInfo;
 import com.bean.supplier.Supplier;
 import com.service.SupplierService;
 
@@ -54,7 +51,7 @@ public class SupplierApi {
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getAllSup() {
-        return JSONArray.fromObject(supplierService.initSup());
+        return JSONArray.fromObject(supplierService.getAll());
     }
     
     //根据供应商名查找供应信息obj数组===========正常
@@ -62,7 +59,7 @@ public class SupplierApi {
     @Path("/sup={supname}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray searchBySup(@PathParam("supname") String supplier) {
-        return JSONArray.fromObject((Object)supplierService.findBySupplier(supplier));
+        return JSONArray.fromObject((Object)supplierService.findByPublish(supplier));
     }
     
   //根据出版社名查找供应信息obj数组===========正常
@@ -128,7 +125,7 @@ public class SupplierApi {
 ////    	temp.setPublisher(publisher);
 ////    	temp.setSupplier(supplier);
 //    	temp.setIdsp(te.toString());
-//        return supplierService.updateSupplier(temp);
+//        return supplierService.update(temp);
 //    }
 
 

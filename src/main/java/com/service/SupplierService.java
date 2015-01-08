@@ -4,14 +4,7 @@ import com.bean.supplier.Supplier;
 
 import java.util.List;
 
-public interface SupplierService {
-
-    /**
-     * 返回所有 Supplier obj LIST
-     *
-     * @return Supplier obj LIST
-     */
-    public List initSup();
+public interface SupplierService extends BaseService<Supplier> {
 
     /**
      * 返回所有distinct的供应商
@@ -37,10 +30,20 @@ public interface SupplierService {
      */
     public List findByPublish(String publish);
 
+    /**
+     * 根据供应商精确查找
+     *
+     * @param supplier 出版社
+     * @return supplier obj list
+     */
+    public List findBySupplier(String supplier);
+
+    public List findByIdsp(String idsp);
+
     /*
      * todo
      */
-    public boolean delPub(Supplier sup);
+    public boolean delete(Supplier sup);
 
     /*
      * todo
@@ -65,13 +68,6 @@ public interface SupplierService {
      */
     public boolean addSup(String supplier);
 
-    /**
-     * 更新
-     *
-     * @param supplier 供应商 obj
-     * @return boolean
-     */
-    public boolean updateSupplier(Supplier supplier);
 
     /**
      * 返回所有，根据publisher排序
