@@ -67,6 +67,19 @@ public interface BookService {
      * @return 一页 map list
      */
     public List searchByBookPub(String bookname, String pub, Pagination pagination);
+    
+//    /**
+//     * 根据 bkname,author,idsp,isbn,memo查找
+//     * 并且分页
+//     *
+//     * @param bookname   教材名
+//     * @param author     作者
+//     * @param idsp		   供应商ID
+//     * @param isbn		 ISBN号码
+//     * @param memo		    备注
+//     * @return 一页 map list
+//     */
+//    public List searchByBookPub(String bookname, String author, String idsp, String isbn, String memo);
 
     /**
      * 根据idbk进行删除

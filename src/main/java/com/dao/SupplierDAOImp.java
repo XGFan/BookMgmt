@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.bean.supplier.Supplier;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class SupplierDAOImp implements SupplierDAO {
     private static final Log log = LogFactory.getLog(SupplierDAOImp.class);
     private static final String SUPPLIER = "supplier";
     private static final String PUBLISHER = "publisher";
+   
+    /**
+     * Created by Yuanyuan on 2015/1/7
+     */
+    private static final String IDSP = "idsp";
     @Autowired
     HibernateTemplate hibernateTemplate;
 
@@ -37,6 +43,7 @@ public class SupplierDAOImp implements SupplierDAO {
         try {
             String hql = "from Supplier s where s." + propertyName + " = ?";
             list = getHibernateTemplate().find(hql, value);
+            System.out.println(list+"sdi3333333333333333333");
         } catch (RuntimeException re) {
             log.error("accurate find by " + propertyName + " failed", re);
         }
@@ -132,6 +139,7 @@ public class SupplierDAOImp implements SupplierDAO {
     }
 
     public List findBySupplier(String supplier) {
+    	System.out.println(findByPropertyAccurate(SUPPLIER, supplier)+"sdi222222222222222");
         return findByPropertyAccurate(SUPPLIER, supplier);
     }
 
@@ -144,7 +152,9 @@ public class SupplierDAOImp implements SupplierDAO {
         log.debug("finding all publisher instances");
         List list = null;
         try {
-            String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
+           // String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
+            String queryString = "from Supplier s order by s.publisher asc";
+            
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -156,7 +166,8 @@ public class SupplierDAOImp implements SupplierDAO {
         log.debug("finding all Supplier instances");
         List list = null;
         try {
-            String queryString = "select distinct s.supplier from Supplier s order by convert_gbk(s.supplier) asc";
+           // String queryString = "select distinct s.supplier from Supplier s order by convert_gbk(s.supplier) asc";
+        	String queryString = "select distinct s.supplier from Supplier s order by s.supplier asc";
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -168,7 +179,8 @@ public class SupplierDAOImp implements SupplierDAO {
         log.debug("finding all Supplier instances");
         List list = null;
         try {
-            String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
+         //   String queryString = "from Supplier s order by convert_gbk(s.publisher) asc";
+        	 String queryString = "from Supplier s order by s.publisher asc";
             list = getHibernateTemplate().find(queryString);
         } catch (RuntimeException re) {
             log.error("find all failed", re);
@@ -187,4 +199,11 @@ public class SupplierDAOImp implements SupplierDAO {
         }
         return list;
     }
+
+    /**
+     * Created by Yuanyuan on 2015/1/7 
+     * */
+	public List findByIdsp(String idsp) {
+		return findByPropertyAccurate(IDSP, idsp);
+	}
 }

@@ -63,6 +63,15 @@ public interface SupplierDAO {
      * @return Supplier obj LIST
      */
     public List findByPublisher(String publisher);
+    
+    /**
+     * 根据idsp精确查找
+     *
+     * @param idsp 出版社
+     * @return Supplier obj LIST
+     * Created by Yuanyuan on 2015/1/7
+     */
+    public List findByIdsp(String idsp);
 
     /**
      * 返回所有 Supplier obj LIST

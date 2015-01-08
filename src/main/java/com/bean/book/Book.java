@@ -71,6 +71,20 @@ public class Book implements java.io.Serializable {
         this.bkpurchases = bkpurchases;
         this.coursebks = coursebks;
     }
+//    
+//    public Book(String idbk, String idsp, String bkname,
+//            String author, Integer edition, String isbn, Double price,
+//            String memo) {
+//    super();
+//    this.idbk = idbk;
+//    this.idsp = idsp;
+//    this.bkname = bkname;
+//    this.author = author;
+//    this.edition = edition;
+//    this.isbn = isbn;
+//    this.price = price;
+//    this.memo = memo;
+//}
 
     public String getIdbk() {
         return idbk;

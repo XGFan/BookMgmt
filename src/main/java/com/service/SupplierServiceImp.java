@@ -3,6 +3,7 @@ package com.service;
 import com.bean.supplier.Supplier;
 import com.dao.SupplierDAO;
 import com.util.ConvertUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,12 @@ public class SupplierServiceImp implements SupplierService {
     public List findByPublish(String publish) {
         return supplierDAO.findByPublisher(publish);
     }
+    
+    public List findBySupplier(String supplier) {
+    	System.out.println(supplierDAO.findBySupplier(supplier)+"ssi111111111");
+    	System.out.println(supplier+"ssi0000000000000");
+        return supplierDAO.findBySupplier(supplier);
+    }
 
     public boolean delPub(Supplier sup) {
         String supplier = sup.getSupplier();
@@ -51,7 +58,9 @@ public class SupplierServiceImp implements SupplierService {
         return true;
     }
 
-    public boolean delSup(String sup) {
+    
+    @SuppressWarnings("unchecked")
+	public boolean delSup(String sup) {
         List<Supplier> list = supplierDAO.findBySupplier(sup);
         for (Supplier s : list) {
             String publisher = s.getPublisher();
@@ -60,16 +69,41 @@ public class SupplierServiceImp implements SupplierService {
             } else {
                 if (supplierDAO.findByPublisher(publisher).size() > 1) {
                     supplierDAO.delete(s);
+                    System.out.println("删除成功！！！！6666666");
                 } else {
                     s.setSupplier("其他");
+                    System.out.println("没有挖！！！8888888");
                     supplierDAO.updateSup(s);
                 }
             }
         }
         return true;
     }
+    
+    
+    //==========================重写（见上）
+//    public boolean delSup(String sup) {
+//        List<Supplier> list = supplierDAO.findBySupplier(sup);
+//        for (Supplier s : list) {
+//            String publisher = s.getPublisher();
+//            if (publisher == null) {
+//                supplierDAO.delete(s);
+//            } else {
+//                if (supplierDAO.findByPublisher(publisher).size() > 1) {
+//                    supplierDAO.delete(s);
+//                    System.out.println("删除成功！！！！6666666");
+//                } else {
+//                    s.setSupplier("其他");
+//                    System.out.println("没有挖！！！8888888");
+//                    supplierDAO.updateSup(s);
+//                }
+//            }
+//        }
+//        return true;
+//    }
 
     public List initSup() {
+    System.out.print(supplierDAO.findAll());
         return supplierDAO.findAll();
     }
 
@@ -129,4 +163,12 @@ public class SupplierServiceImp implements SupplierService {
     public boolean updateSupplier(Supplier supplier) {
         return supplierDAO.updateSup(supplier);
     }
+
+    /**
+     * Created by Yuanyuan on 2015/1/7 
+     * */
+	@Override
+	public List findByIdsp(String idsp) {
+		return supplierDAO.findByIdsp(idsp);
+	}
 }

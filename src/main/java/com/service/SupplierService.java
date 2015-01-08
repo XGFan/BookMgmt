@@ -36,6 +36,23 @@ public interface SupplierService {
      * @return supplier obj list
      */
     public List findByPublish(String publish);
+    
+    /**
+     * 根据供应商精确查找
+     *
+     * @param supplier 供应商
+     * @return supplier obj list
+     */
+    public List findBySupplier(String supplier) ;
+    
+    /**
+     * 根据idsp精确查找
+     *
+     * @param idsp 唯一标识出版社
+     * @return supplier obj list
+     * Created by Yuanyuan on 2015/1/7
+     */
+    public List findByIdsp(String idsp);
 
     /*
      * todo

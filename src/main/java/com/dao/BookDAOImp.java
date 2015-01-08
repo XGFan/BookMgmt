@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.bean.book.Book;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class BookDAOImp implements BookDAO {
         boolean result = true;
         log.debug("deleting Book instance");
         try {
+        	System.out.println(persistentInstance);
             getHibernateTemplate().delete(persistentInstance);
             log.debug("delete successful");
         } catch (RuntimeException re) {
@@ -57,6 +59,7 @@ public class BookDAOImp implements BookDAO {
         Book book = null;
         try {
             book = (Book) getHibernateTemplate().get("com.bean.book.Book", id);
+            System.out.println(book+"2");
         } catch (RuntimeException re) {
             log.error("get failed", re);
         }

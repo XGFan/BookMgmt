@@ -5,6 +5,7 @@ import com.dao.BookDAO;
 import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class BookServiceImp implements BookService {
 
     public boolean deleteBook(String idbk) {
         Book temp = bookDAO.findById(idbk);
+        System.out.println(temp+"1");
         boolean tag;
         tag = bookDAO.delete(temp);
         return tag;
@@ -73,5 +75,12 @@ public class BookServiceImp implements BookService {
     public boolean updateBook(Book book) {
         return bookDAO.update(book);
     }
+
+//	@Override
+//	public List searchByBookPub(String bookname, String author, String idsp,
+//			String isbn, String memo) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 }

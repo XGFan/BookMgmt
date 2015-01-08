@@ -103,6 +103,7 @@ public class ClassServiceImp implements ClassService {
     }
 
     public ClassInfo findById(String idcls) {
+    	System.out.println(idcls+"csi999999999");
         return classDAO.findById(idcls);
     }
 

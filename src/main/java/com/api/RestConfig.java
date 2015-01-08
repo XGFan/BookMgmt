@@ -17,5 +17,7 @@ public class RestConfig extends ResourceConfig {
         register(ClassApi.class);
         register(CollegeApi.class);
         register(BookApi.class);
+        register(SupplierApi.class);
+        register(CourseApi.class);
     }
 }

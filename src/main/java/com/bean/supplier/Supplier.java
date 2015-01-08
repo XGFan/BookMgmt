@@ -1,8 +1,5 @@
 package com.bean.supplier;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Supplier entity. @author MyEclipse Persistence Tools
  */
@@ -14,7 +11,7 @@ public class Supplier implements java.io.Serializable {
     private String idsp;
     private String supplier;
     private String publisher;
-    private Set books = new HashSet(0);
+  //  private Set books = new HashSet(0);
 
     // Constructors
 
@@ -35,12 +32,12 @@ public class Supplier implements java.io.Serializable {
     /**
      * full constructor
      */
-    public Supplier(String idsp, String supplier, String publisher, Set books) {
-        this.idsp = idsp;
-        this.supplier = supplier;
-        this.publisher = publisher;
-        //this.books = books;
-    }
+//    public Supplier(String idsp, String supplier, String publisher, Set books) {
+//        this.idsp = idsp;
+//        this.supplier = supplier;
+//        this.publisher = publisher;
+//        //this.books = books;
+//    }
 
     // Property accessors
 
@@ -75,18 +72,24 @@ public class Supplier implements java.io.Serializable {
         this.publisher = publisher;
     }
 
-    public Set getBooks() {
-        return this.books;
-    }
+//    public Set getBooks() {
+//        return this.books;
+//    }
+//
+//    public void setBooks(Set books) {
+//        this.books = books;
+//    }
 
-    public void setBooks(Set books) {
-        this.books = books;
-    }
-
+//    @Override
+//    public String toString() {
+//        return "Supplier [idsp=" + idsp + ", supplier=" + supplier
+//                + ", publisher=" + publisher + ", books=" + books + "]";
+//    }
+    
     @Override
     public String toString() {
         return "Supplier [idsp=" + idsp + ", supplier=" + supplier
-                + ", publisher=" + publisher + ", books=" + books + "]";
+                + ", publisher=" + publisher +"]";
     }
 
 

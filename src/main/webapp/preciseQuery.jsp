@@ -19,15 +19,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
   </head>
-  
   <body>
-    <div id="preciseQuery" class="easyui-dialog" style="background-color:#E0EDFF; width: 500px; height: 225px;padding: 10px 20px",close="true">
-        年级：<input class="easyui-combobox" id="gradea" name="grade" data-option="valueField:'id',textField:'text'"/>
-		学院：<input class="easyui-combobox" id="cola" name="col" data-option="valueField:'id',textField:'text'"/>
-		专业：<input class="easyui-combobox" id="majora" name="major" data-option="valueField:'id',textField:'text'" />
-		校区：<input class="easyui-combobox" id="campusa" name="campus" data-option="valueField:'id',textField:'text'" />
+    <div id="preciseQuery" style="display: none;">
+		年级：<input class="easyui-textbox" type="text" id="gradea" name="gradea" data-option="valueField:'id',textField:'text'"/>
+		学院：<input class="easyui-textbox" type="text" id="cola" name="cola" data-option="valueField:'id',textField:'text'"/>
+        专业：<input class="easyui-textbox" type="text" id="majora" name="majora" data-option="valueField:'id',textField:'text'" />
+		校区：<input class="easyui-textbox" type="text" id="campusa" name="campusa" data-option="valueField:'id',textField:'text'" />
+		<a href="javascript:searchData()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
     </div>
   </body>
 </html>

@@ -24,37 +24,60 @@
 		        <a href="javascript:deleteData()" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
                 <input type="text" id="searchs" name="searchs" size="20px">
                 <a href="javascript:searchData()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
-                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" id="btn">高级查询</a>  
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-tip'" id="btn">高级查询</a>  
+                <jsp:include page="../preciseQuery.jsp"></jsp:include>
              </div>
         </div>
-     <div><jsp:include page="../preciseQuery.jsp"></jsp:include></div>
         
     <div id="dlg" class="easyui-dialog" style="background-color:#E0EDFF; width: 500px; height: 225px;padding: 10px 20px;" closed="true" buttons="#dlgButtons" >
 		<form id="fm" method="post">
 			<table cellspacing="5px">
 				<tr>
 					<td>年级：</td>
-					<td><input class="easyui-combobox" id="grade" name="grade" data-option="valueField:'id',textField:'text'"/></td>
+					<td><input class="easyui-textbox" type="text" id="grade" name="grade" data-option="valueField:'id',textField:'text'"/></td>
 					<td>学院：</td>
-                    <td><input class="easyui-combobox" id="col" name="col" data-option="valueField:'id',textField:'text'"/></td>
+                    <td><input class="easyui-textbox" type="text" id="col" name="col" data-option="valueField:'id',textField:'text'"/></td>
                 </tr>
 		        <tr>
 					<td>专业：</td>
-					<td><input class="easyui-combobox" id="major" name="major" data-option="valueField:'id',textField:'text'" /></td>
+					<td><input class="easyui-textbox" type="text" id="major" name="major" data-option="valueField:'id',textField:'text'" /></td>
 					<td>校区：</td>
-					<td><input class="easyui-combobox" id="campus" name="campus" data-option="valueField:'id',textField:'text'" /></td>
+					<td><input class="easyui-textbox" type="text" id="campus" name="campus" data-option="valueField:'id',textField:'text'" /></td>
 				</tr>
 				<tr>
 					<td>班数：</td>
-					<td><input class="easyui-validatebox" id="clsno" name="clsno" size="20px" required="true" /></td>
+					<td><input class="easyui-textbox" type="text" id="clsnum" name="clsnum" size="20px" required="true" /></td>
 				</tr>
 			</table>
 		</form>
     </div>
-    
+    <div id="editDlg" class="easyui-dialog" style="background-color:#E0EDFF; width: 500px; height: 225px;padding: 10px 20px;" closed="true" buttons="#dlgButtons1" >
+		<table cellspacing="5px">
+			<tr>
+				<td>年级：</td>
+				<td><input class="easyui-textbox" type="text" id="grade1" name="grade" data-option="valueField:'id',textField:'text'"/></td>
+				<td>学院：</td>
+                <td><input class="easyui-textbox" type="text" id="col1" name="col" data-option="valueField:'id',textField:'text'"/></td>
+            </tr>
+		    <tr>
+				<td>专业：</td>
+				<td><input class="easyui-textbox" type="text" id="major1" name="major" data-option="valueField:'id',textField:'text'" /></td>
+				<td>校区：</td>
+				<td><input class="easyui-textbox" type="text" id="campus1" name="campus" data-option="valueField:'id',textField:'text'" /></td>
+			</tr>
+			<tr>
+				<td>班数：</td>
+				<td><input class="easyui-textbox" type="text" id="clsnum1" name="clsnum" size="20px" required="true" /></td>
+			</tr>
+		</table>
+    </div>
 	<div id="dlgButtons">
 		<a href="javascript:saveData()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
 		<a href="javascript:closeDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+	</div>
+	<div id="dlgButtons1">
+		<a href="javascript:saveEdit()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+		<a href="javascript:closeEdit()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
 	</div>
   </body>
 </html>
