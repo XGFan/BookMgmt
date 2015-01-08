@@ -21,6 +21,12 @@ public interface CollegeService extends BaseService<College> {
      */
     public List searchByCol(String col);
 
+    /**
+     * 根据学院名和专业名来查找
+     * @param col 学院名
+     * @param major 专业名
+     * @return College obj
+     */
     public College getCollege(String col, String major);
 
     /**
