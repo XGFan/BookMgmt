@@ -2,7 +2,7 @@
  * 专业信息表的js代码
  */
 //定义假数据，以下是从后台获得
-var grades="/bookmgmt/api/class/grade";
+var grades="/bookmgmt/api/class/grade/grade";
 var colleges="/bookmgmt/api/class/clo";
 var majors="/bookmgmt/api/class/major";
 var campuss="/bookmgmt/api/class/campus";
@@ -11,7 +11,7 @@ $(function(){
 	$('#tt').datagrid({
 		title:'专业信息管理',
 		iconCls:'icon-edit',
-		url:'/bookmgmt/api/class',
+		url:'api/class',
 		method:'get',
 		rownumbers:true,
 		fit:true,
@@ -22,24 +22,6 @@ $(function(){
 		pageSize:100,
 		pageList: [50,100,200], 
 		columns:[[
-			{field:'stunum',title:'人数',width:100,editor:'text'},
-			{field:'col',title:'学院',width:160,align:'center',
-	        	formatter:function(value){
-	        		for(var i=0;i<colleges.length;i++){
-	        			if(colleges[i].col==value) return colleges[i].name;
-	        		}
-	        		return value;
-	        	},
-	    		editor:{
-					type:'combobox',
-					options:{
-						valueField:'col',
-						textField:'name',
-						data:colleges,//获取学院信息
-						required:true
-					}		        	
-	        	}	
-			},
 			{field:'grade',title:'年级',width:100,align:'center',
 				formatter:function(value){
 					for(var i=0; i<grades.length; i++){
@@ -57,6 +39,24 @@ $(function(){
 					}
 				}
 			},
+			{field:'col',title:'学院',width:160,align:'center',
+	        	formatter:function(value){
+	        		for(var i=0;i<colleges.length;i++){
+	        			if(colleges[i].col==value) return colleges[i].name;
+	        		}
+	        		return value;
+	        	},
+	    		editor:{
+					type:'combobox',
+					options:{
+						valueField:'col',
+						textField:'name',
+						data:colleges,//获取学院信息
+						required:true
+					}		        	
+	        	}	
+			},
+			
 			{field:'major',title:'专业',width:160,align:'center',
 	        	formatter:function(value){
 	        		for(var i=0;i<majors.length;i++){
@@ -91,6 +91,7 @@ $(function(){
 					}		        	
 	        	}
 			},
+			{field:'stunum',title:'人数',width:100,editor:'text'},
 			{field:'action',title:'编辑',width:120,align:'center',
 				formatter:function(value,row,index){
 					if (row.editing){

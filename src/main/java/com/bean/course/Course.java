@@ -14,6 +14,7 @@ public class Course implements java.io.Serializable {
     // Fields
 
     private String idcor;
+    private String idcm;
     private College college;
     private String corname;
     private String semester;
@@ -162,5 +163,13 @@ public class Course implements java.io.Serializable {
                 + corname + ", semester=" + semester + ", corplans=" + corplans
                 + ", coursebks=" + coursebks + "]";
     }
+
+	public String getIdcm() {
+		return idcm;
+	}
+
+	public void setIdcm(String idcm) {
+		this.idcm = idcm;
+	}
 
 }

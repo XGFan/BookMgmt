@@ -1,19 +1,20 @@
 ﻿$(function(){
+	/*定义树状菜单*/
+	// 班级信息管理树菜单
 	var treeData=[{
 		text:"根目录",
 		children:[{
-			text:"班级信息管理",
+			text:"年级信息管理",
 			attributes:{
 				url:"class/classAll.jsp"
 			}
 		},{
-			text:"专业信息管理",
+			text:"班级信息管理",
 			attributes:{
 				url:"class/classGrade.jsp"
 			}
 		}]
 	}];	
-	// 实例化树菜单
 	$("#tree").tree({
 		data:treeData,
 		lines:true,
@@ -23,6 +24,105 @@
 			}
 		}
 	});
+	
+	//教材管理树菜单
+	var treeData1=[{
+		text:"根目录",
+		children:[{
+			text:"教材信息管理",
+			attributes:{
+				url:"book/book.jsp"
+			}
+		}]
+	}];	
+	$("#tree1").tree({
+		data:treeData1,
+		lines:true,
+		onClick:function(node){
+			if(node.attributes){
+				openTab(node.text,node.attributes.url);
+			}
+		}
+	});
+	
+	//教学计划管理树菜单
+	var treeData2=[{
+		text:"根目录",
+		children:[{
+			text:"教学计划管理",
+			attributes:{
+				url:"corplan/corplan.jsp"
+			}
+		}]
+	}];
+	$("#tree2").tree({
+		data:treeData2,
+		lines:true,
+		onClick:function(node){
+			if(node.attributes){
+				openTab(node.text,node.attributes.url);
+			}
+		}
+	});
+	
+	//基础信息管理树菜单
+	var treeData3=[{
+		text:"课程信息",
+		children:[{
+			text:"课程信息管理",
+			attributes:{
+				url:"course/course.jsp"
+			}
+		}]
+	},{
+		text:"院系信息",
+		children:[{
+			text:"院系信息管理",
+			attributes:{
+				url:"college/college.jsp"
+			}
+		}]
+	},{
+		text:"供应商信息",
+		children:[{
+			text:"供应商信息管理",
+			attributes:{
+				url:"supplier/supplier.jsp"
+			}
+		}]
+	}];
+	$("#tree3").tree({
+		data:treeData3,
+		lines:true,
+		onClick:function(node){
+			if(node.attributes){
+				openTab(node.text,node.attributes.url);
+			}
+		}
+	});
+	
+	//教材采购树菜单
+	var treeData4=[{
+		text:"根目录",
+		children:[{
+			text:"教材采购",
+			attributes:{
+				url:"bkpurchase/bkpurchase.jsp"
+			}
+		}]
+	}];
+	$("#tree4").tree({
+		data:treeData4,
+		lines:true,
+		onClick:function(node){
+			if(node.attributes){
+				openTab(node.text,node.attributes.url);
+			}
+		}
+	});
+	
+	
+	
 	// 新增Tab
 	function openTab(text,url){
 		if($("#tabs").tabs('exists',text)){
