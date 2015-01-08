@@ -1,6 +1,8 @@
 package com.dao;
 
+import com.bean.corbkview.Corbkview;
 import com.bean.corbook.Corbook;
+import com.bean.corbook.Corbookview;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import java.util.List;
  * @see com.bean.corbook.Corbookview
  */
 @Repository("corbookviewDAO")
-public class CorbookviewDAO extends BaseDaoImp<Corbook> {
+public class CorbookviewDAO extends BaseDaoImp<Corbookview> {
     private static final Log log = LogFactory.getLog(CorbookviewDAO.class);
 
     /**

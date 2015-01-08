@@ -1,6 +1,8 @@
 package com.service;
 
+import com.bean.corbkview.Corbkview;
 import com.bean.corbook.Corbookview;
+import com.bean.coursebk.Coursebk;
 import com.dao.BookDAO;
 import com.dao.CorbookviewDAO;
 import com.dao.CourseDAO;
@@ -11,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("courseBookViewService")
-public class CourseBookViewServiceImp implements CourseBookViewService {
+public class CourseBookViewServiceImp extends BaseServiceTemplate<Corbookview> implements CourseBookViewService {
     @Autowired
     private BookDAO bookDAO;
     @Autowired

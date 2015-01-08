@@ -141,7 +141,6 @@ public class ConvertUtils {
      */
     public static List ToCorBookList(List list) {
         List corbooklist = new ArrayList();
-
         for (Object aList : list) {
             Corbookview cbv = (Corbookview) aList;
             Map map = new HashMap();

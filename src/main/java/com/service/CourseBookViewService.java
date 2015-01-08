@@ -1,8 +1,12 @@
 package com.service;
 
+import com.bean.corbkview.Corbkview;
+import com.bean.corbook.Corbookview;
+import com.bean.coursebk.Coursebk;
+
 import java.util.List;
 
-public interface CourseBookViewService {
+public interface CourseBookViewService extends BaseService<Corbookview> {
     /**
      * 通过教材id查找CourseBookView
      *

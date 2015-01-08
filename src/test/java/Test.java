@@ -2,7 +2,10 @@ import com.bean.supplier.Supplier;
 import com.dao.BkpurchaseDAO;
 import com.dao.ClassDAO;
 import com.service.ClassService;
+import com.service.CourseBookViewService;
 import com.service.SupplierService;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,19 +17,21 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
  * Created by guofan on 2014/11/24
  */
 @ContextConfiguration(locations = {"/applicationContext.xml"})
-public class Obj2Json extends AbstractJUnit4SpringContextTests {
+public class Test extends AbstractJUnit4SpringContextTests {
     @Autowired
     BkpurchaseDAO bkpurchaseDAO;
     @Autowired
     ClassService classService;
     @Autowired
     SupplierService supplierService;
+    @Autowired
+    CourseBookViewService courseBookViewService;
 
     public static void cout(Object x) {
         System.out.println(x);
     }
 
-    @Test
+    @org.junit.Test
     public void main() {
 //        System.out.println("This is a test!");
 //        classdao.findById("2007020101").toString();
@@ -43,6 +48,8 @@ public class Obj2Json extends AbstractJUnit4SpringContextTests {
 //        classService.
 //        System.out.println(x);
 //        cout(classService.accurateQuery("信息工程学院", "医学信息工程", "2010", "黄"));
-        cout(classService.getAll());
+//        cout(JSONArray.fromObject(courseBookViewService.getAll()));
+//        cout(courseBookViewService.findAllCourse());
+        cout(JSONObject.fromObject(true));
     }
 }
