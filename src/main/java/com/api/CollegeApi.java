@@ -5,6 +5,9 @@ import com.service.ClassService;
 import com.service.CollegeService;
 import com.service.CourseService;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
@@ -27,22 +30,29 @@ public class CollegeApi {
     @Autowired
     CourseService courseService;
 
+    JsonConfig config;
+
+    public CollegeApi() {
+        this.config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        this.config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
+        this.config.setExcludes(new String[]{"classes","courses"});
+    }
+
     //学院/专业 精确查找=====================500 error
     @GET
     @Path("/{col}/{major}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getCollege(@PathParam("col") String col,
                                 @PathParam("major") String major) {
-        return JSONArray.fromObject(collegeService.getCollege(col, major));
+        return JSONArray.fromObject(collegeService.getCollege(col, major),config);
     }
-
 
     //关键字模糊查找===========================正常
     @GET
     @Path("/{keyword}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getCollege(@PathParam("keyword") String keyword) {
-        return JSONArray.fromObject(collegeService.fuzzyQuery(keyword));
+        return JSONArray.fromObject(collegeService.fuzzyQuery(keyword),config);
     }
 
 
@@ -51,7 +61,7 @@ public class CollegeApi {
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getAllCol() {
-        return JSONArray.fromObject(collegeService.initCol());
+        return JSONArray.fromObject(collegeService.getAll(),config);
     }
 
 
@@ -67,19 +77,14 @@ public class CollegeApi {
     @GET
     @Path("/id={idcm}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getCol(@PathParam("idcm") String idcm) {
-        College col = new College();
-        if (col.getIdcm().equals(idcm)) {
-            return JSONArray.fromObject(collegeService.getColObj(col.getCol(), col.getMajor()));
-        } else
-            return JSONArray.fromObject(collegeService.getColObj(null, null));
+    public JSONObject getCol(@PathParam("idcm") String idcm) {
+        return JSONObject.fromObject(collegeService.findById(idcm),config);
     }
 
     //添加学院专业============================正常
     @POST
     @Path("/new")
     @Produces("application/json;charset=UTF-8")
-    //col, major, semnum, idcm
     public boolean addClass(
             @FormParam("col") String col,
             @FormParam("major") String major,
@@ -92,5 +97,4 @@ public class CollegeApi {
         coll.setIdcm(idcm);
         return collegeService.save(coll);
     }
-
 }
