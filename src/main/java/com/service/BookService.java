@@ -15,7 +15,7 @@ public interface BookService extends BaseService<Book>{
      * todo isbn理论应该有很少有重复的
      *
      * @param isbn ISBN号
-     * @return map list
+     * @return obj list
      */
     public List searchByISBN(String isbn);
 
@@ -24,7 +24,7 @@ public interface BookService extends BaseService<Book>{
      * 根据教材名，进行模糊查找
      *
      * @param bkname 教材名
-     * @return map list
+     * @return obj list
      */
     public List searchByBkname(String bkname);
 

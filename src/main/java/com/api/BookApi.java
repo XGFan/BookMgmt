@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * DATE:2015/1/6
@@ -30,15 +33,18 @@ public class BookApi {
     @Autowired
     CourseBookViewService corbkviewService;
 
+    JsonConfig config;
+
+    public BookApi() {
+        this.config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        this.config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
+        this.config.setExcludes(new String[]{"bkpurchases","coursebks","books"});
+    }
+
     @GET
     @Path("/id={idbk}")
     @Produces("application/json;charset=UTF-8")
     public JSONObject getBookByIdbk(@PathParam("idbk") String idbk) {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
-        String[] excludes = {"bkpurchases","coursebks","books"};
-        config.setExcludes(excludes);
         return JSONObject.fromObject(bookService.findById(idbk),config);
     }
 
@@ -58,14 +64,14 @@ public class BookApi {
     @Path("/isbn={isbn}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getBookByIsbn(@PathParam("isbn") String isbn) {
-        return JSONArray.fromObject(bookService.searchByISBN(isbn));
+        return JSONArray.fromObject(bookService.searchByISBN(isbn),config);
     }
 
     @GET
     @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getBook(@PathParam("keyword") String keyword) {
-        return JSONArray.fromObject(bookService.searchByBkname(keyword));
+        return JSONArray.fromObject(bookService.searchByBkname(keyword),config);
     }
 
 
@@ -73,7 +79,7 @@ public class BookApi {
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getAllBook() {
-        return JSONArray.fromObject(bookService.getAll());
+        return JSONArray.fromObject(bookService.getAll(),config);
     }
 
     @DELETE
@@ -118,7 +124,16 @@ public class BookApi {
             @FormParam("price") Double price,
             @FormParam("memo") String memo
     ) {
+        Calendar cale = Calendar.getInstance();
+        Date tasktime=cale.getTime();
+        SimpleDateFormat df=new SimpleDateFormat("yyMMdd");
+        String result="";
+        for(int i=0;i<5;i++){
+            int intValue=(int)(Math.random()*10);
+            result=result+Integer.toString(intValue);
+        }
         Book book = new Book();
+        book.setIdbk(df.format(tasktime)+result);
         book.setBkname(bkname);
         book.setAuthor(author);
         book.setEdition(edition);
