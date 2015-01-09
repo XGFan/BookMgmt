@@ -1,16 +1,19 @@
+import com.bean.book.Book;
 import com.bean.supplier.Supplier;
 import com.dao.BkpurchaseDAO;
 import com.dao.ClassDAO;
-import com.service.BookService;
-import com.service.ClassService;
-import com.service.CourseBookViewService;
-import com.service.SupplierService;
+import com.dao.CourseDAO;
+import com.service.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
+import net.sf.json.util.CycleDetectionStrategy;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+
+import java.util.List;
 
 /**
  * DATE:2014/11/24
@@ -29,6 +32,10 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
     SupplierService supplierService;
     @Autowired
     CourseBookViewService courseBookViewService;
+    @Autowired
+    CourseService courseService;
+    @Autowired
+    CourseDAO courseDAO;
 //    @Autowired
 //    SupplierService supplierService;
 
@@ -57,8 +64,19 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
 //        cout(JSONArray.fromObject(courseBookViewService.getAll()));
 //        cout(courseBookViewService.findAllCourse());
 //        cout(JSONObject.fromObject(true));
-        Supplier t = supplierService.findById("1029");
-        cout(t);
-        supplierService.delete(t);
+//        Supplier t = supplierService.findById("1029");
+//        cout(t);
+//        supplierService.delete(t);
+//        cout(JSONArray.fromObject(courseDAO.getCourseByColMajorSem("信息工程学院", "信息管理与信息系统", "1")));
+//        cout(bookService.findById("14041700168").toString());
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+//        config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
+        String[] excludes = {"bkpurchases","coursebks","books"};
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
+        config.setExcludes(excludes);
+        List book = bookService.searchByISBN("1");
+        cout(JSONArray.fromObject(book,config));
     }
+
 }

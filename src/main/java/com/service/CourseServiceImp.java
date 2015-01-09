@@ -107,6 +107,7 @@ public class CourseServiceImp extends BaseServiceTemplate<Course> implements Cou
 
     public List fuzzyQuery(String condition) {
         return ConvertUtils.ToCourseList(courseDAO.fuzzyQuery(condition));
+//        return courseDAO.fuzzyQuery(condition);
     }
 
     public List fuzzyQuery(String condition, Pagination pagination) {

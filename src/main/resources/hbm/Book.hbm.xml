@@ -30,7 +30,7 @@
         <property name="memo" type="java.lang.String">
             <column name="memo"/>
         </property>
-        <set name="bkpurchases" inverse="true" cascade="all">
+        <set name="bkpurchases" inverse="true" cascade="all" >
             <key>
                 <column name="idbk" length="11"/>
             </key>

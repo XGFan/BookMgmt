@@ -3,7 +3,6 @@ package com.api;
 import com.service.ClassService;
 import com.service.CollegeService;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.ws.rs.GET;

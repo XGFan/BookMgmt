@@ -3,9 +3,7 @@ package com.api;
 import com.bean.cls.ClassInfo;
 import com.service.ClassService;
 import com.service.CollegeService;
-
 import net.sf.json.JSONArray;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
@@ -31,21 +29,15 @@ public class ClassApi {
     @Produces("application/json;charset=UTF-8")
     public JSONArray getClass(@PathParam("campus") String campus, @PathParam("col") String col,
                               @PathParam("major") String major, @PathParam("grade") String grade) {
-    	return JSONArray.fromObject(classServie.accurateQuery(col, major, grade, campus));
+        return JSONArray.fromObject(classServie.accurateQuery(col, major, grade, campus));
     }
 
-//    @GET
-//    @Path("/p{page}/n{num}")
-//    @Produces("application/json;charset=UTF-8")
-//    public JSONArray getAllClass(@PathParam("page") int page, @PathParam("num") int num) {
-//        return getSubList(getAllClass(), page, num);
-//    }
 
     @GET
     @Path("/{keyword}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getClass(@PathParam("keyword") String keyword) {
-    	return JSONArray.fromObject(classServie.fuzzyFind(keyword));
+        return JSONArray.fromObject(classServie.fuzzyFind(keyword));
     }
 
     @GET
@@ -54,12 +46,12 @@ public class ClassApi {
     public JSONArray getAllClass() {
         return JSONArray.fromObject(classServie.findAll());
     }
-    
+
     @GET
     @Path("/grade")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getGrade(){
-    	return JSONArray.fromObject(classServie.getAllGrade());
+    public JSONArray getGrade() {
+        return JSONArray.fromObject(classServie.getAllGrade());
     }
 
 
@@ -69,20 +61,11 @@ public class ClassApi {
     public boolean deleteClasss(@PathParam("ids") String ids) {
         return classServie.deleteClass(ids);
     }
-    
-//    @DELETE
-//    @Path("/idcls[]/{ids[]}")
-//    @Produces("application/json;charset=UTF-8")
-//    public boolean deleteClasss(@PathParam("ids[]") String ids[]) {
-//        return classServie.deleteClasses(ids);
-//    }
 
 
     @POST
     @Path("/new")
     @Produces("application/json;charset=UTF-8")
-  //  @Consumes("application/x-www-form-urlencoded")
-
     public boolean addClass(
             @FormParam("campus") String campus,
             @FormParam("col") String col,
@@ -93,7 +76,6 @@ public class ClassApi {
         return classServie.addClasses(campus, grade, clsnum, collegeService.getCollege(col, major));
     }
 
-    //修改班级人数
     @PUT
     @Path("/{idcls}/{stunum}")
     @Produces("application/json;charset=UTF-8")
@@ -102,16 +84,5 @@ public class ClassApi {
         temp.setStunum(stuNum);
         return classServie.update(temp);
     }
-    
-//    //修改班级。。。
-//    @PUT
-//    @Path("/{idcls}/{count}")
-//    @Produces("application/json;charset=UTF-8")
-//    public boolean editClass(@PathParam("idcls") String idcls, @PathParam("stunum") int stuNum) {
-//        ClassInfo temp = classServie.findById(idcls);
-//        temp.setStunum(stuNum);
-//        return classServie.updateClass(temp);
-//    }
-
 
 }

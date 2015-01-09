@@ -28,7 +28,7 @@ public class CorplanApi {
     @GET
     @Path("all")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getAll(){
+    public JSONArray getAll() {
 //        corplanService.getAll()
         return null;
     }
@@ -36,24 +36,24 @@ public class CorplanApi {
     @GET
     @Path("/{col}/{major}/{sem}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getCMAll(@PathParam("col") String col, @PathParam("major") String major,@PathParam("sem") String sem ) {
+    public JSONArray getCMAll(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
         College temp = collegeService.getCollege(col, major);
         if (temp != null) {
             return JSONArray.fromObject(corplanService.findCorplanByColMajorSem(col, major, sem));
-        }else
+        } else
             return null;
     }
 
     @POST
     @Path("/new")
     @Produces("application/json;charset=UTF-8")
-    public Boolean addCorplan(@FormParam("idcor") String idcor, @FormParam("sem") String sem){
+    public Boolean addCorplan(@FormParam("idcor") String idcor, @FormParam("sem") String sem) {
         Course temp = courseService.findById(idcor);
-        if(temp!=null){
+        if (temp != null) {
 //            位数不足补全
-            String idcorplan = idcor+(Integer.parseInt(sem)<10?sem:("0"+sem));
-            return corplanService.save(new Corplan(idcor+sem,temp,sem));
-        }else{
+            String idcorplan = idcor + (Integer.parseInt(sem) < 10 ? sem : ("0" + sem));
+            return corplanService.save(new Corplan(idcorplan, temp, sem));
+        } else {
             return false;
         }
     }
@@ -61,7 +61,7 @@ public class CorplanApi {
     @DELETE
     @Path("/del")
     @Produces("application/json;charset=UTF-8")
-    public boolean delCorplan(@FormParam("idcorsem")String idcorsem){
+    public boolean delCorplan(@FormParam("idcorsem") String idcorsem) {
         Corplan temp = corplanService.findById(idcorsem);
         return corplanService.delete(temp);
     }

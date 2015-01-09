@@ -1,6 +1,5 @@
 package com.api;
 
-import com.bean.corplan.Corplan;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
