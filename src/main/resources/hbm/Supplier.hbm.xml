@@ -16,7 +16,12 @@
         <property name="publisher" type="java.lang.String">
             <column name="publisher" length="30"/>
         </property>
-
+        <set name="books" inverse="true" cascade="all">
+            <key>
+                <column name="idsp" length="11"/>
+            </key>
+            <one-to-many class="com.bean.book.Book"/>
+        </set>
 
     </class>
 </hibernate-mapping>

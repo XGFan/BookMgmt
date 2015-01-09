@@ -44,22 +44,22 @@ public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements
         return supplierDAO.findByPropertyA("idsp",idsp);
     }
 
-    public boolean delete(Supplier sup) {
-        String supplier = sup.getSupplier();
-        if (supplier.equals("其他")) {
-            supplierDAO.delete(sup);
-        } else {
-            if (supplierDAO.findBySupplier(supplier).size() > 1) {
-                sup = supplierDAO.findById(sup.getIdsp());
-                supplierDAO.delete(sup);
-            }
-            if (supplierDAO.findBySupplier(supplier).size() == 1) {
-                sup.setPublisher(null);
-                supplierDAO.update(sup);
-            }
-        }
-        return true;
-    }
+//    public boolean delete(Supplier sup) {
+//        String supplier = sup.getSupplier();
+//        if (supplier.equals("其他")) {
+//            supplierDAO.delete(sup);
+//        } else {
+//            if (supplierDAO.findBySupplier(supplier).size() > 1) {
+//                sup = supplierDAO.findById(sup.getIdsp());
+//                supplierDAO.delete(sup);
+//            }
+//            if (supplierDAO.findBySupplier(supplier).size() == 1) {
+//                sup.setPublisher(null);
+//                supplierDAO.update(sup);
+//            }
+//        }
+//        return true;
+//    }
 
     public boolean delSup(String sup) {
         List<Supplier> list = supplierDAO.findBySupplier(sup);

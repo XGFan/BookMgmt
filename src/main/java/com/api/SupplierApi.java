@@ -91,8 +91,8 @@ public class SupplierApi {
 //    	for(Object x:supplierService.findByIdsp(idsp))
 //    		temp =x.toString();
 //        return supplierService.delSup(temp);
-        String temp = supplierService.findByIdsp(idsp).toString();
-        return supplierService.delSup(temp);
+//        String temp = supplierService.findByIdsp(idsp).toString();
+        return supplierService.delete(supplierService.findById(idsp));
 //    	Object temp=JSONArray.fromObject(supplierService.findByIdsp(idsp)).;
 //        return supplierService.delSup(JSONArray.fromObject(supplierService.findByIdsp(idsp)).listIterator().toString());
     }

@@ -43,7 +43,7 @@ public interface SupplierService extends BaseService<Supplier> {
     /*
      * todo
      */
-    public boolean delete(Supplier sup);
+//    public boolean delete(Supplier sup);
 
     /*
      * todo

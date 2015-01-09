@@ -9,7 +9,7 @@
             <generator class="assigned"/>
         </id>
         <many-to-one name="supplier" class="com.bean.supplier.Supplier"
-                     fetch="join" lazy="false">
+                     fetch="join" lazy="false" cascade="all">
             <column name="idsp" length="4"/>
         </many-to-one>
         <property name="bkname" type="java.lang.String">

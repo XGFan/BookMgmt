@@ -1,6 +1,7 @@
 import com.bean.supplier.Supplier;
 import com.dao.BkpurchaseDAO;
 import com.dao.ClassDAO;
+import com.service.BookService;
 import com.service.ClassService;
 import com.service.CourseBookViewService;
 import com.service.SupplierService;
@@ -23,9 +24,13 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
     @Autowired
     ClassService classService;
     @Autowired
+    BookService bookService;
+    @Autowired
     SupplierService supplierService;
     @Autowired
     CourseBookViewService courseBookViewService;
+//    @Autowired
+//    SupplierService supplierService;
 
     public static void cout(Object x) {
         System.out.println(x);
@@ -42,6 +47,7 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
 //        System.out.println(y.toString());
 //        JSONArray t = fromObject(y);
 //        cout(y);
+//        bookService.delete(bookService.findById("14041738021"));
 
 //        cout(getSubList(classService.getAll(), 1, 10).toString());
 //        cout(getSubList(classService.getAll(), 1, 10));
@@ -50,6 +56,9 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
 //        cout(classService.accurateQuery("信息工程学院", "医学信息工程", "2010", "黄"));
 //        cout(JSONArray.fromObject(courseBookViewService.getAll()));
 //        cout(courseBookViewService.findAllCourse());
-        cout(JSONObject.fromObject(true));
+//        cout(JSONObject.fromObject(true));
+        Supplier t = supplierService.findById("1029");
+        cout(t);
+        supplierService.delete(t);
     }
 }
