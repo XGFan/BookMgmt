@@ -127,11 +127,7 @@ public class BookApi {
         Calendar cale = Calendar.getInstance();
         Date tasktime=cale.getTime();
         SimpleDateFormat df=new SimpleDateFormat("yyMMdd");
-        String result="";
-        for(int i=0;i<5;i++){
-            int intValue=(int)(Math.random()*10);
-            result=result+Integer.toString(intValue);
-        }
+        String result = String.format("%05d",(int)(Math.random()*10000));
         Book book = new Book();
         book.setIdbk(df.format(tasktime)+result);
         book.setBkname(bkname);

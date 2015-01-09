@@ -1,5 +1,6 @@
 package com.api;
 
+import com.bean.college.College;
 import com.bean.course.Course;
 import com.service.CollegeService;
 import com.service.CourseService;
@@ -65,8 +66,22 @@ public class CourseApi {
     @Path("/{col}/{major}/{sem}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray findByCMS(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
-//        String idcm = collegeService.getCollege(col, major).getIdcm();
         return JSONArray.fromObject(courseService.findByColMajorSem(col, major, sem));
+    }
+
+    @POST
+    @Path("/new")
+    @Produces("application/json;charset=UTF-8")
+    public String addCourse(@FormParam("col")String col,@FormParam("major")String major,
+                            @FormParam("corname")String corname,@FormParam("sem")String sem){
+        College college = collegeService.getCollege(col, major);
+        String idcor = college.getIdcm()+courseService.getMagicNum();
+        Course course = new Course(idcor,college,corname,sem);
+        if(courseService.save(course)){
+            return idcor;
+        }else{
+            return null;
+        }
     }
 
 }

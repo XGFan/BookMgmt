@@ -49,6 +49,14 @@ public class Course implements java.io.Serializable {
         this.coursebks = coursebks;
     }
 
+    public Course(String idcor, College college, String corname,
+                  String semester) {
+        this.idcor = idcor;
+        this.college = college;
+        this.corname = corname;
+        this.semester = semester;
+    }
+
     // Property accessors
 
     public String getIdcor() {

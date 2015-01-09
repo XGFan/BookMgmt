@@ -163,4 +163,6 @@ public interface CourseService extends BaseService<Course> {
      * @return Course object
      */
     public Course getCourseByIdcor(String idcor);
+
+    public String getMagicNum();
 }

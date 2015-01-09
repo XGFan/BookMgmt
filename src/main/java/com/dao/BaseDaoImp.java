@@ -82,6 +82,7 @@ public class BaseDaoImp<T> implements BaseDao<T> {
         try {
             list = this.getCurrentSession().createQuery(hql).list();
         } catch (RuntimeException re) {
+            System.out.println(re);
             return null;
         }
         return list;

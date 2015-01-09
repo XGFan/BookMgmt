@@ -395,4 +395,10 @@ public class CourseServiceImp extends BaseServiceTemplate<Course> implements Cou
         return courseDAO.findById(idcor);
     }
 
+    public String getMagicNum(){
+        String hql = "select MAX( idcor % 10000) from Course";
+        int num =  (Integer) courseDAO.findByHql(hql).get(0);
+        return String.format("%04d",num+1);
+    }
+
 }
