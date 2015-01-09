@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("bookService")
+
 public interface BookService extends BaseService<Book>{
     /**
      * 返回所有的教材

@@ -6,10 +6,11 @@ import com.util.ConvertUtils;
 import com.util.GetPaginationInfo;
 import com.util.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service("bookService")
 public class BookServiceImp extends BaseServiceTemplate<Book> implements BookService {
     @Autowired
     private BookDAO bookDAO;
