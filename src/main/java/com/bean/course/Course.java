@@ -1,24 +1,32 @@
 package com.bean.course;
 
 import com.bean.college.College;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonUnwrapped;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Course entity. @author MyEclipse Persistence Tools
  */
-
+@XmlRootElement
+@JsonIgnoreProperties(value={"idcm","hibernateLazyInitializer"})
 public class Course implements java.io.Serializable {
 
     // Fields
 
     private String idcor;
     private String idcm;
+    @JsonUnwrapped
     private College college;
     private String corname;
     private String semester;
+    @JsonIgnore
     private Set corplans = new HashSet(0);
+    @JsonIgnore
     private Set coursebks = new HashSet(0);
 
     // Constructors

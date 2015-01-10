@@ -4,12 +4,12 @@ import com.bean.college.College;
 import com.bean.course.Course;
 import com.service.CollegeService;
 import com.service.CourseService;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import java.util.List;
 
 /**
  * DATE:2015/01/08
@@ -28,8 +28,8 @@ public class CourseApi {
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getAllCourse() {
-        return JSONArray.fromObject(courseService.init());
+    public List getAllCourse() {
+        return courseService.getAll();
     }
 
     @DELETE
@@ -51,22 +51,22 @@ public class CourseApi {
     @GET
     @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray findByKeyword(@PathParam("keyword") String keyword) {
-        return JSONArray.fromObject(courseService.fuzzyQuery(keyword));
+    public List findByKeyword(@PathParam("keyword") String keyword) {
+        return courseService.fuzzyQuery(keyword);
     }
 
     @GET
     @Path("/{idcor}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getById(@PathParam("idcor") String idcor) {
-        return JSONArray.fromObject(courseService.findById(idcor));
+    public Course getById(@PathParam("idcor") String idcor) {
+        return courseService.findById(idcor);
     }
 
     @GET
     @Path("/{col}/{major}/{sem}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray findByCMS(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
-        return JSONArray.fromObject(courseService.findByColMajorSem(col, major, sem));
+    public List findByCMS(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
+        return courseService.findByColMajorSem(col, major, sem);
     }
 
     @POST

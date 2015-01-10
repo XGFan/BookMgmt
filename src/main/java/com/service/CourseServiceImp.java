@@ -67,12 +67,6 @@ public class CourseServiceImp extends BaseServiceTemplate<Course> implements Cou
         this.corplanDAO = corplanDAO;
     }
 
-
-    public List init() {
-        List list = courseDAO.getAll();
-        return ConvertUtils.ToCourseList(list);
-    }
-
     public List findByCol(String col) {
         return ConvertUtils.ToCourseList(courseDAO.getCourseByCol(col));
     }

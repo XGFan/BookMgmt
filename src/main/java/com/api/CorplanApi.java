@@ -26,7 +26,7 @@ public class CorplanApi {
     CourseService courseService;
 
     @GET
-    @Path("all")
+    @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getAll() {
 //        corplanService.getAll()

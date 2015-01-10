@@ -8,13 +8,6 @@ import java.util.List;
 public interface CourseService extends BaseService<Course> {
 
     /**
-     * 找到所有的科目信息(join)
-     *
-     * @return 科目信息 map list
-     */
-    public List init();
-
-    /**
      * 通过学院名获取科目信息(join)
      *
      * @param col 学院名

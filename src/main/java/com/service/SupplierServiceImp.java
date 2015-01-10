@@ -67,9 +67,6 @@ public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements
         return true;
     }
 
-    public List getAll() {
-        return supplierDAO.getAll();
-    }
 
     public List searchByPubSup(String publisher, String supplier) {
         if (supplier.trim().equals("--请选择--")) {

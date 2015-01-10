@@ -12,7 +12,7 @@
             <column name="idcor" length="8"/>
             <generator class="assigned"/>
         </id>
-        <many-to-one name="college" class="com.bean.college.College" fetch="select">
+        <many-to-one name="college" class="com.bean.college.College" fetch="select" lazy="false">
             <!--suppress HibernateMappingDatasourceDomInspection -->
             <column name="idcm" length="4"/>
         </many-to-one>
