@@ -10,12 +10,12 @@ import java.util.List;
 public interface BookcorsupDAO extends BaseDao<Bookcorsup>{
 
     /**
-     * TODO 未知的方法
+     * 在学期范围内，Bookcorsup中所用到的idbk（dict）
      */
     public List findbklist(String str);
 
     /**
-     * TODO
+     * 根据idbk从Bookcorsup中查找
      */
     public List findcorlistbyidbk(String idbk);
 }

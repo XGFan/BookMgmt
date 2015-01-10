@@ -86,52 +86,7 @@ public class ConvertUtils {
         return corplanlist;
     }
 
-    /**
-     * 将数据库处理的结果转换为表示层学需要的数据
-     *
-     * @param list obj list
-     * @return map list
-     */
-    public static List ToBookList(List list) {
-        List booklist = new ArrayList();
-        for (Object aList : list) {
-            Object[] object = (Object[]) aList;
-            Book book = (Book) object[0];
-            Map map = new HashMap();
-            map.put("idbk", book.getIdbk());
-            map.put("bkname", book.getBkname());
-            map.put("author", book.getAuthor());
-            map.put("edition", book.getEdition());
-            map.put("publisher", book.getSupplier().getPublisher());
-            map.put("isbn", book.getIsbn());
-            map.put("price", book.getPrice());
-            booklist.add(map);
-        }
-        return booklist;
-    }
 
-    /**
-     * 将数据库处理的结果转换为表示层学需要的数据
-     *
-     * @param list obj list
-     * @return map list
-     */
-    public static List ToBookListFromBook(List list) {
-        List booklist = new ArrayList();
-        for (Object aList : list) {
-            Book book = (Book) aList;
-            Map map = new HashMap();
-            map.put("idbk", book.getIdbk());
-            map.put("bkname", book.getBkname());
-            map.put("author", book.getAuthor());
-            map.put("edition", book.getEdition());
-            map.put("publisher", book.getSupplier().getPublisher());
-            map.put("isbn", book.getIsbn());
-            map.put("price", book.getPrice());
-            booklist.add(map);
-        }
-        return booklist;
-    }
 
     /**
      * 将数据库处理的结果转换为表示层学需要的数据
@@ -167,18 +122,6 @@ public class ConvertUtils {
         return corbooklist;
     }
 
-    public static List ToPubList(List list) {
-        List publist = new ArrayList();
-        for (Object aList : list) {
-            Supplier sup = (Supplier) aList;
-            Map map = new HashMap();
-            map.put("idsp", sup.getIdsp());
-            map.put("supplier", sup.getSupplier());
-            map.put("publisher", sup.getPublisher());
-            publist.add(map);
-        }
-        return publist;
-    }
 
     public static List ToSupplierList(List list) {
         Iterator it = list.iterator();

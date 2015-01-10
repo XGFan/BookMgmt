@@ -14,16 +14,6 @@ import java.util.List;
 @Repository("corplanDAO")
 public class CorplanDAO extends BaseDaoImp<Corplan> {
     private static final Log log = LogFactory.getLog(CorplanDAO.class);
-//    @Autowired
-//    HibernateTemplate hibernateTemplate;
-//
-//    public HibernateTemplate getHibernateTemplate() {
-//        return hibernateTemplate;
-//    }
-//
-//    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-//        this.hibernateTemplate = hibernateTemplate;
-//    }
 
 
     /**

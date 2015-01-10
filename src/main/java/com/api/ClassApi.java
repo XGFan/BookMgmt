@@ -3,12 +3,12 @@ package com.api;
 import com.bean.cls.ClassInfo;
 import com.service.ClassService;
 import com.service.CollegeService;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import java.util.List;
 
 /**
  * DATE:2014/11/24
@@ -27,36 +27,36 @@ public class ClassApi {
     @GET
     @Path("/{campus}/{col}/{major}/{grade}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getClass(@PathParam("campus") String campus, @PathParam("col") String col,
+    public List getClass(@PathParam("campus") String campus, @PathParam("col") String col,
                               @PathParam("major") String major, @PathParam("grade") String grade) {
-        return JSONArray.fromObject(classServie.accurateQuery(col, major, grade, campus));
+        return classServie.accurateQuery(col, major, grade, campus);
     }
 
 
     @GET
-    @Path("/{keyword}")
+    @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getClass(@PathParam("keyword") String keyword) {
-        return JSONArray.fromObject(classServie.fuzzyFind(keyword));
+    public List getClass(@PathParam("keyword") String keyword) {
+        return classServie.fuzzyFind(keyword);
     }
 
     @GET
-    @Path("/")
+    @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getAllClass() {
-        return JSONArray.fromObject(classServie.findAll());
+    public List getAllClass() {
+        return classServie.findAll();
     }
 
     @GET
     @Path("/grade")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getGrade() {
-        return JSONArray.fromObject(classServie.getAllGrade());
+    public List getGrade() {
+        return classServie.getAllGrade();
     }
 
 
     @DELETE
-    @Path("/idcls/{ids}")
+    @Path("/id={ids}")
     @Produces("application/json;charset=UTF-8")
     public boolean deleteClasss(@PathParam("ids") String ids) {
         return classServie.deleteClass(ids);

@@ -14,12 +14,13 @@ import static com.util.ConvertUtils.ToCollegeList;
 @Service("collegeService")
 public class CollegeServiceImp extends BaseServiceTemplate<College> implements CollegeService {
 
+    @Autowired
     private CollegeDAO collegeDAO;
 
     public CollegeDAO getCollegeDAO() {
         return collegeDAO;
     }
-    @Autowired
+
     public void setCollegeDAO(CollegeDAO collegeDAO) {
         this.collegeDAO = collegeDAO;
     }
@@ -28,10 +29,6 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
         return collegeDAO.deleteById(idcm);
     }
 
-    public List initCol() {
-        List list = collegeDAO.getAll();
-        return ToCollegeList(list);
-    }
 
     public boolean save(College col) {
         List list = collegeDAO.getCol(col.getCol(), col.getMajor());
@@ -88,10 +85,6 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
         return tag;
     }
 
-    public List searchByCol(String col) {
-        List list = collegeDAO.findByPropertyF("col",col);
-        return ToCollegeList(list);
-    }
 
     @Override
     public College getCollege(String col, String major) {
@@ -103,10 +96,6 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
         }
     }
 
-    public List searchByCol(String col, Pagination pagination) {
-        List list = collegeDAO.findByPropertyF("col", col);
-        return ToCollegeList(GetPaginationInfo.getSubList(list, pagination));
-    }
 
     public List getAllColName() {
         return collegeDAO.getAllCol();
@@ -116,22 +105,13 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
         return collegeDAO.getMajorByCol(col);
     }
 
-    public List getColObj(String col, String major) {
-        return collegeDAO.getCol(col, major);
-    }
-
     public List getCol(String col, String major) {
-        List list = collegeDAO.getCol(col, major);
-        return ToCollegeList(list);
+        return collegeDAO.getCol(col, major);
     }
 
     public List fuzzyQuery(String condition) {
         List list = collegeDAO.fuzzyQuery(condition);
-        return ToCollegeList(list);
+        return list;
     }
 
-    public List fuzzyQuery(String condition, Pagination pagination) {
-        List list = collegeDAO.fuzzyQuery(condition);
-        return ToCollegeList(GetPaginationInfo.getSubList(list, pagination));
-    }
 }

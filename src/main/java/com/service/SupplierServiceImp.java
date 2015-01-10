@@ -21,10 +21,6 @@ public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements
         this.supplierDAO = supplierDAO;
     }
 
-    public List findAllPub() {
-        List list = supplierDAO.findAllOrderByPublisher();
-        return ConvertUtils.ToPubList(list);
-    }
 
     public List getAllSupplier() {
         return supplierDAO.findAllSupplier();
@@ -44,28 +40,7 @@ public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements
         return supplierDAO.findBySupplier(supplier);
     }
 
-    @Override
-    public List findByIdsp(String idsp) {
-        return supplierDAO.findByPropertyA("idsp",idsp);
-    }
 
-    public boolean delSup(String sup) {
-        List<Supplier> list = supplierDAO.findBySupplier(sup);
-        for (Supplier s : list) {
-            String publisher = s.getPublisher();
-            if (publisher == null) {
-                supplierDAO.delete(s);
-            } else {
-                if (supplierDAO.findByPublisher(publisher).size() > 1) {
-                    supplierDAO.delete(s);
-                } else {
-                    s.setSupplier("其他");
-                    supplierDAO.update(s);
-                }
-            }
-        }
-        return true;
-    }
 
 
     public List searchByPubSup(String publisher, String supplier) {

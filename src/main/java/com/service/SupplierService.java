@@ -45,18 +45,6 @@ public interface SupplierService extends BaseService<Supplier> {
      */
     public List findBySupplier(String supplier);
 
-    public List findByIdsp(String idsp);
-
-    /*
-     * todo
-     */
-//    public boolean delete(Supplier sup);
-
-    /*
-     * todo
-     */
-    public boolean delSup(String sup);
-
     /**
      * 为某一供应商添加出版社
      *
@@ -76,11 +64,5 @@ public interface SupplierService extends BaseService<Supplier> {
     public boolean addSup(String supplier);
 
 
-    /**
-     * 返回所有，根据publisher排序
-     *
-     * @return map list
-     */
-    public List<Object> findAllPub();
 
 }

@@ -37,6 +37,5 @@ public interface BookService extends BaseService<Book>{
      */
     public boolean deleteBook(String idbk);
 
-    public List test();
 
 }

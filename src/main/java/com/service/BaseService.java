@@ -2,7 +2,6 @@ package com.service;
 
 import java.io.Serializable;
 import java.util.List;
-import com.util.Result;
 
 /**
  * DATE:2015/1/6

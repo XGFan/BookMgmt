@@ -20,7 +20,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.*;
-@Deprecated
 @Service("bKPurchaseService")
 public class BKPurchaseServiceImp implements BKPurchaseService {
     public static final String COL = "学院";
@@ -98,6 +97,9 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
     public void setBookpurchaseDAO(BookpurchaseDAO bookpurchaseDAO) {
         this.bookpurchaseDAO = bookpurchaseDAO;
     }
+
+
+
 
     // 生成教材采购清单的Excel文件，2014.3.19，zhangchi
 //    void generateXlsFile() {
@@ -346,18 +348,20 @@ public class BKPurchaseServiceImp implements BKPurchaseService {
         List list = null;
         String param = "";
         if (semester.trim().equals("1")) {
-            for (int i = 0; i < 11; i++) {
-                param += "'" + (2 * i + 1) + "',";
+            for (int i = 0; i < 11; i++) {//循环11次
+                param += "'" + (2 * i + 1) + "',";//奇数（1，3，5，7，9，11，13，15，17，19，21）
             }
             param += "'" + 23 + "'";
+            //'1','3','5','7','9','11','13','15','17','19','21','23'
+            //这TM要干嘛
             list = bcsdao.findbklist(param);
-            System.out.println("1.param" + param);
+//            System.out.println("1.param" + param);
         } else {
-            for (int i = 0; i < 11; i++) {
-                param += "'" + (2 * i + 2) + "',";
+            for (int i = 0; i < 11; i++) {//循环11次
+                param += "'" + (2 * i + 2) + "',";//偶数（2，4，6，8，10，12，14，16，18，20，22）
             }
             param += "'" + 24 + "'";
-            System.out.println("2.param" + param);
+//            System.out.println("2.param" + param);
             list = bcsdao.findbklist(param);
         }
         return list;

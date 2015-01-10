@@ -6,20 +6,6 @@ import com.util.Pagination;
 import java.util.List;
 
 public interface CollegeService extends BaseService<College> {
-    /**
-     * 找到所有学院专业信息
-     *
-     * @return 学院专业信息 map list
-     */
-    public List initCol();
-
-    /**
-     * 通过学院名精确查找专业班级信息
-     *
-     * @param col 学院名
-     * @return 学院专业信息 map list
-     */
-    public List searchByCol(String col);
 
     /**
      * 根据学院名和专业名来查找
@@ -29,14 +15,6 @@ public interface CollegeService extends BaseService<College> {
      */
     public College getCollege(String col, String major);
 
-    /**
-     * 通过学院精确查找专业班级信息，根据分页信息返回一页信息
-     *
-     * @param col        学院名
-     * @param pagination 分页信息
-     * @return 以map形式的list返回一页信息
-     */
-    public List searchByCol(String col, Pagination pagination);
 
     /**
      * 根据学院专业ID来删除学院专业信息
@@ -69,16 +47,8 @@ public interface CollegeService extends BaseService<College> {
      * @param major 专业名
      * @return 学院专业信息 obj list
      */
-    public List getColObj(String col, String major);
-
-    /**
-     * 根据学院名称和专业名称获取记录
-     *
-     * @param col   学院名
-     * @param major 专业名
-     * @return 学院专业信息  map list
-     */
     public List getCol(String col, String major);
+
 
     /**
      * 通过学院或者专业来模糊查找
@@ -87,14 +57,5 @@ public interface CollegeService extends BaseService<College> {
      * @return map list
      */
     public List fuzzyQuery(String condition);
-
-    /**
-     * 通过学院或者专业来模糊查找，根据分页信息分页
-     *
-     * @param condition  关键词
-     * @param pagination 分页信息
-     * @return 一页 map list
-     */
-    public List fuzzyQuery(String condition, Pagination pagination);
 
 }

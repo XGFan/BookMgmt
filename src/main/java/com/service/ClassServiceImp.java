@@ -24,9 +24,6 @@ public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements C
         this.classDAO = classDAO;
     }
 
-    public List fuzzyFind(String condition, Pagination pagination) {
-        return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getClassFuzzy(condition)), pagination);
-    }
 
     @Override
     public List fuzzyFind(String condition) {
@@ -35,19 +32,6 @@ public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements C
 
     public List findAllByPagination(Pagination pagination) {
         return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getAll()), pagination);
-    }
-
-    @Override
-    public List findAll() {
-        return ConvertUtils.class2List(classDAO.getAll());
-    }
-
-//    public List getAll(){
-//        return super.getAll();
-//    }
-
-    public List accurateQuery(String col, String major, String grade, String campus, Pagination pagination) {
-        return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getClassByGradeCampusColMajor(col, major, grade, campus)), pagination);
     }
 
     @Override

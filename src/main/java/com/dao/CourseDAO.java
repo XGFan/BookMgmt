@@ -23,23 +23,6 @@ public class CourseDAO extends BaseDaoImp<Course> {
 
 
     /**
-     * 找到所有的科目信息(join)
-     *
-     * @return 科目 list
-     */
-//    public List getAll() {
-//        log.debug("finding all Course instances");
-//        List list = null;
-//        try {
-//            String queryString = "from Course c join c.college cc";
-//            list = getCurrentSession().createQuery(queryString).list();
-//        } catch (RuntimeException re) {
-//            log.error("find all failed", re);
-//        }
-//        return list;
-//    }
-
-    /**
      * 根据学院名称查找科目(join)
      *
      * @param col 学院名称

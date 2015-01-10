@@ -30,7 +30,4 @@ public class BookServiceImp extends BaseServiceTemplate<Book> implements BookSer
         return bookDAO.findByPropertyF("bkname",bkname);
     }
 
-    public List test(){
-        return bookDAO.findByHql("from Book");
-    }
 }

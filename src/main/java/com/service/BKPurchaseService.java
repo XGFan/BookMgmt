@@ -2,9 +2,13 @@ package com.service;
 
 import java.util.List;
 import java.util.Map;
-@Deprecated
 public interface BKPurchaseService {
 
+    /**
+     * 根据上下学期来获得书单
+     * @param semester 学期
+     * @return list
+     */
     public List getbklist(String semester);
 
     public List getcorlistbyidbk(String idbk);
