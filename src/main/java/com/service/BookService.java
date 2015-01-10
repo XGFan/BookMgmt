@@ -17,7 +17,7 @@ public interface BookService extends BaseService<Book>{
      * @param isbn ISBN号
      * @return obj list
      */
-    public List searchByISBN(String isbn);
+    public List<Book> searchByISBN(String isbn);
 
 
     /**
@@ -36,5 +36,7 @@ public interface BookService extends BaseService<Book>{
      * @return boolean
      */
     public boolean deleteBook(String idbk);
+
+    public List test();
 
 }

@@ -30,13 +30,6 @@ public class CollegeApi {
     @Autowired
     CourseService courseService;
 
-    JsonConfig config;
-
-    public CollegeApi() {
-        this.config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        this.config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
-        this.config.setExcludes(new String[]{"classes","courses"});
-    }
 
     //学院/专业 精确查找=====================500 error
     @GET
@@ -44,6 +37,9 @@ public class CollegeApi {
     @Produces("application/json;charset=UTF-8")
     public JSONArray getCollege(@PathParam("col") String col,
                                 @PathParam("major") String major) {
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","classes","courses"});
         return JSONArray.fromObject(collegeService.getCollege(col, major),config);
     }
 
@@ -52,6 +48,9 @@ public class CollegeApi {
     @Path("/{keyword}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getCollege(@PathParam("keyword") String keyword) {
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","classes","courses"});
         return JSONArray.fromObject(collegeService.fuzzyQuery(keyword),config);
     }
 
@@ -61,6 +60,9 @@ public class CollegeApi {
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getAllCol() {
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","classes","courses"});
         return JSONArray.fromObject(collegeService.getAll(),config);
     }
 
@@ -78,6 +80,9 @@ public class CollegeApi {
     @Path("/id={idcm}")
     @Produces("application/json;charset=UTF-8")
     public JSONObject getCol(@PathParam("idcm") String idcm) {
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","classes","courses"});
         return JSONObject.fromObject(collegeService.findById(idcm),config);
     }
 

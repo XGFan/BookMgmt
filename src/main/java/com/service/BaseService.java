@@ -22,11 +22,11 @@ public interface BaseService<T> {
 
     public boolean update(T entity);
 
-    public List getAll();
+    public List<T> getAll();
 
-    public List findAcc(String propertyName, String value);
+    public List<T>  findAcc(String propertyName, String value);
 
-    public List findFuz(String propertyName, String value);
+    public List<T>  findFuz(String propertyName, String value);
 
     public T findById(Serializable id);
 

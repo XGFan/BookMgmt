@@ -16,7 +16,7 @@
         <property name="publisher" type="java.lang.String">
             <column name="publisher" length="30"/>
         </property>
-        <set name="books" inverse="true" cascade="all">
+        <set name="books" cascade="delete">
             <key>
                 <column name="idsp" length="11"/>
             </key>

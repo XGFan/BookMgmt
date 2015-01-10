@@ -42,7 +42,7 @@ public abstract class BaseServiceTemplate<T> implements BaseService<T> {
         return getBaseDao().update(entity);
     }
 
-    public List getAll() {
+    public List<T> getAll() {
         return getBaseDao().getAll();
     }
 
@@ -51,11 +51,11 @@ public abstract class BaseServiceTemplate<T> implements BaseService<T> {
         return getBaseDao().findById(id);
     }
 
-    public List findAcc(String propertyName, String value) {
+    public List<T> findAcc(String propertyName, String value) {
         return getBaseDao().findByPropertyA(propertyName,value);
     }
 
-    public List findFuz(String propertyName, String value) {
+    public List<T> findFuz(String propertyName, String value) {
         return getBaseDao().findByPropertyF(propertyName,value);
     }
 

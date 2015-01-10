@@ -1,6 +1,7 @@
 import com.bean.book.Book;
 import com.bean.supplier.Supplier;
 import com.dao.BkpurchaseDAO;
+import com.dao.BookDAO;
 import com.dao.ClassDAO;
 import com.dao.CourseDAO;
 import com.service.*;
@@ -36,6 +37,8 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
     CourseService courseService;
     @Autowired
     CourseDAO courseDAO;
+    @Autowired
+    BookDAO bookDAO;
 //    @Autowired
 //    SupplierService supplierService;
 
@@ -75,8 +78,12 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
         String[] excludes = {"bkpurchases","coursebks","books"};
         config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
         config.setExcludes(excludes);
-        List book = bookService.searchByISBN("1");
-        cout(JSONArray.fromObject(book,config));
+//        List<Book> book = bookService.searchByISBN("1");
+        List<Book> books = bookService.getAll();
+//        List bk = bookService.test();
+//        cout(JSONObject.fromObject(book.get(0),config));
+        cout(JSONArray.fromObject((books.get(0)),config));
+//        cout(JSONArray.fromObject(bk.get(0),config));
     }
 
 }

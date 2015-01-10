@@ -13,16 +13,6 @@ import java.util.List;
 public class BookDAOImp extends BaseDaoImp<Book> implements BookDAO {
     private static final Log log = LogFactory.getLog(BookDAOImp.class);
 
-    public List getAll() {
-        log.debug("finding all Book instances");
-        try {
-            String queryString = "from Book b join b.supplier ss";
-            return getCurrentSession().createQuery(queryString).list();
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
-    }
 
     public List findByBookPubFuzzy(String bookname, String pub) {
         List list = null;

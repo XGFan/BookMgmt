@@ -16,6 +16,7 @@ import javax.ws.rs.core.Context;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * DATE:2015/1/6
@@ -32,19 +33,22 @@ public class BookApi {
     CourseService courseService;
     @Autowired
     CourseBookViewService corbkviewService;
-
-    JsonConfig config;
-
-    public BookApi() {
-        this.config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        this.config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
-        this.config.setExcludes(new String[]{"bkpurchases","coursebks","books"});
-    }
+//
+//    JsonConfig config = new JsonConfig().
+//
+//    public BookApi() {
+//        this.config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+//        this.config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
+//        this.config.setExcludes(new String[]{"bkpurchases","coursebks","books"});
+//    }
 
     @GET
     @Path("/id={idbk}")
     @Produces("application/json;charset=UTF-8")
     public JSONObject getBookByIdbk(@PathParam("idbk") String idbk) {
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","bkpurchases","coursebks","books"});
         return JSONObject.fromObject(bookService.findById(idbk),config);
     }
 
@@ -63,14 +67,20 @@ public class BookApi {
     @GET
     @Path("/isbn={isbn}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getBookByIsbn(@PathParam("isbn") String isbn) {
-        return JSONArray.fromObject(bookService.searchByISBN(isbn),config);
+    public JSONObject getBookByIsbn(@PathParam("isbn") String isbn) {
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","bkpurchases","coursebks","books"});
+        return JSONObject.fromObject((List<Book>) bookService.searchByISBN(isbn).get(0),config);
     }
 
     @GET
     @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getBook(@PathParam("keyword") String keyword) {
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","bkpurchases","coursebks","books"});
         return JSONArray.fromObject(bookService.searchByBkname(keyword),config);
     }
 
@@ -79,7 +89,10 @@ public class BookApi {
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getAllBook() {
-        return JSONArray.fromObject(bookService.getAll(),config);
+        JsonConfig config = new JsonConfig();
+        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","bkpurchases","coursebks","books"});
+        return JSONArray.fromObject((List<Book>)bookService.getAll(),config);
     }
 
     @DELETE
