@@ -1,13 +1,19 @@
 package com.bean.book;
 
 import com.bean.supplier.Supplier;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonUnwrapped;
+import org.junit.Ignore;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Book entity. @author MyEclipse Persistence Tools
  */
+@XmlRootElement
+@JsonIgnoreProperties(value={"coursebks","idsp","bkpurchases","hibernateLazyInitializer"})
 public class Book implements java.io.Serializable {
 
     /**
@@ -17,6 +23,7 @@ public class Book implements java.io.Serializable {
     /**
      * 供应商
      */
+    @JsonUnwrapped
     private Supplier supplier;
     /**
      * 供应商ID

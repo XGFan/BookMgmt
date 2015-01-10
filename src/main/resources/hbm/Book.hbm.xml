@@ -8,7 +8,7 @@
             <column name="idbk" length="11"/>
             <generator class="assigned"/>
         </id>
-        <many-to-one name="supplier" class="com.bean.supplier.Supplier" lazy="false" >
+        <many-to-one name="supplier" class="com.bean.supplier.Supplier" lazy="false" fetch="join" >
             <column name="idsp" length="4"/>
         </many-to-one>
         <property name="bkname" type="java.lang.String">

@@ -1,12 +1,16 @@
 package com.bean.supplier;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Supplier entity. @author MyEclipse Persistence Tools
  */
-
+@XmlRootElement
+@JsonIgnoreProperties(value={"books","hibernateLazyInitializer"})
 public class Supplier implements java.io.Serializable {
 
     // Fields

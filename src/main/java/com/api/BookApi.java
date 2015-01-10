@@ -4,11 +4,8 @@ import com.bean.book.Book;
 import com.service.BookService;
 import com.service.CourseBookViewService;
 import com.service.CourseService;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import net.sf.json.util.CycleDetectionStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -23,6 +20,7 @@ import java.util.List;
  * TIME:11:00
  * Created by Yuanyuan on 2015/1/6
  */
+@RestController
 @Path("/book")
 public class BookApi {
     @Context
@@ -33,66 +31,36 @@ public class BookApi {
     CourseService courseService;
     @Autowired
     CourseBookViewService corbkviewService;
-//
-//    JsonConfig config = new JsonConfig().
-//
-//    public BookApi() {
-//        this.config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-//        this.config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
-//        this.config.setExcludes(new String[]{"bkpurchases","coursebks","books"});
-//    }
 
     @GET
     @Path("/id={idbk}")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getBookByIdbk(@PathParam("idbk") String idbk) {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","bkpurchases","coursebks","books"});
-        return JSONObject.fromObject(bookService.findById(idbk),config);
+    public Book getBookByIdbk(@PathParam("idbk") String idbk) {
+        return bookService.findById(idbk);
     }
 
 
-    @GET
-    @Path("/{bkname}/{author}/{idsp}/{isbn}/{memo}")
-    @Produces("application/json;charset=UTF-8")
-    public JSONArray getBook(@PathParam("bkname") String bkname,
-                             @PathParam("author") String author,
-                             @PathParam("idsp") String idsp,
-                             @PathParam("isbn") String isbn,
-                             @PathParam("memo") String memo) {
-        return JSONArray.fromObject(bookService);
-    }
 
     @GET
     @Path("/isbn={isbn}")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getBookByIsbn(@PathParam("isbn") String isbn) {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","bkpurchases","coursebks","books"});
-        return JSONObject.fromObject((List<Book>) bookService.searchByISBN(isbn).get(0),config);
+    public List getBookByIsbn(@PathParam("isbn") String isbn) {
+        return bookService.searchByISBN(isbn);
     }
 
     @GET
     @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getBook(@PathParam("keyword") String keyword) {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","bkpurchases","coursebks","books"});
-        return JSONArray.fromObject(bookService.searchByBkname(keyword),config);
+    public List getBook(@PathParam("keyword") String keyword) {
+        return bookService.searchByBkname(keyword);
     }
 
 
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getAllBook() {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","bkpurchases","coursebks","books"});
-        return JSONArray.fromObject((List<Book>)bookService.getAll(),config);
+    public List<Book> getAllBook() {
+        return bookService.getAll();
     }
 
     @DELETE
@@ -151,6 +119,4 @@ public class BookApi {
         book.setMemo(memo);
         return bookService.save(book);
     }
-
-
 }
