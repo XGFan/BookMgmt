@@ -1,5 +1,9 @@
 package com.bean.college;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,6 +11,8 @@ import java.util.Set;
  * College entity. @author MyEclipse Persistence Tools
  */
 /*学院转农业信息*/
+@XmlRootElement
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler"})
 public class College implements java.io.Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,7 +24,9 @@ public class College implements java.io.Serializable {
     private String major;
     /*学制，某一专业的学期数*/
     private Integer semnum;
+    @JsonIgnore
     private Set classes = new HashSet(0);
+    @JsonIgnore
     private Set courses = new HashSet(0);
 
     // Constructors

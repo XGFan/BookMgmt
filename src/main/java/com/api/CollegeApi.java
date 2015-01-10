@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import java.util.List;
 
 /**
  * DATE:2015/1/6
@@ -35,23 +36,17 @@ public class CollegeApi {
     @GET
     @Path("/{col}/{major}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getCollege(@PathParam("col") String col,
+    public College getCollege(@PathParam("col") String col,
                                 @PathParam("major") String major) {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","classes","courses"});
-        return JSONArray.fromObject(collegeService.getCollege(col, major),config);
+        return collegeService.getCollege(col, major);
     }
 
     //关键字模糊查找===========================正常
     @GET
     @Path("/{keyword}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getCollege(@PathParam("keyword") String keyword) {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","classes","courses"});
-        return JSONArray.fromObject(collegeService.fuzzyQuery(keyword),config);
+    public List getCollege(@PathParam("keyword") String keyword) {
+        return collegeService.fuzzyQuery(keyword);
     }
 
 
@@ -59,11 +54,8 @@ public class CollegeApi {
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getAllCol() {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","classes","courses"});
-        return JSONArray.fromObject(collegeService.getAll(),config);
+    public List getAllCol() {
+        return collegeService.getAll();
     }
 
 
@@ -79,11 +71,8 @@ public class CollegeApi {
     @GET
     @Path("/id={idcm}")
     @Produces("application/json;charset=UTF-8")
-    public JSONObject getCol(@PathParam("idcm") String idcm) {
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer","classes","courses"});
-        return JSONObject.fromObject(collegeService.findById(idcm),config);
+    public College getCol(@PathParam("idcm") String idcm) {
+        return collegeService.findById(idcm);
     }
 
     //添加学院专业============================正常
