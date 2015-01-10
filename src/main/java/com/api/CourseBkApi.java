@@ -3,7 +3,6 @@ package com.api;
 import com.bean.coursebk.Coursebk;
 import com.service.CourseBkService;
 import com.service.CourseBookViewService;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
@@ -28,22 +27,22 @@ public class CourseBkApi {
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getAll() {
-        return JSONArray.fromObject(courseBookViewService.getAll());
+    public List getAll() {
+        return courseBookViewService.getAll();
     }
 
     @GET
     @Path("/cor={idcor}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getByCor(@PathParam("idcor") String idcor) {
-        return JSONArray.fromObject(courseBookViewService.findByCourse(idcor));
+    public List getByCor(@PathParam("idcor") String idcor) {
+        return courseBookViewService.findByCourse(idcor);
     }
 
     @GET
     @Path("/bk={idbk}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getByBk(@PathParam("idbk") String idbk) {
-        return JSONArray.fromObject(courseBookViewService.findCourseByIdbk(idbk));
+    public List getByBk(@PathParam("idbk") String idbk) {
+        return courseBookViewService.findCourseByIdbk(idbk);
     }
 
     @POST
