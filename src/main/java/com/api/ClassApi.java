@@ -44,7 +44,7 @@ public class ClassApi {
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public List getAllClass() {
-        return classServie.findAll();
+        return classServie.getAll();
     }
 
     @GET

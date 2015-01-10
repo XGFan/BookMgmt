@@ -1,17 +1,22 @@
 package com.bean.cls;
 
 import com.bean.college.College;
+import org.codehaus.jackson.annotate.JsonUnwrapped;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * ClassInfo entity. @author MyEclipse Persistence Tools
  */
 /*班级信息*/
+@XmlRootElement
 public class ClassInfo implements java.io.Serializable {
 
     // Fields
     /*班级id*/
     private String idcls;
     /*学院*/
+    @JsonUnwrapped
     private College college;
     /*校区*/
     private String campus;
