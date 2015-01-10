@@ -73,6 +73,19 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
         return list;
     }
 
+    @Override
+    public List findAllublisher() {
+        log.debug("finding all Supplier instances");
+        List list = null;
+        try {
+            String queryString = "select distinct s.publisher from Supplier s order by s.supplier asc";
+            list = getCurrentSession().createQuery(queryString).list();
+        } catch (RuntimeException re) {
+            log.error("find all failed", re);
+        }
+        return list;
+    }
+
     public List findAllOrderByPublisher() {
         log.debug("finding all Supplier instances");
         List list = null;

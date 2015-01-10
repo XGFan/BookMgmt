@@ -14,6 +14,13 @@ public interface SupplierService extends BaseService<Supplier> {
     public List getAllSupplier();
 
     /**
+     * 返回所有distinct的供应商
+     *
+     * @return string list
+     */
+    public List getAllPublisher();
+
+    /**
      * 通过出版社或者供应商查询
      *
      * @param publisher 出版社

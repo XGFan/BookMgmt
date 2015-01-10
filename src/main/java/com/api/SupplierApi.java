@@ -2,12 +2,12 @@ package com.api;
 
 import com.bean.supplier.Supplier;
 import com.service.SupplierService;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import java.util.List;
 
 /**
  * DATE:2015/1/6
@@ -26,40 +26,40 @@ public class SupplierApi {
     @GET
     @Path("/supname")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getSup() {
-        return JSONArray.fromObject(supplierService.getAllSupplier());
+    public List getSup() {
+        return supplierService.getAllSupplier();
     }
 
     //返回所有出版社string数组===============正常
     @GET
     @Path("/pubname")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getPub() {
-        return JSONArray.fromObject(supplierService.findAllPub());
+    public List getPub() {
+        return supplierService.getAllPublisher();
     }
 
-    //所有供应信息obj数组===============正常
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getAllSup() {
-        return JSONArray.fromObject(supplierService.getAll());
+    public List getAll() {
+        return supplierService.getAll();
     }
 
-    //根据供应商名查找供应信息obj数组===========正常
+
+    //根据供应商名查找供应信息obj数组===========正常?!
     @GET
     @Path("/sup={supname}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray searchBySup(@PathParam("supname") String supplier) {
-        return JSONArray.fromObject((Object) supplierService.findByPublish(supplier));
+    public List searchBySup(@PathParam("supname") String supplier) {
+        return supplierService.findBySupplier(supplier);
     }
 
     //根据出版社名查找供应信息obj数组===========正常
     @GET
     @Path("/pub={pubname}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray findByPub(@PathParam("pubname") String publish) {
-        return JSONArray.fromObject(supplierService.findByPublish(publish));
+    public List findByPub(@PathParam("pubname") String publish) {
+        return supplierService.findByPublish(publish);
     }
 
 
@@ -67,9 +67,8 @@ public class SupplierApi {
     @GET
     @Path("/id={idsp}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray findById(@PathParam("idsp") String idsp) {
-        Object temp = supplierService.findByIdsp(idsp).toArray();
-        return JSONArray.fromObject(temp);
+    public Supplier findById(@PathParam("idsp") String idsp) {
+        return (Supplier)supplierService.findById(idsp);
     }
 
     //删除供应信息===================200 OK TRUE
@@ -85,14 +84,12 @@ public class SupplierApi {
     @Path("/new")
     @Produces("application/json;charset=UTF-8")
     public boolean addSupplier(
-            @FormParam("idsp") String idsp,
             @FormParam("publisher") String publisher,
             @FormParam("supplier") String supplier) {
         Supplier temp = new Supplier();
-        temp.setIdsp(idsp);
         temp.setPublisher(publisher);
         temp.setSupplier(supplier);
-        return supplierService.addSup(supplier);
+        return supplierService.save(temp);
     }
 
     //    修改供应信息
@@ -107,6 +104,4 @@ public class SupplierApi {
         temp.setSupplier(supplier);
         return supplierService.update(temp);
     }
-
-
 }

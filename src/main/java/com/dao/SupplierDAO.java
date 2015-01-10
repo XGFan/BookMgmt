@@ -54,6 +54,13 @@ public interface SupplierDAO extends BaseDao<Supplier> {
     public List findAllSupplier();
 
     /**
+     * 返回所有distinct的出版社
+     *
+     * @return string list
+     */
+    public List findAllublisher();
+
+    /**
      * supplier 的模糊查询
      *
      * @param publisher 出版社
