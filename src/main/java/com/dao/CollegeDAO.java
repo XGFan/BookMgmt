@@ -85,7 +85,7 @@ public class CollegeDAO extends BaseDaoImp<College> {
         List list = null;
         try {
             String queryString = "select distinct col from College";
-            getCurrentSession().createQuery(queryString).list();
+            list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
         }
