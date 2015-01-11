@@ -2,14 +2,10 @@ package com.service;
 
 import com.bean.college.College;
 import com.dao.CollegeDAO;
-import com.util.GetPaginationInfo;
-import com.util.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static com.util.ConvertUtils.ToCollegeList;
 
 @Service("collegeService")
 public class CollegeServiceImp extends BaseServiceTemplate<College> implements CollegeService {
@@ -110,8 +106,7 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
     }
 
     public List fuzzyQuery(String condition) {
-        List list = collegeDAO.fuzzyQuery(condition);
-        return list;
+        return collegeDAO.fuzzyQuery(condition);
     }
 
 }

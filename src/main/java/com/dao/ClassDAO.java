@@ -1,9 +1,7 @@
 package com.dao;
 
 import com.bean.cls.ClassInfo;
-import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**

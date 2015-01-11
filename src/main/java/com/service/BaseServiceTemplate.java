@@ -15,7 +15,7 @@ public abstract class BaseServiceTemplate<T> implements BaseService<T> {
 
     private BaseDao<T> baseDao;
 
-    public BaseDao<T> getBaseDao(){
+    BaseDao<T> getBaseDao(){
         return baseDao;
     }
 

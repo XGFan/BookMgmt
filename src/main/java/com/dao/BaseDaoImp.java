@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Map;
 
 /**
  * DATE:2015/1/6
@@ -82,7 +81,6 @@ public class BaseDaoImp<T> implements BaseDao<T> {
         try {
             list = this.getCurrentSession().createQuery(hql).list();
         } catch (RuntimeException re) {
-            System.out.println(re);
             return null;
         }
         return list;

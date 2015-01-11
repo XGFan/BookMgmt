@@ -2,7 +2,6 @@ package com.dao;
 
 import com.bean.book.Book;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**

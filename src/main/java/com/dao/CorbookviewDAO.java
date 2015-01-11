@@ -1,11 +1,8 @@
 package com.dao;
 
-import com.bean.corbkview.Corbkview;
 import com.bean.corbook.Corbookview;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

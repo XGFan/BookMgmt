@@ -1,6 +1,5 @@
 import com.bean.book.Book;
 import com.bean.supplier.Supplier;
-import com.dao.BkpurchaseDAO;
 import com.dao.BookDAO;
 import com.dao.ClassDAO;
 import com.dao.CourseDAO;
@@ -23,8 +22,8 @@ import java.util.List;
  */
 @ContextConfiguration(locations = {"/applicationContext.xml"})
 public class Test4Spring extends AbstractJUnit4SpringContextTests {
-    @Autowired
-    BkpurchaseDAO bkpurchaseDAO;
+//    @Autowired
+//    BkpurchaseDAO bkpurchaseDAO;
     @Autowired
     ClassService classService;
     @Autowired
@@ -39,6 +38,8 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
     CourseDAO courseDAO;
     @Autowired
     BookDAO bookDAO;
+    @Autowired
+    BookPurchaseService bookPurchaseService;
 //    @Autowired
 //    SupplierService supplierService;
 
@@ -72,18 +73,19 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
 //        supplierService.delete(t);
 //        cout(JSONArray.fromObject(courseDAO.getCourseByColMajorSem("信息工程学院", "信息管理与信息系统", "1")));
 //        cout(bookService.findById("14041700168").toString());
-        JsonConfig config = new JsonConfig();
-        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
+//        JsonConfig config = new JsonConfig();
+//        config.setCycleDetectionStrategy(CycleDetectionStrategy.LENIENT);
 //        config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
-        String[] excludes = {"bkpurchases","coursebks","books"};
-        config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
-        config.setExcludes(excludes);
+//        String[] excludes = {"bkpurchases","coursebks","books"};
+//        config.setExcludes(new String[]{"handler","hibernateLazyInitializer"});
+//        config.setExcludes(excludes);
 //        List<Book> book = bookService.searchByISBN("1");
-        List<Book> books = bookService.getAll();
+//        List<Book> books = bookService.getAll();
 //        List bk = bookService.test();
 //        cout(JSONObject.fromObject(book.get(0),config));
-        cout(JSONArray.fromObject((books.get(0)),config));
+//        cout(JSONArray.fromObject((books.get(0)),config));
 //        cout(JSONArray.fromObject(bk.get(0),config));
+        cout(bookPurchaseService.getBKPurDate());
     }
 
 }

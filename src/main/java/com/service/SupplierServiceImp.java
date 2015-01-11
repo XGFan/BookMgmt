@@ -2,7 +2,6 @@ package com.service;
 
 import com.bean.supplier.Supplier;
 import com.dao.SupplierDAO;
-import com.util.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +11,6 @@ import java.util.List;
 public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements SupplierService {
     @Autowired
     private SupplierDAO supplierDAO;
-
-    public SupplierDAO getSupplierDAO() {
-        return supplierDAO;
-    }
-
-    public void setSupplierDAO(SupplierDAO supplierDAO) {
-        this.supplierDAO = supplierDAO;
-    }
 
 
     public List getAllSupplier() {
@@ -62,37 +53,4 @@ public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements
         }
     }
 
-    public boolean addSup(String supplier) {
-        List list = supplierDAO.findAllOrderByIdsp();
-        Supplier sup = (Supplier) list.get(list.size() - 1);// 获得最后一个元素对象
-        String idsp = String.valueOf(Integer.parseInt(sup.getIdsp()) + 1);//
-        List supList = supplierDAO.findBySupplier(supplier);
-        if (!supList.isEmpty()) {
-            return false;
-        } else {
-            Supplier temp = new Supplier();
-            temp.setIdsp(idsp);
-            temp.setSupplier(supplier);
-            temp.setPublisher(null);
-            supplierDAO.save(temp);
-            return true;
-        }
-    }
-
-    public boolean addPub(String publisher, String supplier) {
-        List list = supplierDAO.findAllOrderByIdsp();
-        Supplier sup = (Supplier) list.get(list.size() - 1);// 获得最后一个元素对象
-        /*生成新的idsp*/
-        String idsp = String.valueOf(Integer.parseInt(sup.getIdsp()) + 1);
-        List supList = supplierDAO.accfindBySubPub(supplier, publisher);
-        if (supList.isEmpty()) { // 判断list为空用 isempty 或list.size()==0
-            Supplier temp = new Supplier();
-            temp.setIdsp(idsp);
-            temp.setSupplier(supplier);
-            temp.setPublisher(publisher);
-            supplierDAO.save(temp);
-            return true;
-        } else
-            return false;
-    }
 }

@@ -4,6 +4,7 @@ import com.bean.cls.ClassInfo;
 import com.service.ClassService;
 import com.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -16,6 +17,7 @@ import java.util.List;
  * Created by guofan on 2014/11/24
  */
 @Path("/class")
+@RestController
 public class ClassApi {
     @Context
     ServletContext context;

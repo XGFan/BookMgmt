@@ -5,6 +5,7 @@ import com.bean.course.Course;
 import com.service.CollegeService;
 import com.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -17,6 +18,7 @@ import java.util.List;
  * Created by YuanYuan on 2015/01/08
  */
 @Path("/course")
+@RestController
 public class CourseApi {
     @Context
     ServletContext context;

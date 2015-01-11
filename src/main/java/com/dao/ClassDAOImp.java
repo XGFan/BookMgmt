@@ -3,8 +3,6 @@ package com.dao;
 import com.bean.cls.ClassInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -44,12 +42,12 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
                                               String grade, String campus) {
         boolean flag = true;
         String queryString = "from com.bean.cls.ClassInfo c join fetch c.college cc ";
-        if (col != "") {
+        if (!col.equals("")) {
             flag = false;
             queryString += "where ";
             queryString += "cc.col = '" + col + "'";
         }
-        if (major != "") {
+        if (!major.equals("")) {
             if (flag) {
                 queryString += "where ";
             } else {
@@ -58,7 +56,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
             flag = false;
             queryString += "cc.major = '" + major + "'";
         }
-        if (grade != "") {
+        if (!grade.equals("")) {
             if (flag) {
                 queryString += "where ";
             } else {
@@ -67,7 +65,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
             flag = false;
             queryString += "c.grade = " + grade;
         }
-        if (campus != "") {
+        if (!campus.equals("")) {
             if (flag) {
                 queryString += "where ";
             } else {

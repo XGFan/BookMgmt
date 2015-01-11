@@ -8,6 +8,7 @@ import com.service.CorplanService;
 import com.service.CourseService;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.*;
 
@@ -17,6 +18,7 @@ import javax.ws.rs.*;
  * Created by guofan on 2015/1/8
  */
 @Path("/corplan")
+@RestController
 public class CorplanApi {
     @Autowired
     CorplanService corplanService;
@@ -29,7 +31,7 @@ public class CorplanApi {
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public JSONArray getAll() {
-//        corplanService.getAll()
+//        todo
         return null;
     }
 

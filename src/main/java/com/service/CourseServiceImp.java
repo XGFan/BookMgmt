@@ -27,46 +27,6 @@ public class CourseServiceImp extends BaseServiceTemplate<Course> implements Cou
     @Autowired
     private BookDAOImp bookDAO;
 
-    public BookDAOImp getBookDAO() {
-        return bookDAO;
-    }
-
-    public void setBookDAO(BookDAOImp bookDAO) {
-        this.bookDAO = bookDAO;
-    }
-
-    public CoursebkDAO getCoursebkDAO() {
-        return coursebkDAO;
-    }
-
-    public void setCoursebkDAO(CoursebkDAO coursebkDAO) {
-        this.coursebkDAO = coursebkDAO;
-    }
-
-    public CollegeDAO getCollegeDAO() {
-        return collegeDAO;
-    }
-
-    public void setCollegeDAO(CollegeDAO collegeDAO) {
-        this.collegeDAO = collegeDAO;
-    }
-
-    public CourseDAO getCourseDAO() {
-        return courseDAO;
-    }
-
-    public void setCourseDAO(CourseDAO courseDAO) {
-        this.courseDAO = courseDAO;
-    }
-
-    public CorplanDAO getCorplanDAO() {
-        return corplanDAO;
-    }
-
-    public void setCorplanDAO(CorplanDAO corplanDAO) {
-        this.corplanDAO = corplanDAO;
-    }
-
     public List findByCol(String col) {
         return ConvertUtils.ToCourseList(courseDAO.getCourseByCol(col));
     }

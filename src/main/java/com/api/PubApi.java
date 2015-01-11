@@ -3,6 +3,7 @@ package com.api;
 import com.service.ClassService;
 import com.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,6 +17,7 @@ import java.util.List;
  * Created by guofan on 2014/11/25
  */
 @Path("/")
+@RestController
 public class PubApi {
     @Autowired
     ClassService classServie;

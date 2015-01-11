@@ -2,9 +2,7 @@ package com.service;
 
 import com.bean.cls.ClassInfo;
 import com.bean.college.College;
-import com.util.Pagination;
 
-import java.io.Serializable;
 import java.util.List;
 
 public interface ClassService extends BaseService<ClassInfo>{

@@ -1,7 +1,5 @@
 package com.service;
 
-import com.bean.book.Book;
-import com.bean.course.Course;
 import com.bean.coursebk.Coursebk;
 
 import java.util.List;

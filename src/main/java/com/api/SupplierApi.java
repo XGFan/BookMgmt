@@ -3,6 +3,7 @@ package com.api;
 import com.bean.supplier.Supplier;
 import com.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by Yuanyuan on 2015/1/6
  */
 @Path("/sup")
+@RestController
 public class SupplierApi {
     @Context
     ServletContext context;
@@ -68,7 +70,7 @@ public class SupplierApi {
     @Path("/id={idsp}")
     @Produces("application/json;charset=UTF-8")
     public Supplier findById(@PathParam("idsp") String idsp) {
-        return (Supplier)supplierService.findById(idsp);
+        return supplierService.findById(idsp);
     }
 
     //删除供应信息===================200 OK TRUE

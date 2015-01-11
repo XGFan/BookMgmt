@@ -4,11 +4,8 @@ import com.bean.college.College;
 import com.service.ClassService;
 import com.service.CollegeService;
 import com.service.CourseService;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import net.sf.json.util.CycleDetectionStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
@@ -21,6 +18,7 @@ import java.util.List;
  * Created by Yuanyuan on 2015/1/6
  */
 @Path("/college")
+@RestController
 public class CollegeApi {
     @Context
     ServletContext context;

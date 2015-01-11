@@ -7,3 +7,5 @@ WebRoot/WEB-INF/lib/
 target/
 .classpath
 .project
+src/main/webapp/WEB-INF/classes
+src/main/webapp/WEB-INF/lib/

@@ -45,24 +45,5 @@ public interface SupplierService extends BaseService<Supplier> {
      */
     public List findBySupplier(String supplier);
 
-    /**
-     * 为某一供应商添加出版社
-     *
-     * @param publisher 出版社
-     * @param supplier  供应商
-     * @return boolean
-     */
-    public boolean addPub(String publisher, String supplier);
-
-    /**
-     * 添加供应商 ，或为相应的供应商添加出版社
-     * （若无相应的供应商则返回到添加供应商的界面。若有供应商则添加）
-     *
-     * @param supplier 供应商
-     * @return boolean
-     */
-    public boolean addSup(String supplier);
-
-
 
 }

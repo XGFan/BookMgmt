@@ -54,12 +54,9 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
         this.hibernateTemplate = hibernateTemplate;
     }
 
-    protected void initDao() {
-    }
-
     /*将筛选后的课程信息保存到临时表中 2014.3.18 zhangchi*/
-    public void batchSave(List<Bookpurchaseview> bpvlist) {
-        log.debug("batchSave Bookpurchase instances");
+    public void saveTemp(List<Bookpurchaseview> bpvlist) {
+        log.debug("saveTemp Bookpurchase instances");
         try {
             // List list = new ArrayList();
             for (Bookpurchaseview bpv : bpvlist) {
@@ -103,21 +100,22 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
     /**
      * 清空bookpurchase表
      */
-    public void bathDelete() {
+    public void deleteAll() {
         log.debug("deleting Bookpurchase instance");
         try {
-            getHibernateTemplate().execute(new HibernateCallback() {
-                public Object doInHibernate(Session session)
-                        throws HibernateException, SQLException {
-                    String queryString = "delete Bookpurchase";
-                    Transaction trans = session.beginTransaction();
-                    Query query = session.createQuery(queryString);
-                    query.executeUpdate();
-                    trans.commit();
-                    session.close();
-                    return null;
-                }
-            });
+//            getHibernateTemplate().execute(new HibernateCallback() {
+//                public Object doInHibernate(Session session)
+//                        throws HibernateException, SQLException {
+//                    String queryString = "delete Bookpurchase";
+//                    Transaction trans = session.beginTransaction();
+//                    Query query = session.createQuery(queryString);
+//                    query.executeUpdate();
+//                    trans.commit();
+//                    session.close();
+//                    return null;
+//                }
+//            });
+            getCurrentSession().createQuery("delete Bookpurchase");
             log.debug("delete successful");
         } catch (RuntimeException re) {
             log.error("delete failed", re);
@@ -137,10 +135,10 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
             queryString += " FROM Bookpurchase AS bk ";
             queryString += " GROUP BY bk.campus,bk.idbk ";
             queryString += " ORDER BY bk.supplier asc";
-            queryString += " ,bk.campusasc";
+            queryString += " ,bk.campus asc";
             queryString += " ,bk.publisher asc";
             queryString += " ,bk.edition asc,bk.bkname asc";
-            queryString += " ,convert_gbk(bk.author) asc,bk.grade";
+            queryString += " ,bk.author asc,bk.grade";
             return (List<Object[]>) getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("merge failed", re);

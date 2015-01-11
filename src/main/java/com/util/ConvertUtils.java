@@ -1,6 +1,5 @@
 package com.util;
 
-import com.bean.book.Book;
 import com.bean.cls.ClassInfo;
 import com.bean.college.College;
 import com.bean.corbook.Corbookview;

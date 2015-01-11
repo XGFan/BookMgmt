@@ -98,12 +98,12 @@ public class BookApi {
     @Path("/new")
     @Produces("application/json;charset=UTF-8")
     public boolean addClass(
-            @FormParam("bkname") String bkname,
-            @FormParam("author") String author,
-            @FormParam("edition") Integer edition,
-            @FormParam("isbn") String isbn,
-            @FormParam("price") Double price,
-            @FormParam("memo") String memo
+            @QueryParam("bkname") String bkname,
+            @QueryParam("author") String author,
+            @QueryParam("edition") Integer edition,
+            @QueryParam("isbn") String isbn,
+            @QueryParam("price") Double price,
+            @QueryParam("memo") String memo
     ) {
         Calendar cale = Calendar.getInstance();
         Date tasktime=cale.getTime();

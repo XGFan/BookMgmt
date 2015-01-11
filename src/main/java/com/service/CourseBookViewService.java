@@ -1,8 +1,6 @@
 package com.service;
 
-import com.bean.corbkview.Corbkview;
 import com.bean.corbook.Corbookview;
-import com.bean.coursebk.Coursebk;
 
 import java.util.List;
 

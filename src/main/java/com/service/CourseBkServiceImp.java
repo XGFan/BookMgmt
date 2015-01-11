@@ -37,13 +37,9 @@ public class CourseBkServiceImp extends BaseServiceTemplate<Coursebk> implements
         return coursebkDAO.findByIdcorAndIdbk(idcor,idbk);
     }
 
-    public boolean save(String idbk, String idcor){
+    public boolean save(String idbk, String idcor) {
         Book book = bookDAO.findById(idbk);
         Course course = courseDAO.findById(idcor);
-        if(book != null && course != null){
-            return save(new Coursebk(book,course));
-        }else{
-            return false;
-        }
+        return book != null && course != null && save(new Coursebk(book, course));
     }
 }
