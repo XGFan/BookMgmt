@@ -4,6 +4,7 @@ import com.bean.college.College;
 import com.bean.course.Course;
 import com.service.CollegeService;
 import com.service.CourseService;
+import com.util.GetPaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +35,13 @@ public class CourseApi {
         return courseService.getAll();
     }
 
+    @GET
+    @Path("/p{page}/n{num}")
+    @Produces("application/json;charset=UTF-8")
+    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
+        return GetPaginationInfo.getSubList(courseService.getAll(), page, num);
+    }
+
     @DELETE
     @Path("/id={idcor}")
     @Produces("application/json;charset=UTF-8")
@@ -49,6 +57,7 @@ public class CourseApi {
         temp.setCorname(corname);
         return courseService.update(temp);
     }
+
 
     @GET
     @Path("/key={keyword}")

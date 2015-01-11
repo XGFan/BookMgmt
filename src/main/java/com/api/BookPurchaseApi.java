@@ -2,6 +2,7 @@ package com.api;
 
 import com.service.BKDistributeService;
 import com.service.BookPurchaseService;
+import com.util.GetPaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +39,13 @@ public class BookPurchaseApi {
     @Produces("application/json;charset=UTF-8")
     public List getAllBookPurchase(){
         return bookPurchaseService.getPurInfoBySupplier();
+    }
+
+    @GET
+    @Path("/p{page}/n{num}")
+    @Produces("application/json;charset=UTF-8")
+    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
+        return GetPaginationInfo.getSubList(bookPurchaseService.getPurInfoBySupplier(), page, num);
     }
 
     @GET

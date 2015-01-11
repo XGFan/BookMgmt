@@ -2,6 +2,7 @@ package com.api;
 
 import com.bean.supplier.Supplier;
 import com.service.SupplierService;
+import com.util.GetPaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +48,13 @@ public class SupplierApi {
         return supplierService.getAll();
     }
 
+
+    @GET
+    @Path("/p{page}/n{num}")
+    @Produces("application/json;charset=UTF-8")
+    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
+        return GetPaginationInfo.getSubList(supplierService.getAll(), page, num);
+    }
 
     //根据供应商名查找供应信息obj数组===========正常?!
     @GET

@@ -4,10 +4,6 @@ import com.dao.BookDAO;
 import com.dao.ClassDAO;
 import com.dao.CourseDAO;
 import com.service.*;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-import net.sf.json.util.CycleDetectionStrategy;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -40,6 +36,8 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
     BookDAO bookDAO;
     @Autowired
     BookPurchaseService bookPurchaseService;
+    @Autowired
+    CorplanService corplanService;
 //    @Autowired
 //    SupplierService supplierService;
 
@@ -85,7 +83,7 @@ public class Test4Spring extends AbstractJUnit4SpringContextTests {
 //        cout(JSONObject.fromObject(book.get(0),config));
 //        cout(JSONArray.fromObject((books.get(0)),config));
 //        cout(JSONArray.fromObject(bk.get(0),config));
-        cout(bookPurchaseService.getBKPurDate());
+        cout(corplanService.findCorplanByColMajorSem("信息工程学院", "医学信息工程","1").get(0));
     }
 
 }

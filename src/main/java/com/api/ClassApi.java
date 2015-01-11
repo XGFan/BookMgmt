@@ -3,6 +3,7 @@ package com.api;
 import com.bean.cls.ClassInfo;
 import com.service.ClassService;
 import com.service.CollegeService;
+import com.util.GetPaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +33,13 @@ public class ClassApi {
     public List getClass(@PathParam("campus") String campus, @PathParam("col") String col,
                               @PathParam("major") String major, @PathParam("grade") String grade) {
         return classServie.accurateQuery(col, major, grade, campus);
+    }
+
+    @GET
+    @Path("/p{page}/n{num}")
+    @Produces("application/json;charset=UTF-8")
+    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
+        return GetPaginationInfo.getSubList(classServie.getAll(),page,num);
     }
 
 

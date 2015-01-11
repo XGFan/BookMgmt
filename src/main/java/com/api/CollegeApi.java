@@ -4,6 +4,7 @@ import com.bean.college.College;
 import com.service.ClassService;
 import com.service.CollegeService;
 import com.service.CourseService;
+import com.util.GetPaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,6 +55,13 @@ public class CollegeApi {
     @Produces("application/json;charset=UTF-8")
     public List getAllCol() {
         return collegeService.getAll();
+    }
+
+    @GET
+    @Path("/p{page}/n{num}")
+    @Produces("application/json;charset=UTF-8")
+    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
+        return GetPaginationInfo.getSubList(collegeService.getAll(), page, num);
     }
 
 

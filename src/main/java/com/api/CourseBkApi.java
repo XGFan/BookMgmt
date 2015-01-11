@@ -3,6 +3,7 @@ package com.api;
 import com.bean.coursebk.Coursebk;
 import com.service.CourseBkService;
 import com.service.CourseBookViewService;
+import com.util.GetPaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +32,13 @@ public class CourseBkApi {
     @Produces("application/json;charset=UTF-8")
     public List getAll() {
         return courseBookViewService.getAll();
+    }
+
+    @GET
+    @Path("/p{page}/n{num}")
+    @Produces("application/json;charset=UTF-8")
+    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
+        return GetPaginationInfo.getSubList(courseBookViewService.getAll(), page, num);
     }
 
     @GET
