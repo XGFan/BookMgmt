@@ -10,7 +10,6 @@ public interface BookService extends BaseService<Book>{
 
     /**
      * 根据ISBN号查精确查找，返回map list？
-     * todo isbn理论应该有很少有重复的
      *
      * @param isbn ISBN号
      * @return obj list

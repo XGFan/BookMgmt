@@ -14,21 +14,9 @@ import java.util.List;
 @Repository("supplierDAO")
 public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO {
     private static final Log log = LogFactory.getLog(SupplierDAOImp.class);
-    private static final String SUPPLIER = "supplier";
-    private static final String PUBLISHER = "publisher";
-//    @Autowired
-//    HibernateTemplate hibernateTemplate;
-//
-//    public HibernateTemplate getHibernateTemplate() {
-//        return hibernateTemplate;
-//    }
-//
-//    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-//        this.hibernateTemplate = hibernateTemplate;
-//    }
 
     public List likeFindByPub(String publisher) {
-        return findByPropertyF(PUBLISHER, publisher);
+        return findByPropertyF("supplier", publisher);
     }
 
     public List findBySubPub(String supplier, String publisher) {
@@ -38,24 +26,24 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
     }
 
     public List accfindBySubPub(String supplier, String publisher) {
-        log.debug("accfindBySubPub");
+        log.debug("acc findBySubPub");
         try {
             String hql = "from Supplier where supplier='" + supplier;
             hql += "' and publisher = '" + publisher + "'";
             return getCurrentSession().createQuery(hql).list();
         } catch (RuntimeException re) {
-            log.error("accfindBySubPub failed", re);
+            log.error("acc findBySubPub failed", re);
             throw re;
         }
     }
 
 
     public List findBySupplier(String supplier) {
-        return findByPropertyA(SUPPLIER, supplier);
+        return findByPropertyA("supplier", supplier);
     }
 
     public List findByPublisher(String publisher) {
-        return findByPropertyA(PUBLISHER, publisher);
+        return findByPropertyA("publisher", publisher);
     }
 
 
@@ -66,7 +54,7 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
             String queryString = "select distinct s.supplier from Supplier s order by s.supplier asc";
             list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("find all failed", re);
+            log.error("find all Supplier instances", re);
         }
         return list;
     }
@@ -79,7 +67,7 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
             String queryString = "select distinct s.publisher from Supplier s order by s.supplier asc";
             list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("find all failed", re);
+            log.error("find all Supplier instances failed", re);
         }
         return list;
     }
@@ -91,7 +79,7 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
             String queryString = "from Supplier s order by s.publisher asc";
             list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("find all failed", re);
+            log.error("find all Supplier instances failed", re);
         }
         return list;
     }
@@ -103,7 +91,7 @@ public class SupplierDAOImp extends BaseDaoImp<Supplier> implements SupplierDAO 
             String queryString = "from Supplier s order by s.idsp";
             list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("find all failed", re);
+            log.error("find all Supplier instances failed", re);
         }
         return list;
     }

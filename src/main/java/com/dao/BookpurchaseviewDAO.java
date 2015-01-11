@@ -20,14 +20,15 @@ public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
      */
     public List findByYearAndSem(int year, int sem) {
         log.debug("finding Bookpurchaseview instances ByYeayAndSem");
+        List res = null;
         try {
             String queryString = "from Bookpurchaseview as b where (((" + year + "- b.id.grade)*2 + " + sem + ") = b.id.semester)";
             queryString += " order by b.id.col,b.id.major,b.id.grade desc,b.id.clsno";
-            return getCurrentSession().createQuery(queryString).list();
+            res = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
+            log.error("Find Bookpurchaseview instances ByYeayAndSem Failed", re);
         }
+        return res;
     }
 
     /**
@@ -38,19 +39,19 @@ public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
      * @param idcls 班级编号
      * @return list
      */
-    public List findByYearAndSemAndCol(int year, int sem,
-                                       String idcls) {
-        log.debug("finding Bookpurchaseview instances ByYeayAndSem");
+    public List findByYearAndSemAndCol(int year, int sem,String idcls) {
+        log.debug("Find Bookpurchaseview instances ByYeayAndSem");
+        List res = null;
         try {
             String queryString = "from Bookpurchaseview as b where (((" + year
                     + "- b.id.grade)*2 + " + sem
                     + ") = b.id.semester and b.id.idcls= '" + idcls + "')";
             queryString += " order by b.id.bkname asc";
-            return getCurrentSession().createQuery(queryString).list();
+            res = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
+            log.error("Find Bookpurchaseview instances ByYeayAndSem Failed", re);
         }
+        return res;
     }
 
     /**
@@ -61,19 +62,19 @@ public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
      * @param grade 某一年级（ex：2012级，2013级）
      * @return list
      */
-    public List findByYearAndSemAndGrade(int year, int sem,
-                                         int grade) {
-        log.debug("finding Bookpurchaseview instances ByYeayAndSem");
+    public List findByYearAndSemAndGrade(int year, int sem,int grade) {
+        log.debug("Find Bookpurchaseview instances ByYeayAndSem");
+        List res = null;
         try {
             String queryString = "from Bookpurchaseview as b where (((" + year
                     + "- b.id.grade)*2 + " + sem
                     + ") = b.id.semester and b.id.grade= '" + grade + "')";
             queryString += " order by b.id.col,b.id.major,b.id.grade desc,b.id.clsno";
-            return getCurrentSession().createQuery(queryString).list();
+            res = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
+            log.error("Find Bookpurchaseview instances ByYeayAndSem failed", re);
         }
+        return res;
     }
 
 }

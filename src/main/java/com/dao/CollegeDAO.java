@@ -16,11 +16,6 @@ import java.util.List;
 @Repository("collegeDAO")
 public class CollegeDAO extends BaseDaoImp<College> {
     private static final Log log = LogFactory.getLog(CollegeDAO.class);
-    private static final String COL = "col";
-    private static final String MAJOR = "major";
-    private static final String SEMNUM = "semnum";
-
-
 
     /**
      * 根据学院专业ID来删除学院专业信息

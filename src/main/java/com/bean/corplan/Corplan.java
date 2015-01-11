@@ -1,16 +1,21 @@
 package com.bean.corplan;
 
 import com.bean.course.Course;
+import org.codehaus.jackson.annotate.JsonUnwrapped;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Corplan entity. @author MyEclipse Persistence Tools
  */
 /*教学计划*/
+@XmlRootElement
 public class Corplan implements java.io.Serializable {
 
     /*教学计划的主键，由idcor(课程主键)+semester（学期）*/
     private String idcorsem;
     /*课程*/
+    @JsonUnwrapped
     private Course course;
     /*学期*/
     private String semester;

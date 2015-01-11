@@ -46,14 +46,6 @@ public class Supplier implements java.io.Serializable {
         this.books = books;
     }
 
-    // Property accessors
-
-//    public Supplier(String idsp, String supplier, String publisher) {
-//        this.idsp = idsp;
-//        this.supplier = supplier;
-//        this.publisher = publisher;
-//        // TODO Auto-generated constructor stub
-//    }
 
     public String getIdsp() {
         return this.idsp;

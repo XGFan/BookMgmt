@@ -1,13 +1,10 @@
 package com.api;
 
-import com.bean.bookpurchase.Bookpurchase;
-import com.bean.bookpurchaseview.Bookpurchaseview;
 import com.service.BKDistributeService;
 import com.service.BookPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,13 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import org.glassfish.jersey.server.*;
 
 /**
  * DATE:2015/1/11
@@ -104,8 +99,8 @@ public class BookPurchaseApi {
     @GET
     @Path("/print/{idcls}")
     @Produces("application/json;charset=UTF-8")
-    public void getBKDistInfoPrint(@PathParam("idcls")String idcls,@Context HttpServletRequest request,@Context
-            HttpServletResponse response){
+    public String getBKDistInfoPrint(@PathParam("idcls") String idcls, @Context HttpServletRequest request, @Context
+    HttpServletResponse response){
         String dateStr = bookPurchaseService.getBKPurDate();
         String yearStr = dateStr.substring(0, dateStr.indexOf("-"));
         int year = Integer.parseInt(yearStr);
@@ -121,7 +116,7 @@ public class BookPurchaseApi {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        return true;
+        return null;
     }
 
 

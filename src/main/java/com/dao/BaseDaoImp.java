@@ -1,5 +1,8 @@
 package com.dao;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +18,14 @@ import java.util.List;
  * TIME:18:35
  * Created by guofan on 2015/1/6
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused","unchecked"})
 @Repository("baseDao")
 public class BaseDaoImp<T> implements BaseDao<T> {
+    
     public Class entityClass;
-
     private SessionFactory sessionFactory;
-
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+    private static final Log log = LogFactory.getLog(BaseDaoImp.class);
+    
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -47,69 +48,103 @@ public class BaseDaoImp<T> implements BaseDao<T> {
     }
 
     public boolean save(T obj) {
+        log.debug("BaseDAO Save " + entityClass.getName());
         boolean result = true;
         try {
             this.getCurrentSession().save(obj);
-        } catch (RuntimeException re) {
+        } catch (HibernateException hex) {
+            log.error("Save "+entityClass.getName()+" Failed",hex);
             result = false;
         }
         return result;
     }
 
     public boolean delete(T obj) {
+        log.debug("BaseDAO Delete " + entityClass.getName());
         boolean result = true;
         try {
             this.getCurrentSession().delete(obj);
-        } catch (RuntimeException re) {
+        } catch (HibernateException hex) {
+            log.error("Delete "+entityClass.getName()+" Failed",hex);
             result = false;
         }
         return result;
     }
 
     public boolean update(T obj) {
+        log.debug("BaseDAO Update " + entityClass.getName());
         boolean result = true;
         try {
             this.getCurrentSession().update(obj);
-        } catch (RuntimeException re) {
+        } catch (HibernateException hex) {
+            log.error("Update "+entityClass.getName()+" Failed",hex);
             result = false;
         }
         return result;
     }
 
     public List findByHql(String hql) {
+        log.debug("BaseDAO Query : " + hql);
         List list;
         try {
             list = this.getCurrentSession().createQuery(hql).list();
-        } catch (RuntimeException re) {
+        } catch (HibernateException hex) {
+            log.error("Query : "+hql+" Failed",hex);
             return null;
         }
         return list;
     }
 
     public T findById(Serializable id) {
+        log.debug("BaseDAO Find "+entityClass.getName()+" By Id "+id);
         T res;
         try {
             res = (T)this.getCurrentSession().get(entityClass, id);
-        } catch (RuntimeException re) {
+        } catch (HibernateException hex) {
+            log.debug("BaseDAO Find " + entityClass.getName() + " By Id " + id + " Failed",hex);
             res = null;
         }
         return res;
     }
 
     public List<T> getAll() {
+        log.debug("BaseDAO Get All "+entityClass.getName());
         String hql = "from " + getEntityClass().getName();
-        return findByHql(hql);
+        List<T> res;
+        try{
+            res = this.getCurrentSession().createQuery(hql).list();
+        }catch (HibernateException hex){
+            log.error("BaseDAO Get All "+entityClass.getName()+" Failed",hex);
+            res = null;
+        }
+        return res;
     }
 
 
     public List<T> findByPropertyA(String propertyName, String value) {
+        log.debug("BaseDAO Find(A) "+propertyName+" From "+entityClass.getName());
+        List<T> res;
         String hql = "from " + entityClass.getName() + " where " + propertyName + " = '" + value + "'";
-        return findByHql(hql);
+        try {
+            res = this.getCurrentSession().createQuery(hql).list();
+        }catch (HibernateException hex){
+            log.error("BaseDAO Find(A) "+propertyName+" From "+entityClass.getName()+" Failed",hex);
+            res = null;
+        }
+        return res;
     }
 
     public List<T> findByPropertyF(String propertyName, String value) {
+        log.debug("BaseDAO Find(F) "+propertyName+" From "+entityClass.getName());
+        List<T> res;
         String hql = "from " + entityClass.getName() + " where " + propertyName + " LIKE '%" + value + "%'";
-        return findByHql(hql);
+        try {
+            res = this.getCurrentSession().createQuery(hql).list();
+        }catch (HibernateException hex){
+            log.error("BaseDAO Find(F) "+propertyName+" From "+entityClass.getName()+" Failed",hex);
+            res = null;
+        }
+        return res;
     }
 
 

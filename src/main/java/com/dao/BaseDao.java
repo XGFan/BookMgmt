@@ -54,16 +54,16 @@ public interface BaseDao<T> {
 
     /**
      * 根据属性名和属性值来精确查找
-     * @param propertyName
-     * @param value
+     * @param propertyName 属性名
+     * @param value 属性值
      * @return obj list
      */
     List<T> findByPropertyA(String propertyName, String value);
 
     /**
      * 根据属性名和属性值来模糊查找
-     * @param propertyName
-     * @param value
+     * @param propertyName 属性名
+     * @param value 属性值
      * @return obj list
      */
     List<T> findByPropertyF(String propertyName, String value);

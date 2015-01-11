@@ -6,11 +6,11 @@ import com.bean.course.Course;
 import com.service.CollegeService;
 import com.service.CorplanService;
 import com.service.CourseService;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.*;
+import java.util.List;
 
 /**
  * DATE:2015/1/8
@@ -30,18 +30,17 @@ public class CorplanApi {
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getAll() {
-//        todo
+    public List getAll() {
         return null;
     }
 
     @GET
     @Path("/{col}/{major}/{sem}")
     @Produces("application/json;charset=UTF-8")
-    public JSONArray getCMAll(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
+    public List getCMAll(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
         College temp = collegeService.getCollege(col, major);
         if (temp != null) {
-            return JSONArray.fromObject(corplanService.findCorplanByColMajorSem(col, major, sem));
+            return corplanService.findCorplanByColMajorSem(col, major, sem);
         } else
             return null;
     }

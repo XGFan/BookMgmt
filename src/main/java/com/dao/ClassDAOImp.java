@@ -18,10 +18,10 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
     @Override
     public List getClassFuzzy(String condition) {
         List list = null;
-        String queryString = "from com.bean.cls.ClassInfo c join fetch c.college cc"
-                + " where cc.col like '%"
+        String queryString = "from com.bean.cls.ClassInfo c"
+                + " where c.college.col like '%"
                 + condition
-                + "%' or cc.major like '%"
+                + "%' or c.college.major like '%"
                 + condition
                 + "%'"
                 + " or c.semester like '%"
@@ -76,7 +76,6 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
         }
         queryString += " order by cc.col,cc.major,c.grade,c.clsno";
         List list = null;
-        System.out.println(queryString);
         try {
             list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
@@ -119,14 +118,10 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
                 + idcm
                 + "') and c.grade='"
                 + grade + "' and cc.idcm ='" + idcm + "'";
-        // List<Object[]>
-        // list=this.getSession().createQuery(queryString).list();
-        /** 在将上面这句话转换成下面这句话之前，每次只能添加2次班级，系统就不能访问数据库，但是Tomcat正常开启。张驰 20140506**/
         List<Object[]> list = (List<Object[]>) getCurrentSession().createQuery(queryString).list();
         Integer clsNum = 0;
         for (Object[] objs : list) {
             ClassInfo cls = (ClassInfo) objs[0];
-            // System.out.println(cls.getClsno());
             clsNum = cls.getClsno();
         }
         return clsNum;

@@ -21,18 +21,4 @@ public interface CourseBookViewService extends BaseService<Corbookview> {
      */
     public List findByCourse(String idcor);
 
-    /**
-     * 查询所有的CourseBookView
-     *
-     * @return CourseBookView map list
-     */
-    public List findAllCourse();
-
-    /**
-     * 根据科目名称查找课程
-     *
-     * @param corname 科目名
-     * @return CourseBookView map list
-     */
-    public List findCourseByCorname(String corname);
 }

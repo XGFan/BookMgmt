@@ -137,7 +137,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
         log.debug("finding all Courses by col,major,sem");
         List list = null;
         try {
-            String queryString = "from Course c join c.college cc where ";
+            String queryString = "select distinct c from Course c join c.college cc where ";
             queryString += "cc.col like '%" + col + "%' and cc.major='" + major
                     + "' and c.semester='" + sem + "'";
             list = getCurrentSession().createQuery(queryString).list();
@@ -157,8 +157,7 @@ public class CourseDAO extends BaseDaoImp<Course> {
         log.debug("finding all Courses by col or major or corname");
         List list = null;
         try {
-            String queryString = "from Course c join c.college cc where ";
-            queryString += "cc.col like '%" + condition
+            String queryString = "select distinct c from Course c left join c.college cc where cc.col like '%" + condition
                     + "%' or cc.major like '%" + condition
                     + "%' or c.corname like '%" + condition + "%'";
             list = getCurrentSession().createQuery(queryString).list();

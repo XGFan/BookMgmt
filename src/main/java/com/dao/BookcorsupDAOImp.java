@@ -11,7 +11,7 @@ import java.util.List;
 public class BookcorsupDAOImp extends BaseDaoImp<Bookcorsup> implements BookcorsupDAO  {
     private static final Log log = LogFactory.getLog(BookcorsupDAOImp.class);
 
-    public List findbklist(String str) {
+    public List findBkList(String str) {
         log.debug("finding all Bookcorsup instances");
         try {
             String queryString = "select distinct idbk from Bookcorsup where semester in( " + str + " )";
@@ -22,7 +22,7 @@ public class BookcorsupDAOImp extends BaseDaoImp<Bookcorsup> implements Bookcors
         }
     }
 
-    public List findcorlistbyidbk(String idbk) {
+    public List findCorListByIdbk(String idbk) {
         log.debug("finding all Bookcorsup instances");
         try {
             String queryString = "from Bookcorsup where idbk='" + idbk + "'";

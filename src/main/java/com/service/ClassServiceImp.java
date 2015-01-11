@@ -3,9 +3,6 @@ package com.service;
 import com.bean.cls.ClassInfo;
 import com.bean.college.College;
 import com.dao.ClassDAO;
-import com.util.ConvertUtils;
-import com.util.GetPaginationInfo;
-import com.util.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,30 +10,17 @@ import java.util.List;
 
 @Service("classServie")
 public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements ClassService {
-
-    private ClassDAO classDAO;
-
-    public ClassDAO getClassDAO() {
-        return classDAO;
-    }
     @Autowired
-    public void setClassDAO(ClassDAO classDAO) {
-        this.classDAO = classDAO;
-    }
-
+    private ClassDAO classDAO;
 
     @Override
     public List fuzzyFind(String condition) {
-        return ConvertUtils.class2List(classDAO.getClassFuzzy(condition));
-    }
-
-    public List findAllByPagination(Pagination pagination) {
-        return GetPaginationInfo.getSubList(ConvertUtils.class2List(classDAO.getAll()), pagination);
+        return classDAO.getClassFuzzy(condition);
     }
 
     @Override
     public List accurateQuery(String col, String major, String grade, String campus) {
-        return ConvertUtils.class2List(classDAO.getClassByGradeCampusColMajor(col, major, grade, campus));
+        return classDAO.getClassByGradeCampusColMajor(col, major, grade, campus);
     }
 
     public List getAllCampus() {

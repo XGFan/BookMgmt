@@ -13,11 +13,11 @@ public interface BookcorsupDAO extends BaseDao<Bookcorsup>{
      * 课程-书-学期-供应商表
      * 在学期范围内，Bookcorsup中所用到的idbk（dict）
      */
-    public List findbklist(String str);
+    public List findBkList(String str);
 
     /**
      * 课程-书-学期-供应商表
      * 根据idbk从Bookcorsup中查找
      */
-    public List findcorlistbyidbk(String idbk);
+    public List findCorListByIdbk(String idbk);
 }

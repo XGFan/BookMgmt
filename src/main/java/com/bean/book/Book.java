@@ -1,9 +1,9 @@
 package com.bean.book;
 
 import com.bean.supplier.Supplier;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonUnwrapped;
-import org.junit.Ignore;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
@@ -13,7 +13,7 @@ import java.util.Set;
  * Book entity. @author MyEclipse Persistence Tools
  */
 @XmlRootElement
-@JsonIgnoreProperties(value={"coursebks","idsp","bkpurchases","hibernateLazyInitializer"})
+@JsonIgnoreProperties(value={"handler","hibernateLazyInitializer"})
 public class Book implements java.io.Serializable {
 
     /**
@@ -44,6 +44,7 @@ public class Book implements java.io.Serializable {
     /**
      * ISBN号码
      */
+    @JsonIgnore
     private String isbn;
     /**
      * 价格
@@ -54,8 +55,7 @@ public class Book implements java.io.Serializable {
      */
     private String memo;
 
-
-    private Set bkpurchases = new HashSet(0);
+    @JsonIgnore
     private Set coursebks = new HashSet(0);
 
     public Book() {
@@ -64,7 +64,7 @@ public class Book implements java.io.Serializable {
 
     public Book(String idbk, Supplier supplier, String idsp, String bkname,
                 String author, Integer edition, String isbn, Double price,
-                String memo, Set bkpurchases, Set coursebks) {
+                String memo,Set coursebks) {
         super();
         this.idbk = idbk;
         this.supplier = supplier;
@@ -75,7 +75,6 @@ public class Book implements java.io.Serializable {
         this.isbn = isbn;
         this.price = price;
         this.memo = memo;
-        this.bkpurchases = bkpurchases;
         this.coursebks = coursebks;
     }
 
@@ -149,14 +148,6 @@ public class Book implements java.io.Serializable {
 
     public void setMemo(String memo) {
         this.memo = memo;
-    }
-
-    public Set getBkpurchases() {
-        return bkpurchases;
-    }
-
-    public void setBkpurchases(Set bkpurchases) {
-        this.bkpurchases = bkpurchases;
     }
 
     public Set getCoursebks() {

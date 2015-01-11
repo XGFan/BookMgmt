@@ -6,7 +6,6 @@ import com.bean.course.Course;
 import com.dao.CollegeDAO;
 import com.dao.CorplanDAO;
 import com.dao.CourseDAO;
-import com.util.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,13 +46,11 @@ public class CorplanServiceImp extends BaseServiceTemplate<Corplan> implements C
     }
 
     public List findCorplanByColMajorSem(String col, String major, String semester) {
-        List list = corplanDAO.getCorplanByColMajorSem(col, major, semester);
-        return ConvertUtils.ToCorplanList(list);
+        return corplanDAO.getCorplanByColMajorSem(col, major, semester);
     }
 
     public List fuzzyFind(String condition) {
-        List list = corplanDAO.getCorplanFuzzy(condition);
-        return ConvertUtils.ToCorplanList(list);
+        return corplanDAO.getCorplanFuzzy(condition);
     }
 
     public boolean updateCorplan(String col, String major, String corname, String semester) {

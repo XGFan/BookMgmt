@@ -112,7 +112,7 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
 
     /**
      * 初始化，根据Course自动生成所有的Corplan
-     * todo
+     * @param entities 所有 course 列表
      */
     public void initAllCorplan(List entities) {
         getCurrentSession().saveOrUpdate(entities);

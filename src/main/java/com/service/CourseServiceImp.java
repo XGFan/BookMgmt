@@ -6,9 +6,6 @@ import com.bean.corplan.Corplan;
 import com.bean.course.Course;
 import com.bean.coursebk.Coursebk;
 import com.dao.*;
-import com.util.ConvertUtils;
-import com.util.GetPaginationInfo;
-import com.util.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,47 +24,16 @@ public class CourseServiceImp extends BaseServiceTemplate<Course> implements Cou
     @Autowired
     private BookDAOImp bookDAO;
 
-    public List findByCol(String col) {
-        return ConvertUtils.ToCourseList(courseDAO.getCourseByCol(col));
-    }
-
-    public List findByCol(String col, Pagination pagination) {
-        List list = findByCol(col);
-        return GetPaginationInfo.getSubList(list, pagination);
-    }
-
-    public List findByColMajor(String col, String major) {
-        return ConvertUtils.ToCourseList(courseDAO.getCourseByColMajor(col, major));
-    }
-
-    public List findByColMajor(String col, String major, Pagination pagination) {
-        List list = findByColMajor(col, major);
-        return GetPaginationInfo.getSubList(list, pagination);
-    }
-
-    public List findFuzzyByCorName(String col, String major, String corname) {
-        List list = courseDAO.getCourseFuzzyByCorname(col, major, corname);
-        return ConvertUtils.ToCourseList(list);
-    }
 
     public List findByColMajorSem(String col, String major, String sem) {
-        return ConvertUtils.ToCourseList(courseDAO.getCourseByColMajorSem(col, major, sem));
+        return courseDAO.getCourseByColMajorSem(col, major, sem);
     }
 
-    public List findByColMajorSem(String col, String major, String sem, Pagination pagination) {
-        List list = findByColMajorSem(col, major, sem);
-        return GetPaginationInfo.getSubList(list, pagination);
-    }
 
     public List fuzzyQuery(String condition) {
-        return ConvertUtils.ToCourseList(courseDAO.fuzzyQuery(condition));
-//        return courseDAO.fuzzyQuery(condition);
+        return courseDAO.fuzzyQuery(condition);
     }
 
-    public List fuzzyQuery(String condition, Pagination pagination) {
-        List list = ConvertUtils.ToCourseList(courseDAO.fuzzyQuery(condition));
-        return GetPaginationInfo.getSubList(list, pagination);
-    }
 
     public String addNewCourse(String idbkStr, String col, String major, String corname, String semester) {
 //		System.out.println("*****"+idbkStr+","+col + "," + major + "," + corname + "," + semester);
@@ -343,10 +309,6 @@ public class CourseServiceImp extends BaseServiceTemplate<Course> implements Cou
             }
         }
         return tag;
-    }
-
-    public Course getCourseByIdcor(String idcor) {
-        return courseDAO.findById(idcor);
     }
 
     public String getMagicNum(){

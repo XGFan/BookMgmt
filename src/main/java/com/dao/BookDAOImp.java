@@ -32,7 +32,7 @@ public class BookDAOImp extends BaseDaoImp<Book> implements BookDAO {
             }
             list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("find by BookPub name failed", re);
+            log.error("Find By BookPub name failed", re);
         }
         return list;
     }

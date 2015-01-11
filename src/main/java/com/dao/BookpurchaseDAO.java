@@ -4,55 +4,15 @@ import com.bean.bookpurchase.Bookpurchase;
 import com.bean.bookpurchaseview.Bookpurchaseview;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
 import java.util.List;
 
-/**
- * todo
- */
+
 @Repository("bookpurchaseDAO")
 public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
-    public static final String ISBN = "isbn";
+
     private static final Log log = LogFactory.getLog(BookpurchaseDAO.class);
-    private static final String IDCM = "idcm";
-    private static final String COL = "col";
-    private static final String MAJOR = "major";
-    private static final String SEMNUM = "semnum";
-    private static final String CAMPUS = "campus";
-    private static final String IDCLS = "idcls";
-    private static final String GRADE = "grade";
-    private static final String CLSNO = "clsno";
-    private static final String STUNUM = "stunum";
-    private static final String IDCOR = "idcor";
-    private static final String CORNAME = "corname";
-    private static final String IDCORSEM = "idcorsem";
-    private static final String SEMESTER = "semester";
-    private static final String IDBK = "idbk";
-    private static final String BKNAME = "bkname";
-    private static final String AUTHOR = "author";
-    private static final String EDITION = "edition";
-    private static final String IDSP = "idsp";
-    private static final String PUBLISHER = "publisher";
-    private static final String SUPPLIER = "supplier";
-    @Autowired
-    HibernateTemplate hibernateTemplate;
-
-    HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
 
     /*将筛选后的课程信息保存到临时表中 2014.3.18 zhangchi*/
     public void saveTemp(List<Bookpurchaseview> bpvlist) {
@@ -83,16 +43,11 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
                 bp.setStunum(bpv.getId().getStunum().toString());
                 bp.setSupplier(bpv.getId().getSupplier());
                 bp.setEdition(bpv.getId().getEdition().toString());
-
-                // list.save(bp);
-//                getHibernateTemplate().save(bp);
                 save(bp);
-
             }
-
             // getHibernateTemplate().saveOrUpdateAll(list);
         } catch (RuntimeException re) {
-            log.error("find all failed", re);
+            log.error("Find All BookPurchaseView Failed", re);
             throw re;
         }
     }
@@ -103,18 +58,6 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
     public void deleteAll() {
         log.debug("deleting Bookpurchase instance");
         try {
-//            getHibernateTemplate().execute(new HibernateCallback() {
-//                public Object doInHibernate(Session session)
-//                        throws HibernateException, SQLException {
-//                    String queryString = "delete Bookpurchase";
-//                    Transaction trans = session.beginTransaction();
-//                    Query query = session.createQuery(queryString);
-//                    query.executeUpdate();
-//                    trans.commit();
-//                    session.close();
-//                    return null;
-//                }
-//            });
             getCurrentSession().createQuery("delete Bookpurchase");
             log.debug("delete successful");
         } catch (RuntimeException re) {
@@ -128,6 +71,7 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
      */
     public List<Object[]> getBookList() {
         log.debug("merging Bookpurchase instance");
+        List res = null;
         try {
             log.debug("getBookList");
             String queryString = " SELECT bk.col,bk.major,bk.grade,bk.clsno,bk.idbk,bk.bkname, ";
@@ -139,11 +83,10 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
             queryString += " ,bk.publisher asc";
             queryString += " ,bk.edition asc,bk.bkname asc";
             queryString += " ,bk.author asc,bk.grade";
-            return (List<Object[]>) getCurrentSession().createQuery(queryString).list();
+             res = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("merge failed", re);
-            throw re;
         }
+        return res;
     }
-
 }

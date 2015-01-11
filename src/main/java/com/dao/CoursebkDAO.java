@@ -25,14 +25,14 @@ public class CoursebkDAO extends BaseDaoImp<Coursebk> {
      */
     public List findByIdcorAndIdbk(String idcor, String idbk) {
         log.debug("getting Coursebk instance with idcor: " + idcor);
+        List res = null;
         try {
-            String[] args = {idcor, idbk};
             String queryString = "from Coursebk as cb where cb.course.idcor ='"+idcor+"' and cb.book.idbk='"+idbk+"'";
-            return getCurrentSession().createQuery(queryString).list();
+            res = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
+            log.error("get Coursebk instance with idcor failed", re);
         }
+        return res;
     }
 
 }

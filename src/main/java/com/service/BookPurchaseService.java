@@ -1,10 +1,8 @@
 package com.service;
 
-import com.bean.courclass.Courclass;
-
 import java.io.File;
 import java.util.List;
-import java.util.Map;
+
 public interface BookPurchaseService {
 
     /**
@@ -34,6 +32,10 @@ public interface BookPurchaseService {
      */
     public List getPurInfoBySupplier();
 
+    /**
+     * 生成<学年-学期>选单
+     * @return list
+     */
     public List getBKPurDateRange();
 
     /**
@@ -49,7 +51,6 @@ public interface BookPurchaseService {
      */
     public Boolean setBKPurDate(String YearAndSem);
 
-    public String generateBookList(String year,String sem);
 
     /**
      * 根据学年和学期来生成所有的购书单

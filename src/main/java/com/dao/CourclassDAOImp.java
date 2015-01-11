@@ -18,14 +18,14 @@ public class CourclassDAOImp extends BaseDaoImp<Courclass> implements
 
     public List<Courclass> findByCorSem(String idcor, String semester) {
         log.debug("finding all Courclass instances");
+        List res = null;
         try {
             String queryString = "from Courclass where idcor='" + idcor
                     + "' and semester='" + semester + "'";
-            return getCurrentSession().createQuery(queryString).list();
+            res = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);
-            throw re;
         }
+        return res;
     }
-
 }

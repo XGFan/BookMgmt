@@ -29,12 +29,6 @@
         <property name="memo" type="java.lang.String">
             <column name="memo"/>
         </property>
-        <set name="bkpurchases" inverse="true" cascade="all" >
-            <key>
-                <column name="idbk" length="11"/>
-            </key>
-            <one-to-many class="com.bean.bkpurchase.Bkpurchase"/>
-        </set>
         <!-- 配置了inverse="true"后，在这里配置cascade="all"，删除book时会自动删除coursebk -->
         <set name="coursebks" inverse="true" cascade="all">
             <key>
