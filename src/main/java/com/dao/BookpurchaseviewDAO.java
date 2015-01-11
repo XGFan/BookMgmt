@@ -45,7 +45,7 @@ public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
             String queryString = "from Bookpurchaseview as b where (((" + year
                     + "- b.id.grade)*2 + " + sem
                     + ") = b.id.semester and b.id.idcls= '" + idcls + "')";
-            queryString += " order by convert_gbk(b.id.bkname) asc";
+            queryString += " order by b.id.bkname asc";
             return getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);

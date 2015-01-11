@@ -1,13 +1,16 @@
 package com.api;
 
 import com.bean.bookpurchase.Bookpurchase;
+import com.bean.bookpurchaseview.Bookpurchaseview;
 import com.service.BKDistributeService;
 import com.service.BookPurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.activation.MimetypesFileTypeMap;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
@@ -18,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import org.glassfish.jersey.server.*;
 
 /**
  * DATE:2015/1/11
@@ -69,13 +73,56 @@ public class BookPurchaseApi {
     public Response getNewStudentBooklist(@PathParam("year")String year,@PathParam("sem")String sem){
         File file = bookPurchaseService.generateNewStudentBookList(year,sem,year);
         System.out.println(file.getName());
-        String filename="NewStudentBookList.xls";
+        String fileName="NewStudentBookList.xls";
         try {
-            filename = new String(file.getName().getBytes("gbk"),"iso-8859-1");
+            fileName = new String(file.getName().getBytes("gbk"),"iso-8859-1");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return Response.ok(file).header("Content-Disposition", "attachment;filename=" +filename).build();
+        return Response.ok(file).header("Content-Disposition", "attachment;filename=" +fileName).build();
     }
+
+    @GET
+    @Path("/doc/{idcls}")
+    @Produces({"application/vnd.ms-word"})
+    public Response getBKDistInfoDoc(@PathParam("idcls")String idcls){
+        String dateStr = bookPurchaseService.getBKPurDate();
+        String yearStr = dateStr.substring(0, dateStr.indexOf("-"));
+        int year = Integer.parseInt(yearStr);
+        String semStr = dateStr.substring(dateStr.length() - 1);
+        int sem = Integer.parseInt(semStr);
+        File file = bkDistributeService.BKDistInfoQuery2Doc(year, sem, idcls);
+        String fileName="temp.doc";
+        try {
+            fileName = new String(file.getName().getBytes("gbk"),"iso-8859-1");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return Response.ok(file).header("Content-Disposition", "attachment;filename=" +fileName).build();
+    }
+
+    @GET
+    @Path("/print/{idcls}")
+    @Produces("application/json;charset=UTF-8")
+    public void getBKDistInfoPrint(@PathParam("idcls")String idcls,@Context HttpServletRequest request,@Context
+            HttpServletResponse response){
+        String dateStr = bookPurchaseService.getBKPurDate();
+        String yearStr = dateStr.substring(0, dateStr.indexOf("-"));
+        int year = Integer.parseInt(yearStr);
+        String semStr = dateStr.substring(dateStr.length() - 1);
+        int sem = Integer.parseInt(semStr);
+        List bkpurviews = bkDistributeService.BKDistInfoQuery(year, sem, idcls);
+        request.setAttribute("bkpurviews", bkpurviews);
+        RequestDispatcher rd = request.getRequestDispatcher("../../../printPage.jsp");
+        try {
+            rd.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        return true;
+    }
+
 
 }
