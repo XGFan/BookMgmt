@@ -9,3 +9,4 @@ target/
 .project
 src/main/webapp/WEB-INF/classes
 src/main/webapp/WEB-INF/lib/
+src/main/resources/db/digitalocean.properties
