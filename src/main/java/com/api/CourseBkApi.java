@@ -42,6 +42,13 @@ public class CourseBkApi {
     }
 
     @GET
+    @Path("/key={keword}")
+    @Produces("application/json;charset=UTF-8")
+    public List findByKeyword(@PathParam("keyword")String keyword){
+        return courseBookViewService.getAll();
+    }
+
+    @GET
     @Path("/cor={idcor}")
     @Produces("application/json;charset=UTF-8")
     public List getByCor(@PathParam("idcor") String idcor) {

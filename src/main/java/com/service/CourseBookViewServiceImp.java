@@ -26,5 +26,8 @@ public class CourseBookViewServiceImp extends BaseServiceTemplate<Corbookview> i
         return corBookViewDAO.findByIdcor(idcor);
     }
 
-
+    @Override
+    public List findByKeyword(String keyword) {
+        return corBookViewDAO.findCourseByCorname(keyword);
+    }
 }

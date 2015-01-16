@@ -21,4 +21,6 @@ public interface CourseBookViewService extends BaseService<Corbookview> {
      */
     public List findByCourse(String idcor);
 
+    public List findByKeyword(String keyword);
+
 }

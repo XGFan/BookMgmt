@@ -46,4 +46,9 @@ public class CorbookviewDAO extends BaseDaoImp<Corbookview> {
         return findByPropertyF("corname", corname);
     }
 
+    //todo
+    public List findCourseByKeyword(){
+        return null;
+    }
+
 }
