@@ -47,7 +47,6 @@ public interface ClassDAO extends BaseDao<ClassInfo>{
 
     /**
      * 获得班号
-     * todo
      *
      * @param grade 年级
      * @param idcm  学院专业id

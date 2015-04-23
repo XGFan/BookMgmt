@@ -1,7 +1,8 @@
-package com.service;
+package com.service.imp;
 
 import com.bean.college.College;
 import com.dao.CollegeDAO;
+import com.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -107,6 +108,17 @@ public class CollegeServiceImp extends BaseServiceTemplate<College> implements C
 
     public List fuzzyQuery(String condition) {
         return collegeDAO.fuzzyQuery(condition);
+    }
+
+    public String getNewID(String col){
+        String hql = "select idcm from College where col = '" + col + "'";
+        List idStr =  collegeDAO.findByHql(hql);
+        int num = 0;
+        for (Object s : idStr) {
+            int temp = Integer.valueOf((String)s);
+            num = num<temp?temp:num;
+        }
+        return String.format("%04d", num + 1);
     }
 
 }

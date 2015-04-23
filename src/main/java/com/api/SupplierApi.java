@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import java.util.List;
+import java.util.Map;
 
 /**
  * DATE:2015/1/6
@@ -44,8 +45,8 @@ public class SupplierApi {
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public List getAll() {
-        return supplierService.getAll();
+    public Map getAll(@QueryParam("page") int page, @QueryParam("rows") int row) {
+        return GetPaginationInfo.getSubMap(supplierService.getAll(), page, row);
     }
 
 
@@ -99,6 +100,13 @@ public class SupplierApi {
         Supplier temp = new Supplier();
         temp.setPublisher(publisher);
         temp.setSupplier(supplier);
+        List<Supplier> list = supplierService.getAll();
+        Integer id = 0;
+        for (Supplier u : list) {
+            id = id < Integer.valueOf(u.getIdsp())?Integer.valueOf(u.getIdsp()):id;
+        }
+        String idcm = String.format("%04d",id+1);
+        temp.setIdsp(idcm);
         return supplierService.save(temp);
     }
 

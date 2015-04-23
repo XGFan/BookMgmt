@@ -1,6 +1,7 @@
-package com.service;
+package com.service.imp;
 
 import com.dao.BaseDao;
+import com.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;

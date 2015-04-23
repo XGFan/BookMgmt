@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -18,8 +19,9 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
     public void saveTemp(List<Bookpurchaseview> bpvlist) {
         log.debug("saveTemp Bookpurchase instances");
         try {
-            // List list = new ArrayList();
-            for (Bookpurchaseview bpv : bpvlist) {
+            Iterator<Bookpurchaseview> it = bpvlist.iterator();
+            while (it.hasNext()) {
+                Bookpurchaseview bpv = (Bookpurchaseview) it.next();
                 // 将Bookpurchaseview对象转换为Bookpurchase对象
                 Bookpurchase bp = new Bookpurchase();
                 bp.setAuthor(bpv.getId().getAuthor());
@@ -58,7 +60,10 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
     public void deleteAll() {
         log.debug("deleting Bookpurchase instance");
         try {
-            getCurrentSession().createQuery("delete Bookpurchase");
+//            getCurrentSession().beginTransaction();
+            getCurrentSession().createQuery("delete Bookpurchase").executeUpdate();
+//            getCurrentSession().getTransaction().commit();
+//            getCurrentSession().close();
             log.debug("delete successful");
         } catch (RuntimeException re) {
             log.error("delete failed", re);

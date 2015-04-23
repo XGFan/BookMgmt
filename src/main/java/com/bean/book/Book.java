@@ -44,7 +44,6 @@ public class Book implements java.io.Serializable {
     /**
      * ISBN号码
      */
-    @JsonIgnore
     private String isbn;
     /**
      * 价格

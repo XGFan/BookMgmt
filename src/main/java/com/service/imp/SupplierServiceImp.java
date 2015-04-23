@@ -1,7 +1,8 @@
-package com.service;
+package com.service.imp;
 
 import com.bean.supplier.Supplier;
 import com.dao.SupplierDAO;
+import com.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

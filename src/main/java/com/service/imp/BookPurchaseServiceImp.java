@@ -1,7 +1,8 @@
-package com.service;
+package com.service.imp;
 
 import com.bean.bookpurchaseview.Bookpurchaseview;
 import com.dao.*;
+import com.service.BookPurchaseService;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,44 +28,10 @@ public class BookPurchaseServiceImp implements BookPurchaseService {
     private static final String SUPPLIER = "供应商";
 
     @Autowired
-    private BookcorsupDAO bookcorsupDAO;
-    @Autowired
-    private CourclassDAO courclassDAO;
-    @Autowired
-    private BookDAO bookdao;
-    @Autowired
     private BookpurchaseviewDAO bookpurchaseviewDAO;
     @Autowired
     private BookpurchaseDAO bookpurchaseDAO;
 
-
-    public List getbklist(String semester) {
-        // 判断上学年，下学年
-        List list;
-        String param = "";
-        if (semester.trim().equals("1")) {
-            for (int i = 0; i < 11; i++) {//循环11次
-                param += "'" + (2 * i + 1) + "',";//奇数（1，3，5，7，9，11，13，15，17，19，21）
-            }
-            param += "'" + 23 + "'";
-            //'1','3','5','7','9','11','13','15','17','19','21','23'
-            //这TM要干嘛
-            list = bookcorsupDAO.findBkList(param);
-//            System.out.println("1.param" + param);
-        } else {
-            for (int i = 0; i < 11; i++) {//循环11次
-                param += "'" + (2 * i + 2) + "',";//偶数（2，4，6，8，10，12，14，16，18，20，22）
-            }
-            param += "'" + 24 + "'";
-//            System.out.println("2.param" + param);
-            list = bookcorsupDAO.findBkList(param);
-        }
-        return list;
-    }
-
-    public List getcorlistbyidbk(String idbk) {
-        return bookcorsupDAO.findCorListByIdbk(idbk);
-    }
 
     public List getPurInfoBySupplier(String supplier) {
         // 返回采购清单到页面
@@ -130,7 +97,7 @@ public class BookPurchaseServiceImp implements BookPurchaseService {
         }catch (IOException e){
             e.printStackTrace();
         }
-        prop.setProperty("Date",yearAndSem);
+        prop.setProperty("Date", yearAndSem);
         FileOutputStream out;
         try {
             out = new FileOutputStream(path);
@@ -163,7 +130,6 @@ public class BookPurchaseServiceImp implements BookPurchaseService {
         int yearNum = Integer.parseInt(year);
         int semNum = Integer.parseInt(sem);
         List<Bookpurchaseview> list = bookpurchaseviewDAO.findByYearAndSem(yearNum,semNum);
-        bookpurchaseDAO.deleteAll();
         bookpurchaseDAO.saveTemp(list);
         return generateXlsFile(fileName);
     }
@@ -173,10 +139,15 @@ public class BookPurchaseServiceImp implements BookPurchaseService {
         int yearNum = Integer.parseInt(year);
         int gradeNum = Integer.parseInt(grade);
         int semNum = Integer.parseInt(sem);
-        List<Bookpurchaseview> list = bookpurchaseviewDAO.findByYearAndSemAndGrade(yearNum,semNum, gradeNum);
-        bookpurchaseDAO.deleteAll();
+        List<Bookpurchaseview> list = bookpurchaseviewDAO.findByYearAndSemAndGrade(yearNum, semNum, gradeNum);
+//        bookpurchaseDAO.deleteAll();
+//        deleteAll();
         bookpurchaseDAO.saveTemp(list);
         return generateXlsFile(fileName);
+    }
+
+    public void deleteAll(){
+        bookpurchaseDAO.deleteAll();
     }
 
     /**

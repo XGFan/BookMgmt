@@ -36,6 +36,23 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
     }
 
     /**
+     * 连接教学计划，课程，学院三张表，根据学院，专业查询教学计划
+     * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）
+     *
+     * @param col      学院名
+     * @param major    专业名
+     * @return list
+     */
+    public List getCorplanByColMajorSem(String col, String major) {
+        String queryString = "from Corplan cp join cp.course cpc join cpc.college cpcc where cpcc.col like '%"
+                + col
+                + "%' and cpcc.major ='"
+                + major
+                + "'" ;
+        return getCurrentSession().createQuery(queryString).list();
+    }
+
+    /**
      * 连接教学计划，课程，学院三张表，根据学院，专业，学期，课程名称和课程编号查询教学计划
      * 三张表连接后字段（idcorsem,idcor,semeter,idcm,corname,col,major,semnum）
      *

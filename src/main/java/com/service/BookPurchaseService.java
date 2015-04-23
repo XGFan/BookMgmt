@@ -5,20 +5,6 @@ import java.util.List;
 
 public interface BookPurchaseService {
 
-    /**
-     * 根据上下学期来获得书单
-     * @param semester 学期
-     * @return list
-     */
-    public List getbklist(String semester);
-
-    /**
-     * 课程-书-学期-供应商表 根据idbk从Bookcorsup中查找
-     * @param idbk idbk
-     * @return list
-     */
-    public List getcorlistbyidbk(String idbk);
-
 
     /**
      * 获取在某一供应商处购买的图书列表，2014.3.23-zhagnchi *
@@ -68,4 +54,6 @@ public interface BookPurchaseService {
      * @return file xls
      */
     public File generateNewStudentBookList(String year,String sem,String grade);
+
+    public void deleteAll();
 }

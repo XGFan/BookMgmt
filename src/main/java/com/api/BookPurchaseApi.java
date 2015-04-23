@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * DATE:2015/1/11
@@ -37,8 +38,9 @@ public class BookPurchaseApi {
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public List getAllBookPurchase(){
-        return bookPurchaseService.getPurInfoBySupplier();
+    public Map getAllBookPurchase(@QueryParam("page")int page,@QueryParam("rows") int row){
+//        bookPurchaseService.deleteAll();
+        return GetPaginationInfo.getSubMap(bookPurchaseService.getPurInfoBySupplier(), page, row);
     }
 
     @GET
@@ -59,6 +61,7 @@ public class BookPurchaseApi {
     @Path("/booklist/{year}/{sem}/all")
     @Produces({"application/vnd.ms-excel"})
     public Response getAllBooklist(@PathParam("year")String year,@PathParam("sem")String sem){
+        bookPurchaseService.deleteAll();
         File file = bookPurchaseService.generateStudentBookList(year, sem);
         System.out.println(file.getPath());
         String filename="AllStudentBookList.xls";
@@ -74,7 +77,8 @@ public class BookPurchaseApi {
     @Path("/booklist/{year}/{sem}/newStudent")
     @Produces({"application/vnd.ms-excel"})
     public Response getNewStudentBooklist(@PathParam("year")String year,@PathParam("sem")String sem){
-        File file = bookPurchaseService.generateNewStudentBookList(year,sem,year);
+        bookPurchaseService.deleteAll();
+        File file = bookPurchaseService.generateNewStudentBookList(year, sem, year);
         System.out.println(file.getName());
         String fileName="NewStudentBookList.xls";
         try {
@@ -94,6 +98,7 @@ public class BookPurchaseApi {
         int year = Integer.parseInt(yearStr);
         String semStr = dateStr.substring(dateStr.length() - 1);
         int sem = Integer.parseInt(semStr);
+        bookPurchaseService.deleteAll();
         File file = bkDistributeService.BKDistInfoQuery2Doc(year, sem, idcls);
         String fileName="temp.doc";
         try {
@@ -125,6 +130,30 @@ public class BookPurchaseApi {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @GET
+    @Path("/dataList")
+    @Produces("application/json;charset=UTF-8")
+    public List getDataList(){
+        System.out.println(bookPurchaseService.getBKPurDateRange());
+        return bookPurchaseService.getBKPurDateRange();
+    }
+
+    @PUT
+    @Path("/data")
+    @Produces("text/plain;charset=UTF-8")
+    public boolean  setData(@FormParam("data") String data){
+//        System.out.println(bookPurchaseService.getBKPurDateRange());
+        return bookPurchaseService.setBKPurDate(data);
+    }
+
+    @GET
+    @Path("/data")
+    @Produces("text/plain;charset=UTF-8")
+    public String getData(){
+//        System.out.println(bookPurchaseService.getBKPurDateRange());
+        return bookPurchaseService.getBKPurDate();
     }
 
 

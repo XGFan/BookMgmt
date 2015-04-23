@@ -12,6 +12,9 @@ import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import java.util.List;
+import java.util.Map;
+
+import static com.util.GetPaginationInfo.getSubMap;
 
 /**
  * DATE:2015/01/08
@@ -31,8 +34,8 @@ public class CourseApi {
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public List getAllCourse() {
-        return courseService.getAll();
+    public Map getAllCourse(@QueryParam("page") int page, @QueryParam("rows") int row) {
+        return getSubMap(courseService.getAll(), page, row);
     }
 
     @GET
@@ -53,7 +56,7 @@ public class CourseApi {
     @Path("/{idcor}")
     @Produces("application/json;charset=UTF-8")
     public boolean updateCourse(@PathParam("idcor") String idcor, @FormParam("corname") String corname) {
-        Course temp = courseService.findById("idcor");
+        Course temp = courseService.findById(idcor);
         temp.setCorname(corname);
         return courseService.update(temp);
     }
@@ -62,8 +65,9 @@ public class CourseApi {
     @GET
     @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
-    public List findByKeyword(@PathParam("keyword") String keyword) {
-        return courseService.fuzzyQuery(keyword);
+    public Map findByKeyword(@PathParam("keyword") String keyword,@QueryParam("page") int page, @QueryParam("rows")
+    int row) {
+        return getSubMap(courseService.fuzzyQuery(keyword),page,row);
     }
 
     @GET
@@ -82,7 +86,7 @@ public class CourseApi {
 
     @POST
     @Path("/new")
-    @Produces("application/json;charset=UTF-8")
+    @Produces("text/plain;charset=UTF-8")
     public String addCourse(@FormParam("col")String col,@FormParam("major")String major,
                             @FormParam("corname")String corname,@FormParam("sem")String sem){
         College college = collegeService.getCollege(col, major);

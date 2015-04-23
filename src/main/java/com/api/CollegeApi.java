@@ -12,6 +12,7 @@ import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import java.util.List;
+import java.util.Map;
 
 /**
  * DATE:2015/1/6
@@ -53,8 +54,8 @@ public class CollegeApi {
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public List getAllCol() {
-        return collegeService.getAll();
+    public Map getAllCol(@QueryParam("page")int page,@QueryParam("rows") int row) {
+        return GetPaginationInfo.getSubMap(collegeService.getAll(), page, row);
     }
 
     @GET
@@ -88,13 +89,25 @@ public class CollegeApi {
     public boolean addClass(
             @FormParam("col") String col,
             @FormParam("major") String major,
-            @FormParam("semnum") int semnum,
-            @FormParam("idcm") String idcm) {
+            @FormParam("semnum") int semnum) {
         College coll = new College();
         coll.setCol(col);
         coll.setMajor(major);
         coll.setSemnum(semnum);
-        coll.setIdcm(idcm);
+        coll.setIdcm(collegeService.getNewID(col));
         return collegeService.save(coll);
+    }
+
+    @POST
+    @Path("/edit")
+    @Produces("application/json;charset=UTF-8")
+    public boolean editClass(
+            @FormParam("major") String major,
+            @FormParam("semnum") int semnum,
+            @FormParam("idcm") String idcm) {
+        College coll = collegeService.findById(idcm);
+        coll.setMajor(major);
+        coll.setSemnum(semnum);
+        return collegeService.update(coll);
     }
 }

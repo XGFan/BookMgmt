@@ -1,4 +1,4 @@
-package com.service;
+package com.service.imp;
 
 import com.bean.college.College;
 import com.bean.corplan.Corplan;
@@ -6,6 +6,7 @@ import com.bean.course.Course;
 import com.dao.CollegeDAO;
 import com.dao.CorplanDAO;
 import com.dao.CourseDAO;
+import com.service.CorplanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,10 @@ public class CorplanServiceImp extends BaseServiceTemplate<Corplan> implements C
 
     public List findCorplanByColMajorSem(String col, String major, String semester) {
         return corplanDAO.getCorplanByColMajorSem(col, major, semester);
+    }
+
+    public List findCorplanByColMajorSem(String col, String major) {
+        return corplanDAO.getCorplanByColMajorSem(col, major);
     }
 
     public List fuzzyFind(String condition) {

@@ -16,6 +16,15 @@ public interface CorplanService extends BaseService<Corplan>{
      */
     public List findCorplanByColMajorSem(String col, String major, String semester);
 
+    /**
+     * 根据学院，专业，所在学期查询教学计划
+     *
+     * @param col      学院名称
+     * @param major    专业名称
+     * @return 教学计划 map list
+     */
+    public List findCorplanByColMajorSem(String col, String major);
+
 //    public
 
     /**

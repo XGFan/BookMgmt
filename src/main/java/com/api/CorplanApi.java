@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * DATE:2015/1/8
@@ -28,19 +29,23 @@ public class CorplanApi {
     CourseService courseService;
 
     @GET
-    @Path("/all")
-    @Produces("application/json;charset=UTF-8")
-    public List getAll() {
-        return null;
-    }
-
-    @GET
     @Path("/{col}/{major}/{sem}")
     @Produces("application/json;charset=UTF-8")
     public List getCMAll(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
         College temp = collegeService.getCollege(col, major);
         if (temp != null) {
             return corplanService.findCorplanByColMajorSem(col, major, sem);
+        } else
+            return null;
+    }
+
+    @GET
+    @Path("/{col}/{major}")
+    @Produces("application/json;charset=UTF-8")
+    public List getCMAll(@PathParam("col") String col, @PathParam("major") String major) {
+        College temp = collegeService.getCollege(col, major);
+        if (temp != null) {
+            return corplanService.findCorplanByColMajorSem(col, major);
         } else
             return null;
     }

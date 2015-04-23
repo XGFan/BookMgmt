@@ -1,6 +1,9 @@
 package com.util;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GetPaginationInfo {
     /**
@@ -30,6 +33,20 @@ public class GetPaginationInfo {
         } else {
             return list.subList((page - 1) * num, page * num);
         }
+    }
+
+    public static Map getSubMap(List list, int page, int num) {
+        int size = list.size();
+        HashMap<String,Object> ans = new HashMap<String, Object>();
+        num = num>size?size:num;
+        if ((page - 1) * num > size) {
+            ans.put("rows", list.subList((page - 1) * num, size));
+            ans.put("total", Integer.toString(size));
+        } else {
+            ans.put("rows", list.subList((page - 1) * num, size > page * num ? page * num : size));
+            ans.put("total", Integer.toString(size));
+        }
+        return ans;
     }
 
 }

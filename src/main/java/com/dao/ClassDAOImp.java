@@ -42,12 +42,12 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
                                               String grade, String campus) {
         boolean flag = true;
         String queryString = "from com.bean.cls.ClassInfo c join fetch c.college cc ";
-        if (!col.equals("")) {
+        if (!col.trim().equals("")&&col!=null) {
             flag = false;
             queryString += "where ";
             queryString += "cc.col = '" + col + "'";
         }
-        if (!major.equals("")) {
+        if (!major.trim().equals("")&&major!=null) {
             if (flag) {
                 queryString += "where ";
             } else {
@@ -56,7 +56,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
             flag = false;
             queryString += "cc.major = '" + major + "'";
         }
-        if (!grade.equals("")) {
+        if (!grade.trim().equals("")&&grade!=null) {
             if (flag) {
                 queryString += "where ";
             } else {
@@ -65,7 +65,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
             flag = false;
             queryString += "c.grade = " + grade;
         }
-        if (!campus.equals("")) {
+        if (campus!=null&&!campus.trim().equals("")) {
             if (flag) {
                 queryString += "where ";
             } else {
@@ -75,6 +75,7 @@ public class ClassDAOImp extends BaseDaoImp<ClassInfo> implements ClassDAO {
             queryString += "c.campus = '" + campus + "'";
         }
         queryString += " order by cc.col,cc.major,c.grade,c.clsno";
+        System.out.println(queryString);
         List list = null;
         try {
             list = getCurrentSession().createQuery(queryString).list();

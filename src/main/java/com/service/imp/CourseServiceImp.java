@@ -1,4 +1,4 @@
-package com.service;
+package com.service.imp;
 
 import com.bean.book.Book;
 import com.bean.college.College;
@@ -6,6 +6,7 @@ import com.bean.corplan.Corplan;
 import com.bean.course.Course;
 import com.bean.coursebk.Coursebk;
 import com.dao.*;
+import com.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,9 @@
-package com.service;
+package com.service.imp;
 
 import com.bean.cls.ClassInfo;
 import com.bean.college.College;
 import com.dao.ClassDAO;
+import com.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,6 @@ public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements C
     }
 
     public boolean addClasses(String campus, String grade, int clsnum, College college) {
-        ClassInfo cls = new ClassInfo();
         Integer j = classDAO.getClsNum(grade, college.getIdcm()) + 1;// 班级表此时班号最大值
         String idcls;
         for (int i = j; i < j + clsnum; i++) {
@@ -57,6 +57,7 @@ public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements C
             } else {
                 idcls = grade + college.getIdcm() + i;
             }
+            ClassInfo cls = new ClassInfo();
             cls.setIdcls(idcls);
             cls.setCollege(college);
             cls.setCampus(campus);

@@ -2,19 +2,19 @@ package com.api;
 
 import com.bean.book.Book;
 import com.service.BookService;
-import com.service.CourseBookViewService;
 import com.service.CourseService;
+import com.service.SupplierService;
 import com.util.GetPaginationInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * DATE:2015/1/6
@@ -31,20 +31,13 @@ public class BookApi {
     @Autowired
     CourseService courseService;
     @Autowired
-    CourseBookViewService corbkviewService;
-
+    SupplierService supplierService;
+    
     @GET
     @Path("/id={idbk}")
     @Produces("application/json;charset=UTF-8")
     public Book getBookByIdbk(@PathParam("idbk") String idbk) {
         return bookService.findById(idbk);
-    }
-
-    @GET
-    @Path("/p{page}/n{num}")
-    @Produces("application/json;charset=UTF-8")
-    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
-        return GetPaginationInfo.getSubList(bookService.getAll(), page, num);
     }
 
     @GET
@@ -57,16 +50,16 @@ public class BookApi {
     @GET
     @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
-    public List getBook(@PathParam("keyword") String keyword) {
-        return bookService.searchByBkname(keyword);
+    public Map getBook(@PathParam("keyword") String keyword,@QueryParam("page")int page,@QueryParam("rows") int row) {
+        return GetPaginationInfo.getSubMap(bookService.searchByBkname(keyword), page, row);
     }
 
 
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
-    public List<Book> getAllBook() {
-        return bookService.getAll();
+    public Map getAllBook(@QueryParam("page")int page,@QueryParam("rows") int row) {
+        return GetPaginationInfo.getSubMap(bookService.getAll(), page, row);
     }
 
     @DELETE
@@ -97,19 +90,20 @@ public class BookApi {
         book.setIsbn(isbn);
         book.setPrice(price);
         book.setMemo(memo);
-        return bookService.save(book);
+        return bookService.update(book);
     }
 
     @POST
     @Path("/new")
     @Produces("application/json;charset=UTF-8")
     public boolean addClass(
-            @QueryParam("bkname") String bkname,
-            @QueryParam("author") String author,
-            @QueryParam("edition") Integer edition,
-            @QueryParam("isbn") String isbn,
-            @QueryParam("price") Double price,
-            @QueryParam("memo") String memo
+            @FormParam("bkname") String bkname,
+            @FormParam("author") String author,
+            @FormParam("edition") Integer edition,
+            @FormParam("isbn") String isbn,
+            @FormParam("price") Double price,
+            @FormParam("memo") String memo,
+            @FormParam("publisher") String idsp
     ) {
         Calendar cale = Calendar.getInstance();
         Date tasktime=cale.getTime();
@@ -120,6 +114,7 @@ public class BookApi {
         book.setBkname(bkname);
         book.setAuthor(author);
         book.setEdition(edition);
+        book.setSupplier(supplierService.findById(idsp));
         book.setIsbn(isbn);
         book.setPrice(price);
         book.setMemo(memo);

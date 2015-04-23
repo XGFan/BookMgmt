@@ -47,6 +47,7 @@ public class BookpurchaseviewDAO extends BaseDaoImp<Bookpurchaseview>{
                     + "- b.id.grade)*2 + " + sem
                     + ") = b.id.semester and b.id.idcls= '" + idcls + "')";
             queryString += " order by b.id.bkname asc";
+            System.out.println(queryString);
             res = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("Find Bookpurchaseview instances ByYeayAndSem Failed", re);

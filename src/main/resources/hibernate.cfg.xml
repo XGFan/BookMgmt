@@ -8,7 +8,7 @@
         <property name="jdbc.batch_size">20</property>
         <property name="connection.autocommit">true</property>
         <property name="format_sql">true</property>
-        <property name="show_sql">true</property>
+        <property name="show_sql">false</property>
         <property name="connection.useUnicode">true</property>
         <property name="connection.characterEncoding">UTF-8</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
@@ -18,10 +18,7 @@
         <mapping resource="hbm/Corplan.hbm.xml"/>
         <mapping resource="hbm/Book.hbm.xml"/>
         <mapping resource="hbm/Supplier.hbm.xml"/>
-        <mapping resource="hbm/Corbookview.hbm.xml"/>
         <mapping resource="hbm/Class.hbm.xml"/>
-        <mapping resource="hbm/Bookcorsup.hbm.xml"/>
-        <mapping resource="hbm/Courclass.hbm.xml"/>
         <mapping resource="hbm/Coursebk.hbm.xml"/>
         <mapping resource="hbm/Bookpurchaseview.hbm.xml"/>
         <mapping resource="hbm/Bookpurchase.hbm.xml"/>

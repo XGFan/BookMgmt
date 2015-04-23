@@ -57,4 +57,6 @@ public interface CollegeService extends BaseService<College> {
      */
     public List fuzzyQuery(String condition);
 
+    public  String getNewID(String col);
+
 }

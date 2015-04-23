@@ -11,12 +11,12 @@
             <generator class="identity"/>
         </id>
         <!-- many-to-one中inverse=false，为默认，cascade配置无意义 -->
-        <many-to-one name="book" class="com.bean.book.Book" fetch="select">
+        <many-to-one name="book" class="com.bean.book.Book" fetch="select" lazy="false">
             <column name="idbk" length="11"/>
         </many-to-one>
-        <many-to-one name="course" class="com.bean.course.Course"
+        <many-to-one name="course" class="com.bean.course.Course" lazy="false"
                      fetch="select">
-            <column name="idcor" length="8"/>
+            <column name="idcor" length="11"/>
         </many-to-one>
     </class>
 </hibernate-mapping>

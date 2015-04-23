@@ -1,15 +1,17 @@
 package com.api;
 
+import com.bean.book.Book;
+import com.bean.course.Course;
 import com.bean.coursebk.Coursebk;
 import com.service.CourseBkService;
-import com.service.CourseBookViewService;
-import com.util.GetPaginationInfo;
+import com.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,43 +25,35 @@ public class CourseBkApi {
     @Context
     ServletContext context;
     @Autowired
-    CourseBookViewService courseBookViewService;
-    @Autowired
     CourseBkService courseBkService;
+    @Autowired
+    CourseService courseService;
 
-    @GET
-    @Path("/all")
-    @Produces("application/json;charset=UTF-8")
-    public List getAll() {
-        return courseBookViewService.getAll();
-    }
 
-    @GET
-    @Path("/p{page}/n{num}")
-    @Produces("application/json;charset=UTF-8")
-    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
-        return GetPaginationInfo.getSubList(courseBookViewService.getAll(), page, num);
-    }
 
-    @GET
-    @Path("/key={keword}")
-    @Produces("application/json;charset=UTF-8")
-    public List findByKeyword(@PathParam("keyword")String keyword){
-        return courseBookViewService.getAll();
-    }
 
     @GET
     @Path("/cor={idcor}")
     @Produces("application/json;charset=UTF-8")
     public List getByCor(@PathParam("idcor") String idcor) {
-        return courseBookViewService.findByCourse(idcor);
+        List<Coursebk> corbk = courseBkService.findByIdCor(idcor);
+        List<Book> ans = new ArrayList();
+        for (Coursebk coursebk : corbk) {
+            ans.add(coursebk.getBook());
+        }
+        return ans;
     }
 
     @GET
     @Path("/bk={idbk}")
     @Produces("application/json;charset=UTF-8")
     public List getByBk(@PathParam("idbk") String idbk) {
-        return courseBookViewService.findCourseByIdbk(idbk);
+        List<Coursebk> corbk = courseBkService.findByIdBk(idbk);
+        List<Course> ans = new ArrayList();
+        for (Coursebk coursebk : corbk) {
+            ans.add(coursebk.getCourse());
+        }
+        return ans;
     }
 
     @POST
