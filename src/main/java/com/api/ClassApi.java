@@ -88,6 +88,56 @@ public class ClassApi {
     }
 
 
+    @PUT
+    @Path("/edit")
+    @Produces("application/json;charset=UTF-8")
+    public boolean editGrade(@FormParam("grade") String grade,
+                             @FormParam("college") String col,
+                             @FormParam("major") String major,
+                             @FormParam("classNum") int clsNum,
+                             @FormParam("campus") String campus) {
+        List<ClassInfo> list = classServie.accurateQuery(col,major, grade, campus);
+        College t = collegeService.getCollege(col, major);
+        if (clsNum > list.size()) {
+            classServie.addClasses(campus, grade, clsNum - list.size(), t);
+        }else{
+            int[] x = new int[list.size()];
+            int i = 0;
+            for (ClassInfo info : list) {
+                x[i] = Integer.valueOf(info.getIdcls());
+                i++;
+            }
+            bubbleswap(x,x.length);
+            for(int j=0;j<list.size()-clsNum;j++){
+                classServie.deleteClass(Integer.toString(x[x.length-j-1]));
+            }
+        }
+        return true;
+    }
+
+    private void bubbleswap(int mf[],int nf)
+    {
+        int temp=0;
+        if(nf==0)//传入的为需要排序的项数
+        {
+            return;//不需要排序的时候退出
+        }
+        for(int i=0;i<nf-1;i++)
+        {//选出nf个数中最大的一个，排到最后
+            if(mf[i]>mf[i+1])
+            {
+                temp=mf[i];
+                mf[i]=mf[i+1];
+                mf[i+1]=temp;
+            }
+        }
+        bubbleswap(mf,nf-1);//由于本轮已选出最大的一个，下一轮只需要选出剩下的nf-1个数中最大的一个
+    }
+
+
+
+
+
     private List classToGrade(List<ClassInfo> classInfos){
         List<GradeInfo> ansList = new ArrayList<GradeInfo>();
         for(ClassInfo u : classInfos){

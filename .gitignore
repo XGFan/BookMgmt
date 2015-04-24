@@ -1,12 +1,2 @@
-out/
-WebRoot/WEB-INF/classes/
-WebRoot/WEB-INF/lib/
-.idea/
-.settings/
-*.iml
 target/
-.classpath
-.project
-src/main/webapp/WEB-INF/classes
-src/main/webapp/WEB-INF/lib/
-src/main/resources/db/digitalocean.properties
+.idea/

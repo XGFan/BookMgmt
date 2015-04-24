@@ -64,13 +64,11 @@ public class BookPurchaseServiceImp implements BookPurchaseService {
         return result;
     }
 
-    @Override
     public List getPurInfoBySupplier() {
         return getPurInfoBySupplier("");
     }
 
 
-    @Override
     public String getBKPurDate() {
         Properties prop = new Properties();
         String path = BookPurchaseServiceImp.class.getClassLoader().getResource("date.properties").getPath();
