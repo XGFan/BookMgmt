@@ -14,12 +14,10 @@ public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements C
     @Autowired
     private ClassDAO classDAO;
 
-    @Override
     public List fuzzyFind(String condition) {
         return classDAO.getClassFuzzy(condition);
     }
 
-    @Override
     public List accurateQuery(String col, String major, String grade, String campus) {
         return classDAO.getClassByGradeCampusColMajor(col, major, grade, campus);
     }
@@ -42,7 +40,6 @@ public class ClassServiceImp extends BaseServiceTemplate<ClassInfo> implements C
         return true;
     }
 
-    @Override
     public boolean deleteClass(String idcls) {
         ClassInfo cls = classDAO.findById(idcls);
         return classDAO.delete(cls);

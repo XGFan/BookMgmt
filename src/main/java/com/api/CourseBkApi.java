@@ -13,6 +13,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static com.util.GetPaginationInfo.getSubMap;
 
 /**
  * DATE:2015/1/8
@@ -35,25 +38,25 @@ public class CourseBkApi {
     @GET
     @Path("/cor={idcor}")
     @Produces("application/json;charset=UTF-8")
-    public List getByCor(@PathParam("idcor") String idcor) {
+    public Map getByCor(@PathParam("idcor") String idcor,@QueryParam("page")int page,@QueryParam("rows") int row) {
         List<Coursebk> corbk = courseBkService.findByIdCor(idcor);
         List<Book> ans = new ArrayList();
         for (Coursebk coursebk : corbk) {
             ans.add(coursebk.getBook());
         }
-        return ans;
+        return getSubMap(ans,page,row);
     }
 
     @GET
     @Path("/bk={idbk}")
     @Produces("application/json;charset=UTF-8")
-    public List getByBk(@PathParam("idbk") String idbk) {
+    public Map getByBk(@PathParam("idbk") String idbk,@QueryParam("page")int page,@QueryParam("rows") int row) {
         List<Coursebk> corbk = courseBkService.findByIdBk(idbk);
         List<Course> ans = new ArrayList();
         for (Coursebk coursebk : corbk) {
             ans.add(coursebk.getCourse());
         }
-        return ans;
+        return getSubMap(ans,page,row);
     }
 
     @POST

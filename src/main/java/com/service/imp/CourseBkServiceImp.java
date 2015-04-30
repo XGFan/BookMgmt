@@ -41,7 +41,8 @@ public class CourseBkServiceImp extends BaseServiceTemplate<Coursebk> implements
     public boolean save(String idbk, String idcor) {
         Book book = bookDAO.findById(idbk);
         Course course = courseDAO.findById(idcor);
-        if(coursebkDAO.findByIdcorAndIdbk(idcor,idbk)!=null){
+        List flag = coursebkDAO.findByIdcorAndIdbk(idcor,idbk);
+        if(flag!=null&&flag.size()!=0){
             return true;
         }else {
             return book != null && course != null && save(new Coursebk(book, course));

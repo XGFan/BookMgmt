@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -73,8 +74,10 @@ public class CourseApi {
     @GET
     @Path("/{idcor}")
     @Produces("application/json;charset=UTF-8")
-    public Course getById(@PathParam("idcor") String idcor) {
-        return courseService.findById(idcor);
+    public List getById(@PathParam("idcor") String idcor) {
+        List ans = new ArrayList();
+        ans.add(courseService.findById(idcor));
+        return ans;
     }
 
     @GET

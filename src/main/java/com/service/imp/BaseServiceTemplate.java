@@ -47,7 +47,6 @@ public abstract class BaseServiceTemplate<T> implements BaseService<T> {
         return getBaseDao().getAll();
     }
 
-    @Override
     public T findById(Serializable id) {
         return getBaseDao().findById(id);
     }

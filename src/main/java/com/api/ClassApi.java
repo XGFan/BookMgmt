@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static com.util.GetPaginationInfo.getSubMap;
+
 /**
  * DATE:2014/11/24
  * TIME:16:10
@@ -34,10 +36,10 @@ public class ClassApi {
     @GET
     @Path("/{campus}/{col}/{major}/{grade}")
     @Produces("application/json;charset=UTF-8")
-    public List getClass(@PathParam("campus") String campus, @PathParam("col") String col,
-                              @PathParam("major") String major, @PathParam("grade") String grade) {
-        System.out.println("I got it");
-        return classServie.accurateQuery(col, major, grade, campus);
+    public Map getClass(@PathParam("campus") String campus, @PathParam("col") String col,
+                        @PathParam("major") String major, @PathParam("grade") String grade,
+                        @QueryParam("page")int page,@QueryParam("rows") int row) {
+        return getSubMap(classServie.accurateQuery(col, major, grade, campus),page,row);
     }
 
     @GET
@@ -52,14 +54,14 @@ public class ClassApi {
     @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
     public Map getClass(@PathParam("keyword") String keyword,@QueryParam("page")int page,@QueryParam("rows") int row) {
-        return GetPaginationInfo.getSubMap(classServie.fuzzyFind(keyword), page, row);
+        return getSubMap(classServie.fuzzyFind(keyword), page, row);
     }
 
     @GET
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public Map getAllClass(@QueryParam("page")int page,@QueryParam("rows") int row) {
-        return GetPaginationInfo.getSubMap(classServie.getAll(), page, row);
+        return getSubMap(classServie.getAll(), page, row);
     }
 
     @GET
@@ -75,7 +77,7 @@ public class ClassApi {
     public Map getAllGrade(@QueryParam("page")int page,@QueryParam("rows") int row) {
         List<ClassInfo> list = classServie.getAll();
         List<GradeInfo> ansList = classToGrade(list);
-        return GetPaginationInfo.getSubMap(ansList, page, row);
+        return getSubMap(ansList, page, row);
     }
 
     @GET
@@ -84,7 +86,7 @@ public class ClassApi {
     public Map getGrade(@PathParam("keyword") String keyword,@QueryParam("page")int page,@QueryParam("rows") int row) {
         List<ClassInfo> list = classServie.fuzzyFind(keyword);
         List<GradeInfo> ansList = classToGrade(list);
-        return GetPaginationInfo.getSubMap(ansList, page, row);
+        return getSubMap(ansList, page, row);
     }
 
 

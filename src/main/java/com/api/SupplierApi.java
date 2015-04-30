@@ -12,6 +12,8 @@ import javax.ws.rs.core.Context;
 import java.util.List;
 import java.util.Map;
 
+import static com.util.GetPaginationInfo.getSubMap;
+
 /**
  * DATE:2015/1/6
  * TIME:11:00
@@ -46,7 +48,7 @@ public class SupplierApi {
     @Path("/all")
     @Produces("application/json;charset=UTF-8")
     public Map getAll(@QueryParam("page") int page, @QueryParam("rows") int row) {
-        return GetPaginationInfo.getSubMap(supplierService.getAll(), page, row);
+        return getSubMap(supplierService.getAll(), page, row);
     }
 
 
@@ -61,16 +63,16 @@ public class SupplierApi {
     @GET
     @Path("/sup={supname}")
     @Produces("application/json;charset=UTF-8")
-    public List searchBySup(@PathParam("supname") String supplier) {
-        return supplierService.findBySupplier(supplier);
+    public Map searchBySup(@PathParam("supname") String supplier,@QueryParam("page")int page,@QueryParam("rows") int row) {
+        return getSubMap(supplierService.findBySupplier(supplier),page,row);
     }
 
     //根据出版社名查找供应信息obj数组===========正常
     @GET
     @Path("/pub={pubname}")
     @Produces("application/json;charset=UTF-8")
-    public List findByPub(@PathParam("pubname") String publish) {
-        return supplierService.findByPublish(publish);
+    public Map findByPub(@PathParam("pubname") String publish,@QueryParam("page")int page,@QueryParam("rows") int row) {
+        return getSubMap(supplierService.findByPublish(publish),page,row);
     }
 
 

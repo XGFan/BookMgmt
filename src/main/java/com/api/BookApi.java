@@ -36,8 +36,10 @@ public class BookApi {
     @GET
     @Path("/id={idbk}")
     @Produces("application/json;charset=UTF-8")
-    public Book getBookByIdbk(@PathParam("idbk") String idbk) {
-        return bookService.findById(idbk);
+    public List getBookByIdbk(@PathParam("idbk") String idbk) {
+        List ans = new ArrayList();
+        ans.add(bookService.findById(idbk));
+        return ans;
     }
 
     @GET
@@ -96,7 +98,7 @@ public class BookApi {
     @POST
     @Path("/new")
     @Produces("application/json;charset=UTF-8")
-    public boolean addClass(
+    public String addBook(
             @FormParam("bkname") String bkname,
             @FormParam("author") String author,
             @FormParam("edition") Integer edition,
@@ -110,7 +112,7 @@ public class BookApi {
         SimpleDateFormat df=new SimpleDateFormat("yyMMdd");
         String result = String.format("%05d",(int)(Math.random()*10000));
         Book book = new Book();
-        book.setIdbk(df.format(tasktime)+result);
+        book.setIdbk(df.format(tasktime) + result);
         book.setBkname(bkname);
         book.setAuthor(author);
         book.setEdition(edition);
@@ -118,6 +120,10 @@ public class BookApi {
         book.setIsbn(isbn);
         book.setPrice(price);
         book.setMemo(memo);
-        return bookService.save(book);
+        if(bookService.save(book)){
+            return book.getIdbk();
+        }else{
+            return null;
+        }
     }
 }

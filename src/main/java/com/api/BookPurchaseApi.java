@@ -53,8 +53,8 @@ public class BookPurchaseApi {
     @GET
     @Path("/pub={pub}")
     @Produces("application/json;charset=UTF-8")
-    public List getAllBookPurchaseBuyPub(@PathParam("pub")String pubName ){
-        return bookPurchaseService.getPurInfoBySupplier(pubName);
+    public Map getAllBookPurchaseBuyPub(@PathParam("pub")String pubName,@QueryParam("page")int page,@QueryParam("rows") int row){
+        return GetPaginationInfo.getSubMap(bookPurchaseService.getPurInfoBySupplier(pubName),page,row );
     }
 
     @GET
