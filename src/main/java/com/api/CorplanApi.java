@@ -10,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MultivaluedMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * DATE:2015/1/8
@@ -57,7 +58,7 @@ public class CorplanApi {
         Course temp = courseService.findById(idcor);
         if (temp != null) {
 //            位数不足补全
-            String idcorplan = idcor + (Integer.parseInt(sem) < 10 ? sem : ("0" + sem));
+            String idcorplan = idcor + (Integer.parseInt(sem) > 10 ? sem : ("0" + sem));
             return corplanService.save(new Corplan(idcorplan, temp, sem));
         } else {
             return false;
@@ -70,5 +71,40 @@ public class CorplanApi {
     public boolean delCorplan(@FormParam("idcorsem") String idcorsem) {
         Corplan temp = corplanService.findById(idcorsem);
         return corplanService.delete(temp);
+    }
+
+    @GET
+    @Path("/{idcor}")
+    public List getCorplan(@PathParam("idcor") String idcor) {
+        List<Corplan> temp = corplanService.getByIdcor(idcor);
+        List ans = new ArrayList();
+        for (Corplan corplan : temp) {
+            ans.add(corplan.getSemester());
+        }
+        return ans;
+    }
+
+    @POST
+    @Path("/finalEdit")
+    @Consumes("application/x-www-form-urlencoded")
+    public boolean finaledit(MultivaluedMap<String, String> forms) {
+        List<String> sems = forms.get("semester");
+        String idcor = forms.getFirst("idcor");
+        List<Corplan> corplan = corplanService.getByIdcor(idcor);
+//        corplanService.delete()
+        for (Corplan corplan1 : corplan) {
+            corplanService.delete(corplan1);
+        }
+        for (String sem : sems) {
+            Course temp = courseService.findById(idcor);
+            if (temp != null) {
+//            位数不足补全
+                String idcorplan = idcor + (Integer.parseInt(sem) < 10 ? sem : ("0" + sem));
+                corplanService.save(new Corplan(idcorplan, temp, sem));
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }

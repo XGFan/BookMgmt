@@ -17,4 +17,6 @@ public interface CourseBkService extends BaseService<Coursebk> {
     public List<Coursebk> findByBkAndCor(String idbk,String idcor);
 
     public boolean save(String idbk, String idcor);
+
+    public Coursebk add(String idbk, String idcor);
 }

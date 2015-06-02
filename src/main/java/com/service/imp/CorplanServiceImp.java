@@ -54,6 +54,10 @@ public class CorplanServiceImp extends BaseServiceTemplate<Corplan> implements C
         return corplanDAO.getCorplanByColMajorSem(col, major);
     }
 
+    public List getByIdcor(String idcor) {
+        return corplanDAO.getByIdcor(idcor);
+    }
+
     public List fuzzyFind(String condition) {
         return corplanDAO.getCorplanFuzzy(condition);
     }

@@ -138,8 +138,13 @@ public class CourseDAO extends BaseDaoImp<Course> {
         List list = null;
         try {
             String queryString = "select distinct c from Course c join c.college cc where ";
-            queryString += "cc.col like '%" + col + "%' and cc.major='" + major
-                    + "' and c.semester='" + sem + "'";
+            if (sem != null) {
+                queryString += "cc.col like '%" + col + "%' and cc.major='" + major
+                        + "' and c.semester='" + sem + "'";
+            } else {
+                queryString += "cc.col like '%" + col + "%' and cc.major='" + major
+                        + "'";
+            }
             list = getCurrentSession().createQuery(queryString).list();
         } catch (RuntimeException re) {
             log.error("find all failed", re);

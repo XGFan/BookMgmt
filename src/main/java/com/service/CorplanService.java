@@ -25,6 +25,9 @@ public interface CorplanService extends BaseService<Corplan>{
      */
     public List findCorplanByColMajorSem(String col, String major);
 
+
+    public List getByIdcor(String idcor);
+
 //    public
 
     /**

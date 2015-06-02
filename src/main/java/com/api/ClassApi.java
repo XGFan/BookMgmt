@@ -223,11 +223,14 @@ public class ClassApi {
     }
 
     @PUT
-    @Path("/{idcls}/{stunum}")
+    @Path("/id={idcls}")
     @Produces("application/json;charset=UTF-8")
-    public boolean editClass(@PathParam("idcls") String idcls, @PathParam("stunum") int stuNum) {
+    public boolean editClass(@PathParam("idcls") String idcls,
+                             @FormParam("stunum") int stuNum,
+                             @FormParam("campus") String campus) {
         ClassInfo temp = classServie.findById(idcls);
         temp.setStunum(stuNum);
+        temp.setCampus(campus);
         return classServie.update(temp);
     }
 

@@ -30,6 +30,9 @@ public class CourseServiceImp extends BaseServiceTemplate<Course> implements Cou
         return courseDAO.getCourseByColMajorSem(col, major, sem);
     }
 
+    public List findByColMajor(String col, String major) {
+        return courseDAO.getCourseByColMajor(col, major);
+    }
 
     public List fuzzyQuery(String condition) {
         return courseDAO.fuzzyQuery(condition);
@@ -318,4 +321,11 @@ public class CourseServiceImp extends BaseServiceTemplate<Course> implements Cou
         return String.format("%04d",num+1);
     }
 
+    public String add(Course course) {
+        if (courseDAO.save(course)) {
+            return course.getIdcor();
+        } else {
+            return null;
+        }
+    }
 }

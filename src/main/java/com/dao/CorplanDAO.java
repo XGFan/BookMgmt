@@ -134,4 +134,10 @@ public class CorplanDAO extends BaseDaoImp<Corplan> {
     public void initAllCorplan(List entities) {
         getCurrentSession().saveOrUpdate(entities);
     }
+
+
+    public List getByIdcor(String idcor) {
+        String queryString = "from Corplan where idcor = '" + idcor + "'";
+        return getCurrentSession().createQuery(queryString).list();
+    }
 }

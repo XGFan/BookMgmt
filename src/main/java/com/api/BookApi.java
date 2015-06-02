@@ -5,14 +5,12 @@ import com.service.BookService;
 import com.service.CourseService;
 import com.service.SupplierService;
 import com.util.GetPaginationInfo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -87,8 +85,10 @@ public class BookApi {
         Book book = bookService.findById(idbk);
         book.setBkname(bkname);
         book.setAuthor(author);
+        edition = edition == null ? 1 : edition;
         book.setEdition(edition);
-        book.setIdsp(idsp);
+        book.setSupplier(supplierService.findById(idsp));
+//        book.setIdsp(idsp);
         book.setIsbn(isbn);
         book.setPrice(price);
         book.setMemo(memo);
@@ -96,7 +96,7 @@ public class BookApi {
     }
 
     @POST
-    @Path("/new")
+    @Path("/new") //api/book/new
     @Produces("application/json;charset=UTF-8")
     public String addBook(
             @FormParam("bkname") String bkname,
@@ -115,6 +115,7 @@ public class BookApi {
         book.setIdbk(df.format(tasktime) + result);
         book.setBkname(bkname);
         book.setAuthor(author);
+        edition = edition == null ? 1 : edition;
         book.setEdition(edition);
         book.setSupplier(supplierService.findById(idsp));
         book.setIsbn(isbn);

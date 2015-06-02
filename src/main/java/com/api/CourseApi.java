@@ -1,9 +1,11 @@
 package com.api;
 
+import com.bean.book.Book;
 import com.bean.college.College;
+import com.bean.corplan.Corplan;
 import com.bean.course.Course;
-import com.service.CollegeService;
-import com.service.CourseService;
+import com.bean.coursebk.Coursebk;
+import com.service.*;
 import com.util.GetPaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +33,12 @@ public class CourseApi {
     CourseService courseService;
     @Autowired
     CollegeService collegeService;
+    @Autowired
+    CourseBkService courseBkService;
+    @Autowired
+    CorplanService corplanService;
+    @Autowired
+    BookService bookService;
 
     @GET
     @Path("/all")
@@ -42,7 +50,7 @@ public class CourseApi {
     @GET
     @Path("/p{page}/n{num}")
     @Produces("application/json;charset=UTF-8")
-    public List getAllByPage(@PathParam("page")int page,@PathParam("num")int num){
+    public List getAllByPage(@PathParam("page") int page, @PathParam("num") int num) {
         return GetPaginationInfo.getSubList(courseService.getAll(), page, num);
     }
 
@@ -66,9 +74,9 @@ public class CourseApi {
     @GET
     @Path("/key={keyword}")
     @Produces("application/json;charset=UTF-8")
-    public Map findByKeyword(@PathParam("keyword") String keyword,@QueryParam("page") int page, @QueryParam("rows")
+    public Map findByKeyword(@PathParam("keyword") String keyword, @QueryParam("page") int page, @QueryParam("rows")
     int row) {
-        return getSubMap(courseService.fuzzyQuery(keyword),page,row);
+        return getSubMap(courseService.fuzzyQuery(keyword), page, row);
     }
 
     @GET
@@ -83,23 +91,73 @@ public class CourseApi {
     @GET
     @Path("/{col}/{major}/{sem}")
     @Produces("application/json;charset=UTF-8")
-    public List findByCMS(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
-        return courseService.findByColMajorSem(col, major, sem);
+    public Map findByCMS(@PathParam("col") String col,
+                         @PathParam("major") String major,
+                         @PathParam("sem") String sem,
+                         @QueryParam("page") int page,
+                         @QueryParam("rows") int row) {
+        if (sem.equals("all")) {
+            sem = null;
+        }
+        return getSubMap(courseService.findByColMajorSem(col, major, sem), page, row);
+    }
+
+    @GET
+    @Path("/{col}/{major}")
+    @Produces("application/json;charset=UTF-8")
+    public List findByCM(@PathParam("col") String col, @PathParam("major") String major, @PathParam("sem") String sem) {
+        return courseService.findByColMajor(col, major);
     }
 
     @POST
     @Path("/new")
     @Produces("text/plain;charset=UTF-8")
-    public String addCourse(@FormParam("col")String col,@FormParam("major")String major,
-                            @FormParam("corname")String corname,@FormParam("sem")String sem){
+    public String addCourse(@FormParam("col") String col, @FormParam("major") String major,
+                            @FormParam("corname") String corname, @FormParam("sem") String sem) {
         College college = collegeService.getCollege(col, major);
-        String idcor = college.getIdcm()+courseService.getMagicNum();
-        Course course = new Course(idcor,college,corname,sem);
-        if(courseService.save(course)){
+        String idcor = college.getIdcm() + courseService.getMagicNum();
+        Course course = new Course(idcor, college, corname, sem);
+        if (courseService.save(course)) {
             return idcor;
-        }else{
+        } else {
             return null;
         }
+    }
+
+    @POST
+    @Path("/finalNew")
+    @Consumes("application/json;charset=UTF-8")
+    public boolean finalAddCourse(Map<String, Object> args) {
+        String corname = args.get("corname").toString();
+        String sem = args.get("semester").toString();
+        List<Object> majorList = (List<Object>) args.get("majorList");
+        List<Object> bookList = (List<Object>) args.get("bookList");
+        for (Object o : majorList) {
+            Map<String, Object> temp = (Map<String, Object>) o;
+            Course tempCor = new Course();
+            String major = (String) temp.get("major");
+            String col = (String) temp.get("col");
+            College college = collegeService.getCollege(col, major);
+            String idcor = college.getIdcm() + courseService.getMagicNum();
+            Course course = new Course(idcor, college, corname, sem);
+            String idcors = courseService.add(course);
+            if (idcors != null) {
+                for (Object o1 : bookList) {
+                    Map<String, Object> t = (Map<String, Object>) o1;
+                    Book tempbook = (Book) bookService.findById(t.get("idbk").toString());
+                    Coursebk cbktemp = courseBkService.add(tempbook.getIdbk(), idcors);
+                }
+
+                Corplan tempcorplan = new Corplan();
+                tempcorplan.setCourse(courseService.findById(idcors));
+                tempcorplan.setSemester(sem);
+                String idcorplan = idcors + (Integer.parseInt(sem) > 10 ? sem : ("0" + sem));
+                tempcorplan.setIdcorsem(idcorplan);
+                corplanService.save(tempcorplan);
+
+            }
+        }
+        return true;
     }
 
 }

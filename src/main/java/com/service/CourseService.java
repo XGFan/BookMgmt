@@ -17,6 +17,15 @@ public interface CourseService extends BaseService<Course> {
      */
     public List findByColMajorSem(String col, String major, String sem);
 
+    /**
+     * 根据学院名称，专业，学期查找所有信息(join)
+     *
+     * @param col   学院名称
+     * @param major 专业名称
+     * @return 学院专业在某个学期的科目 map list
+     */
+    public List findByColMajor(String col, String major);
+
 
     /**
      * 模糊查找，从学院，专业，科目名查询(join)
@@ -27,4 +36,6 @@ public interface CourseService extends BaseService<Course> {
     public List fuzzyQuery(String condition);
 
     public String getMagicNum();
+
+    public String add(Course course);
 }

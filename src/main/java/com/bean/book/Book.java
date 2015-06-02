@@ -13,7 +13,7 @@ import java.util.Set;
  * Book entity. @author MyEclipse Persistence Tools
  */
 @XmlRootElement
-@JsonIgnoreProperties(value={"handler","hibernateLazyInitializer"})
+@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "idsp"})
 public class Book implements java.io.Serializable {
 
     /**

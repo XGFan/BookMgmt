@@ -48,4 +48,9 @@ public class CourseBkServiceImp extends BaseServiceTemplate<Coursebk> implements
             return book != null && course != null && save(new Coursebk(book, course));
         }
     }
+
+    public Coursebk add(String idbk, String idcor) {
+        save(idbk, idcor);
+        return (Coursebk) coursebkDAO.findByIdcorAndIdbk(idcor, idbk).get(0);
+    }
 }

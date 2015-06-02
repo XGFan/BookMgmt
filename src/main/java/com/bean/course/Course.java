@@ -13,7 +13,7 @@ import java.util.Set;
  * Course entity. @author MyEclipse Persistence Tools
  */
 @XmlRootElement
-@JsonIgnoreProperties(value={"idcm","hibernateLazyInitializer"})
+@JsonIgnoreProperties(value = {"idcm", "hibernateLazyInitializer", "semester"})
 public class Course implements java.io.Serializable {
 
     // Fields

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Iterator;
 import java.util.List;
 
-
 @Repository("bookpurchaseDAO")
 public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
 
@@ -22,6 +21,9 @@ public class BookpurchaseDAO extends BaseDaoImp<Bookpurchase> {
             Iterator<Bookpurchaseview> it = bpvlist.iterator();
             while (it.hasNext()) {
                 Bookpurchaseview bpv = (Bookpurchaseview) it.next();
+//                if(bpv==null){
+//                    continue;
+//                }
                 // 将Bookpurchaseview对象转换为Bookpurchase对象
                 Bookpurchase bp = new Bookpurchase();
                 bp.setAuthor(bpv.getId().getAuthor());
