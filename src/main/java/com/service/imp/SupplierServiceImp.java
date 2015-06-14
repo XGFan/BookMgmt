@@ -18,7 +18,6 @@ public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements
         return supplierDAO.findAllSupplier();
     }
 
-    @Override
     public List getAllPublisher() {
         return supplierDAO.findAllublisher();
     }
@@ -27,7 +26,6 @@ public class SupplierServiceImp extends BaseServiceTemplate<Supplier> implements
         return supplierDAO.findByPublisher(publish);
     }
 
-    @Override
     public List findBySupplier(String supplier) {
         return supplierDAO.findBySupplier(supplier);
     }
